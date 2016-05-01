@@ -158,14 +158,14 @@
 }
 
 .player-buttons {
-	padding: 0 10px;
+	padding: 0 0px;
 }
 
 .player-button {
     width:22px;
 	padding: 0;
-	margin: 0 5px;
-	padding: 0 5px;
+	margin: 0 4px;
+	padding: 0 0px;
 	background: transparent;
 	border: none;
 	color: #841E21;
@@ -197,6 +197,7 @@
 }
 .player-time{
     color: white;
+	width: 35px;
 }
 
 

@@ -2,7 +2,7 @@
 angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
     .controller('mainCtrl', function ($scope, ngAudio,  $firebaseArray){
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Jhonny";
+        $scope.myuserid="Gary";
         $scope.myUser={
             song:'',
             time: '',

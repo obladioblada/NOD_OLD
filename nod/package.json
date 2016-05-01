@@ -1,0 +1,16 @@
+{
+  "users":{
+    "Jhonny":{
+      "song": "",
+      "isPLaying": false,
+      "time": 0
+    },
+    "Gary":{
+      "song": "",
+      "isPLaying": false,
+      "time": 0
+    }
+  }
+}
+
+

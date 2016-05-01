@@ -1,0 +1,33 @@
+.icon-search{
+    width: 50%;
+    height: 50%;
+    float: right;
+    position: relative;
+    right: -4px;
+    bottom: -10px;
+
+}
+.user-list{
+    border: 1px solid;
+    list-style: none;
+    border-radius: 6px;
+    padding: 20px;
+    color: white;
+    border-bottom-color: #841E21;
+    background: #222222;
+    -webkit-transition: background 0.1s; /* Safari */
+    transition: background 0.1s;
+    transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+    cursor: pointer;
+    margin-right: 318px;
+}
+.user-list:hover{
+    background: #841E21;
+
+}
+.detail{
+
+    color: gray;
+
+}

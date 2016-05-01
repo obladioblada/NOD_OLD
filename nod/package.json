@@ -2,12 +2,12 @@
   "users":{
     "Jhonny":{
       "song": "",
-      "isPLaying": false,
+      "isPlaying": false,
       "time": 0
     },
     "Gary":{
       "song": "",
-      "isPLaying": false,
+      "isPlaying": false,
       "time": 0
     }
   }

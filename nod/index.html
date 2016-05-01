@@ -34,16 +34,17 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 ">
             <!--
-            https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif
-            http://replygif.net/i/1121.gif
-            https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif
-            http://popcrush.com/files/2013/04/head-nod.gif
-            https://m.popkey.co/8ff06f/vkvKJ.gif
-            http://i.imgur.com/Owzyq.gif
-            https://media.giphy.com/media/3tzCu8tIfT9Re/giphy.gif
-            http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
+            https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif,
+            http://replygif.net/i/1121.gif,
+            https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif,
+            http://popcrush.com/files/2013/04/head-nod.gif,
+            https://m.popkey.co/8ff06f/vkvKJ.gif,
+            http://i.imgur.com/Owzyq.gif,
+            https://media.giphy.com/media/3tzCu8tIfT9Re/giphy.gif,
+            http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif,
+            http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
             -->
-            <img src="http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif" style="
+            <img src="{{myUser.image}}"  style="
     border: 1px solid white;
     width: 87px;
     border-radius: 52px;
@@ -152,7 +153,7 @@
                 <h3 class="player-artist">{{songs[currentSongIndex]}}</h3>
             </div>
             <div class="player-cover" ng-class="min==true ? 'min': ''">
-                <img src="img/glassanimals.jpg" alt="Glass Animals Albumart">
+                <img ng-src="{{images[currentSongIndex]}}" alt="Glass Animals Albumart">
             </div>
         </div>
         <div class="player-spectrum" ng-class="min==true ? 'min': ''">

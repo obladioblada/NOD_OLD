@@ -2,7 +2,7 @@
 angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
     .controller('mainCtrl', function ($scope, ngAudio,  $firebaseArray){
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Gary";
+        $scope.myuserid="Jhonny";
         $scope.myUser={
             song:'',
             time: '',
@@ -10,6 +10,16 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
         };
         $scope.min=false;
         $scope.numero=0;
+        $scope.images=[];
+/*
+ 'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
+ 'http://replygif.net/i/1121.gif',
+ 'https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif',
+ 'http://popcrush.com/files/2013/04/head-nod.gif',
+ 'https://m.popkey.co/8ff06f/vkvKJ.gif'
+http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
+      http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
+*/
         $scope.songs=["track00","track01","track02","track03","track04"];
         $scope.currentSongIndex;
 
@@ -17,6 +27,8 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
             angular.forEach( $scope.messages, function(user) {
                 if(user.$id==$scope.myuserid){
                     $scope.myUser=user;
+                }else{
+                    $scope.myUser.image="";
                 }
             })
         };

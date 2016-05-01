@@ -22,8 +22,8 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
       http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
 */
         $scope.songs=["track00","track01","track02","track03","track04"];
-        $scope.currentSongIndex;
-
+        $scope.currentSongIndex="";
+        $scope.idMaster="";
         $scope.determinaUser=function(){
             angular.forEach( $scope.messages, function(user) {
                 if(user.$id==$scope.myuserid){
@@ -34,7 +34,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
             })
         };
         $scope.chooseSong= function($i){
-            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3");
+            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3#t");
             $scope.audio.loop=false;
             $scope.currentSongIndex=$i;
             $scope.audio.currentTime=0;
@@ -108,11 +108,17 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
                 })
             });
 
-        $scope.listenTo=function($song,$time){
-            if($scope.audio!=undefined) $scope.audio.stop();
-            $scope.chooseSong($song);
-            $scope.tot=$scope.audio.currentTime+$scope.audio.remaining;
-            $scope.audio.progress=$time*100/$scope.tot;
+        $scope.listenTo=function($song,$time,$idmaster){
+            if($scope.audio!=undefined) $scope.audio.pause();
+            $time+=0.5;
+            $scope.audio = ngAudio.load("audio/"+$scope.songs[$song]+".mp3#t="+$time);
+            $scope.audio.loop=false;
+            $scope.currentSongIndex=$song;
+            $scope.audio.currentTime=0;
+            $scope.myUser.time=0;
+            $scope.audio.play();
+            $scope.idMaster=$idmaster;
+
         };
 
 

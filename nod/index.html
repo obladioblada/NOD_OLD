@@ -114,8 +114,9 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12" >
+            <input ng-model="audio.progress" step="0.1" min="0" max="1" type="range">
             <ul>
-                <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time)" ng-class=" {max:min==true,first:$index==0}" >
+                <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
                     <span >
                         {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
                     </span>

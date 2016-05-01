@@ -8,12 +8,11 @@
 
 }
 .user-list{
-    border: 1px solid;
+    border: 0px solid;
+
     list-style: none;
-    border-radius: 6px;
     padding: 20px;
     color: white;
-    border-bottom-color: #841E21;
     background: #222222;
     -webkit-transition: background 0.1s; /* Safari */
     transition: background 0.1s;
@@ -21,13 +20,32 @@
     -webkit-transition-timing-function: linear;
     cursor: pointer;
     margin-right: 318px;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
 }
+
+.user-list.max{
+    margin-right: 0px;
+}
+
 .user-list:hover{
     background: #841E21;
-
 }
+.user-list.first{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-color: #841E21;
+    border-top: 0px;
+}
+
+.user-list.last{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-color: #841E21;
+    border-bottom: 0px;
+}
+
 .detail{
-
+    height: 19px;
     color: gray;
-
 }

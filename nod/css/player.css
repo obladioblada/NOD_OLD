@@ -22,6 +22,11 @@
 	background: #841E21;
 	margin-bottom: 25px;
 }
+.player-info-text.min {
+	padding: 15px 0;
+	background: #841E21;
+	margin-bottom: 25px;
+}
 
 .player-song-name {
 	margin: 0;
@@ -90,13 +95,17 @@
 }
 
 .player-spectrum.min {
-    height: 20px;
-    filter: url("../player.html#goo-no-comp");
-    transform: translateZ(0);
-    position: relative;
-    margin-top: -45px;
-    z-index: 2;
-    white-space: nowrap;
+	height: 20px;
+	filter: url("../player.html#goo-no-comp");
+	transform: translateZ(0);
+	position: relative;
+	margin-top: -61px;
+	z-index: 2;
+	white-space: nowrap;
+}
+
+.hide {
+	visibility: hidden;
 }
 
 .player-spectrum-floor {

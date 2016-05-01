@@ -115,14 +115,21 @@
     <div class="row">
         <div class="col-md-12 col-sm-12" >
             <ul>
-                <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time)">
+                <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time)" ng-class=" {max:min==true,first:$index==0}" >
                     <span >
                         {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
                     </span>
                 </li>
-                <li class="user-list">
+                <li class="user-list last" ng-class="min==true ? 'max': ''">
                      <span >
                         io, cioe' {{myUser.$id}} sto ascoltando:<span class="detail"> {{songs[myUser.song]}}</span> | <span class="detail">{{myUser.time | trackTime}}</span>
+                    </span>
+                </li>
+            </ul>
+            <ul>
+                <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)" ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span >
+                        {{s}} <img src="img/playing.gif" class="detail" ng-if="$index==currentSongIndex&&audio.paused==false">
                     </span>
                 </li>
             </ul>
@@ -157,7 +164,7 @@
             </div>
         </div>
         <div class="player-spectrum" ng-class="min==true ? 'min': ''">
-            <div class="player-spectrum-bars" ng-class="min==true ? 'min': ''">
+            <div class="player-spectrum-bars" ng-class=" {max:min==true,hide:audio==undefined}">
                 <div class="player-spectrum-bar"></div>
                 <div class="player-spectrum-bar"></div>
                 <div class="player-spectrum-bar"></div>

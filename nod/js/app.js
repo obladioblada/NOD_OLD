@@ -10,13 +10,14 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
         };
         $scope.min=false;
         $scope.numero=0;
-        $scope.images=[];
+        $scope.images=['img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg',];
 /*
  'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
  'http://replygif.net/i/1121.gif',
  'https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif',
  'http://popcrush.com/files/2013/04/head-nod.gif',
  'https://m.popkey.co/8ff06f/vkvKJ.gif'
+ http://bulk-share.slickpic.com/album/share/zNwZNO,MkMkOTm/10207872.0/org/p/06.gif
 http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
       http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
 */
@@ -32,15 +33,15 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
                 }
             })
         };
-
         $scope.chooseSong= function($i){
             $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3");
             $scope.audio.loop=false;
             $scope.currentSongIndex=$i;
+            $scope.audio.currentTime=0;
+            $scope.myUser.time=0;
             $scope.audio.play();
         };
         $scope.percentage=0;
-        $scope.chooseSong(0);
         $scope.checkIfPlaying=function(){
             if(!$scope.audio.paused) {
                 $scope.audio.play();
@@ -108,11 +109,10 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
             });
 
         $scope.listenTo=function($song,$time){
-            $scope.audio.stop();
-            $scope.audio = ngAudio.load("audio/"+$scope.songs[$song]+".mp3");
-            $scope.currentSongIndex=$song;
-            $scope.audio.setCurrentTime($time);
-            $scope.audio.play();
+            if($scope.audio!=undefined) $scope.audio.stop();
+            $scope.chooseSong($song);
+            $scope.tot=$scope.audio.currentTime+$scope.audio.remaining;
+            $scope.audio.progress=$time*100/$scope.tot;
         };
 
 

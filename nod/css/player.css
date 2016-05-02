@@ -63,7 +63,6 @@
     display: inline-block;
     border-radius: 50%;
     width: 200px;
-    height: 200px;
     z-index: 3;
     height:0px;
 
@@ -119,6 +118,7 @@
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     font-size: 0;
     position: absolute;
+	z-index: 0;
     bottom: 0;
     -webkit-backface-visibility: hidden;
 }
@@ -198,8 +198,50 @@
 .player-time{
     color: white;
 	width: 35px;
+	text-align: center;
 }
 
+.player-volume{
+	-webkit-appearance: none;
+	height: 0px;
+	width: 0px;
+	margin-bottom: 5px;
+	position: absolute;
+	top: 389px;
+	right: -142px;
+	z-index: 40;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s;
+	transform: rotate(90deg);
+
+}
+.player-volume:focus{
+	outline: none;
+}
+
+.player-volume.max{
+	top: 389px;
+	right: -31px;
+	width: 99px;
+	height: 4px;
+	transform: rotate(270deg);
+
+}
+
+.player-volume.max::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: none;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	background: #841E21;
+}
+
+.player-volume::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: none;
+	height: 0px;
+	width: 0px;
+}
 
 .player-drop,
 .player-spectrum-floor,

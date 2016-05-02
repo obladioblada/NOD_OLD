@@ -45,8 +45,9 @@
             http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
             -->
             <img src="{{myUser.image}}"  style="
-    border: 1px solid white;
+    border: 3px solid white;
     width: 87px;
+    height: 87px;
     border-radius: 52px;
     position: absolute;
     margin: 2%;
@@ -57,7 +58,8 @@
             <div id="wrap" >
                 <form action="" autocomplete="off">
                     <img src="img/ic_search_white_48dp_2x.png" class="icon-search" >
-                    <input id="search" name="search" type="text" placeholder="What're we looking for ?"  ><input id="search_submit" value="Rechercher" type="submit">
+                    <input id="search" name="search" type="text" placeholder="What're we looking for ?"  >
+                    <input id="search_submit" value="Rechercher" type="submit">
                 </form>
             </div>
             <div class="content">
@@ -114,7 +116,6 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12" >
-            <input ng-model="audio.progress" step="0.1" min="0" max="1" type="range">
             <ul>
                 <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
                     <span >
@@ -156,9 +157,12 @@
 <div class="content">
     <div class="player">
         <div class="player-info">
-            <div class="player-info-text" ng-click="min=!min">
-                <h2 class="player-song-name">Gooey</h2>
-                <h3 class="player-artist">{{songs[currentSongIndex]}}</h3>
+            <div class="player-info-text">
+                <div ng-click="min=!min">
+                    <h2 class="player-song-name">Gooey</h2>
+                    <h3 class="player-artist">{{songs[currentSongIndex]}}</h3>
+                </div>
+                <input type="range" orient="vertical" min="0" ng-model="audio.volume"  max="1" step="0.001" class="player-volume noselect" ng-class=" {max:showVolume==true}" ng-mouseleave="showVolume=false"/>
             </div>
             <div class="player-cover" ng-class="min==true ? 'min': ''">
                 <img ng-src="{{images[currentSongIndex]}}" alt="Glass Animals Albumart">
@@ -200,8 +204,8 @@
             </div>
             <div class="player-slider"></div>
             <span class="player-time">{{audio.currentTime|trackTime}}</span>
-            <button class="player-button" ng-click="prevSong()">
-                <i class="fa fa-volume-up"></i>
+            <button class="player-button"  ng-mouseover="showVolume=true; min=false" ng-click="audio.volume!=0 ? audio.volume=0 : audio.volume=1-audio.volume">
+                <i class="fa " ng-class="audio.volume!=0 ? 'fa-volume-up': 'fa-volume-off'"></i>
             </button>
         </div>
     </div>

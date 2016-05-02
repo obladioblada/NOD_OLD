@@ -2,25 +2,25 @@
 angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
     .controller('mainCtrl', function ($scope, ngAudio,  $firebaseArray){
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Gary";
+        $scope.myuserid="Jhonny";
         $scope.myUser={
             song:'',
             time: '',
             isPlaying: false
         };
         $scope.min=false;
-        $scope.numero=0;
+        $scope.showVolume=false;
         $scope.images=['img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg',];
-/*
- 'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
- 'http://replygif.net/i/1121.gif',
- 'https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif',
- 'http://popcrush.com/files/2013/04/head-nod.gif',
- 'https://m.popkey.co/8ff06f/vkvKJ.gif'
- http://bulk-share.slickpic.com/album/share/zNwZNO,MkMkOTm/10207872.0/org/p/06.gif
-http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
-      http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
-*/
+        /*
+         'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
+         'http://replygif.net/i/1121.gif',
+         'https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif',
+         'http://popcrush.com/files/2013/04/head-nod.gif',
+         'https://m.popkey.co/8ff06f/vkvKJ.gif'
+         http://bulk-share.slickpic.com/album/share/zNwZNO,MkMkOTm/10207872.0/org/p/06.gif
+         http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
+         http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
+         */
         $scope.songs=["track00","track01","track02","track03","track04"];
         $scope.currentSongIndex="";
         $scope.idMaster="";
@@ -34,6 +34,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
             })
         };
         $scope.chooseSong= function($i){
+            if($scope.audio!=undefined) $scope.audio.pause();
             $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3#t");
             $scope.audio.loop=false;
             $scope.currentSongIndex=$i;
@@ -47,11 +48,13 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
                 $scope.audio.play();
             }
         };
-        $scope.updateBar=function(){
-            $scope.tot=$scope.audio.currentTime+$scope.audio.remaining;
-            $scope.percentage=$scope.audio.currentTime*100/$scope.tot;
-            $scope.percentage=100-$scope.percentage;
-            $scope.style=".player-slider::before { top: 0; left: 0; bottom: 0; right: "+$scope.percentage+"%; border-radius: 4px; background: #222; } .player-slider::after { opacity: 1; right: "+$scope.percentage+"%; width: 10px; height: 10px; top: -2.5px; background: #fff; border-radius: 50%; box-shadow: 0 0 1px rgba(0,0,0,0.2); }";
+        $scope.updateBar=function() {
+            if ($scope.audio != undefined) {
+                $scope.tot = $scope.audio.currentTime + $scope.audio.remaining;
+                $scope.percentage = $scope.audio.currentTime * 100 / $scope.tot;
+                $scope.percentage = 100 - $scope.percentage;
+                $scope.style = ".player-slider::before { top: 0; left: 0; bottom: 0; right: " + $scope.percentage + "%; border-radius: 4px; background: #222; } .player-slider::after { opacity: 1; right: " + $scope.percentage + "%; width: 10px; height: 10px; top: -2.5px; background: #fff; border-radius: 50%; box-shadow: 0 0 1px rgba(0,0,0,0.2); }";
+            }
         };
         $scope.$watch('audio.currentTime',function(){
             $scope.updateBar();
@@ -59,15 +62,15 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
                 $scope.nextSong();
             }
             $scope.sendToFB();
-         });
+        });
         $scope.playOrPause= function(){
             if($scope.audio.paused){
                 $scope.audio.play();
             }else{
                 $scope.audio.pause();
             }
-
         };
+
         $scope.nextSong= function (){
             $scope.currentSongIndex++;
             if($scope.currentSongIndex==$scope.songs.length){

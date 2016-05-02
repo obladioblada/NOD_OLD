@@ -1,12 +1,14 @@
 'use strict';
-angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
-    .controller('mainCtrl', function ($scope, ngAudio,  $firebaseArray){
+angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
+    .controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray){
+        ngAudioGlobals.unlock = false;
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Jhonny";
+        $scope.myuserid="Gary";
         $scope.myUser={
             song:'',
             time: '',
-            isPlaying: false
+            isPlaying: false,
+            image:''
         };
         $scope.min=false;
         $scope.numero=0;
@@ -24,6 +26,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
         $scope.songs=["track00","track01","track02","track03","track04"];
         $scope.currentSongIndex="";
         $scope.idMaster="";
+        $scope.audio = ngAudio.load("audio/"+$scope.songs[0]+".mp3");
         $scope.determinaUser=function(){
             angular.forEach( $scope.messages, function(user) {
                 if(user.$id==$scope.myuserid){
@@ -34,7 +37,9 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
             })
         };
         $scope.chooseSong= function($i){
-            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3#t");
+            $scope.audio.progress=0;
+            $scope.audio.audio.src="";
+            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3");
             $scope.audio.loop=false;
             $scope.currentSongIndex=$i;
             $scope.audio.currentTime=0;
@@ -51,7 +56,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
             $scope.tot=$scope.audio.currentTime+$scope.audio.remaining;
             $scope.percentage=$scope.audio.currentTime*100/$scope.tot;
             $scope.percentage=100-$scope.percentage;
-            $scope.style=".player-slider::before { top: 0; left: 0; bottom: 0; right: "+$scope.percentage+"%; border-radius: 4px; background: #222; } .player-slider::after { opacity: 1; right: "+$scope.percentage+"%; width: 10px; height: 10px; top: -2.5px; background: #fff; border-radius: 50%; box-shadow: 0 0 1px rgba(0,0,0,0.2); }";
+            $scope.style = ".rangebar{ -webkit-appearance: none;height: 3px; width: 100%;background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.progress + ", #841E21),color-stop(" + $scope.audio.progress + ", white));";
         };
         $scope.$watch('audio.currentTime',function(){
             $scope.updateBar();
@@ -69,6 +74,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
 
         };
         $scope.nextSong= function (){
+            $scope.audio.progress=0;
             $scope.currentSongIndex++;
             if($scope.currentSongIndex==$scope.songs.length){
                 $scope.currentSongIndex=0;
@@ -78,6 +84,7 @@ http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-a
         };
 
         $scope.prevSong= function (){
+            $scope.audio.progress=0;
             $scope.currentSongIndex--;
             if($scope.currentSongIndex<0){
                 $scope.currentSongIndex=$scope.songs.length-1;

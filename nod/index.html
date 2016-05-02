@@ -44,7 +44,7 @@
             http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif,
             http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
             -->
-            <img src="{{myUser.image}}"  style="
+            <img ng-src="{{myUser.image}}"  style="
     border: 1px solid white;
     width: 87px;
     border-radius: 52px;
@@ -114,7 +114,6 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12" >
-            <input ng-model="audio.progress" step="0.1" min="0" max="1" type="range">
             <ul>
                 <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
                     <span >
@@ -186,7 +185,9 @@
             <div class="player-spectrum-floor"></div>
         </div>
         <div class="player-drops"></div>
-        <div class="player-controls">
+        <div class="player-controls" >
+            <audio id="audio"></audio>
+            <input ng-model="audio.progress" step="0.001" min="0" max="1" type="range" class="rangebar" >
             <div class="player-buttons">
                 <button class="player-button" ng-click="prevSong()">
                     <i class="fa fa-step-backward"></i>
@@ -198,7 +199,6 @@
                     <i class="fa fa-step-forward"></i>
                 </button>
             </div>
-            <div class="player-slider"></div>
             <span class="player-time">{{audio.currentTime|trackTime}}</span>
         </div>
     </div>

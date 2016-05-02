@@ -490,11 +490,17 @@ angular.module('ngAudio', [])
             }
         };
     }])
-    .service('ngAudio', ['NgAudioObject', 'ngAudioGlobals', function(NgAudioObject, ngAudioGlobals) {
+    .service('ngAudio', ['NgAudioObject', 'ngAudioGlobals', '$q',function(NgAudioObject, ngAudioGlobals,$q) {
+        var deferred = $q.defer();
         this.play = function(id) {
 
             var audio = new NgAudioObject(id);
             audio.play();
+            audio.audio.addEventListener('play',function () {
+                deferred.resolve(audio);
+
+            });
+            
             return audio;
         };
 
@@ -517,7 +523,7 @@ angular.module('ngAudio', [])
         this.setUnlock = function(unlock) {
             ngAudioGlobals.unlock = unlock;
         };
-    }])
+     }])
     .filter("trackTime", function(){
         /* Conveniently takes a number and returns the track time */
 

@@ -11,8 +11,10 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             image:''
         };
         $scope.min=false;
+        $scope.itemsearched=null;
         $scope.showVolume=false;
-        $scope.images=['img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg',];
+        $scope.images=['img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg','img/glassanimals.jpg'];
+        $scope.suggestions=[];
         /*
          'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
          'http://replygif.net/i/1121.gif',
@@ -92,6 +94,25 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             }$scope.audio.stop();
             $scope.chooseSong($scope.currentSongIndex);
         };
+
+        $scope.$watch('itemsearched',function () {
+            if($scope.itemsearched!=null) {
+                if ($scope.itemsearched.length == 0) {
+                    $scope.suggestions=[];
+                } else {
+                    angular.forEach($scope.songs, function (song) {
+                        if (song.indexOf($scope.itemsearched) > -1) {
+                            if ($scope.suggestions.indexOf(song) == -1) {
+                                $scope.suggestions.push(song);
+                            }                         } else {
+                            if($scope.suggestions.indexOf(song)!=-1) {
+                                $scope.suggestions.splice($scope.suggestions.indexOf(song), 1);
+                            }
+                        }
+                    })
+                }
+            }
+        });
 
         $scope.sendToFB=function () {
             if ($scope.myUser != undefined && $scope.myUser != null) {

@@ -32,7 +32,7 @@
 <style ng-bind-html="style"></style>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 col-sm-6 ">
+        <div class="col-md-2 col-sm-1 ">
             <!--
             https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif,
             http://replygif.net/i/1121.gif,
@@ -54,12 +54,23 @@
     margin-left: initial;
 ">
         </div>
-        <div class="col-md-6 col-sm-6 searchbar" >
+        <div class="col-md-10 col-sm-11 searchbar" >
             <div id="wrap" >
                 <form action="" autocomplete="off">
                     <img src="img/ic_search_white_48dp_2x.png" class="icon-search" >
-                    <input id="search" name="search" type="text" placeholder="What're we looking for ?"  ><input id="search_submit" value="Rechercher" type="submit">
+                    <input id="search" name="search" type="text" placeholder="What're we looking for ?" ng-model="itemsearched" ><input id="search_submit" value="Rechercher" type="submit" >
                 </form>
+            </div>
+            <div class="row">
+                <div class="col-md-11 col-sm-11" >
+                    <ul class="searchbar">
+                        <li class="user-list" ng-repeat="s in suggestions" ng-click="" ng-class=" {first:$index==0,last:$index==songs.length-1}">
+                    <span >
+                        {{s}}
+                    </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="content">
                 <div class="menu">
@@ -113,6 +124,7 @@
             cursor: pointer;">
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12 col-sm-12" >
             <ul>

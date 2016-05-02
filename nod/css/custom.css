@@ -9,7 +9,6 @@
 }
 .user-list{
     border: 0px solid;
-
     list-style: none;
     padding: 20px;
     color: white;
@@ -24,8 +23,24 @@
 
 }
 
+ul.searchbar{
+    margin-right: 60px;
+}
+
 .user-list.max{
     margin-right: 0px;
+}
+
+.searchbar{
+    float: right;
+    position:absolute;
+    z-index: 10;
+    width: 100%;
+}
+
+.searchbar > .user-list{
+    margin-right: 60px;
+    width: 100%;
 }
 
 .user-list:hover{

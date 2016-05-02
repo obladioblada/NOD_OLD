@@ -57,6 +57,12 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
         $scope.updateBar=function(){
             $scope.style = ".rangebar{ -webkit-appearance: none;height: 3px; width: 100%;background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.progress + ", #841E21),color-stop(" + $scope.audio.progress + ", white));";
         };
+
+        $scope.$watch('audio.volume',function(){
+            if($scope.audio!=undefined)
+            $scope.volumeStyle = ".volumebar{ background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.volume + ", #841E21),color-stop(" + $scope.audio.volume + ", white));";
+        });
+
         $scope.$watch('audio.currentTime',function(){
             if($scope.audio!=undefined) {
                 $scope.updateBar();

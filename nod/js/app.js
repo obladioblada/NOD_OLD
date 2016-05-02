@@ -36,11 +36,13 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             })
         };
         $scope.chooseSong= function($i){
-            if($scope.audio!=undefined) $scope.audio.pause();
-            $scope.audio.progress=0;
-            $scope.audio.audio.src="";
-            $scope.audio.loop=false;
+            if($scope.audio!=undefined) {
+                $scope.audio.pause();
+                $scope.audio.audio.src = "";
+                $scope.audio.loop = false;
+            }
             $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3#t");
+            $scope.audio.progress=0;
             $scope.currentSongIndex=$i;
             $scope.audio.currentTime=0;
             $scope.myUser.time=0;
@@ -53,17 +55,16 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             }
         };
         $scope.updateBar=function(){
-            $scope.tot=$scope.audio.currentTime+$scope.audio.remaining;
-            $scope.percentage=$scope.audio.currentTime*100/$scope.tot;
-            $scope.percentage=100-$scope.percentage;
             $scope.style = ".rangebar{ -webkit-appearance: none;height: 3px; width: 100%;background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.progress + ", #841E21),color-stop(" + $scope.audio.progress + ", white));";
         };
         $scope.$watch('audio.currentTime',function(){
-            $scope.updateBar();
-            if($scope.audio.remaining<1){
-                $scope.nextSong();
+            if($scope.audio!=undefined) {
+                $scope.updateBar();
+                if ($scope.audio.remaining < 1) {
+                    $scope.nextSong();
+                }
+                $scope.sendToFB();
             }
-            $scope.sendToFB();
         });
         $scope.playOrPause= function(){
             if($scope.audio.paused){

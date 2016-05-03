@@ -210,6 +210,10 @@ button:focus {
 	color: #c59e6f;
 }
 
+
+.pippo{color: green}
+.pippo.paperino{background: white}
+
 .demo-3 .codrops-header h1 { color: #c59e6f; }
 
 .demo-4 { background: #4a4646; }

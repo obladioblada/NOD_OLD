@@ -9,10 +9,11 @@
     <meta name="keywords" content="gooey, effect, inspiration, web design, example, css, svg, filter" />
     <meta name="author" content="Lucas Bebber for Codrops" />
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="fonts/vicons/vicons-font.css" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="css/ruota.css" />
     <link rel="stylesheet" type="text/css" href="css/player.css" />
     <link rel="stylesheet" type="text/css" href="css/custom.css" />
     <link rel="stylesheet" type="text/css" href="css/searhbar.css">
@@ -52,7 +53,7 @@
     border-radius: 52px;
     position: absolute;
     margin: 2%;
-    margin-left: initial;
+    margin-left: 26px;
 ">
         </div>
         <div class="col-md-6 col-sm-6 searchbar" >
@@ -116,6 +117,14 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12" >
+            <div class="ruotaContainer" ng-mouse-wheel-up="upCount= upCount+5" ng-mouse-wheel-down="downCount= downCount+5" ng-mouseenter="showCerchio=true;upTransformCerchio()" ng-mouseleave="showCerchio=false" ng-class="showCerchio==true ? 'max' : ''">
+                <div ng-repeat="t in transforms" class="us " ng-class="{dispari : ($index%2)!=0}" ng-mouse-wheel-up="upCount= upCount+10" ng-mouse-wheel-down="downCount= downCount+10" ng-style="{'transform': t, '-webkit-transform': t, '-ms-transform': g }" >
+                    <p class="u">
+                        {{the4users[$index].$id}}-{{songs[the4users[$index].song]}}
+                        <img ng-src="{{the4users[$index].image}}" style="width: 40px; border-radius: 200px">
+                    </p>
+                </div>
+            </div>
             <ul>
                 <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
                     <span >
@@ -164,8 +173,13 @@
                 </div>
             </div>
             <div class="player-cover" ng-class="min==true ? 'min': ''">
-                <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined">
-                <img ng-src="{{images[currentSongIndex]}}" ng-if="audio!=undefined">
+                <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined" >
+                <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false" class="player-album">
+                    <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined" class="player-album" ng-class="{blurIt: showIconLike==true}">
+                    <div class="icona-like icobutton icobutton--thumbs-up" ng-class="{max: showIconLike==true}">
+                        <span class="fa fa-hand-peace-o" aria-hidden="true"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="player-spectrum user" ng-class="min==true ? 'min': ''">
@@ -216,6 +230,6 @@
 <script src="js/TweenMax.min.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+<script src="js/mo.min.js"></script>
 </body>
 </html>

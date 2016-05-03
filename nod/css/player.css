@@ -16,6 +16,40 @@
 	text-align: center;
 	border-radius: inherit;
 }
+.icona-like {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	padding: 1px;
+	z-index: 50;
+	width: 0px;
+	height: 0px;
+	font-size: 0px;
+	background: #4D4D52;
+	color: white;
+	border-radius: 100px;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+}
+
+.icona-like.max{
+	width: 96px;
+	padding: 12px;
+	font-size: 48px;
+	height: 96px;
+	top: 25%;
+	left: 27%;
+}
+.icona-like.max:hover{
+	background: #1b6d85;
+}
+
+
+.player-album{
+	transition: all 0.1s ease-in;
+}
+.blurIt{
+	-webkit-filter: blur(10px) brightness(0.6) contrast(1.2) grayscale(0.1) sepia(0.1);
+}
 
 .player-info-text {
 	padding: 30px 0;

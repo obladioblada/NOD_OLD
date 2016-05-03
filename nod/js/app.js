@@ -9,7 +9,7 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
         $scope.the4users=['','','',''];
         $scope.showSuggestions=true;
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Jhonny";
+        $scope.myuserid="Gary";
         $scope.myUser={
             song:'',
             time: '',

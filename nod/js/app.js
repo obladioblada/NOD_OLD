@@ -16,12 +16,14 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             image:''
         };
         $scope.min=false;
+        $scope.itemsearched=null;
         $scope.showVolume=false;
         $scope.images=['http://ring.cdandlp.com/kawa84/photo_grande/114788855.jpg',
                         'http://www.dvdcineshop.com/catalog/product_thumb.php?img=images/prodotti/201302/8032779962502.jpg&w=400&h=400',
                         'http://ring.cdandlp.com/allaboutvinylplus/photo_grande/2947573178.jpg',
                         'https://s-media-cache-ak0.pinimg.com/736x/58/9b/c0/589bc0e931ddb071f61c06ae5b001a08.jpg',
                         'https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/The_House_of_the_Rising_Sun_Frijid.png/220px-The_House_of_the_Rising_Sun_Frijid.png',];
+        $scope.suggestions=[];
         /*
          'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
          'http://replygif.net/i/1121.gif',
@@ -107,6 +109,25 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             }$scope.audio.stop();
             $scope.chooseSong($scope.currentSongIndex);
         };
+
+        $scope.$watch('itemsearched',function () {
+            if($scope.itemsearched!=null) {
+                if ($scope.itemsearched.length == 0) {
+                    $scope.suggestions=[];
+                } else {
+                    angular.forEach($scope.songs, function (song) {
+                        if (song.indexOf($scope.itemsearched) > -1) {
+                            if ($scope.suggestions.indexOf(song) == -1) {
+                                $scope.suggestions.push(song);
+                            }                         } else {
+                            if($scope.suggestions.indexOf(song)!=-1) {
+                                $scope.suggestions.splice($scope.suggestions.indexOf(song), 1);
+                            }
+                        }
+                    })
+                }
+            }
+        });
 
         $scope.sendToFB=function () {
             if ($scope.myUser != undefined && $scope.myUser != null) {

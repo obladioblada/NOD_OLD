@@ -2,8 +2,9 @@
 angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
     .controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray){
         ngAudioGlobals.unlock = false;
+        $scope.showSuggestions=true;
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Jhonny";
+        $scope.myuserid="Gary";
         $scope.myUser={
             song:'',
             time: '',
@@ -25,6 +26,11 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
          http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
          http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
          */
+        $scope.handleClick = function( event ){
+            if (eventTarget.id!== 'suggestions'){
+                $scope.showSuggestions=false;
+                 event.stopImmediatePropagation()
+            }        };
         $scope.songs=["track00","track01","track02","track03","track04"];
         $scope.currentSongIndex="";
         $scope.idMaster="";
@@ -37,6 +43,23 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
                 }
             })
         };
+
+
+
+        $scope.hideSuggestions=function ($event) {
+            $scope.showSuggestions=false;
+
+        };
+
+
+        $scope.clickhandling=function ($event) {
+            if ($event.currentTarget.id!== 'suggestions'){
+                $scope.showSuggestions=false;
+            }
+            
+        };
+        
+        
         $scope.chooseSong= function($i){
             if($scope.audio!=undefined) {
                 $scope.audio.pause();
@@ -103,6 +126,7 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
 
         $scope.$watch('itemsearched',function () {
             if($scope.itemsearched!=null) {
+                $scope.showSuggestions=true;
                 if ($scope.itemsearched.length == 0) {
                     $scope.suggestions=[];
                 } else {
@@ -110,7 +134,8 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
                         if (song.indexOf($scope.itemsearched) > -1) {
                             if ($scope.suggestions.indexOf(song) == -1) {
                                 $scope.suggestions.push(song);
-                            }                         } else {
+                            }
+                        } else {
                             if($scope.suggestions.indexOf(song)!=-1) {
                                 $scope.suggestions.splice($scope.suggestions.indexOf(song), 1);
                             }
@@ -157,4 +182,28 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
         };
 
 
+    })
+
+
+    .directive('clickOff', function($parse, $document) {
+        var dir = {
+            compile: function($element, attr) {
+                // Parse the expression to be executed
+                // whenever someone clicks _off_ this element.
+                var fn = $parse(attr["clickOff"]);
+                return function(scope, element, attr) {
+                    // add a click handler to the element that
+                    // stops the event propagation.
+                    element.bind("click", function(event) {
+                        event.stopPropagation();
+                    });
+                    angular.element($document[0].body).bind("click",function(event) {
+                        scope.$apply(function() {
+                            fn(scope, {$event:event});
+                        });
+                    });
+                };
+            }
+        };
+        return dir;
     });

@@ -24,7 +24,18 @@
 }
 
 ul.searchbar{
-    margin-right: 60px;
+    height: 100%;
+    width: 50%;
+    float: right;
+    right: 20px;
+    visibility: collapse;
+}
+
+
+
+ul.searchbar.max{
+    visibility: visible;
+
 }
 
 .user-list.max{

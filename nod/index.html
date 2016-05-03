@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" ng-app="mainApp" xmlns="http://www.w3.org/1999/html">
+<html lang="en" class="no-js" ng-app="mainApp"  ng-controller="mainCtrl"  xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 </head>
-<body class="demo-2" ng-controller="mainCtrl">
+<body class="demo-2" ng-click="clickhandling($event)">
 <style ng-bind-html="style"></style>
 <style ng-bind-html="volumeStyle"></style>
 <div class="container-fluid">
@@ -56,19 +56,20 @@
     margin-left: 26px;
 ">
         </div>
-        <div class="col-md-10 col-sm-11 searchbar" >
-            <div id="wrap" >
-                <form action="" autocomplete="off">
-                    <img src="img/ic_search_white_48dp_2x.png" class="icon-search" >
+        <div class="col-md-10 col-sm-11 searchbar">
+           <!-- <div class="col-md-10 col-sm-11 searchbar" click-off="showSuggestions=false" ng-click="showSuggestions=true" > -->
+            <div id="wrap"  >
+                <form action="" autocomplete="off" >
+                    <img src="img/ic_search_white_48dp_2x.png" class="icon-search">
                     <input id="search" name="search" type="text" placeholder="What're we looking for ?" ng-model="itemsearched" ><input id="search_submit" value="Rechercher" type="submit" >
                 </form>
             </div>
-            <div class="row">
-                <div class="col-md-11 col-sm-11" >
-                    <ul class="searchbar">
-                        <li class="user-list" ng-repeat="s in suggestions" ng-click="" ng-class=" {first:$index==0,last:$index==songs.length-1}">
+            <div class="row" id="rowSuggestions">
+                <div class="col-md-12 col-sm-12"   >
+                    <ul class="searchbar"  ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)" id="suggestions">
+                        <li class="user-list" ng-repeat="s in suggestions" ng-class=" {first:$index==0,last:$index==songs.length-1}" ng-click="chooseSong(songs.indexOf(s))">
                     <span >
-                        {{s}}
+                        {{s}} <img src="img/playing.gif" class="detail" ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
                     </span>
                         </li>
                     </ul>
@@ -143,7 +144,7 @@
                         {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
                     </span>
                 </li>
-                <li class="user-list last" ng-class="min==true ? 'max': ''">
+                <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
                      <span >
                         io, cioe' {{myUser.$id}} sto ascoltando:<span class="detail"> {{songs[myUser.song]}}</span> | <span class="detail">{{myUser.time | trackTime}}</span>
                     </span>
@@ -152,7 +153,7 @@
             <ul>
                 <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)" ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
                     <span >
-                        {{s}} <img src="img/playing.gif" class="detail" ng-if="$index==currentSongIndex&&audio.paused==false">
+                        {{s}} <img src="img/playing.gif" class="detail" ng-if="$index==currentSongIndex&&myUser.isPlaying">
                     </span>
                 </li>
             </ul>
@@ -230,7 +231,7 @@
                     <i class="fa fa-step-forward"></i>
                 </button>
             </div>
-            <button class="player-button"  ng-mouseover="showVolume=true; min=false" ng-click="audio.volume!=0 ? audio.volume=0 : audio.volume=1-audio.volume" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+            <button class="player-button"  ng-mouseover="showVolume=true" ng-click="audio.volume!=0 ? audio.volume=0 : audio.volume=1-audio.volume" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
                 <i class="fa " ng-class="audio.volume!=0 ? 'fa-volume-up': 'fa-volume-off'"></i>
             </button>
             <input type="range"  min="0" ng-model="audio.volume"  max="1" step="0.001" class="volumebar" ng-class=" {max:showVolume==true}" ng-mouseleave="showVolume=false"/>

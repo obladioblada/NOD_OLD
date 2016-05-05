@@ -75,7 +75,7 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
                 $scope.audio.audio.src = "";
                 $scope.audio.loop = false;
             }
-            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3#t");
+            $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3");
             $scope.audio.progress=0;
             $scope.currentSongIndex=$i;
             $scope.audio.currentTime=0;
@@ -178,12 +178,14 @@ angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
             });
 
         $scope.listenTo=function($song,$time,$idmaster){
-            if($scope.audio!=undefined) $scope.audio.pause();
+            if($scope.audio!=undefined) {
+                $scope.audio.pause();
+                $scope.audio.audio.src = "";
+            }
             $time+=0.5;
             $scope.audio = ngAudio.load("audio/"+$scope.songs[$song]+".mp3#t="+$time);
             $scope.audio.loop=false;
             $scope.currentSongIndex=$song;
-            $scope.audio.currentTime=0;
             $scope.myUser.time=0;
             $scope.audio.play();
             $scope.idMaster=$idmaster;

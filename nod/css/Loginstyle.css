@@ -1,7 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 
 
-body {
+.bodystyle {
     background: #222222 !important;
     font-size: 15px;
     display: block;
@@ -10,12 +9,15 @@ body {
 }
 
 
-input[type="text"],
-input[type="password"]{
+
+
+.username-input{
+    top: 25%;
+    margin-top: -50px;
+    width: 100%;
     height: 60px;
     display: inline-block;
     font-size: xx-large;
-    font-family: "lato";
     font-weight: 100;
     border: none;
     outline: none;
@@ -23,19 +25,9 @@ input[type="password"]{
     position: absolute;
     background: none;
     transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
-    width: 500px;
     border-bottom: 1px solid #841E21;
     cursor: text;
     text-align: center;
-
-}
-
-
-
-.username-input{
-    top: 25%;
-    margin-top: -50px;
-    width: 100%;
 }
 
 
@@ -46,7 +38,21 @@ input[type="password"]{
 
 }
 
-input[type="text"].otherAccount{
+.container-fluid{
+    height: 100% !important;
+}
+
+.otherAccount{
+    height: 60px;
+    display: inline-block;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: none;
+    transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+    border-bottom: 1px solid #841E21;
+    cursor: text;
     border-bottom: none;
     width:100%;
     font-size: large;
@@ -55,11 +61,11 @@ input[type="text"].otherAccount{
 
 }
 
-input[type="text"]:focus:hover {
+.username-input:focus:hover {
     border-bottom: 1px solid #841E21;
 }
 
-input[type="text"]:focus {
+.username-input:focus {
     width: 100%;
     z-index: 1;
     border-bottom: 1px solid #841E21;
@@ -67,7 +73,7 @@ input[type="text"]:focus {
 
 
 }
-input[type="submit"] {
+.loginSubmit {
     height: 67px;
     width: 100%px;
     display: inline-block;
@@ -86,14 +92,13 @@ input[type="submit"] {
 
 
 
-
-input[type="submit"]:hover {
+.loginSubmit:hover {
     opacity: 0;
     -webkit-filter: blur(10px);
 }
 
 
-.menu {
+.menu.login {
     position: relative;
     filter: url("../index.html#goo");
     bottom: 20%;
@@ -102,15 +107,15 @@ input[type="submit"]:hover {
 }
 
 
-.menu-wrapper {
+.menu-wrapper.login {
     position: relative;
     top:35px;
 
 }
 
-.menu-toggle-button,
-.menu-item-bounce,
-.menu-item-button {
+.menu-toggle-button.login,
+.menu-item-bounce.login,
+.menu-item-button.login {
     background: #841E21;
     border-radius: 50%;
     width: 80px;
@@ -124,14 +129,14 @@ input[type="submit"]:hover {
     position: absolute;
 }
 
-.menu-toggle-button {
+.menu-toggle-button.login{
     background: transparent;
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.menu-toggle-icon {
+.menu-toggle-icon.login {
     font-size: 30px;
     position: absolute;
     top: 0;
@@ -141,7 +146,7 @@ input[type="submit"]:hover {
     line-height: 80px;
 }
 
-.menu-items {
+.menu-items.login {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -150,7 +155,7 @@ input[type="submit"]:hover {
     top: 0;
 }
 
-.menu-item {
+.menu-item.login {
     position: absolute;
     top: 0;
     left: 0;
@@ -158,13 +163,13 @@ input[type="submit"]:hover {
     height: 0;
 }
 
-.menu-item-bounce {
+.menu-item-bounce.login {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.menu-item-button {
+.menu-item-button.login {
     width: 60px;
     height: 60px;
     margin-left: -30px;
@@ -175,7 +180,7 @@ input[type="submit"]:hover {
     color: #fff;
 }
 
-.menu-item-button:hover {
+.menu-item-button.login:hover {
     color: #fff;
 }
 

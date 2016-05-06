@@ -13,7 +13,17 @@ $(document).ready(function(){
 		$(this).find(".menu-item-icon").css({
 			transform:"rotate("+(-angle)+"deg)"
 		})
-	})
+	});
+	$(".menu-item.login").each(function(i){
+		startingAngle=270+(-120/2);
+		var angle=startingAngle+(slice*i);
+		$(this).css({
+			transform:"rotate("+(angle)+"deg)"
+		})
+		$(this).find(".menu-item-icon").css({
+			transform:"rotate("+(-angle)+"deg)"
+		})
+	});
 	var on=false;
 
 	$(".menu-toggle-button").mousedown(function(){

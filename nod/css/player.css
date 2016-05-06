@@ -30,7 +30,40 @@
 	border-radius: 100px;
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
+.bounce{
+    -webkit-animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+-moz-animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    background: #841E21;
+}
+.icona-like.max.bounce:hover{
+    background: #821d20;
+}
+@-webkit-keyframes bounce {
+    to { -webkit-transform: scale(1.2); }
+}
+@-moz-keyframes bounce {
+    to { -moz-transform: scale(1.2); }
+}
+@keyframes bounce {
+    to { transform: scale(1.2); }
+}
+.bounceBack{
+    -webkit-animation: bounceBack .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    -moz-animation: bounceBack .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    animation: bounceBack .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    background: #4D4D52;
 
+}
+@-webkit-keyframes bounceBack {
+    to { -webkit-transform: scale(0.8); }
+}
+@-moz-keyframes bounceBack {
+    to { -moz-transform: scale(0.8); }
+}
+@keyframes bounceBack {
+    to { transform: scale(0.8); }
+}
 .icona-like.max{
 	width: 96px;
 	padding: 12px;
@@ -321,4 +354,75 @@
 
 .nonActivated:hover{
 	color: #3A3A3A;
+}
+
+.player-img-album,
+.player-img-album:after {
+	border-radius: 50%;
+}
+@-webkit-keyframes load8 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+@keyframes load8 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes load7 {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+.player-img-album {
+	-webkit-transform: translateZ(0) rotate(0deg);
+	-ms-transform: translateZ(0) rotate(0deg);
+	transform: translateZ(0) rotate(0deg);
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -webkit-animation: load7 0.2s 1 linear;
+    animation: load7 0.2s 1 linear;
+}
+
+.player-img-album.animateIt{
+	-webkit-animation: load8 8s infinite linear;
+	animation: load8 8s infinite linear;
+}
+
+.vinyl-arm{
+    z-index: 30;
+    right: 4px;
+    position: absolute;
+    transform-origin: top;
+    width:73px;
+    height:197px;
+    transform: rotate(0deg);
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.vinyl-arm.play{
+    transform: rotate(34deg);
+}
+
+.vinyl-arm.min{
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    height: 0px;
+    width: 0px;
 }

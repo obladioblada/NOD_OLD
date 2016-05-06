@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="fonts/vicons/vicons-font.css" />
     <link rel="stylesheet" type="text/css" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
-    <link rel="stylesheet" type="text/css" href="css/ruota.css" />
     <link rel="stylesheet" type="text/css" href="css/player.css" />
     <link rel="stylesheet" type="text/css" href="css/custom.css" />
     <link rel="stylesheet" type="text/css" href="css/searhbar.css">
@@ -123,12 +122,21 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12" >
-            <div class="ruotaContainer" ng-mouse-wheel-up="upCount= upCount+5" ng-mouse-wheel-down="downCount= downCount+5" ng-mouseenter="showCerchio=true;upTransformCerchio()" ng-mouseleave="showCerchio=false" ng-class="showCerchio==true ? 'max' : ''">
-                <div ng-repeat="t in transforms" class="us " ng-class="{dispari : ($index%2)!=0}" ng-mouse-wheel-up="upCount= upCount+10" ng-mouse-wheel-down="downCount= downCount+10" ng-style="{'transform': t, '-webkit-transform': t, '-ms-transform': g }" >
-                    <p class="u">
-                        {{the4users[$index].$id}}-{{songs[the4users[$index].song]}}
-                        <img ng-src="{{the4users[$index].image}}" style="width: 40px; border-radius: 200px">
-                    </p>
+            <div class="row">
+                <div class="col-md-1 col-sm-1" >
+                    <img ng-src="{{myUser.image}}"  style="
+    border: 1px solid white;
+    width: 87px;
+    height: 87px;
+    border-radius: 52px;
+    margin: 2%;
+    margin-left: 26px;
+">
+                    <div>
+                        <span class="player-song-name">{{myuserid}}</span>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1" >
                 </div>
             </div>
             <ul>
@@ -136,7 +144,6 @@
                     <span >
                         {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
                     </span>
-
                 </li>
                 <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
                      <span >
@@ -179,11 +186,25 @@
                     <h3 class="player-artist">{{songs[currentSongIndex]}}</h3>
                 </div>
             </div>
+            <svg class="vinyl-arm" xmlns="http://www.w3.org/2000/svg" ng-class="{play: myUser.isPlaying,min: min}">
+                <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+                <defs>
+                    <filter height="200%" width="200%" y="-50%" x="-50%" id="svg_3_blur">
+                        <feGaussianBlur stdDeviation="0.1" in="SourceGraphic"/>
+                    </filter>
+                </defs>
+                <g>
+                    <title>Layer 1</title>
+                    <path stroke="#5e5e5c" filter="url(#svg_3_blur)" id="svg_3" d="m15.25419,4.50001c-2.0611,28.90211 -2.57637,50.72616 34.00812,72.5502c36.5845,21.82404 0,90.24537 -0.25764,89.95045" fill-opacity="0" stroke-width="10" fill="#0fffff"/>
+                    <ellipse stroke="#5e5e5c" ry="11.5509" rx="11.5647" id="svg_4" cy="20" cx="15.99999" stroke-width="0" fill="#bcbcbc"/>
+                    <rect stroke="#5e5e5c" transform="rotate(24.36675262451172 48.999999999999915,172.5) " id="svg_5" height="39.08893" width="17.8563" y="152.95553" x="40.07185" stroke-width="0" fill="#191919"/>
+                </g>
+            </svg>
             <div class="player-cover" ng-class="min==true ? 'min': ''">
                 <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined" >
                 <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false" class="player-album">
-                    <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined" class="player-album" ng-class="{blurIt: showIconLike==true}">
-                    <div class="icona-like icobutton icobutton--thumbs-up" ng-class="{max: showIconLike==true}">
+                    <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined" class="player-album player-img-album" ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">
+                    <div class="icona-like icobutton icobutton--thumbs-up" ng-class="{max: showIconLike==true,bounce: makeItBounce[currentSongIndex]==true,bounceBack: makeItBounce[currentSongIndex]==false}" ng-click="makeItBounce[currentSongIndex]=!makeItBounce[currentSongIndex]">
                         <span class="fa fa-hand-peace-o" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -237,6 +258,5 @@
 <script src="js/TweenMax.min.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/mo.min.js"></script>
 </body>
 </html>

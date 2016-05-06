@@ -48,12 +48,15 @@ $(document).ready(function(){
 
 	function pressHandler(event){
 		on=!on;
-
-		TweenMax.to($(this).children('.menu-toggle-icon'),0.4,{
-			rotation:on?45:0,
-			ease:Quint.easeInOut,
-			force3D:true
-		});
+		var angle=45;
+		if($(this).attr("class")=="login menu-toggle-button"){
+			angle=180;
+		}
+			TweenMax.to($(this).children('.menu-toggle-icon'), 0.4, {
+				rotation: on ? angle : 0,
+				ease: Quint.easeInOut,
+				force3D: true
+			});
 
 		on?openMenu():closeMenu();
 		

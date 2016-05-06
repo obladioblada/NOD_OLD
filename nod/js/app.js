@@ -18,8 +18,18 @@
          });
      }])
 
+    /*
+     .run( function($rootScope, $location) {
 
-
+         // register listener to watch route changes
+         $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+             if ( $rootScope.loggedUser == null ) {
+                 // no logged user, we should be going to #login
+                 $location.path( "/login" );
+             }
+         });
+     })
+     */
 
 
 

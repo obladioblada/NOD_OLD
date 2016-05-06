@@ -2,14 +2,13 @@
 angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
     .controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray){
         ngAudioGlobals.unlock = false;
-        $scope.showCerchio=false;
+        $scope.makeItBounce=[false,false,false,false];
         $scope.deltas=[0,90,180,270];
         $scope.showIconLike=false;
-        $scope.transforms=['rotate(0deg)','rotate(90deg)','rotate(180deg)','rotate(270deg)'];
         $scope.the4users=['','','',''];
         $scope.showSuggestions=true;
         $scope.userid="ballalsfbas";
-        $scope.myuserid="Gary";
+        $scope.myuserid="Jhonny";
         $scope.myUser={
             song:'',
             time: '',

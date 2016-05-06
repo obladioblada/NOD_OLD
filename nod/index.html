@@ -34,7 +34,7 @@
 <style ng-bind-html="volumeStyle"></style>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2 col-sm-1 ">
+        <div class="col-md-6 col-sm-1 ">
             <!--
             https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif,
             http://replygif.net/i/1121.gif,
@@ -46,28 +46,20 @@
             http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif,
             http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
             -->
-            <img ng-src="{{myUser.image}}"  style="
-    border: 1px solid white;
-    width: 87px;
-    height: 87px;
-    border-radius: 52px;
-    position: absolute;
-    margin: 2%;
-    margin-left: 26px;
-">
+            <img ng-src="{{myUser.image}}" class="user-icon">
         </div>
-        <div class="col-md-10 col-sm-11 searchbar">
+        <div class="col-md-6 col-sm-11 searchbar">
            <!-- <div class="col-md-10 col-sm-11 searchbar" click-off="showSuggestions=false" ng-click="showSuggestions=true" > -->
             <div id="wrap"  >
                 <form action="" autocomplete="off" >
-                    <img src="img/ic_search_white_48dp_2x.png" class="icon-search">
+                    <img src="img/ic_search_white_48dp_2x.png" class="icon-search backSearchIcon">
                     <input id="search" name="search" type="text" placeholder="What're we looking for ?" ng-model="itemsearched" ><input id="search_submit" value="Rechercher" type="submit" >
                 </form>
             </div>
             <div class="row" id="rowSuggestions">
                 <div class="col-md-12 col-sm-12"   >
                     <ul class="searchbar"  ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)" id="suggestions">
-                        <li class="user-list" ng-repeat="s in suggestions" ng-class=" {first:$index==0,last:$index==songs.length-1}" ng-click="chooseSong(songs.indexOf(s))">
+                        <li class="user-list suggestion" ng-repeat="s in suggestions" ng-class=" {first:$index==0,last:$index==songs.length-1}" ng-click="chooseSong(songs.indexOf(s))">
                     <span >
                         {{s}} <img src="img/playing.gif" class="detail" ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
                     </span>
@@ -109,8 +101,8 @@
     <div class="row">
         <div class="col-md-12 col-sm-12" >
             <input type="text" ng-model="myuserid" ng-change="determinaUser()" style="
-    height: 60px;
-    font-size: 40px;
+             height: 60px;
+            font-size: 40px;
             font-family: 'Lato';
             font-weight: 100;
             border: none;
@@ -120,7 +112,8 @@
             padding-right: 0px;
             width: 100%;
             position: relative;
-            top: 0;
+            top: -75px;
+            left: 80px;
             right: 0;
             background: none;
             transition: none;
@@ -143,6 +136,7 @@
                     <span >
                         {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
                     </span>
+
                 </li>
                 <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
                      <span >

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('mainApp',['ngAudio','firebase','ngSanitize',])
+ angular.module('mainApp',['ngAudio','firebase','ngSanitize'])
     .controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray){
         ngAudioGlobals.unlock = false;
         $scope.showCerchio=false;

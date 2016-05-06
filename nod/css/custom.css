@@ -3,7 +3,7 @@
     height: 50%;
     float: right;
     position: relative;
-    right: -4px;
+    right: -20px;
     bottom: -10px;
 
 }
@@ -18,10 +18,30 @@
     transition-timing-function: linear;
     -webkit-transition-timing-function: linear;
     cursor: pointer;
-    margin-right: 318px;
+    margin-right: 50%;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.user-list.mysong{
+
 
 }
+
+
+
+.backSearchIcon{
+    background: #841E21;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: -30px;
+    margin-top: -10px;
+    color: #fff;
+    border: none;
+    outline: none;
+    position: relative;
+}
+
 
 ul.searchbar{
     height: 100%;
@@ -84,4 +104,38 @@ ul.searchbar.max{
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
+}
+
+
+
+.user-icon{
+
+    border: 1px solid white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    position: absolute;
+    margin: 2%;
+    margin-left: -8px;
+}
+
+
+
+.username{
+    height: 60px;
+    font-size: 40px;
+    font-family: 'Lato';
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 3px;
+    padding-right: 0px;
+    width: 100%;
+    position: relative;
+    top: 0;
+    right: 0;
+    background: none;
+    transition: none;
+    cursor: pointer;"
 }

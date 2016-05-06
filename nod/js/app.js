@@ -191,40 +191,7 @@
 
         };
 
-
-
-        $scope.upCount =  0;
-        $scope.downCount =  0;
-
-        $scope.$watch('upCount', function(val){
-            $scope.upTransformCerchio();
-        });
-
-        $scope.$watch('downCount', function(val){
-            $scope.upTransformCerchio();
-        });
-
-        $scope.upTransformCerchio=function(){
-            $scope.deltas[0]= $scope.upCount-$scope.downCount;
-            for(var i=0;i<4;i++){
-                if(i!=0)
-                    $scope.deltas[i]= $scope.deltas[i-1]+90;
-                // perchè non funziona?
-//                if($scope.deltas[i]>360)
-//                    $scope.deltas[i]=$scope.deltas[i]-360;
-                $scope.transforms[i] = "rotate("+$scope.deltas[i]+"deg)";
-            }
-            for(var i=0;i<4;i++) {
-                var count=0;
-                angular.forEach($scope.messages, function (user) {
-                    var j=parseInt( $scope.deltas[i] / 360);
-                    if (count == j && user.isPlaying) {
-                        $scope.the4users[i] = user;
-                    }
-                    count++;
-                })
-            }
-        }
+        
 
 
     })

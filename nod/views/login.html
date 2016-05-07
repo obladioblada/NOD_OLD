@@ -1,9 +1,9 @@
 
 <div class="container-fluid content bodystyle" >
-    <div class="row" style="height: 20%;margin-top: 10%">
+    <div class="row" class="topPage">
         <div class="col-md-5 col-lg-5 col-xs-5"></div>
         <div class="col-md-2 col-lg-2 col-xs-2" style="    text-align: center;">
-            <img ng-src="{{myUser.image}}" class="user-icon" style="position: relative;padding:1px; border: 0">
+            <img ng-src="{{myUser.image}}" class="user-icon imgLogin">
         </div>
         <div class="col-md-5 col-lg-5 col-xs-5"></div>
     </div>
@@ -11,17 +11,17 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="myUser.id" id="Username" name="search" type="text" style="width: 100%" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
+            <input ng-model="myUser.id" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
     </div>
 
-    <div class="row"  id="rowemail" style="margin-top: 100px">
+    <div class="row"  id="rowemail">
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="myUser.pwd" id="Email" name="search" type="password" placeholder="Password"  style="width: 100%" class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
+            <input ng-model="myUser.pwd" id="Email" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
@@ -31,11 +31,13 @@
 
         <div class="col-md-2 col-xs-2">
         </div>
-        <div class="col-md-5">
-            <input id="otherAccount" name="search" type="text" placeholder="Accedi con un altro account "  class="otherAccount" disabled>
+        <div class="col-md-5 col-xs-5 otherAccountDiv">
+            <span id="otherAccount" class="otherAccount" >
+                Accedi con un altro account
+            </span>
         </div>
 
-        <div class="col-md-1 col-xs-4">
+        <div class="col-md-1 col-xs-1">
             <div class="login menu-wrapper ">
                 <ul class="login menu-items">
                     <li class="login menu-item">
@@ -62,7 +64,7 @@
                 </button>
             </div>
         </div>
-        <div class="col-md-4 col-xs-2">
+        <div class="col-md-4 col-xs-4">
         </div>
     </div>
 </div>

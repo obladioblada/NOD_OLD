@@ -6,7 +6,7 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
     $scope.the4users=['','','',''];
     $scope.showSuggestions=true;
     $scope.userid="ballalsfbas";
-    $scope.myuserid="Jhonny";
+    $scope.myuserid="Gary";
     $scope.myUser={
         song:'',
         time: '',

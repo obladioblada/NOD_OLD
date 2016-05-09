@@ -7,7 +7,6 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
     $scope.showSuggestions=true;
     $scope.userid="ballalsfbas";
     $scope.myuserid="Gary";
-    $scope.menuopen=false;
     $scope.myUser={
         song:'',
         time: '',
@@ -202,4 +201,4 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
 
 
 
-})
+});

@@ -139,3 +139,17 @@ ul.searchbar.max{
     transition: none;
     cursor: pointer;"
 }
+
+.error-input-username{
+    font-size: 30px;
+    color: #841E21;
+    margin-top: 80px;
+    visibility: hidden;
+}
+
+.error-input-username-visible{
+    font-size: 30px;
+    color: #841E21;
+    margin-top: 80px;
+    visibility: visible;
+}

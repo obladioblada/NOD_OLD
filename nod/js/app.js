@@ -13,8 +13,13 @@
              controller:'mainCtrl',
              controllerAs:'myApp'
          }).
+             when('/register',{
+             templateUrl:'views/register.html',
+             controller:'registrationcCtrl',
+             controllerAs:'myApp'
+         }).
          otherwise({
-             redirectTo: '/home'
+             redirectTo:'/home.html'
          });
      }])
 

@@ -1,5 +1,5 @@
 
-<div class="container-fluid content bodystyle" >
+<div class="container-fluid content bodystyle" ng-controller="loginCtrl" >
     <div class="row" class="topPage">
         <div class="col-md-5 col-lg-5 col-xs-4"></div>
         <div class="col-md-2 col-lg-2 col-xs-4" style="    text-align: center;">
@@ -13,14 +13,20 @@
         <div class="col-md-4 col-xs-10">
             <input ng-model="myUser.id" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
         <div class="col-md-4 col-xs-1">
+        <div class="col-md-4 col-xs-4">
+            <input ng-model="myUser.id" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="col-md-4 col-xs-4">
         </div>
     </div>
-    </div>
+
     <div class="row"  id="rowemail">
         <div class="col-md-4 col-xs-1">
         </div>
         <div class="col-md-4 col-xs-10">
             <input ng-model="myUser.pwd" id="Email" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
+        <div class="col-md-4 col-xs-4">
+            <input ng-model="myUser.pwd" id="Password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
         </div>
         <div class="col-md-4 col-xs-1">
         </div>
@@ -59,19 +65,17 @@
                     </li>
                 </ul>
                 <button class="login menu-toggle-button">
-                    <i class="fa fa-sign-in menu-toggle-icon login"></i>
+                    <i class="fa fa-arrow-circle-right fa-lg menu-toggle-icon"></i>
                 </button>
             </div>
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
-
     </div>
-    <footer class="navbar navbar-fixed-bottom iscriviti">
-        <span>Non sei ancora iscritto?  <a ng-href="#" >iscriviti!</a></span>
-    </footer>
 </div>
-
+<footer class="navbar navbar-fixed-bottom iscriviti">
+        <span>Non sei ancora iscritto?  <a href="" ng-click="goToRegisterPage()">iscriviti!</a></span>
+</footer>
 
 
 

@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray){
+myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray,$window){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -6,7 +6,7 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
     $scope.the4users=['','','',''];
     $scope.showSuggestions=true;
     $scope.userid="ballalsfbas";
-    $scope.myuserid="Jhonny";
+    $scope.myuserid="Gary";
     $scope.myUser={
         song:'',
         time: '',
@@ -50,7 +50,11 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
         })
     };
 
-
+    $scope.onExit = function() {
+        $scope.myUser.isPlaying=false;
+        $scope.messages.$save($scope.myUser);
+    };
+    $window.onbeforeunload =  $scope.onExit;
 
     $scope.hideSuggestions=function ($event) {
         $scope.showSuggestions=false;

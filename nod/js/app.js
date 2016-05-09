@@ -36,7 +36,14 @@
      })
      */
 
-     .directive('ngMouseWheelUp', function() {
+    .controller('exitController', function($scope, $window) {
+        $scope.onExit = function() {
+            return ('bye bye');
+        };
+        $window.onbeforeunload =  $scope.onExit;
+    })
+
+    .directive('ngMouseWheelUp', function() {
         return function(scope, element, attrs) {
             element.bind("DOMMouseScroll mousewheel onmousewheel", function(event) {
 

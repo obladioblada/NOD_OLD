@@ -22,6 +22,8 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray){
     };
     $scope.users.$loaded()
         .then($scope.checkUserName());
-
     $scope.$watch('newUser.username',$scope.checkUserName);
+
+    $scope.registerNewUser=function () {
+    };
 });

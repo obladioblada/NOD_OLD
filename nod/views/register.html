@@ -10,7 +10,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.username" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
+            <input ng-model="newUser.username" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off" ng-required="string" spellcheck="false">
         </div>
         <div class="col-md-4 col-xs-4"> <i class="fa fa-exclamation-circle error-input-username-visible" ng-if=" userNameAlreadyUsed == true " aria-hidden="true"  ></i>
         </div>
@@ -19,7 +19,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.pwd" id="password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
+            <input ng-model="newUser.pwd" id="password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass"  autocomplete="off" ng-required="string">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
@@ -28,7 +28,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.email" id="email" name="search" type="email" placeholder="email"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
+            <input ng-model="newUser.email" id="email" name="search" type="email" placeholder="email"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass " autocomplete="off" ng-required="string" spellcheck="false">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
@@ -44,25 +44,10 @@
             <div class="login menu-wrapper submitform ">
                 <ul class="login menu-items">
                     <li class="login menu-item">
-                        <button class="login menu-item-button">
-                            <i class="login menu-item-icon fa fa-facebook"></i>
-                        </button>
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                    <li class="login menu-item">
-                        <button class="login menu-item-button">
-                            <i class="login menu-item-icon fa fa-google"></i>
-                        </button>
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                    <li class="login menu-item">
-                        <button class="login menu-item-button">
-                            <i class="login menu-item-icon fa fa-twitter"></i>
-                        </button>
                         <div class="login menu-item-bounce"></div>
                     </li>
                 </ul>
-                <button class="login menu-toggle-button">
+                <button class="login menu-toggle-button" ng-click="registerNewUser()" type="submit">
                     <i class="fa fa-sign-in menu-toggle-icon"></i>
                 </button>
             </div>

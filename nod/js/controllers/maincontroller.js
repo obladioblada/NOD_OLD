@@ -196,4 +196,4 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
 
 
 
-})
+});

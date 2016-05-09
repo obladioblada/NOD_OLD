@@ -26,4 +26,5 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location){
     $scope.users.$loaded()
         .then($scope.lookForUser());
     $scope.$watch('myUser.id',$scope.lookForUser);
+    
 });

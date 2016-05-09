@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var menuItemNum=$(".menu-item").length;
 	var angle=120;
-	var distance=90;
+	var distance=parseInt($(".menu-toggle-icon").css('font-size'), 10)*3;
 	var startingAngle=230+(-angle/2);
 	var slice=angle/(menuItemNum-1);
 	TweenMax.globalTimeScale(0.8);

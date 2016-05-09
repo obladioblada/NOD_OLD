@@ -141,14 +141,19 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
             if ($scope.itemsearched.length == 0) {
                 $scope.suggestions=[];
             } else {
-                angular.forEach($scope.songs, function (song) {
-                    if (song.indexOf($scope.itemsearched) > -1) {
+                $scope.tmpSongs=$scope.songs;
+                $scope.tmpSearched=$scope.itemsearched;
+                $scope.tmpSearched=$scope.tmpSearched.toLowerCase();
+                angular.forEach($scope.tmpSongs, function (song) {
+                    var original=song;
+                    song=song.toLowerCase();
+                    if (song.indexOf($scope.tmpSearched) > -1) {
                         if ($scope.suggestions.indexOf(song) == -1) {
-                            $scope.suggestions.push(song);
+                            $scope.suggestions.push(original);
                         }
                     } else {
                         if($scope.suggestions.indexOf(song)!=-1) {
-                            $scope.suggestions.splice($scope.suggestions.indexOf(song), 1);
+                            $scope.suggestions.splice($scope.suggestions.indexOf(original), 1);
                         }
                     }
                 })

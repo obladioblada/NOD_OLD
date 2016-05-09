@@ -1,28 +1,28 @@
 
 <div class="container-fluid content bodystyle" >
     <div class="row" class="topPage">
-        <div class="col-md-5 col-lg-5 col-xs-5"></div>
-        <div class="col-md-2 col-lg-2 col-xs-2" style="    text-align: center;">
+        <div class="col-md-5 col-lg-5 col-xs-4"></div>
+        <div class="col-md-2 col-lg-2 col-xs-4" style="    text-align: center;">
             <img ng-src="{{myUser.image}}" class="user-icon imgLogin">
         </div>
-        <div class="col-md-5 col-lg-5 col-xs-5"></div>
+        <div class="col-md-5 col-lg-5 col-xs-4"></div>
     </div>
     <div class="row" id="rowusername">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-1">
         </div>
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-10">
             <input ng-model="myUser.id" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-1">
         </div>
     </div>
     </div>
     <div class="row"  id="rowemail">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-1">
         </div>
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-10">
             <input ng-model="myUser.pwd" id="Email" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass" autocomplete="off">
         </div>
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 col-xs-1">
         </div>
     </div>
 
@@ -59,17 +59,19 @@
                     </li>
                 </ul>
                 <button class="login menu-toggle-button">
-                    <i class="fa fa-sign-in menu-toggle-icon"></i>
+                    <i class="fa fa-sign-in menu-toggle-icon login"></i>
                 </button>
             </div>
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
+
     </div>
-</div>
-<footer class="navbar navbar-fixed-bottom iscriviti">
+    <footer class="navbar navbar-fixed-bottom iscriviti">
         <span>Non sei ancora iscritto?  <a ng-href="#" >iscriviti!</a></span>
-</footer>
+    </footer>
+</div>
+
 
 
 

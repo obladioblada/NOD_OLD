@@ -14,7 +14,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location){
                 $scope.myUser.image=user.image;
                 $scope.userFound=true;
             }
-        })
+        });
         if($scope.userFound==false)
             $scope.myUser.image=$scope.defaultImg;
         $scope.userFound=false;

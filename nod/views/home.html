@@ -21,7 +21,7 @@
                 <!-- <div class="col-md-10 col-sm-11 searchbar" click-off="showSuggestions=false" ng-click="showSuggestions=true" > -->
                 <div id="wrap"  >
                     <form action="" autocomplete="off" >
-                        <img src="img/ic_search_white_48dp_2x.png" class="icon-search backSearchIcon">
+                        <img src="../img/ic_search_white_48dp_2x.png" class="icon-search backSearchIcon">
                         <input class="barSearch" id="search" name="search" type="text" placeholder="cecchi soddi?" ng-model="itemsearched" >
                         <input class="searchSumbit" id="search_submit" value="Rechercher" type="submit" >
                     </form>
@@ -31,7 +31,7 @@
                         <ul class="searchbar"  ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)" id="suggestions">
                             <li class="user-list suggestion" ng-repeat="s in suggestions" ng-class=" {first:$index==0,last:$index==songs.length-1}" ng-click="chooseSong(songs.indexOf(s))">
                     <span >
-                        {{s}} <img src="img/playing.gif" class="detail" ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
+                        {{s}} <img src="../img/playing.gif" class="detail" ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
                     </span>
                             </li>
                         </ul>
@@ -80,7 +80,7 @@
             outline: none;
             color: #fff;
             padding: 3px;
-            padding-right: 0px;
+            padding-right: 0;
             width: 100%;
             position: relative;
             top: -75px;

@@ -20,7 +20,7 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
         'http://www.dvdcineshop.com/catalog/product_thumb.php?img=images/prodotti/201302/8032779962502.jpg&w=400&h=400',
         'http://images.rapgenius.com/fef2f69f0e0481d0141594bdc04317bb.450x446x1.jpg',
         'https://s-media-cache-ak0.pinimg.com/736x/58/9b/c0/589bc0e931ddb071f61c06ae5b001a08.jpg',
-        'https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/The_House_of_the_Rising_Sun_Frijid.png/220px-The_House_of_the_Rising_Sun_Frijid.png',];
+        'https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/The_House_of_the_Rising_Sun_Frijid.png/220px-The_House_of_the_Rising_Sun_Frijid.png'];
     $scope.suggestions=[];
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
@@ -56,7 +56,7 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
     };
     $window.onbeforeunload =  $scope.onExit;
 
-    $scope.hideSuggestions=function ($event) {
+    $scope.hideSuggestions=function () {
         $scope.showSuggestions=false;
 
     };

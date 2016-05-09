@@ -154,7 +154,7 @@
                         <rect stroke="#5e5e5c" transform="rotate(24.36675262451172 48.999999999999915,172.5) " id="svg_5" height="39.08893" width="17.8563" y="152.95553" x="40.07185" stroke-width="0" fill="#191919"/>
                     </g>
                 </svg>
-                <div class="player-cover" ng-class="min==true ? 'min': ''">
+                <div class="player-cover" ng-class=" min==true ? 'min': '' ">
                     <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined" >
                     <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false" class="player-album">
                         <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined" class="player-album player-img-album" ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">

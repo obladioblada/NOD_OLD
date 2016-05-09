@@ -19,6 +19,10 @@
 	bottom: 10px;
 }
 
+.menu-wrapper.submitform{
+    left:50%
+}
+
 .menu-toggle-button,
 .menu-item-bounce,
 .menu-item-button {

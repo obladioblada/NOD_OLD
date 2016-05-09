@@ -13,6 +13,11 @@
              controller:'mainCtrl',
              controllerAs:'myApp'
          }).
+             when('/register',{
+             templateUrl:'views/register.html',
+             controller:'registrationcCtrl',
+             controllerAs:'myApp'
+         }).
          otherwise({
              redirectTo: '/home'
          });
@@ -31,9 +36,7 @@
      })
      */
 
-
-
-    .directive('ngMouseWheelUp', function() {
+     .directive('ngMouseWheelUp', function() {
         return function(scope, element, attrs) {
             element.bind("DOMMouseScroll mousewheel onmousewheel", function(event) {
 

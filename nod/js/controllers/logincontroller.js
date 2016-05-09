@@ -1,5 +1,7 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
+    var ref = new Firebase("https://nod-music.firebaseio.com/users");
+    $scope.users = $firebaseArray(ref);
     $scope.myUser={
         image:$scope.defaultImg,
         id:'',
@@ -17,10 +19,11 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray){
             $scope.myUser.image=$scope.defaultImg;
         $scope.userFound=false;
     };
-    var ref = new Firebase("https://nod-music.firebaseio.com/users");
-    $scope.users = $firebaseArray(ref);
+    $scope.goToRegisterPage=function () {
+        $location.path('register');
+    };
+
     $scope.users.$loaded()
         .then($scope.lookForUser());
-
     $scope.$watch('myUser.id',$scope.lookForUser);
 });

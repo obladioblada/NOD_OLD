@@ -31,7 +31,7 @@
 }
 
 .pass{
-    margin-top: 90px;
+    margin-top: 50px;
 }
 
 .imgLogin{
@@ -213,3 +213,11 @@ p{
     -webkit-margin-end: 0px;
 }
 
+.buttonSubmit{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    border: none;
+    background: #841E21;
+    color: white;
+}

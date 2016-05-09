@@ -19,7 +19,7 @@
              controllerAs:'myApp'
          }).
          otherwise({
-             redirectTo:'/home.html'
+             redirectTo:'/home'
          });
      }])
 

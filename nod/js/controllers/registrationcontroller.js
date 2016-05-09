@@ -43,6 +43,7 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,NODURL){
                 }
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
+                $location.path('login');
             }
         })
         

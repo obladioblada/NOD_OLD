@@ -117,3 +117,5 @@
         };
         return dir;
     });
+
+myApp.constant('NODURL','https://nod-music.firebaseio.com');

@@ -1,6 +1,6 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
-    var ref = new Firebase("https://nod-music.firebaseio.com/users");
+    var ref = new Firebase(NODURL+"/users");
     $scope.users = $firebaseArray(ref);
     $scope.myUser={
         image:$scope.defaultImg,

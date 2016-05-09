@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray,$window){
+myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray,$window,NODURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -171,7 +171,7 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
     };
 
 
-    var ref = new Firebase("https://nod-music.firebaseio.com/users");
+    var ref = new Firebase(NODURL+"/users");
     $scope.messages = $firebaseArray(ref);
 
     $scope.messages.$loaded()

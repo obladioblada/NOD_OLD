@@ -14,7 +14,7 @@
 
 
 .username-input{
-    margin-top: 70px;
+    margin-top: 10%;
     width: 100%;
     height: 49px;
     display: inline-block;
@@ -41,7 +41,9 @@
 
 
 .imgLogin{
-    position: relative;padding:1px; border: 0; margin-top: 40%;
+    position: relative;padding:1px; border: 0;
+    margin-bottom: 15%;
+    margin-top: 15%;
 }
 
 .topPage{
@@ -58,7 +60,12 @@
 
 .container-fluid{
     height: 100% !important;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 }
+.container-fluid.blur{
+    -webkit-filter: blur(10px);
+}
+
 
 .otherAccount{
     display: inline-block;
@@ -226,4 +233,58 @@ p{
     border: none;
     background: #841E21;
     color: white;
+}
+
+.loadingContainer{
+    position: fixed !important;
+    z-index: 300000;
+    background: rgba(22,22,22,0.5);
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+.loadingContainer.on{
+    visibility: visible !important;
+}
+
+.loader {
+    margin: 40% auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-left: 1.1em solid #ffffff;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+}
+.loader,
+.loader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }

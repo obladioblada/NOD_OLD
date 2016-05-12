@@ -1,4 +1,4 @@
-myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,NODURL){
+myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,NODURL){
     var ref = new Firebase(NODURL+"/users" );
     $scope.users = $firebaseArray(ref);
     $scope.newUser={

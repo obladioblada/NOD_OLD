@@ -20,59 +20,12 @@
     cursor: pointer;
     margin-right: 50%;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-
-.user-list.mysong{
-
 
 }
 
 
 
-.backSearchIcon{
-    background: #841E21;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin-left: -30px;
-    margin-top: -10px;
-    color: #fff;
-    border: none;
-    outline: none;
-    position: relative;
-}
 
-
-ul.searchbar{
-    height: 100%;
-    width: 50%;
-    float: right;
-    right: 20px;
-    visibility: collapse;
-}
-
-
-
-ul.searchbar.max{
-    visibility: visible;
-
-}
-
-.user-list.max{
-    margin-right: 0px;
-}
-
-.searchbar{
-    float: right;
-    position:absolute;
-    z-index: 10;
-    width: 100%;
-}
-
-.searchbar > .user-list{
-    margin-right: 60px;
-    width: 100%;
-}
 
 .user-list:hover{
     background: #841E21;

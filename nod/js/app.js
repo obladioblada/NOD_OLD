@@ -23,18 +23,22 @@
          });
      }])
 
-    /*
-     .run( function($rootScope, $location) {
 
+     .run( function($rootScope, $location) {
          // register listener to watch route changes
          $rootScope.$on( "$routeChangeStart", function(event, next, current) {
              if ( $rootScope.loggedUser == null ) {
                  // no logged user, we should be going to #login
-                 $location.path( "/login" );
+                 console.log("rootScope.loggedUser "+$rootScope.loggedUser);
+                 if($location.path()!="/register")
+                     $location.path( "login" );
+             }else{
+                 if($location.path()=="/register" || $location.path()=="/login" )
+                    $location.path( "home" );
              }
          });
      })
-     */
+
 
     .controller('exitController', function($scope, $window) {
         $scope.onExit = function() {

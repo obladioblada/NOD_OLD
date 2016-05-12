@@ -1,5 +1,7 @@
-
-<div class="container-fluid content bodystyle" ng-controller="loginCtrl" >
+<div class="loadingContainer">
+    <div class="loader"></div>
+</div>
+<div class="container-fluid content bodystyle">
     <form>
     <div class="row">
         <div class="col-md-5 col-lg-5 col-xs-4"></div>
@@ -29,9 +31,10 @@
             <div class="col-md-4 col-xs-10" style="text-align: center">
                 <button type="submit" id="submitButton" class="buttonSubmit pass" ng-click="loginUser()"> <i class="fa fa-2x fa-sign-in" aria-hidden="true"></i></button>
             </div>
-            <div class="col-md-4 col-xs-1"></div>
+            <div class="col-md-4 col-xs-1">
+            </div>
         </div>
-    <div class="row" id="otherSocialwrite" style="margin-top: 100px;">
+    <div class="row" id="otherSocialwrite" style="margin-top: 32px;">
         <div class="col-md-2 col-xs-2">
         </div>
         <div class="col-md-5 col-xs-5 otherAccountDiv">
@@ -62,7 +65,7 @@
                     </li>
                 </ul>
                 <button class="login menu-toggle-button">
-                    <i class="fa fa-arrow-circle-right fa-lg menu-toggle-icon"></i>
+                    <i class="fa fa-arrow-circle-right fa-lg menu-toggle-icon login"></i>
                 </button>
             </div>
         </div>

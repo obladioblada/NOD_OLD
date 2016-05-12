@@ -1,4 +1,4 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$route){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     $scope.users = $firebaseArray(ref);
@@ -20,7 +20,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
         $scope.userFound=false;
     };
     $scope.goToRegisterPage=function () {
-        $location.path('register');
+        $location.path('/register');
     };
 
     $scope.users.$loaded()
@@ -30,6 +30,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
     
     $scope.loginUser=function( ) {
         var refLogin=new Firebase(NODURL);
+        $scope.charge();
         refLogin.authWithPassword({
             
             email:$scope.myUser.email,
@@ -37,7 +38,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
         },
             function (error,userData) {
             if (error) {
-                switch (error.code) {
+                $scope.stopCharge();
+             switch (error.code) {
                     case "EMAIL_TAKEN":
                         console.log("The new user account cannot be created because the email is already in use.");
                         break;
@@ -49,49 +51,77 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL){
                 }
             } else {
                 console.log("Successfully created user account with uid:", userData.uid);
-                $location.path('home');
+                $scope.proceedToHome();
             }
-        })
+        });
+        $rootScope.loggedUser=true;
     }
     
     
     $scope.loginwithFacebook=function () {
         var ref = new Firebase(NODURL);
+        $scope.charge();
         ref.authWithOAuthPopup("facebook", function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
+                $scope.stopCharge();
             } else {
                 console.log("Authenticated successfully with payload:", authData);
+                $scope.proceedToHome();
             }
         });
-        
+        $rootScope.loggedUser=true;
     };
 
     $scope.loginwithGoogle=function () {
 
         var ref = new Firebase(NODURL);
+        $scope.charge();
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
+                $scope.stopCharge();
             } else {
                 console.log("Authenticated successfully with payload:", authData);
+                $scope.proceedToHome();
             }
         });
-
+        $rootScope.loggedUser=true;
     };
 
 
    $scope.loginwithtwetter=function () {
 
        var ref = new Firebase(NODURL);
+       $scope.charge();
        ref.authWithOAuthPopup("twitter", function(error, authData) {
            if (error) {
                console.log("Login Failed!", error);
+               $scope.stopCharge();
            } else {
                console.log("Authenticated successfully with payload:", authData);
+               $scope.proceedToHome();
            }
        });
-       
+
    }
+
+
+    $scope.charge = function(){
+        $(".loadingContainer").addClass("on");
+        $(".container-fluid").addClass("blur");
+    }
+    $scope.stopCharge = function(){
+        $(".loadingContainer").removeClass("on");
+        $(".container-fluid").removeClass("blur");
+    }
+
+        $scope.proceedToHome=function(){
+            $rootScope.loggedUser=true;
+            console.log("io vado alla home, ciaaaao!");
+            $route.reload();
+            $location.path( "home" );
+        };
+
 
 });

@@ -1,4 +1,4 @@
-myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,NODURL){
+myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location, NODURL){
     var ref = new Firebase(NODURL+"/users" );
     $scope.users = $firebaseArray(ref);
     $scope.newUser={
@@ -27,7 +27,7 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,
         var refAuth = new Firebase(NODURL);
         refAuth.createUser({
             email:$scope.newUser.email,
-          password:$scope.newUser.pwd,
+            password:$scope.newUser.pwd,
             username:$scope.newUser.username
         }, function (error,userData) {
             if (error) {
@@ -45,7 +45,6 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,
                 console.log("Successfully created user account with uid:", userData.uid);
                 $location.path('login');
             }
-        })
-        
+        });
     };
 });

@@ -1,43 +1,49 @@
 'use strict';
- var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ngRoute'])
-     .config(['$routeProvider', function($routeProvider) {
-         $routeProvider.
+var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router'])
 
-         when('/login', {
-             templateUrl: 'views/login.html',
-             controller: 'loginCtrl',
-             controllerAs: 'myApp'
-         }).
-         when('/home',{
-             templateUrl:'views/home.html',
-             controller:'mainCtrl',
-             controllerAs:'myApp'
-         }).
-             when('/register',{
-             templateUrl:'views/register.html',
-             controller:'registrationcCtrl',
-             controllerAs:'myApp'
-         }).
-         otherwise({
-             redirectTo:'/home'
-         });
-     }])
+    .constant('NODURL','https://nod-music.firebaseio.com')
 
+    .config(function($stateProvider,$urlRouterProvider) {
+        $stateProvider.
+        state('login',{
+            url:'/login',
+            templateUrl: 'views/login.html',
+            controller: 'loginCtrl'
+        }).
+        state('register',{
+            url: '/register',
+            templateUrl:'views/register.html',
+            controller:'registrationCtrl'
+    }).
+        state('home',{
+            url: '/home',
+            templateUrl:'views/home.html',
+            controller:'mainCtrl'
+        });
+        $urlRouterProvider.otherwise('home');
+    })
 
-     .run( function($rootScope, $location) {
-         // register listener to watch route changes
-         $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-             if ( $rootScope.loggedUser == null ) {
-                 // no logged user, we should be going to #login
-                 console.log("rootScope.loggedUser "+$rootScope.loggedUser);
-                 if($location.path()!="/register")
-                     $location.path( "login" );
-             }else{
-                 if($location.path()=="/register" || $location.path()=="/login" )
-                    $location.path( "home" );
-             }
-         });
-     })
+    .run(['$rootScope','$state',function($rootScope,$state){
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            if($rootScope.ref==null)
+                $rootScope.ref=new Firebase("https://nod-music.firebaseio.com");
+            var authData=$rootScope.ref.getAuth();
+            if ( authData == null ) {
+                console.log("non sono autenticato e mi trovo in "+fromState.name+" - "+toState.name);
+                if(toState.name!='login'&&toState.name!='register') {
+                    event.preventDefault();
+                    $state.go('login');
+                }
+            }else{
+                console.log(" sono autenticato e mi trovo in "+fromState.name+" - "+toState.name);
+
+                if(toState.name=='login'||toState.name=='register') {
+                    event.preventDefault();
+                    $state.go('home');
+                }
+            }
+        })
+    }])
 
 
     .controller('exitController', function($scope, $window) {
@@ -122,4 +128,3 @@
         return dir;
     });
 
-myApp.constant('NODURL','https://nod-music.firebaseio.com');

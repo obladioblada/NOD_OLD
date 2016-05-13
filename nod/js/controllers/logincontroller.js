@@ -1,6 +1,8 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$route){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
     var ref = new Firebase(NODURL+"/users");
+    ref.unauth();
+    $rootScope.ref=ref;
     $scope.users = $firebaseArray(ref);
     $scope.myUser={
         image:$scope.defaultImg,
@@ -25,14 +27,14 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
 
     $scope.users.$loaded()
         .then($scope.lookForUser());
-    $scope.$watch('myUser.id',$scope.lookForUser);
-    
-    
+
+   // $scope.$watch('myUser.id',$scope.lookForUser);
+
+
     $scope.loginUser=function( ) {
-        var refLogin=new Firebase(NODURL);
         $scope.charge();
-        refLogin.authWithPassword({
-            
+        ref.authWithPassword({
+
             email:$scope.myUser.email,
             password:$scope.myUser.pwd
         },
@@ -54,12 +56,10 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.proceedToHome();
             }
         });
-        $rootScope.loggedUser=true;
     }
-    
-    
+
+
     $scope.loginwithFacebook=function () {
-        var ref = new Firebase(NODURL);
         $scope.charge();
         ref.authWithOAuthPopup("facebook", function(error, authData) {
             if (error) {
@@ -70,12 +70,10 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.proceedToHome();
             }
         });
-        $rootScope.loggedUser=true;
     };
 
     $scope.loginwithGoogle=function () {
 
-        var ref = new Firebase(NODURL);
         $scope.charge();
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
@@ -86,13 +84,10 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.proceedToHome();
             }
         });
-        $rootScope.loggedUser=true;
     };
 
 
    $scope.loginwithtwetter=function () {
-
-       var ref = new Firebase(NODURL);
        $scope.charge();
        ref.authWithOAuthPopup("twitter", function(error, authData) {
            if (error) {
@@ -117,11 +112,45 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     }
 
         $scope.proceedToHome=function(){
-            $rootScope.loggedUser=true;
-            console.log("io vado alla home, ciaaaao!");
-            $route.reload();
             $location.path( "home" );
         };
 
 
+    ref.onAuth(function(authData) {
+        if (authData) {
+            // save the user's profile into the database so we can list users,
+            // use them in Security and Firebase Rules, and show profiles
+            ref.once("value", function(snapshot) {
+                if(authData!=null) {
+                    if (snapshot.child(authData.uid).child("image").exists() == false) {
+                        console.log("la fottuta image non esiste");
+                        ref.child(authData.uid).set({
+                            provider: authData.provider,
+                            name: getName(authData),
+                            image: 'http://penerbitsalemba.com/v3/images/user_default.png'
+                        });
+                    } else {
+                        console.log("la fottuta image esiste");
+                        ref.child(authData.uid).set({
+                            provider: authData.provider,
+                            name: getName(authData)
+                        });
+                    }
+                    console.log("e authdata vale "+authData.uid);
+                }
+            });
+            $rootScope.ref=ref;
+        }
+    });
+// find a suitable name based on the meta info given by each provider
+    function getName(authData) {
+        switch(authData.provider) {
+            case 'password':
+                return authData.password.email.replace(/@.*/, '');
+            case 'twitter':
+                return authData.twitter.displayName;
+            case 'facebook':
+                return authData.facebook.displayName;
+        }
+    }
 });

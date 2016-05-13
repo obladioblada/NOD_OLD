@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebaseArray,$window,NODURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray,$window,NODURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -61,6 +61,13 @@ myApp.controller('mainCtrl', function ($scope, ngAudio, ngAudioGlobals, $firebas
 
     };
 
+    $scope.logout=function(){
+        if($rootScope.ref==null)
+            $rootScope.ref=new Firebase(NODURL);
+        console.log("mi deautentico addiooooo");
+        $rootScope.ref.unauth();
+        $state.go('login');
+    };
 
     $scope.clickhandling=function ($event) {
         if ($event.currentTarget.id!== 'suggestions'){

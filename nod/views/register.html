@@ -1,4 +1,6 @@
-
+<div class="loadingContainer">
+    <div class="loader"></div>
+</div>
 <div class="container-fluid content bodystyle">
     <div class="row">
         <div class="col-md-5 col-lg-5 col-xs-5"></div>
@@ -10,7 +12,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.username" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input" autocomplete="off" ng-required="string" spellcheck="false">
+            <input ng-model="newUser.username" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input noautofillStyle" autocomplete="off" ng-required="string" spellcheck="false">
         </div>
         <div class="col-md-4 col-xs-4"> <i class="fa fa-exclamation-circle error-input-username-visible" ng-if=" userNameAlreadyUsed == true " aria-hidden="true"  ></i>
         </div>
@@ -19,7 +21,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.pwd" id="password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass"  autocomplete="off" ng-required="string">
+            <input ng-model="newUser.email" id="email" name="search" type="email" placeholder="email"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle" autocomplete="off" ng-required="string" spellcheck="false">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>
@@ -28,7 +30,7 @@
         <div class="col-md-4 col-xs-4">
         </div>
         <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.email" id="email" name="search" type="email" placeholder="email"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass " autocomplete="off" ng-required="string" spellcheck="false">
+            <input ng-model="newUser.pwd" id="password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle"  autocomplete="off" ng-required="string">
         </div>
         <div class="col-md-4 col-xs-4">
         </div>

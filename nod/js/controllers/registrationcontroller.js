@@ -1,4 +1,4 @@
-myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,NODURL){
+myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,NODURL,$route){
     var ref = new Firebase(NODURL+"/users" );
     $scope.users = $firebaseArray(ref);
     $scope.newUser={
@@ -20,12 +20,25 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,
             $scope.userNameAlreadyUsed=false;
         $scope.found=false;
     };
+
+
+    $scope.charge = function(){
+        $(".loadingContainer").addClass("on");
+        $(".container-fluid").addClass("blur");
+    }
+    $scope.stopCharge = function(){
+        $(".loadingContainer").removeClass("on");
+        $(".container-fluid").removeClass("blur");
+    }
+
+
+
     $scope.users.$loaded()
         .then($scope.checkUserName());
     $scope.$watch('newUser.username',$scope.checkUserName);
     $scope.registerNewUser=function () {
-        var refAuth = new Firebase(NODURL);
-        refAuth.createUser({
+        $scope.charge();
+        ref.createUser({
             email:$scope.newUser.email,
           password:$scope.newUser.pwd,
             username:$scope.newUser.username
@@ -42,7 +55,9 @@ myApp.controller('registrationcCtrl', function ($scope,$firebaseArray,$location,
                         console.log("Error creating user:", error);
                 }
             } else {
+
                 console.log("Successfully created user account with uid:", userData.uid);
+                $route.reload();
                 $location.path('login');
             }
         })

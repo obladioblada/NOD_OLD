@@ -54,7 +54,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.proceedToHome();
             }
         });
-        $rootScope.loggedUser=true;
+
     }
     
     

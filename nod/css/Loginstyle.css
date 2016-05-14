@@ -215,8 +215,9 @@
 .iscriviti>a{
 
     color:#841E21;
-
 }
+
+
 
 p{
     display: block;
@@ -233,6 +234,10 @@ p{
     border: none;
     background: #841E21;
     color: white;
+}
+
+.submit_disable{
+    background-color: #541414;
 }
 
 .loadingContainer{

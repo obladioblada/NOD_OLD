@@ -2,60 +2,78 @@
     <div class="loader"></div>
 </div>
 <div class="container-fluid content bodystyle">
-    <div class="row">
-        <div class="col-md-5 col-lg-5 col-xs-5"></div>
-        <div class="col-md-2 col-lg-2 col-xs-2" style="    text-align: center;  margin-top: 184px"  >
+    <form name="register_form" novalidate>
+        <div class="row">
+            <div class="col-md-5 col-lg-5 col-xs-5"></div>
+            <div class="col-md-2 col-lg-2 col-xs-2" style="    text-align: center;  margin-top: 184px">
+            </div>
+            <div class="col-md-5 col-lg-5 col-xs-5"></div>
         </div>
-        <div class="col-md-5 col-lg-5 col-xs-5"></div>
-    </div>
-    <div class="row" id="rowUsername">
-        <div class="col-md-4 col-xs-4">
-        </div>
-        <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.username" id="Username" name="search" type="text" placeholder="Username"  class="ng-pristine ng-valid ng-empty ng-touched username-input noautofillStyle" autocomplete="off" ng-required="string" spellcheck="false">
-        </div>
-        <div class="col-md-4 col-xs-4"> <i class="fa fa-exclamation-circle error-input-username-visible" ng-if=" userNameAlreadyUsed == true " aria-hidden="true"  ></i>
-        </div>
-    </div>
-    <div class="row"  id="rowPassword">
-        <div class="col-md-4 col-xs-4">
-        </div>
-        <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.email" id="email" name="search" type="email" placeholder="email"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle" autocomplete="off" ng-required="string" spellcheck="false">
-        </div>
-        <div class="col-md-4 col-xs-4">
-        </div>
-    </div>
-    <div class="row"  id="rowEmail">
-        <div class="col-md-4 col-xs-4">
-        </div>
-        <div class="col-md-4 col-xs-4">
-            <input ng-model="newUser.pwd" id="password" name="search" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle"  autocomplete="off" ng-required="string">
-        </div>
-        <div class="col-md-4 col-xs-4">
-        </div>
-    </div>
-    <div class="row" id="otherSocialwrite" style="margin-top: 100px;">
-        <div class="col-md-2 col-xs-2">
-        </div>
-        <div class="col-md-3 col-xs-3 otherAccountDiv">
-        </div>
+        <div class="row" id="rowUsername">
+            <div class="col-md-4 col-xs-4">
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <input ng-model="newUser.username" id="Username" name="user" type="text" placeholder="Username"
+                       class="ng-pristine ng-valid ng-empty ng-touched username-input noautofillStyle"
+                       autocomplete="off"  spellcheck="false" required>
+                <span class="error" style="color: white" ng-show="register_form.user.$error.required && register_form.user.$dirty"> Username required! </span>
 
-        <div class="col-md-2 col-xs-2">
-            <div class="login menu-wrapper submitform ">
-                <ul class="login menu-items">
-                    <li class="login menu-item">
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                </ul>
-                <button class=" menu-toggle-button" ng-click="registerNewUser()">
-                    <i class="fa fa-sign-in menu-toggle-icon"></i>
-                </button>
+            </div>
+            <div class="col-md-4 col-xs-4"><i class="fa fa-exclamation-circle error-input-username-visible"
+                                              ng-if=" userNameAlreadyUsed == true " aria-hidden="true"></i>
             </div>
         </div>
-        <div class="col-md-5 col-xs-5">
+        <div class="row" id="rowPassword">
+            <div class="col-md-4 col-xs-4">
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <input ng-model="newUser.email" id="email" name="email" type="email" placeholder="email"
+                       class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle"
+                       autocomplete="off"  spellcheck="false" required>
+                 <span class="error" style="color: white" ng-show="register_form.$error.email && register_form.email.$dirty">
+            invalid email!
+        </span>
+            </div>
+            <div class="col-md-4 col-xs-4">
+            </div>
         </div>
-    </div>
+        <div class="row" id="rowEmail">
+            <div class="col-md-4 col-xs-4">
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <input ng-model="newUser.pwd" id="password" name="psw" type="password" pattern=""
+                       placeholder="Password"
+                       class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle"
+                       autocomplete="off" required ng-minlength="6">
+                 <span class="error" style="color: white" ng-show="register_form.psw.$error.minlength && register_form.psw.$dirty">
+            too short password!
+        </span>
+            </div>
+            <div class="col-md-4 col-xs-4">
+            </div>
+        </div>
+        <div class="row" id="otherSocialwrite" style="margin-top: 100px;">
+            <div class="col-md-2 col-xs-2">
+            </div>
+            <div class="col-md-3 col-xs-3 otherAccountDiv">
+            </div>
+
+            <div class="col-md-2 col-xs-2">
+                <div class="login menu-wrapper submitform">
+                    <ul class="login menu-items">
+                        <li class="login menu-item">
+                            <div class="login menu-item-bounce"></div>
+                        </li>
+                    </ul>
+                    <button class=" menu-toggle-button" ng-disabled="register_form.$invalid" ng-class="{'submit_disable':register_form.$invalid}" ng-click="registerNewUser(register_form.$valid)">
+                        <i class="fa fa-sign-in menu-toggle-icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-5 col-xs-5">
+            </div>
+        </div>
+    </form>
 </div>
 
 

@@ -24,20 +24,31 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
     };
 
     $scope.sendValidationEmail=function () {
-        $http({
-            method:'GET',
-            url: 'validationMail.php',
-            data:$scope.newUser
-        })
-            .success(function (data) {
-                if(data.errors){
-                    $scope.errorName = data.errors.name;
-                    $scope.errorUserName = data.errors.username;
-                    $scope.errorEmail = data.errors.email;
-                }else {
-                    $scope.message = data.message;
-                }
-            });
+
+        var request = $http({
+            method: "post",
+            url: "validationMail.php",
+            data: {
+                username: $scope.newUser.username,
+                email: $scope.newUser.email,
+                pwd: $scope.newUser.pwd
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        });
+
+        /* Check whether the HTTP Request is successful or not. */
+        request.success(function (data) {
+            if(data.errors){
+                $scope.errorName = data.errors.pwd;
+                $scope.errorUserName = data.errors.username;
+                $scope.errorEmail = data.errors.email;
+                console.log("errore: "+data.errors.pwd+" "+data.errors.username+" "+data.errors.email);
+            }else {
+                $scope.message = data.message;
+                console.log("messaggggggggio "+$scope.message);
+                $state.go('login');
+            }
+        });
         
     }
 
@@ -79,8 +90,9 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                     }
                 } else {
                     console.log("Successfully created user account with uid:", userData.uid);
+
                     $scope.sendValidationEmail();
-                    $state.go('login');
+                    //$state.go('login');
                 }
             });
         }

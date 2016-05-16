@@ -36,7 +36,6 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                 }
             }else{
                 console.log(" sono autenticato e mi trovo in "+fromState.name+" - "+toState.name);
-
                 if(toState.name=='login'||toState.name=='register') {
                     event.preventDefault();
                     $state.go('home');

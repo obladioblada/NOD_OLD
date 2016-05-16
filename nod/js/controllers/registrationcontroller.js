@@ -1,4 +1,4 @@
-myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location, NODURL) {
+myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location, NODURL,$http,$state) {
     var ref = new Firebase(NODURL + "/users");
     $scope.users = $firebaseArray(ref);
     $scope.newUser = {
@@ -6,9 +6,10 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
         pwd: '',
         username: ''
     };
-
     $scope.userNameAlreadyUsed = false;
     $scope.found = false;
+
+
     $scope.checkUserName = function () {
         angular.forEach($scope.users, function (user) {
             if (user.$id == $scope.newUser.username && $scope.found == false) {
@@ -21,6 +22,24 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
             $scope.userNameAlreadyUsed = false;
         $scope.found = false;
     };
+
+    $scope.sendValidationEmail=function () {
+        $http({
+            method:'GET',
+            url: 'validationMail.php',
+            data:$scope.newUser
+        })
+            .success(function (data) {
+                if(data.errors){
+                    $scope.errorName = data.errors.name;
+                    $scope.errorUserName = data.errors.username;
+                    $scope.errorEmail = data.errors.email;
+                }else {
+                    $scope.message = data.message;
+                }
+            });
+        
+    }
 
 
     $scope.charge = function () {
@@ -43,9 +62,11 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
             ref.createUser({
                 email: $scope.newUser.email,
                 password: $scope.newUser.pwd,
-                username: $scope.newUser.username
+                username: $scope.newUser.username,
+                active:false
             }, function (error, userData) {
                 if (error) {
+                    $scope.stopCharge();
                     switch (error.code) {
                         case "EMAIL_TAKEN":
                             console.log("The new user account cannot be created because the email is already in use.");
@@ -57,13 +78,12 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                             console.log("Error creating user:", error);
                     }
                 } else {
-
                     console.log("Successfully created user account with uid:", userData.uid);
-                    $route.reload();
-                    $location.path('login');
+                    $scope.sendValidationEmail();
+                    $state.go('login');
                 }
             });
         }
-        ;
+        
     }
 });

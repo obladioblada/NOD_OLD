@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray,$window,NODURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray,$window, NODURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];

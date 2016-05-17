@@ -1,20 +1,11 @@
-<div >
+<div>
     <div class="container-fluid" ng-click="clickhandling($event)">
         <style ng-bind-html="style"></style>
         <style ng-bind-html="volumeStyle"></style>
+
         <div class="row">
+
             <div class="col-md-6 col-sm-1 ">
-                <!--
-                https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif,
-                http://replygif.net/i/1121.gif,
-                https://media.giphy.com/media/t5cTE9ZfHth4s/giphy.gif,
-                http://popcrush.com/files/2013/04/head-nod.gif,
-                https://m.popkey.co/8ff06f/vkvKJ.gif,
-                http://i.imgur.com/Owzyq.gif,
-                https://media.giphy.com/media/3tzCu8tIfT9Re/giphy.gif,
-                http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif,
-                http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
-                -->
                 <img ng-src="{{myUser.image}}" class="user-icon" ng-click="logout()">
                 <input type="text" ng-model="myuserid" ng-change="determinaUser()" style="
              height: 60px;
@@ -36,99 +27,122 @@
             cursor: pointer;">
             </div>
             <div class="col-md-6 col-sm-11 searchbar">
-                <div id="wrap"  >
-                    <form action="" autocomplete="off" >
+                <div id="wrap">
+                    <form action="" autocomplete="off">
                         <img src="img/ic_search_white_48dp_2x.png" class="icon-search backSearchIcon">
-                        <input class="barSearch" id="search" name="search" type="text" placeholder="cecchi soddi?" ng-model="itemsearched" >
-                        <input class="searchSumbit" id="search_submit" value="Rechercher" type="submit" >
+                        <input class="barSearch" id="search" name="search" type="text" placeholder="Trova"
+                               ng-model="itemsearched">
+                        <input class="searchSumbit" id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </div>
                 <div class="row" id="rowSuggestions">
-                    <div class="col-md-12 col-sm-12"   >
-                        <ul class="searchbar"  ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)" id="suggestions">
-                            <li class="user-list suggestion" ng-repeat="s in suggestions" ng-class=" {first:$index==0,last:$index==songs.length-1}" ng-click="chooseSong(songs.indexOf(s))">
-                    <span >
-                        {{s}} <img src="img/playing.gif" class="detail" ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
+                    <div class="col-md-12 col-sm-12">
+                        <ul class="searchbar" ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)"
+                            id="suggestions">
+                            <li class="user-list suggestion" ng-repeat="s in suggestions"
+                                ng-class=" {first:$index==0,last:$index==songs.length-1}"
+                                ng-click="chooseSong(songs.indexOf(s))">
+                    <span>
+                        {{s}} <img src="img/playing.gif" class="detail"
+                                   ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
                     </span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="menu">
-                        <div class="menu-wrapper">
-                            <ul class="menu-items">
-                                <li class="menu-item">
-                                    <button class="menu-item-button">
-                                        <i class="menu-item-icon fa-user fa"></i>
-                                    </button>
-                                    <div class="menu-item-bounce"></div>
-                                </li>
-                                <li class="menu-item">
-                                    <button class="menu-item-button">
-                                        <i class="menu-item-icon  fa fa-bullhorn" alt="True Sharing Page"></i>
-                                    </button>
-                                    <div class="menu-item-bounce"></div>
-                                </li>
-                                <li class="menu-item">
-                                    <button class="menu-item-button" >
-                                        <i class="menu-item-icon fa fa-sliders"></i>
-                                    </button>
-                                    <div class="menu-item-bounce"></div>
-                                </li>
-                            </ul>
-                            <button class="menu-toggle-button">
-                                <!--<i class="fa fa-plus menu-toggle-icon"></i> -->
-                                <i class="fa  menu-toggle-icon" ng-class="menuopen? 'fa-plus' : ' fa-bars'" ng-click="menuopen=!menuopen"></i>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="menu">
+                <div class="menu-wrapper">
+                    <ul class="menu-items">
+                        <li class="menu-item">
+                            <button class="menu-item-button">
+                                <i class="menu-item-icon fa-user fa"></i>
                             </button>
-                        </div>
-                    </div>
+                            <div class="menu-item-bounce"></div>
+                        </li>
+                        <li class="menu-item">
+                            <button class="menu-item-button">
+                                <i class="menu-item-icon  fa fa-bullhorn" alt="True Sharing Page"></i>
+                            </button>
+                            <div class="menu-item-bounce"></div>
+                        </li>
+                        <li class="menu-item">
+                            <button class="menu-item-button">
+                                <i class="menu-item-icon fa fa-sliders"></i>
+                            </button>
+                            <div class="menu-item-bounce"></div>
+                        </li>
+                    </ul>
+                    <button class="menu-toggle-button">
+                        <!--<i class="fa fa-plus menu-toggle-icon"></i> -->
+                        <i class="fa  menu-toggle-icon" ng-class="menuopen? 'fa-plus' : ' fa-bars'"
+                           ng-click="menuopen=!menuopen"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12" >
 
+        <div class="row" style="height: 30px;">
+            <div class="col-md-12 col-sm-12">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12 col-sm-12" >
-                <ul>
-                    <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
-                    <span >
-                        {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
-                    </span>
-                    </li>
-                    <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
-                     <span >
-                        io, cioe' {{myUser.$id}} sto ascoltando:<span class="detail"> {{songs[myUser.song]}}</span> | <span class="detail">{{myUser.time | trackTime}}</span>
+            <div class="col-md-6 col-sm-12" style="border: 2px solid darkgray ">
+                <ul class="songlist">
+                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s}} <img src="img/playing.gif" class="detail"
+                                   ng-if="$index==currentSongIndex&&myUser.isPlaying">
                     </span>
                     </li>
                 </ul>
-                <ul>
-                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)" ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span >
-                        {{s}} <img src="img/playing.gif" class="detail" ng-if="$index==currentSongIndex&&myUser.isPlaying">
+            </div>
+            <div class="col-md-6" style="border: 2px solid darkgray ">
+                <ul class="songlist">
+                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s}} <img src="img/playing.gif" class="detail"
+                                   ng-if="$index==currentSongIndex&&myUser.isPlaying">
                     </span>
                     </li>
                 </ul>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12" style="border: 2px solid darkgray ">
+                <ul class="songlist">
+                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s}} <img src="img/playing.gif" class="detail"
+                                   ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                    </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
     <defs>
         <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
             <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
         <filter id="goo-no-comp">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo"/>
         </filter>
         <filter id="goo-drops">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
         </filter>
     </defs>
     </svg>
@@ -150,16 +164,26 @@
                     </defs>
                     <g>
                         <title>Layer 1</title>
-                        <path stroke="#5e5e5c" filter="url(#svg_3_blur)" id="svg_3" d="m15.25419,4.50001c-2.0611,28.90211 -2.57637,50.72616 34.00812,72.5502c36.5845,21.82404 0,90.24537 -0.25764,89.95045" fill-opacity="0" stroke-width="10" fill="#0fffff"/>
-                        <ellipse stroke="#5e5e5c" ry="11.5509" rx="11.5647" id="svg_4" cy="20" cx="15.99999" stroke-width="0" fill="#bcbcbc"/>
-                        <rect stroke="#5e5e5c" transform="rotate(24.36675262451172 48.999999999999915,172.5) " id="svg_5" height="39.08893" width="17.8563" y="152.95553" x="40.07185" stroke-width="0" fill="#191919"/>
+                        <path stroke="#5e5e5c" filter="url(#svg_3_blur)" id="svg_3"
+                              d="m15.25419,4.50001c-2.0611,28.90211 -2.57637,50.72616 34.00812,72.5502c36.5845,21.82404 0,90.24537 -0.25764,89.95045"
+                              fill-opacity="0" stroke-width="10" fill="#0fffff"/>
+                        <ellipse stroke="#5e5e5c" ry="11.5509" rx="11.5647" id="svg_4" cy="20" cx="15.99999"
+                                 stroke-width="0" fill="#bcbcbc"/>
+                        <rect stroke="#5e5e5c" transform="rotate(24.36675262451172 48.999999999999915,172.5) "
+                              id="svg_5" height="39.08893" width="17.8563" y="152.95553" x="40.07185" stroke-width="0"
+                              fill="#191919"/>
                     </g>
                 </svg>
                 <div class="player-cover" ng-class=" min==true ? 'min': '' ">
-                    <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined" >
-                    <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false" class="player-album">
-                        <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined" class="player-album player-img-album" ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">
-                        <div class="icona-like icobutton icobutton--thumbs-up" ng-class="{max: showIconLike==true,bounce: makeItBounce[currentSongIndex]==true,bounceBack: makeItBounce[currentSongIndex]==false}" ng-click="makeItBounce[currentSongIndex]=!makeItBounce[currentSongIndex]">
+                    <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined">
+                    <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false"
+                         class="player-album">
+                        <img ng-src="{{images[currentSongIndex]}}" width="200px" ng-if="audio!=undefined"
+                             class="player-album player-img-album"
+                             ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">
+                        <div class="icona-like icobutton icobutton--thumbs-up"
+                             ng-class="{max: showIconLike==true,bounce: makeItBounce[currentSongIndex]==true,bounceBack: makeItBounce[currentSongIndex]==false}"
+                             ng-click="makeItBounce[currentSongIndex]=!makeItBounce[currentSongIndex]">
                             <span class="fa fa-hand-peace-o" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -188,24 +212,34 @@
             </div>
             <div class="player-drops"></div>
             <div class="player-controls">
-                <input ng-if="audio.progress!=undefined" ng-model="audio.progress"  step="0.001" min="0" max="1" type="range" class="rangebar" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
-                <input ng-if="audio.progress==undefined" step="0.001"  value="0" min="0" max="1" type="range" class="rangebar" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+                <input ng-if="audio.progress!=undefined" ng-model="audio.progress" step="0.001" min="0" max="1"
+                       type="range" class="rangebar" ng-disabled="audio==undefined"
+                       ng-class="{nonActivated : audio==undefined}">
+                <input ng-if="audio.progress==undefined" step="0.001" value="0" min="0" max="1" type="range"
+                       class="rangebar" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
                 <div class="player-buttons">
-                    <button class="player-button" ng-click="prevSong()" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+                    <button class="player-button" ng-click="prevSong()" ng-disabled="audio==undefined"
+                            ng-class="{nonActivated : audio==undefined}">
                         <i class="fa fa-step-backward"></i>
                     </button>
-                    <button class="player-button play-pause-button" ng-click="playOrPause()" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+                    <button class="player-button play-pause-button" ng-click="playOrPause()"
+                            ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
                         <i class="fa fa-pause"></i>
                     </button>
-                    <button class="player-button" ng-click="nextSong()" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+                    <button class="player-button" ng-click="nextSong()" ng-disabled="audio==undefined"
+                            ng-class="{nonActivated : audio==undefined}">
                         <i class="fa fa-step-forward"></i>
                     </button>
                 </div>
-                <button class="player-button"  ng-mouseover="showVolume=true" ng-click="audio.volume!=0 ? audio.volume=0 : audio.volume=1-audio.volume" ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
+                <button class="player-button" ng-mouseover="showVolume=true"
+                        ng-click="audio.volume!=0 ? audio.volume=0 : audio.volume=1-audio.volume"
+                        ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
                     <i class="fa " ng-class="audio.volume!=0 ? 'fa-volume-up': 'fa-volume-off'"></i>
                 </button>
-                <input type="range"  min="0" ng-model="audio.volume"  max="1" step="0.001" class="volumebar" ng-class=" {max:showVolume==true}" ng-mouseleave="showVolume=false"/>
-                <span class="player-time " ng-class="{nonActivated : audio==undefined}">{{audio.currentTime|trackTime}}</span>
+                <input type="range" min="0" ng-model="audio.volume" max="1" step="0.001" class="volumebar"
+                       ng-class=" {max:showVolume==true}" ng-mouseleave="showVolume=false"/>
+                <span class="player-time "
+                      ng-class="{nonActivated : audio==undefined}">{{audio.currentTime|trackTime}}</span>
             </div>
         </div>
     </div>

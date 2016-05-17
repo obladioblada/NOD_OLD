@@ -47,6 +47,7 @@ body {
     z-index: 1;
     border-bottom: 1px solid #841E21;
     cursor: text;
+    top:5px;
 
 
 }
@@ -119,4 +120,5 @@ ul.searchbar.max{
 .searchbar > .user-list{
     margin-right: 60px;
     width: 100%;
+
 }

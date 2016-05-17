@@ -8,6 +8,7 @@
 
 }
 .user-list{
+
     border: 0px solid;
     list-style: none;
     padding: 20px;
@@ -18,9 +19,7 @@
     transition-timing-function: linear;
     -webkit-transition-timing-function: linear;
     cursor: pointer;
-    margin-right: 50%;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-
 }
 
 
@@ -62,7 +61,6 @@
 
 
 .user-icon{
-
     border: 1px solid white;
     width: 80px;
     height: 80px;
@@ -105,4 +103,10 @@
     color: #841E21;
     margin-top: 80px;
     visibility: visible;
+}
+
+
+ul.songlist{
+    padding: 0px;
+    margin:0px;
 }

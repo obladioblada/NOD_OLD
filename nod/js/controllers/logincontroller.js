@@ -123,14 +123,12 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
             ref.once("value", function(snapshot) {
                 if(authData!=null) {
                     if (snapshot.child(authData.uid).child("image").exists() == false) {
-                        console.log("la fottuta image non esiste");
                         ref.child(authData.uid).set({
                             provider: authData.provider,
                             name: getName(authData),
                             image: 'http://penerbitsalemba.com/v3/images/user_default.png'
                         });
                     } else {
-                        console.log("la fottuta image esiste");
                         ref.child(authData.uid).set({
                             provider: authData.provider,
                             name: getName(authData)

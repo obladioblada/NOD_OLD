@@ -30,13 +30,11 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                 $rootScope.ref=new Firebase("https://nod-music.firebaseio.com");
             var authData=$rootScope.ref.getAuth();
             if ( authData == null ) {
-                console.log("non sono autenticato e mi trovo in "+fromState.name+" - "+toState.name);
                 if(toState.name!='login'&&toState.name!='register') {
                     event.preventDefault();
                     $state.go('login');
                 }
             }else{
-                console.log(" sono autenticato e mi trovo in "+fromState.name+" - "+toState.name);
                 if(toState.name=='login'||toState.name=='register') {
                     event.preventDefault();
                     $state.go('home');

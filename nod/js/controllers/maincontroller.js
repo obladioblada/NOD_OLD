@@ -19,11 +19,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.min=false;
     $scope.itemsearched=null;
     $scope.showVolume=false;
-    $scope.images=['http://ring.cdandlp.com/kawa84/photo_grande/114788855.jpg',
-        'http://www.dvdcineshop.com/catalog/product_thumb.php?img=images/prodotti/201302/8032779962502.jpg&w=400&h=400',
-        'http://images.rapgenius.com/fef2f69f0e0481d0141594bdc04317bb.450x446x1.jpg',
-        'https://s-media-cache-ak0.pinimg.com/736x/58/9b/c0/589bc0e931ddb071f61c06ae5b001a08.jpg',
-        'https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/The_House_of_the_Rising_Sun_Frijid.png/220px-The_House_of_the_Rising_Sun_Frijid.png'];
     $scope.suggestions=[];
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
@@ -195,7 +190,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.message = $firebaseObject(ref);
     $scope.message.$bindTo($scope, "myUser");
 
-    $scope.songObj = $firebaseObject(new Firebase(NODURL+"/songs"));
+    $scope.songObj = $firebaseArray(new Firebase(NODURL+"/songs"));
     //$scope.songObj.$bindTo($scope, "songs");
     $scope.songObj.$loaded()
         .then(function(){
@@ -223,15 +218,25 @@ $scope.usersObj.$loaded()
             $scope.audio.pause();
             $scope.audio.audio.src = "";
         }
+        console.log($song+" - "+$time+" - "+$idmaster);
         $time+=0.5;
-        $scope.audio = ngAudio.load("audio/"+$scope.songs[$song]+".mp3#t="+$time);
+        $scope.audio = ngAudio.load("audio/"+$song.title+".mp3#t="+$time);
         $scope.audio.loop=false;
-        $scope.currentSongIndex=$song;
-        $scope.myUser.time=0;
+        $scope.currentSongIndex=$scope.searchSongIndex($song);
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
         $scope.idMaster=$idmaster;
 
+    };
+
+    $scope.searchSongIndex= function($song){
+        for(var i=0; i<$scope.songs.length; i++){
+            if($scope.songs[i].title == $song.title && $scope.songs[i].artist == $song.artist && $scope.songs[i].album == $song.album){
+                console.log($scope.songs[i].title);
+                return i;
+            }
+        }
+        return -1;
     };
 
 

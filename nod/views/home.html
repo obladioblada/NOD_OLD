@@ -62,9 +62,9 @@
             <div class="col-md-6 col-sm-12">
                 <ul class="songlist">
                     <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}" ng-if="s!=undefined">
                             <span>
-                                <img  src="{{s.image}}" class="thumb">
+                                <img  ng-src="{{s.image}}" class="thumb">
                             </span>
                         <span>
                             <h5>{{s.title}}</h5>
@@ -95,8 +95,8 @@
                 <ul>
 
                     <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true"  ng-class=" {max:min==true,first:$index==0}" >
-                    <span >
-                        {{u.name}} sta ascoltando:<span class="playingGif"> {{u.song.title}}</span> | <span class="playingGif">{{u.time | trackTime}}</span>
+                    <span ng-click="listenTo(u.song,u.time,uid)">
+                        <span >{{u.name}} sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
                     </span>
                     </li>
                 </ul>

@@ -96,7 +96,8 @@ ul.searchbar{
     height: 100%;
     width: inherit;
     float: right;
-    right: 40px;
+    right: 18px;
+    padding-left: 22px;
     visibility: collapse;
 }
 
@@ -120,5 +121,7 @@ ul.searchbar.max{
 .searchbar > .user-list{
     margin-right: 60px;
     width: 100%;
+    background-color: #4D4D52;
+
 
 }

@@ -37,10 +37,10 @@
                 </div>
                 <div class="row" id="rowSuggestions">
                     <div class="col-md-12 col-sm-12">
-                        <ul class="searchbar" ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)"
+                        <ul class="searchbar suggestion" ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)"
                             id="suggestions">
-                            <li class="user-list suggestion suggestions" ng-repeat="s in suggestions"
-                                ng-class=" {last:$index==songs.length-1}"
+                            <li class="user-list suggestion" ng-repeat="s in suggestions"
+                                ng-class=" {first:$index==0,last:$index==songs.length-1}"
                                 ng-click="chooseSong(songs.indexOf(s))">
                     <span>
                         {{s}} <img src="img/playing.gif" class="detail"
@@ -90,13 +90,16 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 col-sm-12" >
-                <ul class="songlist">
-                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.artist}} <img src="img/playing.gif" class="detail"
-                                          ng-if="$index==currentSongIndex&&myUser.isPlaying">
+            <div class="col-md-12 col-sm-12" style="top: 20px">
+                <ul>
+                    <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
+                    <span >
+                        {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
+                    </span>
+                    </li>
+                    <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
+                     <span >
+                        io, cioe' {{myUser.$id}} sto ascoltando:<span class="detail"> {{songs[myUser.song]}}</span> | <span class="detail">{{myUser.time | trackTime}}</span>
                     </span>
                     </li>
                 </ul>
@@ -253,5 +256,4 @@
             </div>
         </div>
     </div>
-
 </div>

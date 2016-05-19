@@ -43,7 +43,7 @@
                                 ng-class=" {first:$index==0,last:$index==songs.length-1}"
                                 ng-click="chooseSong(songs.indexOf(s))">
                     <span>
-                        {{s}} <img src="img/playing.gif" class="detail"
+                        {{s}} <img src="img/playing.gif" class="playingGif"
                                    ng-if="myUser.song==songs.indexOf(s)&&myUser.isPlaying">
                     </span>
                             </li>
@@ -67,11 +67,12 @@
                                 <img  src="{{s.image}}" class="thumb">
                             </span>
                         <span>
-                            <h5>{{s.title}}  {{$index}}</h5>
+                            <h5>{{s.title}}</h5>
                             <h6 style=" color: #C2C2C2"> {{s.artist}}</h6>
-                            </span>
-                        <img src="img/playing.gif" class="detail"
-                             ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                        </span>
+                        <span>
+                            <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                        </span>
 
                     </li>
                 </ul>
@@ -81,8 +82,8 @@
                     <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
                         ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
                     <span>
-                        {{s.album}}<img src="img/playing.gif" class="detail"
-                                         ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                        {{s.album}}<img src="img/playing.gif" class="playingGif"
+                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
                     </span>
                     </li>
                 </ul>
@@ -92,14 +93,10 @@
         <div class="row">
             <div class="col-md-12 col-sm-12" style="top: 20px">
                 <ul>
-                    <li class="user-list" ng-repeat="m in messages" ng-if="m.$id!=myuserid && m.isPlaying" ng-click="listenTo(m.song,m.time,m.$id)" ng-class=" {max:min==true,first:$index==0}" >
+
+                    <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true"  ng-class=" {max:min==true,first:$index==0}" >
                     <span >
-                        {{m.$id}} sta ascoltando:<span class="detail"> {{songs[m.song]}}</span> | <span class="detail">{{m.time | trackTime}}</span>
-                    </span>
-                    </li>
-                    <li class="user-list last" ng-class="min==true ? 'max': ''" ng-if="myUser.isPlaying">
-                     <span >
-                        io, cioe' {{myUser.$id}} sto ascoltando:<span class="detail"> {{songs[myUser.song]}}</span> | <span class="detail">{{myUser.time | trackTime}}</span>
+                        {{u.name}} sta ascoltando:<span class="playingGif"> {{u.song.title}}</span> | <span class="playingGif">{{u.time | trackTime}}</span>
                     </span>
                     </li>
                 </ul>
@@ -128,11 +125,11 @@
             </svg>
             <div class="content noselect">
                 <div class="player">
-                    <div class="player-info">
-                        <div class="player-info-text">
-                            <div ng-click="min=!min">
-                                <h2 class="player-song-name">SONO SU FIREBASE</h2>
-                                <h3 class="player-artist">{{songs[currentSongIndex]}}</h3>
+                    <div class="player-info" >
+                        <div class="player-info-text" ng-click="min=!min">
+                            <div>
+                                <h2 ng-show="audio!=undefined" class="player-song-name">{{myUser.song.title}}</h2>
+                                <h3 ng-show="audio!=undefined" class="player-artist">{{myUser.song.artist}}</h3>
                             </div>
                         </div>
                         <svg class="vinyl-arm" xmlns="http://www.w3.org/2000/svg" ng-class="{play: myUser.isPlaying,min: min}">
@@ -158,7 +155,7 @@
                             <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined">
                             <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false"
                                  class="player-album">
-                                <img ng-src="{{songs[currentSongIndex].image}}" width="200px" ng-if="audio!=undefined"
+                                <img ng-src="{{myUser.song.image}}" width="200px" ng-if="audio!=undefined"
                                      class="player-album player-img-album"
                                      ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">
                                 <div class="icona-like icobutton icobutton--thumbs-up"

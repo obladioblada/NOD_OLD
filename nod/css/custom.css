@@ -65,9 +65,13 @@ ul{ padding: 0px; }
     border-bottom: 1px solid #4D4D52;
 }
 
-.detail{
+.playingGif {
     height: 19px;
     color: gray;
+    float: right;
+    position: relative;
+    margin-top: -43px;
+    right: 2%;
 }
 
 .noselect {

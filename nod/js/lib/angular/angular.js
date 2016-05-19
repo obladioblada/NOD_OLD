@@ -18230,7 +18230,7 @@ function $SceProvider() {
    *     contextEnum or throw and exception otherwise.
    *
    * NOTE: This contract deliberately does NOT state that values returned by trustAs() must be
-   * opaque or wrapped in some holder object.  That happens to be an implementation detail.  For
+   * opaque or wrapped in some holder object.  That happens to be an implementation playingGif.  For
    * instance, an implementation could maintain a registry of all trusted objects by context.  In
    * such a case, trustAs() would return the same object that was passed in.  getTrusted() would
    * return the same object passed in if it was found in the registry under a compatible context or
@@ -18251,7 +18251,7 @@ function $SceProvider() {
    *
    * Inheritance happens to capture this in a natural way.  In some future, we
    * may not use inheritance anymore.  That is OK because no code outside of
-   * sce.js and sceSpecs.js would need to be aware of this detail.
+   * sce.js and sceSpecs.js would need to be aware of this playingGif.
    */
 
   this.$get = ['$parse', '$sceDelegate', function(

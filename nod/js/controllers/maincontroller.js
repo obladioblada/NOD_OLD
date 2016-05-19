@@ -7,6 +7,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.showSuggestions=true;
     $scope.userid="ballalsfbas";
     $scope.myuserid="Gary";
+    $scope.users=[];
     $scope.myUser={
         id:'',
         username: '',
@@ -93,11 +94,14 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.audio.currentTime=0;
         $scope.myUser.time=0;
         $scope.audio.play();
+        $scope.myUser.isPlaying=true;
+
     };
     $scope.percentage=0;
     $scope.checkIfPlaying=function(){
         if(!$scope.audio.paused) {
             $scope.audio.play();
+            $scope.myUser.isPlaying=true;
         }
     };
     $scope.updateBar=function(){
@@ -200,6 +204,20 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             });
         });
 
+    var refusers = new Firebase(USERSURL);
+    $scope.usersObj = $firebaseObject(refusers);
+    $scope.usersObj.$bindTo($scope, 'users');
+
+/*
+$scope.usersObj.$loaded()
+        .then(function(){
+            angular.forEach( $scope.usersObj, function(user) {
+
+                $scope.users.push(user);
+            });
+        });
+*/
+
     $scope.listenTo=function($song,$time,$idmaster){
         if($scope.audio!=undefined) {
             $scope.audio.pause();
@@ -211,6 +229,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.currentSongIndex=$song;
         $scope.myUser.time=0;
         $scope.audio.play();
+        $scope.myUser.isPlaying=true;
         $scope.idMaster=$idmaster;
 
     };

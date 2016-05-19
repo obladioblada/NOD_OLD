@@ -15,32 +15,52 @@
     color: white;
     background: #222222;
     -webkit-transition: background 0.1s; /* Safari */
-    transition: background 0.1s;
     transition-timing-function: linear;
     -webkit-transition-timing-function: linear;
     cursor: pointer;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 }
 
+.user-list.suggestions{
+    border-left: 1px solid #4D4D52;
+    border-right: 1px solid #4D4D52;
+    border-bottom: 1px solid #4D4D52;
+}
 
+.thumb{
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-top: 10px;
+    border-radius: 200px;
+    margin-right: 10px;
+}
 
+.top-page{
+    position: fixed;    z-index: 300;    width: 100%;    padding: 11px;    background: #4D4D52; height: 114px;
+}
+
+.top-page-padder{
+    margin-top: 114px;
+}
 
 
 .user-list:hover{
     background: #841E21;
 }
 .user-list.first{
+    border-top: 1px solid #888888;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    border-bottom-color: #841E21;
-    border-top: 0px;
 }
 
 .user-list.last{
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    border-top-color: #841E21;
-    border-bottom: 0px;
+    border-bottom: 1px solid #888888;
+}
+.user-list.last.suggestions{
+    border-bottom: 1px solid #4D4D52;
 }
 
 .detail{
@@ -104,9 +124,17 @@
     margin-top: 80px;
     visibility: visible;
 }
+.bottom-page-padder{
+    margin-top: 112px;
+}
 
+.bottom-page{
+    background: #4D4D52;
+    height: 112px;
+}
 
 ul.songlist{
     padding: 0px;
     margin:0px;
+    padding-bottom: 10px;
 }

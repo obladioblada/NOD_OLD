@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray,$window, NODURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -8,6 +8,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.userid="ballalsfbas";
     $scope.myuserid="Gary";
     $scope.myUser={
+        id:'',
+        username: '',
         song:'',
         time: '',
         isPlaying: false,
@@ -36,20 +38,22 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         if (eventTarget.id!== 'suggestions'){
             $scope.showSuggestions=false;
             event.stopImmediatePropagation()
-        }        };
-    $scope.songs=["track00","track01","track02","track03","track04"];
+        }
+    };
+    $scope.songs=[];
     $scope.currentSongIndex="";
     $scope.idMaster="";
+/*
     $scope.determinaUser=function(){
         angular.forEach( $scope.messages, function(user) {
-            if(user.$id==$scope.myuserid){
+            if(user.$id==$rootScope.ref.getAuth().$id){
                 $scope.myUser=user;
             }else{
                 $scope.myUser.image="";
             }
         })
     };
-
+*/
     $scope.onExit = function() {
         $scope.myUser.isPlaying=false;
         $scope.messages.$save($scope.myUser);
@@ -64,7 +68,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.logout=function(){
         if($rootScope.ref==null)
             $rootScope.ref=new Firebase(NODURL);
-        console.log("mi deautentico addiooooo");
         $rootScope.ref.unauth();
         $state.go('login');
     };
@@ -83,7 +86,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             $scope.audio.audio.src = "";
             $scope.audio.loop = false;
         }
-        $scope.audio = ngAudio.load("audio/"+$scope.songs[$i]+".mp3");
+       // $i++;
+        $scope.audio = ngAudio.load("audio/"+$scope.songs[$i].title+".mp3");
         $scope.audio.progress=0;
         $scope.currentSongIndex=$i;
         $scope.audio.currentTime=0;
@@ -111,22 +115,25 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             if ($scope.audio.remaining < 1) {
                 $scope.nextSong();
             }
-            $scope.sendToFB();
+            $scope.myUser.time=$scope.audio.currentTime;
+            $scope.myUser.song=$scope.songs[$scope.currentSongIndex];
         }
     });
     $scope.playOrPause= function(){
         if($scope.audio.paused){
             $scope.audio.play();
+            $scope.myUser.isPlaying=true;
         }else{
             $scope.audio.pause();
+            $scope.myUser.isPlaying=false;
         }
 
     };
     $scope.nextSong= function (){
         $scope.audio.progress=0;
         $scope.currentSongIndex++;
-        if($scope.currentSongIndex==$scope.songs.length){
-            $scope.currentSongIndex=0;
+        if($scope.currentSongIndex==$scope.songs.length+1){
+            $scope.currentSongIndex=1;
         }
         $scope.audio.stop();
         $scope.chooseSong($scope.currentSongIndex);
@@ -135,7 +142,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.prevSong= function (){
         $scope.audio.progress=0;
         $scope.currentSongIndex--;
-        if($scope.currentSongIndex<0){
+        if($scope.currentSongIndex<1){
             $scope.currentSongIndex=$scope.songs.length-1;
         }$scope.audio.stop();
         $scope.chooseSong($scope.currentSongIndex);
@@ -167,27 +174,30 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         }
     });
 
+    /*
     $scope.sendToFB=function () {
         if ($scope.myUser != undefined && $scope.myUser != null) {
             $scope.myUser.song = $scope.currentSongIndex;
             $scope.myUser.time = $scope.audio.currentTime;
             if($scope.myUser.time==undefined) $scope.myUser.time=null;
             $scope.myUser.isPlaying=!$scope.audio.paused;
-            $scope.messages.$save($scope.myUser);
+            $scope.message.$save($scope.myUser);
         }
     };
+    */
 
 
-    var ref = new Firebase(NODURL+"/users");
-    $scope.messages = $firebaseArray(ref);
+    var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+    $scope.message = $firebaseObject(ref);
+    $scope.message.$bindTo($scope, "myUser");
 
-    $scope.messages.$loaded()
+    $scope.songObj = $firebaseObject(new Firebase(NODURL+"/songs"));
+    //$scope.songObj.$bindTo($scope, "songs");
+    $scope.songObj.$loaded()
         .then(function(){
-            angular.forEach( $scope.messages, function(user) {
-                if(user.$id==$scope.myuserid){
-                    $scope.myUser=user;
-                }
-            })
+            angular.forEach( $scope.songObj, function(s) {
+                $scope.songs.push(s);
+            });
         });
 
     $scope.listenTo=function($song,$time,$idmaster){

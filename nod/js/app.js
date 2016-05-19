@@ -2,6 +2,7 @@
 var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router'])
 
     .constant('NODURL','https://nod-music.firebaseio.com')
+    .constant('USERSURL','https://nod-music.firebaseio.com/users/')
 
     .config(function($stateProvider,$urlRouterProvider) {
         $stateProvider.

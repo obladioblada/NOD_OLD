@@ -85,7 +85,7 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .player-info-text {
-	padding: 30px 0;
+	padding: 18px 0;
 	background: #841E21;
 	margin-bottom: 25px;
 }

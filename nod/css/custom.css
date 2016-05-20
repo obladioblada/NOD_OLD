@@ -151,3 +151,7 @@ ul.songlist{
     margin:0px;
     padding-bottom: 10px;
 }
+
+.navbar-fixed-bottom {
+    z-index: 100 !important;
+}

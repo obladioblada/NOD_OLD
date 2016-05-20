@@ -4,10 +4,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.deltas=[0,90,180,270];
     $scope.showIconLike=false;
     $scope.the4users=['','','',''];
-    $scope.showSuggestions=true;
+    $scope.showSuggestions=false;
     $scope.userid="ballalsfbas";
     $scope.myuserid="Gary";
     $scope.users=[];
+    $scope.ricerca=[];
     $scope.myUser={
         id:'',
         username: '',
@@ -153,22 +154,83 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             if ($scope.itemsearched.length == 0) {
                 $scope.suggestions=[];
             } else {
+                $scope.ricerca=[];
+                $scope.suggestions=[];
                 $scope.tmpSongs=$scope.songs;
                 $scope.tmpSearched=$scope.itemsearched;
                 $scope.tmpSearched=$scope.tmpSearched.toLowerCase();
+
+                //ricerca canzone
+                $scope.suggestSong=[];
                 angular.forEach($scope.tmpSongs, function (song) {
                     var original=song;
-                    song=song.toLowerCase();
+                    song=song.title.toLowerCase();
                     if (song.indexOf($scope.tmpSearched) > -1) {
-                        if ($scope.suggestions.indexOf(song) == -1) {
-                            $scope.suggestions.push(original);
+//                        console.log("sto cercando "+$scope.tmpSearched+" che corrisponde con "+song);
+                        if ($scope.suggestSong.indexOf(original) == -1) {
+//                            console.log(original.title+" non è presente in suggestions e lo inserisco");
+                            $scope.suggestSong.push(original);
                         }
                     } else {
-                        if($scope.suggestions.indexOf(song)!=-1) {
-                            $scope.suggestions.splice($scope.suggestions.indexOf(original), 1);
+//                        console.log("sto cercando "+$scope.tmpSearched+" e non corrispone con "+song);
+                        if($scope.suggestSong.indexOf(original)!=-1) {
+//                            console.log(original.title+" è presente in suggestions e lo disinserisco "+$scope.suggestions.indexOf(original));
+                            $scope.suggestSong.splice($scope.suggestSong.indexOf(original), 1);
+                        }
+                    }
+                });
+                if($scope.suggestSong.length!=0) {
+                    $scope.suggestions.push($scope.suggestSong);
+                    $scope.ricerca.push("Canzoni");
+                }
+
+                //ricerca artista
+                $scope.suggestArtist=[];
+                angular.forEach($scope.tmpSongs, function (song) {
+                    var original=song;
+                    song=song.artist.toLowerCase();
+                    if (song.indexOf($scope.tmpSearched) > -1) {
+//                        console.log("sto cercando "+$scope.tmpSearched+" che corrisponde con "+song);
+                        if ($scope.suggestArtist.indexOf(original) == -1) {
+//                            console.log(original.title+" non è presente in suggestions e lo inserisco");
+                            $scope.suggestArtist.push(original);
+                        }
+                    } else {
+//                        console.log("sto cercando "+$scope.tmpSearched+" e non corrispone con "+song);
+                        if($scope.suggestArtist.indexOf(original)!=-1) {
+//                            console.log(original.title+" è presente in suggestions e lo disinserisco "+$scope.suggestions.indexOf(original));
+                            $scope.suggestArtist.splice($scope.suggestArtist.indexOf(original), 1);
                         }
                     }
                 })
+                if($scope.suggestArtist.length!=0){
+                    $scope.suggestions.push($scope.suggestArtist);
+                    $scope.ricerca.push("Artisti");
+                }
+
+                //ricerca album
+                $scope.suggestAlbum=[];
+                angular.forEach($scope.tmpSongs, function (song) {
+                    var original=song;
+                    song=song.album.toLowerCase();
+                    if (song.indexOf($scope.tmpSearched) > -1) {
+//                        console.log("sto cercando "+$scope.tmpSearched+" che corrisponde con "+song);
+                        if ($scope.suggestAlbum.indexOf(original) == -1) {
+//                            console.log(original.title+" non è presente in suggestions e lo inserisco");
+                            $scope.suggestAlbum.push(original);
+                        }
+                    } else {
+//                        console.log("sto cercando "+$scope.tmpSearched+" e non corrispone con "+song);
+                        if($scope.suggestAlbum.indexOf(original)!=-1) {
+//                            console.log(original.title+" è presente in suggestions e lo disinserisco "+$scope.suggestions.indexOf(original));
+                            $scope.suggestAlbum.splice($scope.suggestAlbum.indexOf(original), 1);
+                        }
+                    }
+                })
+                if($scope.suggestAlbum.length!=0){
+                    $scope.suggestions.push($scope.suggestAlbum);
+                    $scope.ricerca.push("Album");
+                }
             }
         }
     });

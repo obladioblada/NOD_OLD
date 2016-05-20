@@ -122,7 +122,13 @@ ul.searchbar.max{
 .searchbar > .user-list{
     margin-right: 60px;
     width: 100%;
-    background-color: #4D4D52;
+    background-color: #26262a;
+    list-style-type: none;
+}
 
-
+#rowSuggestions{
+    z-index: 5000;
+    width:100%;
+    overflow-y: scroll;
+    height: 400px;
 }

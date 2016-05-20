@@ -124,6 +124,7 @@ ul.searchbar.max{
     width: 100%;
     background-color: #1b6d85;
     list-style-type: none;
+    top:10px;
 }
 
 #rowSuggestions{

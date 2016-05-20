@@ -124,19 +124,15 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
             // use them in Security and Firebase Rules, and show profiles
             ref.once("value", function(snapshot) {
                 if(authData!=null) {
+                    ref.child(authData.uid).update({
+                        provider: authData.provider,
+                        name: getName(authData)
+                    });
                     if (snapshot.child(authData.uid).child("image").exists() == false) {
-                        ref.child(authData.uid).set({
-                            provider: authData.provider,
-                            name: getName(authData),
-                            image: 'http://penerbitsalemba.com/v3/images/user_default.png'
-                        });
-                    } else {
-                        ref.child(authData.uid).set({
-                            provider: authData.provider,
-                            name: getName(authData)
-                        });
+                        console.log("image esiste ?  "+ snapshot.child(authData.uid).child("image").exists()) ;
+                        ref.child(authData.uid).update({ image: 'http://penerbitsalemba.com/v3/images/user_default.png'});
                     }
-                    console.log("e authdata vale "+authData.uid);
+                    console.log(" e authdata vale "+authData.uid);
                 }
             });
             $rootScope.ref=ref;

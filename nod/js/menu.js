@@ -9,7 +9,7 @@ $(document).ready(function(){
 		var angle=startingAngle+(slice*i);
 		$(this).css({
 			transform:"rotate("+(angle)+"deg)"
-		})
+		});
 		$(this).find(".menu-item-icon").css({
 			transform:"rotate("+(-angle)+"deg)"
 		})
@@ -19,10 +19,10 @@ $(document).ready(function(){
 		var angle=startingAngle+(slice*i);
 		$(this).css({
 			transform:"rotate("+(angle)+"deg)"
-		})
+		});
 		$(this).find(".menu-item-icon").css({
 			transform:"rotate("+(-angle)+"deg)"
-		})
+		});
 	});
 	var on=false;
 
@@ -40,6 +40,7 @@ $(document).ready(function(){
 		$(document).trigger("mouseup")
 	})
 	$(".menu-toggle-button").on("mousedown",pressHandler);
+	$(".menu-item").on("mousedown",pressHandler);
 	$(".menu-toggle-button").on("touchstart",function(event){
 		$(this).trigger("mousedown");
 		event.preventDefault();
@@ -52,7 +53,7 @@ $(document).ready(function(){
 		if($(this).attr("class")=="login menu-toggle-button"){
 			angle=180;
 		}
-			TweenMax.to($(this).children('.menu-toggle-icon'), 0.4, {
+			TweenMax.to($('.menu-toggle-icon'), 0.4, {
 				rotation: on ? angle : 0,
 				ease: Quint.easeInOut,
 				force3D: true

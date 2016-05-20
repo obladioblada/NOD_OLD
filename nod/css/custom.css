@@ -5,9 +5,11 @@
     position: relative;
     right: -20px;
     bottom: -10px;
+    background: url('../img/ic_search_white_48dp_2x.png');
 
 }.icon-search:hover{
      color: #4b1717;
+     background: url('../img/ic_search_black_24dp_2x.png');
  }
 .user-list{
 

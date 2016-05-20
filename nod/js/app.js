@@ -22,15 +22,15 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
             controller: 'mainCtrl'
         })
             .state('home.music', {
-                url:'/Music',
+                url:'/music',
                 templateUrl:'views/home_music.html'
         })
             .state('home.user',{
-                url:'/User',
+                url:'/user',
                 templateUrl:'views/home_userPage.html'
             });
 
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('home/music');
     })
 
     .run(['$rootScope','$state',function($rootScope,$state){

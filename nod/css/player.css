@@ -428,3 +428,17 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
     height: 0px;
     width: 0px;
 }
+
+.toggle-player{
+	font-size: x-large;
+	float: right;
+	margin-top: -17px;
+	margin-right: 6px;
+	cursor: pointer;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+
+}
+
+.toggle-player:hover{
+	color: #a8a8a8;
+}

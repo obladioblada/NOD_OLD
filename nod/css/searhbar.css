@@ -130,5 +130,9 @@ ul.searchbar.max{
     z-index: 5000;
     width:100%;
     overflow-y: scroll;
+    height: 0px;
+}
+
+#rowSuggestions.max{
     height: 400px;
 }

@@ -10,18 +10,27 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
             url:'/login',
             templateUrl: 'views/login.html',
             controller: 'loginCtrl'
-        }).
-        state('register',{
+        })
+            .state('register',{
             url: '/register',
             templateUrl:'views/register.html',
             controller:'registrationCtrl'
-    }).
-        state('home',{
-            url: '/home',
+    })
+            .state('home',{
+            url:'/home',
             templateUrl:'views/home.html',
-            controller:'mainCtrl'
-        });
-        $urlRouterProvider.otherwise('home');
+            controller: 'mainCtrl'
+        })
+            .state('home.music', {
+                url:'/Music',
+                templateUrl:'views/home_music.html'
+        })
+            .state('home.user',{
+                url:'/User',
+                templateUrl:'views/home_userPage.html'
+            });
+
+        $urlRouterProvider.otherwise('home.music');
     })
 
     .run(['$rootScope','$state',function($rootScope,$state){
@@ -37,7 +46,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
             }else{
                 if(toState.name=='login'||toState.name=='register') {
                     event.preventDefault();
-                    $state.go('home');
+                    $state.go('home.music');
                 }
             }
         })

@@ -157,6 +157,10 @@
     left: 0;
 }
 
+.menu-toggle-button.login:hover{
+    color: #4b1717;
+}
+
 .menu-toggle-icon.login {
     font-size: 30px;
     position: absolute;

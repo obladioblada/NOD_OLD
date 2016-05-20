@@ -173,6 +173,17 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         }
     });
 
+    $scope.gotouserPage=function () {
+        $state.transitionTo('home.user');
+    };
+
+    $scope.gotoMusicPage=function () {
+        $state.transitionTo('home.music');
+    };
+
+
+
+
     /*
     $scope.sendToFB=function () {
         if ($scope.myUser != undefined && $scope.myUser != null) {

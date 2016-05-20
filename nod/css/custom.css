@@ -6,7 +6,9 @@
     right: -20px;
     bottom: -10px;
 
-}
+}.icon-search:hover{
+     color: #4b1717;
+ }
 .user-list{
 
     border: 0px solid;
@@ -38,7 +40,7 @@ ul{ padding: 0px; }
 }
 
 .top-page{
-    position: fixed;    z-index: 300;    width: 100%;    padding: 11px;    background: #4D4D52; height: 114px;
+    position: fixed;    z-index: 300;    width: 100%;    padding: 11px;    background: #4D4D52; height: 82px;
 }
 
 .top-page-padder{

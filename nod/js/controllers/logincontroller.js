@@ -1,4 +1,4 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
@@ -22,7 +22,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
         $scope.userFound=false;
     };
     $scope.goToRegisterPage=function () {
-        $location.path('/register');
+       // $location.path('/register');
+        $state.go('register');
     };
 
     $scope.users.$loaded()
@@ -112,7 +113,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     }
 
         $scope.proceedToHome=function(){
-            $location.path( "home" );
+           // $location.path( "home" );
+            $state.go('home.music');
         };
 
 

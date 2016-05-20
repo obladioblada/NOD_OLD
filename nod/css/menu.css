@@ -45,6 +45,10 @@
 	left: 0;
 }
 
+.menu-toggle-button:hover {
+    color: #4b1717;
+}
+
 .menu-toggle-icon {
 	font-size: 30px;
 	position: absolute;
@@ -90,6 +94,6 @@
 }
 
 .menu-item-button:hover {
-	color: #fff;
+	color: #4b1717;
 }
 

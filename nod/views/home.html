@@ -58,50 +58,9 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <ul class="songlist">
-                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}" ng-if="s!=undefined">
-                            <span>
-                                <img  ng-src="{{s.image}}" class="thumb">
-                            </span>
-                        <span>
-                            <h5>{{s.title}}</h5>
-                            <h6 style=" color: #C2C2C2"> {{s.artist}}</h6>
-                        </span>
-                        <span>
-                            <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                        </span>
+        <div ui-view > </div>
 
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-6" >
-                <ul class="songlist">
-                    <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                        ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                    </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12" style="top: 20px">
-                <ul>
-
-                    <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true"  ng-class=" {max:min==true,first:$index==0}" >
-                    <span ng-click="listenTo(u.song,u.time,uid)">
-                        <span >{{u.name}} sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
-                    </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="row bottom-page-padder" >
             <div class="col-md-12 col-sm-12">
             </div>
@@ -140,7 +99,6 @@
                                 </filter>
                             </defs>
                             <g>
-                                <title>Layer 1</title>
                                 <path stroke="#5e5e5c" filter="url(#svg_3_blur)" id="svg_3"
                                       d="m15.25419,4.50001c-2.0611,28.90211 -2.57637,50.72616 34.00812,72.5502c36.5845,21.82404 0,90.24537 -0.25764,89.95045"
                                       fill-opacity="0" stroke-width="10" fill="#0fffff"/>
@@ -225,13 +183,13 @@
                     <div class="menu-wrapper">
                         <ul class="menu-items">
                             <li class="menu-item">
-                                <button class="menu-item-button">
+                                <button class="menu-item-button" ng-click="gotouserPage()">
                                     <i class="menu-item-icon fa-user fa"></i>
                                 </button>
                                 <div class="menu-item-bounce"></div>
                             </li>
                             <li class="menu-item">
-                                <button class="menu-item-button">
+                                <button class="menu-item-button" ng-click="gotoMusicPage()">
                                     <i class="menu-item-icon  fa fa-bullhorn" alt="True Sharing Page"></i>
                                 </button>
                                 <div class="menu-item-bounce"></div>

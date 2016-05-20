@@ -92,7 +92,7 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                     console.log("Successfully created user account with uid:", userData.uid);
 
                     $scope.sendValidationEmail();
-                    //$state.go('login');
+                    $state.go('login');
                 }
             });
         }

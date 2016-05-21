@@ -22,45 +22,46 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
         $scope.userFound=false;
     };
     $scope.goToRegisterPage=function () {
-       // $location.path('/register');
+        // $location.path('/register');
         $state.go('register');
     };
 
     $scope.users.$loaded()
         .then($scope.lookForUser());
 
-   // $scope.$watch('myUser.id',$scope.lookForUser);
+    // $scope.$watch('myUser.id',$scope.lookForUser);
 
 
     $scope.loginUser=function( ) {
         $scope.charge();
         ref.authWithPassword({
 
-            email:$scope.myUser.email,
-            password:$scope.myUser.pwd
-        },
+                email:$scope.myUser.email,
+                password:$scope.myUser.pwd
+            },
             function (error,userData) {
-            if (error) {
-                $scope.stopCharge();
-             switch (error.code) {
-                    case "EMAIL_TAKEN":
-                        console.log("The new user account cannot be created because the email is already in use.");
-                        break;
-                    case "INVALID_EMAIL":
-                        console.log("The specified email is not a valid email.");
-                        break;
-                    default:
-                        console.log("Error creating user:", error);
+                if (error) {
+                    $scope.stopCharge();
+                    switch (error.code) {
+                        case "EMAIL_TAKEN":
+                            console.log("The new user account cannot be created because the email is already in use.");
+                            break;
+                        case "INVALID_EMAIL":
+                            console.log("The specified email is not a valid email.");
+                            break;
+                        default:
+                            console.log("Error creating user:", error);
+                    }
+                } else {
+                    console.log("Successfully created user account with uid:", userData.uid);
+                    $scope.proceedToHome();
                 }
-            } else {
-                console.log("Successfully created user account with uid:", userData.uid);
-                $scope.proceedToHome();
-            }
-        });
+            });
     }
 
 
     $scope.loginwithFacebook=function () {
+
         $scope.charge();
         ref.authWithOAuthPopup("facebook", function(error, authData) {
             if (error) {
@@ -68,10 +69,19 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.stopCharge();
             } else {
                 console.log("Authenticated successfully with payload:", authData);
-                $scope.proceedToHome();
-            }
+                if(authData!=null) {
+                    ref.child(authData.uid).update({
+                        provider: authData.provider,
+                        name: getName(authData),
+                    });
+                    setImage(authData, authData.facebook.profileImageURL);
+                    console.log(" e authdata vale "+authData.uid);
+                    $scope.proceedToHome();
+
+                }
+            };
         });
-    };
+    }
 
     $scope.loginwithGoogle=function () {
 
@@ -82,40 +92,59 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 $scope.stopCharge();
             } else {
                 console.log("Authenticated successfully with payload:", authData);
-                $scope.proceedToHome();
+                if(authData!=null) {
+                    ref.child(authData.uid).update({
+                        provider: authData.provider,
+                        name: getName(authData),
+                    });
+                    setImage(authData,authData.google.profileImageURL);
+                    console.log(" e authdata vale "+authData.uid);
+                    $scope.proceedToHome();
+
+                }
             }
         });
     };
 
 
-   $scope.loginwithtwetter=function () {
-       $scope.charge();
-       ref.authWithOAuthPopup("twitter", function(error, authData) {
-           if (error) {
-               console.log("Login Failed!", error);
-               $scope.stopCharge();
-           } else {
-               console.log("Authenticated successfully with payload:", authData);
-               $scope.proceedToHome();
-           }
-       });
+    $scope.loginwithtwetter=function () {
+        $scope.charge();
+        ref.authWithOAuthPopup("twitter", function(error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+                $scope.stopCharge();
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+                if(authData!=null) {
+                    ref.child(authData.uid).update({
+                        provider: authData.provider,
+                        name: getName(authData),
+                    });
+                    setImage(authData, authData.twitter.profileImageURL);
+                    console.log(" e authdata vale "+authData.uid);
+                    $scope.proceedToHome();
 
-   }
+                }
+                $scope.proceedToHome();
+            }
+        });
+
+    }
 
 
     $scope.charge = function(){
         $(".loadingContainer").addClass("on");
         $(".container-fluid").addClass("blur");
-    }
+    };
     $scope.stopCharge = function(){
         $(".loadingContainer").removeClass("on");
         $(".container-fluid").removeClass("blur");
-    }
+    };
 
-        $scope.proceedToHome=function(){
-           // $location.path( "home" );
-            $state.go('home.music');
-        };
+    $scope.proceedToHome=function(){
+        // $location.path( "home" );
+        $state.go('home.music');
+    };
 
 
     ref.onAuth(function(authData) {
@@ -130,7 +159,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     });
                     if (snapshot.child(authData.uid).child("image").exists() == false) {
                         console.log("image esiste ?  "+ snapshot.child(authData.uid).child("image").exists()) ;
-                        ref.child(authData.uid).update({ image: 'http://penerbitsalemba.com/v3/images/user_default.png'});
+                        setImage(authData,'http://penerbitsalemba.com/v3/images/user_default.png');
                     }
                     console.log(" e authdata vale "+authData.uid);
                 }
@@ -138,6 +167,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
             $rootScope.ref=ref;
         }
     });
+
 // find a suitable name based on the meta info given by each provider
     function getName(authData) {
         switch(authData.provider) {
@@ -147,6 +177,14 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 return authData.twitter.displayName;
             case 'facebook':
                 return authData.facebook.displayName;
+            case 'google':
+                return authData.google.displayName;
         }
-    }
+    };
+
+    function setImage(authData,image) {
+        ref.child(authData.uid).update({ image: image });
+    };
+
+
 });

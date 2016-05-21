@@ -132,8 +132,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.nextSong= function (){
         $scope.audio.progress=0;
         $scope.currentSongIndex++;
-        if($scope.currentSongIndex==$scope.songs.length+1){
-            $scope.currentSongIndex=1;
+        if($scope.currentSongIndex==$scope.songs.length){
+            $scope.currentSongIndex=0;
         }
         $scope.audio.stop();
         $scope.chooseSong($scope.currentSongIndex);

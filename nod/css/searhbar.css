@@ -120,11 +120,10 @@ ul.searchbar.max{
 }
 
 .searchbar > .user-list{
-    margin-right: 60px;
     width: 100%;
+    padding: 3px;
     background-color: #1b6d85;
     list-style-type: none;
-    top:10px;
 }
 
 #rowSuggestions{
@@ -136,4 +135,8 @@ ul.searchbar.max{
 
 #rowSuggestions.max{
     height: 400px;
+}
+
+.thumb.suggestionIm{
+    margin-top:-10px;
 }

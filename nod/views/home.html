@@ -1,3 +1,6 @@
+<div class="loadingContainer">
+    <div class="loader"></div>
+</div>
 <div>
     <div class="container-fluid" ng-click="clickhandling($event)">
         <style ng-bind-html="style"></style>
@@ -5,7 +8,7 @@
 
         <div class="row top-page">
 
-            <div class="col-md-6 col-sm-1 ">
+            <div class="col-md-6 col-xs-6 ">
                 <img ng-src="{{myUser.image}}" class="user-icon" ng-click="logout()">
                 <input type="text" ng-model="myUser.name" ng-disabled="true"  style="
              height: 60px;
@@ -26,7 +29,7 @@
             transition: none;
             cursor: default;">
             </div>
-            <div class="col-md-6 col-sm-11 searchbar">
+            <div class="col-md-6 col-xs-6 searchbar">
                 <div id="wrap">
                     <form action="" autocomplete="off">
                         <img src="img/ic_search_white_48dp_2x.png" class="icon-search backSearchIcon">
@@ -36,18 +39,18 @@
                     </form>
                 </div>
                 <div class="row" id="rowSuggestions" ng-class="{max:showSuggestions}">
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-12 col-xs-12">
                         <!-- ng-mouseleave="hideSuggestions($event)" -->
                         <ul class="searchbar suggestion" ng-class="{max:showSuggestions} "  id="suggestions" >
                             <li class="user-list suggestion first last" ng-repeat="s in suggestions" ng-click="chooseSong(songs.indexOf(s))" ng-if="s.length!=0">
                                 <ul >
                                     <li style="list-style-type: none">
-                                        <h4>{{ricerca[$index]}}</h4>
+                                        <h4 style="text-align: center">{{ricerca[$index]}}</h4>
                                     </li>
-                                    <li class="user-list suggestion" ng-repeat="song in s">
+                                    <li ng-class=" {first:$index==0,last:$index==s.length-1}" class="user-list suggestion" ng-repeat="song in s">
                                         <div ng-if="ricerca[$parent.$index]=='Canzoni'">
                                             <span>
-                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                                <img  ng-src="{{song.image}}" class="thumb  suggestionIm"> {{song.$index}}
                                             </span>
                                             <span>
                                                 <h5>{{song.title}}</h5>
@@ -59,7 +62,7 @@
                                         </div>
                                         <div ng-if="ricerca[$parent.$index]=='Artisti'">
                                             <span>
-                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                                <img  ng-src="{{song.image}}" class="thumb  suggestionIm"> {{song.$index}}
                                             </span>
                                             <span>
                                                 <h5>{{song.artist}}</h5>
@@ -67,7 +70,7 @@
                                         </div>
                                         <div ng-if="ricerca[$parent.$index]=='Album'">
                                             <span>
-                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                                <img  ng-src="{{song.image}}" class="thumb  suggestionIm"> {{song.$index}}
                                             </span>
                                             <span>
                                                 <h5>{{song.album}}</h5>
@@ -86,7 +89,7 @@
         </div>
 
         <div class="row top-page-padder" >
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-xs-12">
             </div>
         </div>
 
@@ -94,7 +97,7 @@
 
 
         <div class="row bottom-page-padder" >
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-xs-12">
             </div>
         </div>
         <div class="navbar-fixed-bottom navbar bottom-page">

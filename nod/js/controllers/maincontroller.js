@@ -31,6 +31,20 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
      http://bestanimations.com/Balls&Buttons/lisa-simpson-getting-hit-by-ball-funny-animated-gif.gif
      http://gifrific.com/wp-content/uploads/2013/03/House-Sad-Head-Nod.gif
      */
+
+    $scope.charge = function(){
+        $(".loadingContainer").addClass("on");
+        $(".container-fluid").addClass("blur");
+    };
+
+    $scope.charge();
+
+    $scope.stopCharge = function(){
+        $(".loadingContainer").removeClass("on");
+        $(".container-fluid").removeClass("blur");
+    };
+
+
     $scope.handleClick = function( event ){
         if (eventTarget.id!== 'suggestions'){
             $scope.showSuggestions=false;
@@ -270,6 +284,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             angular.forEach( $scope.songObj, function(s) {
                 $scope.songs.push(s);
             });
+            $scope.stopCharge();
         });
 
     var refusers = new Firebase(USERSURL);

@@ -37,23 +37,42 @@
                 </div>
                 <div class="row" id="rowSuggestions" ng-class="{max:showSuggestions}">
                     <div class="col-md-12 col-sm-12">
-                        <ul class="searchbar suggestion" ng-class="{max:showSuggestions} " ng-mouseleave="hideSuggestions($event)" id="suggestions" >
+                        <!-- ng-mouseleave="hideSuggestions($event)" -->
+                        <ul class="searchbar suggestion" ng-class="{max:showSuggestions} "  id="suggestions" >
                             <li class="user-list suggestion first last" ng-repeat="s in suggestions" ng-click="chooseSong(songs.indexOf(s))" ng-if="s.length!=0">
                                 <ul >
                                     <li style="list-style-type: none">
                                         <h4>{{ricerca[$index]}}</h4>
                                     </li>
                                     <li class="user-list suggestion" ng-repeat="song in s">
-                                        <span>
-                                            <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
-                                        </span>
-                                        <span>
-                                            <h5>{{song.title}}</h5>
-                                            <h6 style=" color: #C2C2C2"> {{song.artist}}</h6>
-                                        </span>
-                                        <span>
-                                            <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                                        </span>
+                                        <div ng-if="ricerca[$parent.$index]=='Canzoni'">
+                                            <span>
+                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                            </span>
+                                            <span>
+                                                <h5>{{song.title}}</h5>
+                                                <h6 style=" color: #C2C2C2"> {{song.artist}}</h6>
+                                            </span>
+                                            <span>
+                                                <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                                            </span>
+                                        </div>
+                                        <div ng-if="ricerca[$parent.$index]=='Artisti'">
+                                            <span>
+                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                            </span>
+                                            <span>
+                                                <h5>{{song.artist}}</h5>
+                                            </span>
+                                        </div>
+                                        <div ng-if="ricerca[$parent.$index]=='Album'">
+                                            <span>
+                                                <img  ng-src="{{song.image}}" class="thumb"> {{song.$index}}
+                                            </span>
+                                            <span>
+                                                <h5>{{song.album}}</h5>
+                                            </span>
+                                        </div>
                                     </li>
                                 </ul>
                             </li>

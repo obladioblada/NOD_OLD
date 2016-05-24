@@ -31,6 +31,7 @@ i.iconrow:hover{
     color: #841E21;
 }
 
-i.iconrow{color: white;
-
+i.iconrow{
+    color: white;
+    transition: all .2s cubic-bezier(0.000, 0.795, 0.000, 1.000);
 }

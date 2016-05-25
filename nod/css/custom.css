@@ -9,6 +9,10 @@
 
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+}
 
 .user-list{
 
@@ -71,10 +75,10 @@ ul{ padding: 0px; }
 .playingGif {
     height: 19px;
     color: gray;
-    float: right;
+    float: left;
     position: relative;
-    margin-top: -43px;
-    right: 2%;
+    margin-top: opx;
+    left: 4px;
 }
 
 .detail {
@@ -92,6 +96,37 @@ ul{ padding: 0px; }
                                   not supported by any browser */
 }
 
+.loveIconsong{
+    float: right;
+    margin-top: 18px;
+    padding: 0;
+}
+.loveIconsong:hover{
+    color: #222222;
+}
+
+
+.usernametag{
+    height: 64px;
+    font-size: 25px;
+    font-family: 'Lato';
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 3px;
+    margin-left: 2px;
+    width: 100%;
+    position: relative;
+    top: 20px;
+    left: 80px;
+    right: 0;
+    background: none;
+    transition: none;
+    cursor: default;
+}
+
+
 
 
 .user-icon{
@@ -100,8 +135,9 @@ ul{ padding: 0px; }
     height: 80px;
     border-radius: 50px;
     position: absolute;
-    margin: 2%;
-    margin-left: -8px;
+    margin-top: 10px;
+    margin-left: -12px;
+
 }
 .user-icon:hover{
     cursor: pointer;

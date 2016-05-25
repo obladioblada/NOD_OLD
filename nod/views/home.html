@@ -10,24 +10,7 @@
 
             <div class="col-md-6 col-xs-6 ">
                 <img ng-src="{{myUser.image}}" class="user-icon" ng-click="logout()">
-                <input type="text" ng-model="myUser.name" ng-disabled="true"  style="
-             height: 60px;
-            font-size: 40px;
-            font-family: 'Lato';
-            font-weight: 100;
-            border: none;
-            outline: none;
-            color: #fff;
-            padding: 3px;
-            padding-right: 0;
-            width: 100%;
-            position: relative;
-            top: 20px;
-            left: 80px;
-            right: 0;
-            background: none;
-            transition: none;
-            cursor: default;">
+                <input type="text" class="usernametag" ng-model="myUser.name" ng-disabled="true" >
             </div>
             <div class="col-md-6 col-xs-6 searchbar">
                 <div id="wrap">
@@ -219,19 +202,19 @@
                     <div class="menu-wrapper">
                         <ul class="menu-items">
                             <li class="menu-item" ng-click="menuopen=!menuopen">
-                                <button class="menu-item-button" ng-click="gotouserPage()">
+                                <button class="menu-item-button" ng-click="gotouserPage()" ng-class="transition">
                                     <i class="menu-item-icon fa-user fa"></i>
                                 </button>
                                 <div class="menu-item-bounce"></div>
                             </li>
                             <li class="menu-item" ng-click="menuopen=!menuopen">
-                                <button class="menu-item-button" ng-click="gotoMusicPage()">
+                                <button class="menu-item-button" ng-click="gotoMusicPage()" ng-class="transition">
                                     <i class="menu-item-icon  fa fa-bullhorn" alt="True Sharing Page"></i>
                                 </button>
                                 <div class="menu-item-bounce"></div>
                             </li>
                             <li class="menu-item" ng-click="menuopen=!menuopen">
-                                <button class="menu-item-button">
+                                <button class="menu-item-button" ng-class="transition">
                                     <i class="menu-item-icon fa fa-sliders"></i>
                                 </button>
                                 <div class="menu-item-bounce"></div>

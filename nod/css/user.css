@@ -11,9 +11,15 @@ ul.navbaruser{
 }
 
 ul.navbaruser>li{
-    padding-left: 20px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-left: 21px;
+}
+
+h6.name-user-nav-icon{
+    font-weight: 100;
+    margin-left: -5px;
+    color: white; !important;
+    margin-top: 3px;
+    font-size: 100%;
 }
 
 

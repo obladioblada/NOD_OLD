@@ -27,10 +27,9 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                         })
                             .state('home.user',{
                                 url:'/users',
+                                controller:'userPageCtrl',
                                 templateUrl:'views/home_userpage.html'
                             })
-
-
                                         .state('home.user.relation',{
                                             url:'/relation',
                                             templateUrl:'views/home_userpage_relations.html'
@@ -44,7 +43,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                             url:'/song',
                                             templateUrl:'views/home_userpage_songs.html'
                                         })
-                                        .state('home.user.album',{
+                                        .state('home.user.albums',{
                                             url:'/album',
                                             templateUrl:'views/home_userpage_album.html'
                                         })

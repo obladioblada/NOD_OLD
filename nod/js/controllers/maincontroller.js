@@ -253,7 +253,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     });
 
     $scope.gotouserPage=function () {
-        $state.transitionTo('home.user');
+        $state.transitionTo('home.user.relation');
     };
 
     $scope.gotoMusicPage=function () {

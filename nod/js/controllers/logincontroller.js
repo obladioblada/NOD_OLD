@@ -3,6 +3,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
     $rootScope.ref=ref;
+    $scope.showLoading=false;
     $scope.users = $firebaseArray(ref);
     $scope.myUser={
         image:$scope.defaultImg,
@@ -133,12 +134,12 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
 
 
     $scope.charge = function(){
-        $(".loadingContainer").addClass("on");
-        $(".container-fluid").addClass("blur");
+        $scope.showLoading=true;
     };
+
+
     $scope.stopCharge = function(){
-        $(".loadingContainer").removeClass("on");
-        $(".container-fluid").removeClass("blur");
+        $scope.showLoading=false;
     };
 
     $scope.proceedToHome=function(){

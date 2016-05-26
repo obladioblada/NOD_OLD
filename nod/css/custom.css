@@ -21,9 +21,6 @@ html {
     padding: 20px;
     color: white;
     background: #222222;
-    -webkit-transition: background 0.1s; /* Safari */
-    transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
     cursor: pointer;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 }
@@ -97,12 +94,19 @@ ul{ padding: 0px; }
 }
 
 .loveIconsong{
+    width: 40px;
+    height: 40px;
     float: right;
-    margin-top: 18px;
     padding: 0;
+    padding-left: 7.5px;
+    padding-top: 5px;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 .loveIconsong:hover{
     color: #222222;
+    border: 0px solid #222222;
+    border-radius: 100%;
+    background: lightgray;
 }
 
 

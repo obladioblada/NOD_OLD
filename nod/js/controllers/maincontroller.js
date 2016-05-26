@@ -20,6 +20,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.min=false;
     $scope.itemsearched=null;
     $scope.showVolume=false;
+    $scope.showLoading=true;
     $scope.suggestions=[];
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
@@ -33,15 +34,12 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
      */
 
     $scope.charge = function(){
-        $(".loadingContainer").addClass("on");
-        $(".container-fluid").addClass("blur");
+        $scope.showLoading=true;
     };
 
-    $scope.charge();
 
     $scope.stopCharge = function(){
-        $(".loadingContainer").removeClass("on");
-        $(".container-fluid").removeClass("blur");
+        $scope.showLoading=false;
     };
 
 
@@ -105,7 +103,9 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.time=0;
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
-
+        console.log("PLAYYYY!");
+        $(".fa-play").addClass("fa-pause");
+        $(".fa-pause").removeClass("fa-play");
     };
     $scope.percentage=0;
     $scope.checkIfPlaying=function(){
@@ -137,7 +137,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         if($scope.audio.paused){
             $scope.audio.play();
             $scope.myUser.isPlaying=true;
+            $(".fa-play").addClass("fa-pause");
+            $(".fa-pause").removeClass("fa-play");
         }else{
+            $(".fa-pause").addClass("fa-play");
+            $(".fa-play").removeClass("fa-pause");
             $scope.audio.pause();
             $scope.myUser.isPlaying=false;
         }

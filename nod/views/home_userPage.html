@@ -1,36 +1,37 @@
-<div class="row">
-    <div class="col-md-3  col-sm-3">
+<div class="row" >
+    <div class="col-md-1 col-sm-2 navbar-left" style="padding-left: 5px;">
         <ul class=" navbaruser">
             <li class="row navbaruserRow active" id="Relazioni">
-                <div class="col-md-12 col-sm-4">
-                    <i class="fa fa-users fa-2x fa iconrow"  aria-hidden="true"></i>
-                    <h6 class="name-user-nav-icon"> Relazioni </h6></div>
+                <div class="col-md-12 col-sm-12 item-navbar">
+                    <i class="fa fa-users fa-2x fa iconrow"  aria-hidden="true"  style="margin-left: 3px" ui-sref="home.user.relation"></i>
+                    <h6 class="name-user-nav-icon" style="margin-left: -6px;" ui-sref="home.user.relation"> Relazioni </h6></div>
             </li>
             <li class="row navbaruserRow" id="Playlist">
-                <div class="col-md-12 col-sm-12"><i class="fa fa-list fa-2x iconrow" aria-hidden="true"></i>
-                    <h6 class="name-user-nav-icon"> Play list </h6></div>
+                <div class="col-md-12 col-sm-12 item-navbar"><i class="fa fa-list fa-2x iconrow" style="margin-left: 2px;" aria-hidden="true" ui-sref="home.user.playlist"></i>
+                    <h6 class="name-user-nav-icon" ui-sref="home.user.playlist"> Play list </h6></div>
 
             </li>
             <li class="row navbaruserRow" id="Canzoni">
-                <div class="col-md-12 col-sm-12"><i class="fa fa-music fa-2x iconrow" aria-hidden="true"></i>
-                    <h6 class="name-user-nav-icon"> Canzoni </h6></div>
+                <div class="col-md-12 col-sm-12 item-navbar"><i class="fa fa-music fa-2x iconrow"  style="margin-left: 2px;" aria-hidden="true" ui-sref="home.user.songs"></i>
+                    <h6 class="name-user-nav-icon" style="    margin-left: -6px;" ui-sref="home.user.songs"> Canzoni </h6></div>
 
             </li>
             <li class="row navbaruserRow" id="Album">
-                <div class="col-md-12 col-sm-12"><i class="fa fa-headphones fa-2x iconrow" aria-hidden="true"></i>
-                    <h6 class="name-user-nav-icon"> Album </h6></div>
+                <div class="col-md-12 col-sm-12 item-navbar"><i class="fa fa-headphones fa-2x iconrow" style=" padding-left: 4px;" aria-hidden="true" ui-sref="home.user.album"></i>
+                    <h6 class="name-user-nav-icon" style=" margin-left: 0px;" ui-sref="home.user.album"> Album </h6></div>
             </li>
             <li class="row navbaruserRow" id="Classifiche">
-                <div class="col-md-12 col-sm-12"><i class="fa fa-bar-chart fa-2x iconrow" aria-hidden="true"></i>
-                    <h6 class="name-user-nav-icon"> Classifiche </h6></div>
+                <div class="col-md-12 col-sm-12 item-navbar"><i class="fa fa-bar-chart fa-2x iconrow" style=" margin-left: 2px;" aria-hidden="true" ui-sref="home.user.classifiche"></i>
+                    <h6 class="name-user-nav-icon" style="margin-left: -13px;" ui-sref="home.user.classifiche"> Classifiche </h6></div>
             </li>
             <li class="row navbaruserRow" id="Logout">
-                <div class="col-md-12 col-sm-12">
-                    <i class="fa fa-sign-out fa-2x iconrow" aria-hidden="true" ng-click="logout()" ></i>
-                    <h6 class="name-user-nav-icon"> Log out </h6>
+                <div class="col-md-12 col-sm-12 item-navbar">
+                    <i class="fa fa-sign-out fa-2x iconrow" aria-hidden="true" style="margin-left: 7px;" ng-click="logout()" ></i>
+                    <h6 class="name-user-nav-icon" ng-click="logout()"> Log out </h6>
                 </div>
             </li>
         </ul>
     </div>
-    <div class="col-md-9 col-sm-9" style="color: #6d8515"></div>
+    <div class="col-md-11 col-sm-10" ui-view style="color: #6d8515">
+    </div>
 </div>

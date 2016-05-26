@@ -59,3 +59,9 @@ i.iconrow{
 .item-navbar:active{
     border-radius: 10%;
 }
+
+.current-item-navbar{
+    cursor: pointer;
+    background: #222222 !important;
+    border-radius: 10%;
+}

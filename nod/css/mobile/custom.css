@@ -39,8 +39,23 @@
         margin-top: 15%;
     }
 
+    ul.navbaruser {
+        width: 100%;
+        height: 79%;
+        list-style: none;
+        margin: auto;
+        display: inline-flex;
+        overflow-x: scroll;
+    }
 
+    li.navbaruserRow {
+        padding-right: 3%;
+        margin-right: 0;
+    }
 
+    .navbar-left{
+        padding: 0;
+    }
 
     .topPage{
         height: 15%;

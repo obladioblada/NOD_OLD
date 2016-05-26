@@ -1,4 +1,4 @@
-myApp.controller('userPageCtrl', function($scope){
+myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
     $scope.relazioni={
         name: 'Relazioni',
         icon: 'fa-users',
@@ -41,4 +41,22 @@ myApp.controller('userPageCtrl', function($scope){
         styleIcon: "{'margin-left': '7px'}"
     };
     $scope.navbaritem=[$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.logoutmenu];
+
+    $scope.updateState=function(){
+        $scope.state=$state.$current.url.source;
+        $scope.state=$scope.state.replace("/", "");
+        $scope.state=$scope.state.replaceAll("/", ".");
+        console.log($scope.state);
+    };
+
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
+    $scope.updateState()
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $scope.state=toState.name;
+    })
 });

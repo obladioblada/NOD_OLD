@@ -100,13 +100,20 @@ ul{ padding: 0px; }
     padding: 0;
     padding-left: 7.5px;
     padding-top: 5px;
+    color: white;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 .loveIconsong:hover{
     color: #222222;
     border: 0px solid #222222;
     border-radius: 100%;
-    background: lightgray;
+    background: white;
+}
+
+.loveIconsong:active{
+    border-radius: 10%;
+    background: #5c1517;
+    color: white;
 }
 
 

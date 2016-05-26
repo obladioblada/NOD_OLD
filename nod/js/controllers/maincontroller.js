@@ -103,7 +103,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.time=0;
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
-        console.log("PLAYYYY!");
         $(".fa-play").addClass("fa-pause");
         $(".fa-pause").removeClass("fa-play");
     };

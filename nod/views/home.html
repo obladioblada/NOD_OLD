@@ -1,8 +1,8 @@
-<div class="loadingContainer">
+<div class="loadingContainer" ng-class="{on:showLoading}">
     <div class="loader"></div>
 </div>
 <div>
-    <div class="container-fluid" ng-click="clickhandling($event)">
+    <div class="container-fluid" ng-class="{blur:showLoading}" ng-click="clickhandling($event)">
         <style ng-bind-html="style"></style>
         <style ng-bind-html="volumeStyle"></style>
 
@@ -45,7 +45,7 @@
                                             </div>
                                             <div ng-if="ricerca[$parent.$index]=='Artisti'">
                                             <span>
-                                                <img  ng-src="{{song.image}}" class="thumb  suggestionIm"> {{song.$index}}
+                                                <img  ng-src="{{song.image}}" class="thumb suggestionIm"> {{song.$index}}
                                             </span>
                                             <span>
                                                 <h5>{{song.artist}}</h5>
@@ -53,7 +53,7 @@
                                             </div>
                                             <div ng-if="ricerca[$parent.$index]=='Album'">
                                             <span>
-                                                <img  ng-src="{{song.image}}" class="thumb  suggestionIm"> {{song.$index}}
+                                                <img  ng-src="{{song.image}}" class="thumb suggestionIm"> {{song.$index}}
                                             </span>
                                             <span>
                                                 <h5>{{song.album}}</h5>

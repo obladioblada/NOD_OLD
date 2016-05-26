@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12" style="top: 20px">
+        <ul>
+
+            <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true"  ng-class=" {max:min==true,first:$index==0}" >
+                    <span ng-click="listenTo(u.song,u.time,uid)">
+                        <span >{{u.name}} sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
+                    </span>
+                <i class="fa fa-hand-peace-o fa-2x loveIconsong" style="margin-top: -3px" aria-hidden="true"></i>
+            </li>
+        </ul>
+    </div>
+</div>

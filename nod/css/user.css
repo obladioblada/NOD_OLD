@@ -17,7 +17,6 @@ ul.navbaruser>li{
 h6.name-user-nav-icon{
     font-weight: 100;
     margin-left: -5px;
-    color: white; !important;
     margin-top: 3px;
     font-size: 100%;
 }
@@ -27,17 +26,30 @@ h6.name-user-nav-icon{
     height: auto;
     border-top: 0;
     box-shadow: none;
-    max-height: none;
+    max-height: 500px;
     padding-left:0;
     padding-right:0;
 }
 
-i.iconrow:hover{
-    cursor: pointer;
-    color: #841E21;
-}
+
 
 i.iconrow{
-    color: white;
     transition: all .2s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+}
+
+.item-navbar{
+    color:white;
+    background: #841E21;
+    padding: 11%;
+    padding-left: 23%;
+    padding-right: 0;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.item-navbar:hover{
+    cursor: pointer;
+    color: darkgray !important;
+
 }

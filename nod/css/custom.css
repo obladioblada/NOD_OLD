@@ -127,6 +127,13 @@ ul{ padding: 0px; }
 }
 
 
+.camera-icoon{
+    margin-left: 14px;
+    position: absolute;
+    margin-top: 34px;
+    visibility: hidden;
+
+}
 
 
 .user-icon{
@@ -138,10 +145,23 @@ ul{ padding: 0px; }
     margin-top: 10px;
     margin-left: -12px;
 
+
 }
-.user-icon:hover{
+.user-icon:hover + .camera-icoon{
+    cursor: pointer;
+    visibility: visible;
+}
+
+.user-icon + .camera-icoon:hover{
+    cursor: pointer;
+    visibility: visible;
+}
+
+.user-icon:hover {
     cursor: pointer;
 }
+
+
 
 
 

@@ -21,14 +21,37 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
             templateUrl:'views/home.html',
             controller: 'mainCtrl'
         })
-            .state('home.music', {
-                url:'/music',
-                templateUrl:'views/home_music.html'
-        })
-            .state('home.user',{
-                url:'/user',
-                templateUrl:'views/home_userPage.html'
-            });
+                            .state('home.music', {
+                                url:'/music',
+                                templateUrl:'views/home_music.html'
+                        })
+                            .state('home.user',{
+                                url:'/users',
+                                templateUrl:'views/home_userpage.html'
+                            })
+
+
+                                        .state('home.user.relation',{
+                                            url:'/relation',
+                                            templateUrl:'views/home_userpage_relations.html'
+                                        })
+                                        .state('home.user.playlist',{
+                                            url:'/playlist',
+                                            templateUrl:'views/home_userpage.html'
+                                        })
+
+                                        .state('home.user.songs',{
+                                            url:'/song',
+                                            templateUrl:'views/home_userpage_songs.html'
+                                        })
+                                        .state('home.user.album',{
+                                            url:'/album',
+                                            templateUrl:'views/home_userpage_album.html'
+                                        })
+                                       .state('home.user.classifiche',{
+                                        url:'/classifiche',
+                                        templateUrl:'views/home_userpage.html'
+                                    });
 
         $urlRouterProvider.otherwise('home/music');
     })

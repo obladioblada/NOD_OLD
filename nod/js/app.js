@@ -50,7 +50,11 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                        .state('home.user.classifiche',{
                                         url:'/classifiche',
                                         templateUrl:'views/home_userpage.html'
-                                    });
+                                         })
+                                        .state('home.user.settings',{
+                                            url:'/setting',
+                                            templateUrl:'views/home_userpage_album.html'
+                                        });
 
         $urlRouterProvider.otherwise('home/user/music');
     })

@@ -225,6 +225,7 @@ ul.songlist{
 
 .navbar-fixed-bottom {
     z-index: 100 !important;
+    margin-left: 100px;
 }
 
 

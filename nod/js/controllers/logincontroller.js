@@ -144,7 +144,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
 
     $scope.proceedToHome=function(){
         // $location.path( "home" );
-        $state.go('home.music');
+        $state.go('home.user.music');
     };
 
 

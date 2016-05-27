@@ -50,6 +50,9 @@ i.iconrow{
 
 
 }
+.item-navbar.logout{
+    background: #1B6D85;
+}
 
 .item-navbar:hover{
     cursor: pointer;

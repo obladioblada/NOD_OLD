@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-md-1 col-sm-2 navbar-left" style="padding-left: 5px;">
+    <div class=" navbar-left" id="left"autoscroll='true'>
         <ul class=" navbaruser">
             <li class="row navbaruserRow active" ng-repeat="i in navbaritem" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
                 <div class="col-md-12 col-sm-12 item-navbar" ng-class="state==i.sref ? 'current-item-navbar': ''" >
@@ -13,6 +13,6 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-11 col-sm-10" ui-view style="color: #6d8515">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" ui-view id="right" autoscroll='true'>
     </div>
 </div>

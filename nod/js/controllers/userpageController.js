@@ -4,15 +4,15 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         name: 'Home',
         icon: 'fa-home',
         styleText: "",
-        styleIcon: "{'margin-left': '3px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.music'
 
     };
     $scope.relazioni={
         name: 'Relazioni',
         icon: 'fa-users',
-        styleText: "{'margin-left': '-6px'}",
-        styleIcon: "{'margin-left': '3px'}",
+        styleText: "{'margin-left': '0px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.relation'
     };
     $scope.playlist={
@@ -26,20 +26,20 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         name: 'Canzoni',
         icon: 'fa-music',
         styleText: "{'margin-left': '-6px'}",
-        styleIcon: "{'margin-left': '2px'}",
+        styleIcon: "{'margin-left': '-4px'}",
         sref:'home.user.songs'
     };
     $scope.album={
         name: 'Album',
         icon: 'fa-headphones',
         styleText: "",
-        styleIcon: "{'margin-left': '4px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.albums'
     };
     $scope.classifiche={
         name: 'Classifiche',
         icon: 'fa-bar-chart',
-        styleText: "{'margin-left': '-13px'}",
+        styleText: "{'margin-left': '-4px'}",
         styleIcon: "{'margin-left': '2px'}",
         sref:'home.user.classifiche'
     };

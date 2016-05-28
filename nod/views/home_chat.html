@@ -1,0 +1,54 @@
+<div class="row" >
+    <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7">
+        <div class="chat-messages">
+            <div class="chat-message-bubble nomeamico">
+                Nome Amico
+            </div>
+            <ol class="chat-messages-list" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+            </ol>
+        </div>
+        <div class="chat-input-bar">
+            <div class="chat-info-container">
+
+            </div>
+            <div class="chat-effect-container" style="-webkit-filter: none; filter: none;">
+                <div class="chat-effect-bar"></div>
+            </div>
+            <div class="chat-input-wrapper">
+                <button class="chat-input-tool">
+                    <i class="icon icon-camera"></i>
+                </button>
+                <div class="chat-input" contenteditable=""></div>
+                <button class="chat-send">
+                    <i class="fa fa-paper-plane" style="transform: translate3d(0px, 0px, 0px);"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;" >
+        <ul class="songlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
+            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s.album}}<img src="img/playing.gif" class="playingGif"
+                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                    </span>
+            </li>
+            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s.album}}<img src="img/playing.gif" class="playingGif"
+                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                    </span>
+            </li>
+            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s.album}}<img src="img/playing.gif" class="playingGif"
+                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                    </span>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="js/chat.js"></script>

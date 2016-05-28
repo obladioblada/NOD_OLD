@@ -215,6 +215,7 @@ ul{ padding: 0px; }
 .bottom-page{
     background: #4D4D52;
     height: 112px;
+    margin-right: 318px;
 }
 
 ul.songlist{
@@ -315,7 +316,7 @@ ul.songlist{
     padding-left: 106px;
     padding-right: 6px;
     padding-bottom: 102px;
-    padding-top: 107px;
+    padding-top: 82px;
     overflow-x: hidden;
 }
 
@@ -337,3 +338,46 @@ ul.songlist{
     border-radius: 30px;
 }
 
+.chatContainer{
+    display: inline-flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding-left: 11px;
+    padding-top: 6px;
+    list-style: none;
+}
+.chatContainer::-webkit-scrollbar-track
+{
+    background-color: rgba(0,0,0,0);
+}
+
+.chatContainer::-webkit-scrollbar
+{
+    width: 3px;
+    background-color: rgba(0,0,0,0);
+}
+
+.chatContainer::-webkit-scrollbar-thumb
+{
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+.chatItem{
+    width: 70px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.chatThumb{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    border: 3px solid #1B6D85;
+}
+
+.chatName{
+    color: white;
+    text-align: center;
+}

@@ -85,6 +85,12 @@
             </div>
         </div>
         <div class="navbar-fixed-bottom navbar bottom-page">
+            <ul class="chatContainer">
+                <li class="chatItem" ng-repeat="u in users">
+                    <img class="chatThumb" ng-src="{{u.image}}">
+                    <h6 class="chatName" >{{u.name}}</h6>
+                </li>
+            </ul>
             <defs>
                 <filter id="goo">
                     <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
@@ -104,7 +110,7 @@
             <div class="content noselect">
                 <div class="player">
                     <div class="player-info">
-                        <div class="player-info-text">
+                        <div class="player-info-text" ng-class="{nomusic:audio==undefined}">
                             <div>
                                 <h2 ng-show="audio!=undefined" class="player-song-name">{{myUser.song.title}}</h2>
                                 <h3 ng-show="audio!=undefined" class="player-artist">{{myUser.song.artist}}</h3>

@@ -438,7 +438,9 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
 }
-
+.nomusic{
+	padding-top: 56px;
+}
 .toggle-player:hover{
 	color: #a8a8a8;
 }

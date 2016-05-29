@@ -323,10 +323,13 @@ var KEY_ENTER=13;
 		})
 	}
 
+$( window ).resize(function() {
+	updateChatHeight();
+})
+
 	function updateChatHeight(){
-		console.log("Update! :D");
 		$messagesContainer.css({
-			height:500-$(".chat-input-bar").height()
+			height:$( window ).height()-$(".chat-input-bar").height()-200
 		});
 	}
 

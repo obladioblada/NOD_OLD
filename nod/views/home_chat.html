@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;" >
-        <ul class="songlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
+        <ul class="songlist" id="chatlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
             <li class="user-list" ng-repeat="u in users" ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}">
                     <span ng-click="provaChiamataJs()">
                         <img ng-src="{{u.image}}" width="60px" style="border-radius: 18px; float: left">

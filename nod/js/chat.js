@@ -328,9 +328,13 @@ $( window ).resize(function() {
 })
 
 	function updateChatHeight(){
+		var h=$( window ).height()-$(".chat-input-bar").height()-200;
 		$messagesContainer.css({
-			height:$( window ).height()-$(".chat-input-bar").height()-200
-		});
+			height: h
+		})
+		$("#chatlist").css({
+			height: h+$(".chat-input-bar").height()
+		})
 	}
 
 	$input.keydown(function(event) {

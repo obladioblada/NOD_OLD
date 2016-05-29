@@ -27,25 +27,10 @@
     </div>
     <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;" >
         <ul class="songlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
-            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                    </span>
-            </li>
-            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                    </span>
-            </li>
-            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
+            <li class="user-list" ng-repeat="u in users" ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}">
+                    <span ng-click="provaChiamataJs()">
+                        <img ng-src="{{u.image}}" width="60px" style="border-radius: 18px; float: left">
+                        <h6 >{{u.name}}</h6>
                     </span>
             </li>
         </ul>

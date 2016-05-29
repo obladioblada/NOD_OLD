@@ -1,5 +1,4 @@
 var KEY_ENTER=13;
-$(document).ready(function(){
 	var $input=$(".chat-input")
 		,$sendButton=$(".chat-send")
 		,$messagesContainer=$(".chat-messages")
@@ -264,7 +263,7 @@ $(document).ready(function(){
 
 		var $info=$("<div/>")
 			.addClass("chat-info-typing")
-			.text("Your friend is typing...")
+			.text("il tuo amico Nodder sta scrivendo...")
 			.css({
 				transform:"translate3d(0,30px,0)"
 			})
@@ -325,6 +324,7 @@ $(document).ready(function(){
 	}
 
 	function updateChatHeight(){
+		console.log("Update! :D");
 		$messagesContainer.css({
 			height:500-$(".chat-input-bar").height()
 		});
@@ -353,4 +353,3 @@ $(document).ready(function(){
 
 	gooOff();
 	updateChatHeight();
-})

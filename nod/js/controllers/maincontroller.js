@@ -330,7 +330,9 @@ $scope.usersObj.$loaded()
         return -1;
     };
 
-
+    $scope.provaChiamataJs=function(){
+        updateChatHeight()
+    };
 
 
 });

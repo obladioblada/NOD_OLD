@@ -139,11 +139,14 @@ ul{ padding: 0px; }
 
 
 .camera-icoon{
-    margin-left: 14px;
     position: absolute;
-    margin-top: 34px;
     visibility: hidden;
-
+    width: 80px;
+    margin-left: -12px;
+    height: 80px;
+    margin-top: 10px;
+    padding: 25px;
+    border-radius: 50px;
 }
 
 
@@ -161,11 +164,13 @@ ul{ padding: 0px; }
 .user-icon:hover + .camera-icoon{
     cursor: pointer;
     visibility: visible;
+    background: rgba(0,0,0,0.4);
 }
 
 .user-icon + .camera-icoon:hover{
     cursor: pointer;
     visibility: visible;
+    background: rgba(0,0,0,0.4);
 }
 
 .user-icon:hover {
@@ -351,6 +356,7 @@ ul.songlist{
     width: 70px;
     margin-right: 3px;
     margin-left: 3px;
+    cursor: pointer;
 }
 
 .chatThumb{
@@ -358,9 +364,15 @@ ul.songlist{
     height: 70px;
     border-radius: 50px;
     border: 3px solid #1B6D85;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 
 .chatName{
     color: white;
     text-align: center;
+}
+
+.chatThumb:hover{
+    border: 1px solid white;
+    border-radius: 10%;
 }

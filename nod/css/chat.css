@@ -215,3 +215,15 @@
     border-top: 0px;
     border-left: 0px;
 }
+.chatThumbList{
+    border-radius: 18px;
+    float: left;
+    width: 40px;
+    height: 40px;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.chatThumbList:hover{
+    border: 1px solid white;
+    border-radius: 10%;
+}

@@ -44,21 +44,27 @@ i.iconrow{
     border-radius: 100%;
     width: 80px;
     height: 80px;
+    cursor: pointer;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-
-
 }
+
+.item-navbar:hover{
+    width: 83px;
+    margin-left: -15px;
+}
+
 .item-navbar.logout{
     background: #1B6D85;
 }
 
 .item-navbar:hover{
     cursor: pointer;
-    background: #222222 !important;
+    background: #222222;
 }
 
 .item-navbar:active{
     border-radius: 10%;
+    background: #1B6D85 !important;
 }
 
 .current-item-navbar{

@@ -1,12 +1,9 @@
 <div class="row">
     <div class="col-md-12  col-sm-12" >
-        <ul class="songlist">
-            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
-                ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
-                    <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
-                    </span>
+        <ul>
+            <li class="albumElement" ng-repeat="s in songs" ng-repeat="u in users">
+                <img class="albumThumb" ng-src="{{s.image}}"><br>
+                <h6 class="albumName">{{s.album}}</h6>
             </li>
         </ul>
     </div>

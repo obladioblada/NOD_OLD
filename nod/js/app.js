@@ -4,6 +4,16 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')
 
+   /* .config(function(){
+        var config = {
+            apiKey: "AIzaSyCPTQTNayDcJt9wHOdy3F_GAlvMLUOh-Jc",
+            authDomain: "nod-music.firebaseapp.com",
+            databaseURL: "https://nod-music.firebaseio.com",
+            storageBucket: "nod-music.appspot.com"
+        };
+        firebase.initializeApp(config);
+    })*/
+
     .config(function($stateProvider,$urlRouterProvider) {
         $stateProvider.
         state('login',{

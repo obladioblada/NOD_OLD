@@ -1,0 +1,15 @@
+.albumElement {
+    list-style: none;
+    width: 100px;
+    display: inline-table;
+    margin: 14px;
+}
+.albumThumb {
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    transition: all Cubic-Bezier(0,0,0,0) 0.1s;
+}
+.albumName {
+    color: white;
+}

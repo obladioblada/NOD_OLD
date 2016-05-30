@@ -62,8 +62,12 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     };
 
     $window.addEventListener("beforeunload",function (e) {
+        var ref = new Firebase(NODURL+"/users");
+        ref.child($rootScope.ref.getAuth().uid).update({
+            online:false,
+            isPlaying: false
+        });
         (e || window.event).returnValue = null;
-        $scope.onExit();
         return null;
     });
 
@@ -293,6 +297,9 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     var refusers = new Firebase(USERSURL);
     $scope.usersObj = $firebaseObject(refusers);
     $scope.usersObj.$bindTo($scope, 'users');
+    $scope.usersObj.$loaded().then(function(){
+        $scope.myUser.online=true;
+    });
 
 /*
 $scope.usersObj.$loaded()

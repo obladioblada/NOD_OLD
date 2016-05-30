@@ -4,14 +4,11 @@
             <li class="row navbaruserRow active" ng-repeat="i in navbaritem" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
                 <div class="col-md-12 col-sm-12 item-navbar" ng-class="state==i.sref ? 'current-item-navbar': ''" >
                     <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  ng-style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
-                    <h6 class="name-user-nav-icon" ng-style="{{i.styleText}}" ui-sref="{{i.sref}}"> {{i.name}}</h6></div>
             </li>
             <li class="row navbaruserRow active" id="logoutmenu.name" ng-if="logoutmenu.name=='Logout'" ng-click="logout()">
                 <div class="col-md-12 col-sm-12 item-navbar logout">
                     <i class="fa {{logoutmenu.icon}} fa-2x fa iconrow"  aria-hidden="true"  ng-style="{{logoutmenu.styleIcon}}" ></i>
-                    <h6  class="name-user-nav-icon" ng-style="{{ logoutmenu.styleText }}" > {{logoutmenu.name}} </h6></div>
-            </li>
-        </ul>
+                    </div></li></ul>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" ui-view id="right" autoscroll='true'>
     </div>

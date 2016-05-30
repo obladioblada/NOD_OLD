@@ -37,19 +37,18 @@ i.iconrow{
     transition: all .2s cubic-bezier(0.000, 0.795, 0.000, 1.000);
 }
 
-.item-navbar{
-    color:white;
+.item-navbar {
+    color: white;
     background: #841E21;
-    padding-top: 15px;
+    padding-top: 17px;
     border-radius: 100%;
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     cursor: pointer;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-}
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
+}
 .item-navbar:hover{
-    width: 83px;
     margin-left: -15px;
 }
 

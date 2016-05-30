@@ -28,7 +28,6 @@
 	background: #4D4D52;
 	color: white;
 	border-radius: 100px;
-	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 .bounce{
     -webkit-animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
@@ -430,17 +429,18 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .toggle-player{
-	font-size: x-large;
+	font-size: xx-large;
 	float: right;
 	margin-top: -17px;
 	margin-right: 6px;
 	cursor: pointer;
-	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s;
+	color: white;
 
 }
 .nomusic{
 	padding-top: 56px;
 }
 .toggle-player:hover{
-	color: #a8a8a8;
+	color: #585858;
 }

@@ -11,7 +11,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
     $scope.relazioni={
         name: 'Relazioni',
         icon: 'fa-users',
-        styleText: "{'margin-left': '-6px'}",
+        styleText: "{'margin-left': '0px'}",
         styleIcon: "{'margin-left': '3px'}",
         sref:'home.user.relation'
     };
@@ -37,11 +37,11 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         sref:'home.user.albums'
     };
     $scope.classifiche={
-        name: 'Classifiche',
+        name: 'ranking',
         icon: 'fa-bar-chart',
         styleText: "{'margin-left': '-3px'}",
         styleIcon: "{'margin-left': '4px'}",
-        sref:'home.user.classifiche'
+        sref:'home.user.ranking'
     };
     $scope.chat={
         name:"Chat",

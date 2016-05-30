@@ -15,7 +15,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         song:'',
         time: '',
         isPlaying: false,
-        image:''
+        image:'',
+        online:false
     };
     $scope.min=false;
     $scope.itemsearched=null;
@@ -52,22 +53,19 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.songs=[];
     $scope.currentSongIndex="";
     $scope.idMaster="";
-/*
-    $scope.determinaUser=function(){
-        angular.forEach( $scope.messages, function(user) {
-            if(user.$id==$rootScope.ref.getAuth().$id){
-                $scope.myUser=user;
-            }else{
-                $scope.myUser.image="";
-            }
-        })
-    };
-*/
+
     $scope.onExit = function() {
         $scope.myUser.isPlaying=false;
-        $scope.messages.$save($scope.myUser);
+        $scope.myUser.online=false;
+        console.log("exit-logout");
+        console.log("onile  ?" + $scope.myUser.online);
     };
-    $window.onbeforeunload =  $scope.onExit;
+
+    $window.addEventListener("beforeunload",function (e) {
+        $scope.onExit();
+        return null;
+    });
+
 
     $scope.hideSuggestions=function () {
         $scope.showSuggestions=false;
@@ -75,6 +73,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     };
 
     $scope.logout=function(){
+        $scope.onExit();
         if($rootScope.ref==null)
             $rootScope.ref=new Firebase(NODURL);
         $rootScope.ref.unauth();
@@ -333,6 +332,7 @@ $scope.usersObj.$loaded()
     $scope.provaChiamataJs=function(){
         updateChatHeight()
     };
+
 
 
 });

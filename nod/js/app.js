@@ -44,11 +44,11 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.albums',{
                                             url:'/albums',
-                                            templateUrl:'views/home_userpage_album.html'
+                                            templateUrl:'views/home_userpage_albums.html'
                                         })
-                                        .state('home.user.classifiche',{
-                                            url:'/classifiche',
-                                            templateUrl:'views/home_album.html'
+                                        .state('home.user.ranking',{
+                                            url:'/ranking',
+                                            templateUrl:'views/home_userpage_ranking.html'
                                         })
                                         .state('home.user.chat',{
                                             url:'/chat',
@@ -56,7 +56,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',
-                                            templateUrl:'views/home_userpage_album.html'
+                                            templateUrl:'views/home_userpage_albums.html'
                                         });
 
         $urlRouterProvider.otherwise('home/user/music');

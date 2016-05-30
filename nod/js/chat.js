@@ -328,7 +328,7 @@ $( window ).resize(function() {
 })
 
 	function updateChatHeight(){
-		var h=$( window ).height()-$(".chat-input-bar").height()-200;
+		var h=$( window ).height()-$(".chat-input-bar").height()-230;
 		$messagesContainer.css({
 			height: h
 		})

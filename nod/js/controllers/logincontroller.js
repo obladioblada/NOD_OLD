@@ -1,4 +1,4 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
@@ -74,6 +74,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     ref.child(authData.uid).update({
                         provider: authData.provider,
                         name: getName(authData),
+                        online:true
                     });
                     setImage(authData, authData.facebook.profileImageURL);
                     console.log(" e authdata vale "+authData.uid);
@@ -97,6 +98,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     ref.child(authData.uid).update({
                         provider: authData.provider,
                         name: getName(authData),
+                        online:true
                     });
                     setImage(authData,authData.google.profileImageURL);
                     console.log(" e authdata vale "+authData.uid);
@@ -120,6 +122,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     ref.child(authData.uid).update({
                         provider: authData.provider,
                         name: getName(authData),
+                        online:true
                     });
                     setImage(authData, authData.twitter.profileImageURL);
                     console.log(" e authdata vale "+authData.uid);
@@ -156,7 +159,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 if(authData!=null) {
                     ref.child(authData.uid).update({
                         provider: authData.provider,
-                        name: getName(authData)
+                        name: getName(authData),
+                        online:true
                     });
                     if (snapshot.child(authData.uid).child("image").exists() == false) {
                         console.log("image esiste ?  "+ snapshot.child(authData.uid).child("image").exists()) ;
@@ -165,6 +169,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     console.log(" e authdata vale "+authData.uid);
                 }
             });
+            $scope.myUser.online=true;
             $rootScope.ref=ref;
         }
     });
@@ -186,6 +191,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     function setImage(authData,image) {
         ref.child(authData.uid).update({ image: image });
     };
+    
 
 
 });

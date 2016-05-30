@@ -33,10 +33,10 @@ html {
 
 ul{ padding: 0px; }
 .thumb{
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     float: left;
-    margin-top: 10px;
+    margin-top: 0px;
     border-radius: 200px;
     margin-right: 10px;
 }
@@ -50,31 +50,13 @@ ul{ padding: 0px; }
 }
 
 
-.user-list:hover{
-    background: #841E21;
-}
-
-.user-list.first{
-    border-top: 1px solid #888888;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-}
-
-.user-list.last{
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border-bottom: 1px solid #888888;
-}
-.user-list.last.suggestions{
-    border-bottom: 1px solid #4D4D52;
-}
 
 .playingGif {
     height: 19px;
     color: gray;
     float: left;
     position: relative;
-    margin-top: opx;
+    margin-top: 0px;
     left: 4px;
 }
 
@@ -164,13 +146,15 @@ ul{ padding: 0px; }
 .user-icon:hover + .camera-icoon{
     cursor: pointer;
     visibility: visible;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.6);
+    color: white;
 }
 
 .user-icon + .camera-icoon:hover{
     cursor: pointer;
     visibility: visible;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.6);
+    color: white;
 }
 
 .user-icon:hover {
@@ -227,6 +211,30 @@ ul.songlist{
     padding: 0px;
     margin:0px;
     padding-bottom: 10px;
+}
+
+
+.user-list:hover{
+    background: #841E21;
+}
+
+.user-list.first{
+    border-top: 1px solid #888888;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.user-list.last{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom: 1px solid #888888;
+}
+.user-list.last.suggestions{
+    border-bottom: 1px solid #4D4D52;
+}
+
+.user-list.max{
+    margin-right: 0px;
 }
 
 .navbar-fixed-bottom {
@@ -309,6 +317,11 @@ ul.songlist{
 
 }
 
+
+#left::-webkit-scrollbar { width: 0 !important }
+#right::-webkit-scrollbar { float:left !important }
+
+
 #right {
     height:100%;
     text-align: center;
@@ -319,7 +332,7 @@ ul.songlist{
     overflow-y: scroll;
     color: #6d8515;
     padding-left: 106px;
-    padding-right: 6px;
+    padding-right: 0px;
     padding-bottom: 102px;
     padding-top: 82px;
     overflow-x: hidden;
@@ -331,26 +344,12 @@ ul.songlist{
     width: 100%;
     overflow-x: scroll;
     padding-left: 11px;
-    padding-top: 6px;
     list-style: none;
-}
-.chatContainer::-webkit-scrollbar-track
-{
-    background-color: rgba(0,0,0,0);
+    height: 165px;
+    margin-top: -55px;
 }
 
-.chatContainer::-webkit-scrollbar
-{
-    width: 3px;
-    background-color: rgba(0,0,0,0);
-}
-
-.chatContainer::-webkit-scrollbar-thumb
-{
-    background-color: #000000;
-    border: 1px solid #000000;
-    border-radius: 30px;
-}
+.chatContainer::-webkit-scrollbar { width: 0 !important }
 
 .chatItem{
     width: 70px;
@@ -363,9 +362,18 @@ ul.songlist{
     width: 70px;
     height: 70px;
     border-radius: 50px;
-    border: 3px solid #1B6D85;
+
+    margin-top: 73px;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
+.chatThumb.offline{
+    border: 2px solid #841E21;
+}
+.chatThumb.online{
+    border: 2px solid #4cc65d;
+}
+
+
 
 .chatName{
     color: white;
@@ -373,6 +381,23 @@ ul.songlist{
 }
 
 .chatThumb:hover{
-    border: 1px solid white;
+
     border-radius: 10%;
+}
+
+.schortchatnameuser{
+    visibility: hidden;
+    color: white;
+    text-align: center;
+    margin-top: -110px;
+    border-radius: 18px;
+    background: #4D4D52;
+    width: 150px;
+    padding: 10px;
+    margin-left: -38px;
+}
+
+
+.chatThumb:hover+.schortchatnameuser{
+    visibility: visible;
 }

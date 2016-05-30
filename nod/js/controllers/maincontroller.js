@@ -64,6 +64,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $window.addEventListener("beforeunload",function (e) {
         $scope.onExit();
+        (e || window.event).returnValue = null;
         return null;
     });
 

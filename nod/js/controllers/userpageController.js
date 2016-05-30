@@ -3,30 +3,26 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
     $scope.home={
         name: 'Home',
         icon: 'fa-home',
-        styleText: "",
-        styleIcon: "{'margin-left': '3px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.music'
 
     };
     $scope.relazioni={
         name: 'Relazioni',
         icon: 'fa-users',
-        styleText: "{'margin-left': '0px'}",
-        styleIcon: "{'margin-left': '3px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.relation'
     };
     $scope.playlist={
         name: 'Playlist',
         icon: 'fa-list',
-        styleText: "",
         styleIcon: "{'margin-left': '2px'}",
         sref:'home.user.playlist'
     };
     $scope.canzoni={
         name: 'Canzoni',
         icon: 'fa-music',
-        styleText: "{'margin-left': '-6px'}",
-        styleIcon: "{'margin-left': '2px'}",
+        styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.songs'
     };
     $scope.album={
@@ -39,28 +35,24 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
     $scope.classifiche={
         name: 'ranking',
         icon: 'fa-bar-chart',
-        styleText: "{'margin-left': '-3px'}",
         styleIcon: "{'margin-left': '4px'}",
         sref:'home.user.ranking'
     };
     $scope.chat={
         name:"Chat",
         icon:'fa-comment',
-        styleText:'',
         styleIcon:'',
         sref:'home.user.chat'
     }
     $scope.settings={
         name: 'Settings',
         icon: 'fa-sliders',
-        styleText: "",
         styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.settings'
     };
     $scope.logoutmenu={
         name: 'Logout',
         icon: 'fa-sign-out',
-        styleText: "",
         styleIcon: "{'margin-left': '7px'}"
     };
     $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.chat,$scope.settings,$scope.logoutmenu];

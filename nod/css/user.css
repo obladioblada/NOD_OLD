@@ -11,14 +11,17 @@ ul.navbaruser{
 }
 
 ul.navbaruser>li{
-    padding-left: 24px;
+    padding-left: 28px;
 }
 
 h6.name-user-nav-icon{
     font-weight: 300;
-    margin-left: -2px;
-    margin-top: 3px;
-    font-size: 90%;
+    margin-left: -13px;
+    margin-top: -7px;
+    border-radius: 63px;
+    font-size: 80%;
+    background-color: transparent;
+    width: 70px;
 }
 
 
@@ -58,6 +61,8 @@ i.iconrow{
 
 .item-navbar:hover{
     cursor: pointer;
+    width: 75px;
+    height: 75px;
     background: #222222;
 }
 

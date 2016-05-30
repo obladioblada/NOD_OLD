@@ -398,6 +398,24 @@ ul.songlist{
 }
 
 
+
 .chatThumb:hover+.schortchatnameuser{
+    visibility: visible;
+}
+
+.iconname{
+    visibility: hidden;
+    color: white;
+    text-align: center;
+    margin-top: -110px;
+    border-radius: 18px;
+    background: #4D4D52;
+    width: 150px;
+    padding: 10px;
+    margin-left: -38px;
+}
+
+
+.item-navbar:hover >.iconname{
     visibility: visible;
 }

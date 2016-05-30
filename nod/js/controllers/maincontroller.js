@@ -58,7 +58,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.isPlaying=false;
         $scope.myUser.online=false;
         console.log("exit-logout");
-        console.log("onile  ?" + $scope.myUser.online);
+        console.log("onlile  ?" + $scope.myUser.online);
+        $scope.message.update($scope.myUser);
     };
 
     $window.addEventListener("beforeunload",function (e) {

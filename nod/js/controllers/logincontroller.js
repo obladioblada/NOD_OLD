@@ -1,6 +1,6 @@
 myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
     $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
-    var ref = Fb().ref()+"/users";
+    var ref = new Firebase(NODURL+"/users");
     ref.unauth();
     $rootScope.ref=ref;
     $scope.showLoading=false;
@@ -35,7 +35,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
 
     $scope.loginUser=function( ) {
         $scope.charge();
-        ref.signInWithEmailAndPassword({
+        ref.authWithPassword({
 
                 email:$scope.myUser.email,
                 password:$scope.myUser.pwd
@@ -64,7 +64,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     $scope.loginwithFacebook=function () {
 
         $scope.charge();
-        ref.signInWithPopup("facebook", function(error, authData) {
+        ref.authWithOAuthPopup("facebook", function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
                 $scope.stopCharge();
@@ -88,7 +88,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     $scope.loginwithGoogle=function () {
 
         $scope.charge();
-        ref.signInWithPopup("google", function(error, authData) {
+        ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
                 $scope.stopCharge();
@@ -112,7 +112,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
 
     $scope.loginwithtwetter=function () {
         $scope.charge();
-        ref.signInWithPopup("twitter", function(error, authData) {
+        ref.authWithOAuthPopup("twitter", function(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
                 $scope.stopCharge();
@@ -151,7 +151,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     };
 
 
-    ref.$onAuthStateChanged(function(authData) {
+    ref.onAuth(function(authData) {
         if (authData) {
             // save the user's profile into the database so we can list users,
             // use them in Security and Firebase Rules, and show profiles
@@ -191,7 +191,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     function setImage(authData,image) {
         ref.child(authData.uid).update({ image: image });
     };
-    
+
 
 
 });

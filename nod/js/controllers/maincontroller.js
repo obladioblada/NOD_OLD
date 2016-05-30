@@ -59,12 +59,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.online=false;
         console.log("exit-logout");
         console.log("onlile  ?" + $scope.myUser.online);
-        $scope.message.update($scope.myUser);
     };
 
     $window.addEventListener("beforeunload",function (e) {
-        $scope.onExit();
         (e || window.event).returnValue = null;
+        $scope.onExit();
         return null;
     });
 

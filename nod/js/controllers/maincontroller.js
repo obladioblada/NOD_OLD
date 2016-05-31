@@ -67,7 +67,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         console.log("exit-logout");
         console.log("onlile  ?" + $scope.myUser.online);
     };
-
+    /*
     $window.addEventListener("beforeunload",function (e) {
         var ref = new Firebase(NODURL+"/users");
         ref.child($rootScope.ref.getAuth().uid).onDisconnect().onDisconnect().update({
@@ -78,6 +78,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         (e || window.event).returnValue = null;
         return null;
     });
+    */
+
+    window.onbeforeunload = function(e) {
+
+    };
 
     var onComplete = function(error) {
         if (error) {
@@ -356,10 +361,13 @@ $scope.usersObj.$loaded()
         return -1;
     };
 
-    $scope.provaChiamataJs=function(){
-        updateChatHeight()
-    };
-
-
-
+    
+    $( window ).resize(function() {
+        $(".chatContainer").css({
+            width: $( window ).width()-100-310
+        });
+    })
+    $(".chatContainer").css({
+        width: $( window ).width()-100-310
+    });
 });

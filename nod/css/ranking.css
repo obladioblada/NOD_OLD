@@ -1,0 +1,44 @@
+.navbarRanking
+{   height: 80px;
+    background: #4D4D52;
+    border: none;
+    margin-top: 10px;
+}
+
+.linavbar{
+    display: inline-block;
+}
+
+.item-ranking-navbar {
+    color: white;
+    margin: 10px;
+    background: #D9B310;
+    padding-top: 17px;
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+
+}
+.item-ranking-navbar:hover{
+    margin-top: -15px;
+}
+
+.item-ranking-navbar:hover{
+    cursor: pointer;
+    width: 75px;
+    height: 75px;
+    background: #222222;
+}
+
+.item-ranking-navbar:active{
+    border-radius: 10%;
+    background: #1B6D85 !important;
+}
+
+.current-item-ranking-navbar{
+    cursor: pointer;
+    background: #222222 !important;
+    border-radius: 10%;
+}

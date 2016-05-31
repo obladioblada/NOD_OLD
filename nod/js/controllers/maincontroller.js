@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -23,6 +23,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.showVolume=false;
     $scope.showLoading=true;
     $scope.suggestions=[];
+    $scope.logoutmenu={
+        name: 'Logout',
+        icon: 'fa-sign-out',
+        styleIcon: "{'margin-left': '7px'}"
+    };
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
      'http://replygif.net/i/1121.gif',
@@ -63,13 +68,23 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $window.addEventListener("beforeunload",function (e) {
         var ref = new Firebase(NODURL+"/users");
-        ref.child($rootScope.ref.getAuth().uid).update({
+        ref.child($rootScope.ref.getAuth().uid).onDisconnect().onDisconnect().update({
             online:false,
             isPlaying: false
-        });
+        },onComplete);
+        console.log("sono dentro");
         (e || window.event).returnValue = null;
         return null;
     });
+
+    var onComplete = function(error) {
+        if (error) {
+            console.log('Synchronization failed');
+        } else {
+            console.log('Synchronization succeeded');
+        }
+    };
+
 
 
     $scope.hideSuggestions=function () {
@@ -297,6 +312,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     var refusers = new Firebase(USERSURL);
     $scope.usersObj = $firebaseObject(refusers);
     $scope.usersObj.$bindTo($scope, 'users');
+
+
     $scope.usersObj.$loaded().then(function(){
         $scope.myUser.online=true;
     });

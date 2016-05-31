@@ -50,11 +50,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.settings'
     };
-    $scope.logoutmenu={
-        name: 'Logout',
-        icon: 'fa-sign-out',
-        styleIcon: "{'margin-left': '7px'}"
-    };
+   
     $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.chat,$scope.settings,$scope.logoutmenu];
 
     $scope.updateState=function(){

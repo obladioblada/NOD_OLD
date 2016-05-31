@@ -83,6 +83,11 @@
         </div>
         <div class="navbar-fixed-bottom navbar bottom-page">
             <ul class="chatContainer">
+                <div class="navbaruserRow active" id="logoutmenu.name"  ng-click="logout()">
+                    <div class="col-md-12 col-sm-12 item-navbar logout">
+                        <i class="fa {{logoutmenu.icon}} fa-2x fa iconrow"  aria-hidden="true"  ng-style="{{logoutmenu.styleIcon}}" ></i>
+                        <h6  class="name-user-nav-icon iconname" ng-style="{{ logoutmenu.styleText }}" > {{logoutmenu.name}} </h6></div>
+                </div>
                 <li class="chatItem" ng-repeat="(uid, u) in users"  ng-if="uid!=ref.getAuth().uid">
                     <img class="chatThumb" ng-src="{{u.image}}" ng-class="u.online==true? 'online' : 'offline' ">
                     <h6 class="schortchatnameuser">{{u.name}}</h6>

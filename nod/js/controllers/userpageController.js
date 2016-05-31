@@ -51,7 +51,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         sref:'home.user.settings'
     };
    
-    $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.chat,$scope.settings,$scope.logoutmenu];
+    $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.chat,$scope.settings];
 
     $scope.updateState=function(){
         $scope.state=$state.$current.url.source;

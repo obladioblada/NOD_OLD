@@ -153,7 +153,17 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         };
     })
 
-    
+    .directive('scrollIf', function () {
+        return function (scope, element, attributes) {
+            setTimeout(function () {
+                if (scope.$eval(attributes.scrollIf)) {
+                    var elmnt = document.getElementById("left");
+                    elmnt.scrollTop=element[0].offsetTop - 100;
+                   // elmnt.scrollTo(0, element[0].offsetTop - 100)
+                }
+            });
+        }
+    })
 
 
     .directive('clickOff', function($parse, $document) {

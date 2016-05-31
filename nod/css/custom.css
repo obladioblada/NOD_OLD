@@ -301,19 +301,18 @@ ul.songlist{
 
 #left {
     text-align: center;
-    height:100%;
+    height: 100%;
     position: absolute;
     top: 0px;
     bottom: 0;
     left: 0;
     overflow-y: scroll;
-    padding-bottom: 18px;
+    padding-bottom: 121px;
     padding-top: 109px;
     padding-left: 5px;
     width: 100px;
     z-index: 10;
     overflow-x: hidden;
-
 }
 
 
@@ -341,7 +340,6 @@ ul.songlist{
     padding-left: 11px;
     list-style: none;
     height: 165px;
-    margin-top: -55px;
     margin-left: 84px;
 }
 
@@ -360,8 +358,8 @@ ul.songlist{
     height: 70px;
     border-radius: 50px;
     border: 3px solid #841E21;
-    margin-top: 73px;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    margin-top: 21px;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 .chatThumb.offline{
     border-color: #841E21;
@@ -391,6 +389,8 @@ ul.songlist{
     background: #4D4D52;
     width: 150px;
     padding: 10px;
+    position: absolute;
+    z-index: 500;
     margin-left: -38px;
 }
 

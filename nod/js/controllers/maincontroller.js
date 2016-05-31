@@ -80,9 +80,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     });
     */
 
-    window.onbeforeunload = function(e) {
-
-    };
 
     var onComplete = function(error) {
         if (error) {
@@ -325,6 +322,16 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.online=true;
     });
 
+    var amOnline = new Firebase(NODURL+'/.info/connected');
+    amOnline.on('value', function(snapshot) {
+        console.log("snapshot "+snapshot.val());
+        var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/online");
+        ref.set(snapshot.val());
+        if (snapshot.val()) {
+            var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/online");
+            ref.onDisconnect().remove();
+        }
+    });
 /*
 $scope.usersObj.$loaded()
         .then(function(){
@@ -361,7 +368,7 @@ $scope.usersObj.$loaded()
         return -1;
     };
 
-    
+
     $( window ).resize(function() {
         $(".chatContainer").css({
             width: $( window ).width()-100-310

@@ -1,5 +1,5 @@
 .navbaruserRow{
-    margin-right: 30%;
+    margin-right: 100px;
 }
 
 i.navbaricon{color: white}
@@ -51,22 +51,35 @@ i.iconrow{
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 
 }
-.item-navbar:hover{
-    margin-left: -15px;
-}
+
 
 .item-navbar.logout{
     background: #1B6D85;
     position: fixed;
     height: 75px;
     width: 75px;
+    margin-top: 15px;
+    margin-left: 10px;
 }
+
+.item-navbar.logout:hover{
+    cursor: pointer;
+    width: 75px;
+    height: 75px;
+    background: #222222;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+
 
 .item-navbar:hover{
     cursor: pointer;
     width: 75px;
     height: 75px;
     background: #222222;
+    margin-left: -15px;
+
 }
 
 .item-navbar:active{

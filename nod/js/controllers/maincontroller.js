@@ -23,10 +23,12 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.showVolume=false;
     $scope.showLoading=true;
     $scope.suggestions=[];
+
     $scope.logoutmenu={
         name: 'Logout',
         icon: 'fa-sign-out',
-        styleIcon: "{'margin-left': '7px'}"
+        styleIcon:'margin-left: 27px;',
+        styleText: 'margin-left: 2px;'
     };
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',

@@ -329,11 +329,8 @@ ul.songlist{
     bottom: 0;
     right: 0;
     overflow-y: scroll;
-    padding-left: 106px;
-    padding-right: 0px;
-    padding-bottom: 102px;
-    padding-top: 82px;
     overflow-x: hidden;
+    padding: 106px 0 102px 106px;
 }
 
 
@@ -345,7 +342,9 @@ ul.songlist{
     list-style: none;
     height: 165px;
     margin-top: -55px;
+    margin-left: 84px;
 }
+
 
 .chatContainer::-webkit-scrollbar { width: 0 !important }
 

@@ -1,19 +1,8 @@
 'use strict';
 var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router'])
-
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')
-
-   /* .config(function(){
-        var config = {
-            apiKey: "AIzaSyCPTQTNayDcJt9wHOdy3F_GAlvMLUOh-Jc",
-            authDomain: "nod-music.firebaseapp.com",
-            databaseURL: "https://nod-music.firebaseio.com",
-            storageBucket: "nod-music.appspot.com"
-        };
-        firebase.initializeApp(config);
-    })*/
-
+    .constant('MESSAGEURL','https://nod-music.firebaseio.com/messages/')
     .config(function($stateProvider,$urlRouterProvider) {
         $stateProvider.
         state('login',{
@@ -62,7 +51,9 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.chat',{
                                             url:'/chat',
-                                            templateUrl:'views/home_chat.html'
+                                            templateUrl:'views/home_chat.html',
+                                            controller:'chatCtrl'
+
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',
@@ -164,6 +155,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
             });
         }
     })
+
 
 
     .directive('clickOff', function($parse, $document) {

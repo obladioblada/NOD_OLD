@@ -2,8 +2,8 @@
     <div class="container" >
         <li  class="linavbar" ng-repeat="i in navbaritem" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
             <div class="item-ranking-navbar" ng-class="state==i.sref ? 'current-item-ranking-navbar': ''" >
-                <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  ng-style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
-                <h6 class="name-user-nav-icon iconname" ng-style="{{i.styleText}}" ui-sref="{{i.sref}}"> {{i.name}}</h6>
+                <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
+                <h6 class="name-user-nav-icon iconname" style="{{i.styleText}}" ui-sref="{{i.sref}}"> {{i.name}}</h6>
             </div>
         </li>
     </div>

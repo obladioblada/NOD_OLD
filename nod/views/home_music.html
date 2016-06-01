@@ -24,8 +24,7 @@
             <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
                 ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
                     <span>
-                        {{s.album}}<img src="img/playing.gif" class="playingGif"
-                                        ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                        {{s.album}}
                     </span>
             </li>
         </ul>

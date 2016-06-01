@@ -16,14 +16,14 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         time: '',
         isPlaying: false,
         image:'',
-        online:false
+        online: false
     };
     $scope.min=false;
     $scope.itemsearched=null;
     $scope.showVolume=false;
     $scope.showLoading=true;
     $scope.suggestions=[];
-
+    $scope.receiver="";
     $scope.logoutmenu={
         name: 'Logout',
         icon: 'fa-sign-out',
@@ -328,8 +328,14 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/online");
         ref.set(snapshot.val());
         if (snapshot.val()) {
-            var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/online");
-            ref.onDisconnect().remove();
+            var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid);
+           // ref.onDisconnect().remov;
+            ref.onDisconnect().update({
+                online: false,
+                isPlaying:false,
+                time:0
+
+            });
         }
     });
 /*
@@ -377,4 +383,24 @@ $scope.usersObj.$loaded()
     $(".chatContainer").css({
         width: $( window ).width()-100-310
     });
+
+
+    $scope.gotochat=function (receiverid) {
+        var userRef = new Firebase(USERSURL+receiverid);
+        $scope.receiver=$firebaseObject(userRef);
+        console.log($scope.receiver.$id);
+        $scope.receiver.$loaded()
+            .then(function() {
+                console.log($scope.receiver.name);
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+
+        $state.transitionTo('home.user.chat');
+    };
+
+
+
+
 });

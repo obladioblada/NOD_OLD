@@ -88,8 +88,8 @@
                     <h6  class="name-user-nav-icon iconname" style="{{logoutmenu.styleText}}"> {{logoutmenu.name}} </h6></div>
             </div>
             <ul class="chatContainer">
-                <li class="chatItem" ng-repeat="(uid, u) in users"  ng-if="uid!=ref.getAuth().uid">
-                    <img class="chatThumb" ng-src="{{u.image}}" ng-class="u.online==true? 'online' : 'offline' ">
+                <li class="chatItem" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid">
+                    <img class="chatThumb" ng-src="{{u.image}}" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline' ">
                     <h6 class="schortchatnameuser">{{u.name}}</h6>
                 </li>
             </ul>

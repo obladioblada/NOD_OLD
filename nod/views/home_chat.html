@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7">
+    <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7" >
         <div class="chat-messages">
             <div class="chat-message-bubble nomeamico">
                 {{receiver.name}}
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;" >
+    <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;    padding-right: 20px;" >
         <ul class="chatlist" id="chatlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
             <li class="chatlistelement" ng-repeat="(uid, u) in users"   ng-if="uid!=ref.getAuth().uid" ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}">
                     <span ng-click="provaChiamataJs()">

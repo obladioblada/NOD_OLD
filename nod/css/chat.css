@@ -13,6 +13,7 @@
     color: #222222;
     border-radius: 20px;
     font-family: 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    z-index: 101;
 }
 
 @media screen and (max-width:380px) {
@@ -93,7 +94,6 @@
     z-index: 2;
     background: #1B6D85;
     padding: 0.5em 0;
-    border-radius: 0 0 2px 2px;
     color: #fff;
     border-bottom-right-radius: 18px;
 

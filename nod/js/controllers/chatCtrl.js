@@ -1,19 +1,12 @@
 myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject,$firebaseArray){
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
-    
-    
-    $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
    // $scope.receiver=$firebaseObject(chatref);
     console.log("il parametro passato" + $stateParams.myParam);
-    
-    
-    createMessage= function(sender, senderName, receiver, text){
-        var newMessage = {};
-        newMessage['sender'] = sender;
-        newMessage['senderName'] = senderName;
-        newMessage['receiver'] = receiver;
-        newMessage['text'] = $scope.messagetext;
+    $scope.receiverid=$stateParams.myParam;
+    $scope.currentChat=[];
+
+    $scope.createutc= function(){
         var today = new Date();
         var day = today.getUTCDate();
         var month = today.getUTCMonth()+1; //January is 0!
@@ -39,9 +32,35 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             seconds='0'+seconds;
         }
         var currentDate = year.toString()+'-'+month.toString()+'-'+day.toString()+'-'+hours.toString()+':'+minutes.toString()+':'+seconds.toString();
-        newMessage['utctime'] = currentDate;
-        console.log("il nuovo messaggio è" + newMessage);
+        console.log("utc" + currentDate);
+        return currentDate;
     };
+
+    $scope.setChat=function(){
+        var userRef = new Firebase(USERSURL+$scope.receiverid);
+        $scope.receiver=$firebaseObject(userRef);
+        console.log($scope.receiver.$id);
+        var mioid=$rootScope.ref.getAuth().uid;
+        console.log("mioid"+mioid);
+        $scope.uidchat=mioid+"-"+$scope.receiverid;
+        if(mioid.localeCompare($scope.receiverid)==-1) $scope.uidchat=$scope.receiverid+"-"+mioid;
+        console.log("uidchat "+$scope.uidchat);
+        $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
+        $scope.chatObj=$firebaseObject($scope.chatref);
+        $scope.chatObj.$bindTo($scope, 'currentChat');
+
+        $scope.chatref.push({
+            receiver:"sempronio",
+            sender:"pippo",
+            text:"coccola",
+            utc: $scope.createutc()
+        });
+
+    };
+
+    $scope.setChat();
+
+
     
     getchatmessages=function () {
         var messagesref = new Firebase(MESSAGEURL);

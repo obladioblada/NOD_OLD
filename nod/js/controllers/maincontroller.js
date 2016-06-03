@@ -386,22 +386,8 @@ $scope.usersObj.$loaded()
 
 
     $scope.gotochat=function (receiverid) {
-        var userRef = new Firebase(USERSURL+receiverid);
-        $scope.receiver=$firebaseObject(userRef);
-        console.log($scope.receiver.$id);
-        var mioid=$scope.myUser.$id;
-        $scope.uidchat=mioid+"-"+receiverid;
-        if(mioid.localeCompare(receiverid)==-1) $scope.uidchat=receiverid+"-"+mioid;
-        $scope.receiver.$loaded()
-            .then(function() {
-                console.log($scope.receiver.name);
-                $state.go('home.user.chat', { myParam: $scope.uidchat});
-            })
-            .catch(function(err) {
-                console.error(err);
-            });
 
-           
+        $state.go('home.user.chat', { myParam: receiverid});
     };
 
 

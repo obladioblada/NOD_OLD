@@ -5,6 +5,11 @@
                 {{receiver.name}}
             </div>
             <ol class="chat-messages-list" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+                <li ng-repeat="m in currentChat | orderBy:'m.utc'"class="chat-message chat-message-self">
+                    <div class="chat-message-bubble" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
+                        {{m.text}}
+                    </div>
+                </li>
             </ol>
         </div>
         <div class="chat-input-bar">

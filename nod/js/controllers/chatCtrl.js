@@ -80,6 +80,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         }
     });
 
+
+
     $scope.$watch('msg',function(){
         var typing=true;
         if($scope.msg.length==0) typing=false;

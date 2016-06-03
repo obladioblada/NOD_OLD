@@ -58,9 +58,10 @@ var KEY_ENTER=13;
 			$bubble:$messageBubble
 		};
 	}
-	function sendMessage(){
-		var message=$input.text();
-		
+
+	function sendMessage(msg){
+		var message=msg;
+
 		if(message=="") return;
 		
 		lastMessage=message;
@@ -69,6 +70,7 @@ var KEY_ENTER=13;
 			,$messageContainer=messageElements.$container
 			,$messageBubble=messageElements.$bubble
 		;
+
 
 		var oldInputHeight=$(".chat-input-bar").height();
 		$input.text('');
@@ -193,6 +195,7 @@ var KEY_ENTER=13;
 
 		if(Math.random()<0.65 || lastMessage.indexOf("?")>-1 || messages==1) getReply();
 	}
+
 	function getReply(){
 		if(incomingMessages>2) return;
 		incomingMessages++;
@@ -337,12 +340,14 @@ $( window ).resize(function() {
 		})
 	}
 
+/*
 	$input.keydown(function(event) {
 		if(event.keyCode==KEY_ENTER){
 			event.preventDefault();
 			sendMessage();
 		}
 	});
+
 	$sendButton.click(function(event){
 		event.preventDefault();
 		sendMessage();
@@ -353,7 +358,7 @@ $( window ).resize(function() {
 		sendMessage();
 		// $input.focus();
 	});
-
+*/
 	$input.on("input",function(){
 		updateChatHeight();
 	});

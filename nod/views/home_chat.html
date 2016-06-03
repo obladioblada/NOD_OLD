@@ -5,7 +5,7 @@
                 {{receiver.name}}
             </div>
             <ol class="chat-messages-list" style="transform: matrix(1, 0, 0, 1, 0, 0);">
-                <li ng-repeat="m in currentChat | orderBy:'m.utc'"class="chat-message chat-message-self">
+                <li ng-repeat="m in currentChat"class="chat-message chat-message-self">
                     <div class="chat-message-bubble" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
                         {{m.text}}
                     </div>
@@ -23,8 +23,8 @@
                 <button class="chat-input-tool">
                     <i class="icon icon-camera"></i>
                 </button>
-                <div class="chat-input" ng-model="messagetext" contenteditable=""></div>
-                <button class="chat-send" ng-click="createMessage(myUser.id,myUser.name,receiver.$id,messagetext)">
+                <div class="chat-input" ng-enter="sendMessageAngular()" contenteditable=""></div>
+                <button class="chat-send" ng-click="sendMessageAngular()">
                     <i class="fa fa-paper-plane" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
                 </button>
             </div>

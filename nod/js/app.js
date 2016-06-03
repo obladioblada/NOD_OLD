@@ -157,6 +157,20 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         }
     })
 
+    .directive('ngEnter', function() {
+        return function(scope, element, attrs) {
+            element.bind("keydown keypress", function(event) {
+                console.log("suca "+event.which);
+                if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.ngEnter, {'event': event});
+                    });
+
+                    event.preventDefault();
+                }
+            });
+        };
+    })
 
     .directive('clickOff', function($parse, $document) {
         var dir = {

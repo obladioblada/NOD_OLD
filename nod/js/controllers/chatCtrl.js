@@ -46,22 +46,39 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         if(mioid.localeCompare($scope.receiverid)==-1) $scope.uidchat=$scope.receiverid+"-"+mioid;
         console.log("uidchat "+$scope.uidchat);
         $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
+        $scope.chatref.orderByChild("utc").on("child_added", function(snapshot){
+        });
         $scope.chatObj=$firebaseObject($scope.chatref);
         $scope.chatObj.$bindTo($scope, 'currentChat');
+        $scope.chatObj.$loaded()
+            .then(function(){
+                setTimeout(function () {
+                    $(".chat-messages").scrollTop(9999999);
+                });
+            });
 
-        $scope.chatref.push({
-            receiver:"sempronio",
-            sender:"pippo",
-            text:"coccola",
-            utc: $scope.createutc()
-        });
 
     };
 
+
+
     $scope.setChat();
 
+    $scope.sendMessageAngular=function(){
+        var message=$(".chat-input").text();
+        if(message=="") return;
+        $scope.chatref.push({
+            sender: $rootScope.ref.getAuth().uid,
+            text:message,
+            utc: $scope.createutc()
+        });
+        $(".chat-input").text("");
+        setTimeout(function () {
+            $(".chat-messages").scrollTop(9999999);
+        });
+    };
 
-    
+
     getchatmessages=function () {
         var messagesref = new Firebase(MESSAGEURL);
         $scope.chatmessages=$firebaseArray(messagesref.limit(20));

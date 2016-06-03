@@ -5,6 +5,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     console.log("il parametro passato" + $stateParams.myParam);
     $scope.receiverid=$stateParams.myParam;
     $scope.currentChat=[];
+    $scope.msg="";
 
     $scope.createutc= function(){
         var today = new Date();
@@ -77,18 +78,28 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         }
     });
 
+    $scope.$watch('msg',function(){
+        var typing=true;
+        if($scope.msg.length==0) typing=false;
+        var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+        ref.update({
+            isTyping: typing
+        });
+    });
+
 
     $scope.setChat();
 
     $scope.sendMessageAngular=function(){
-        var message=$(".chat-input").text();
+        var message=$scope.msg;
+        console.log($scope.msg);
         if(message=="") return;
         $scope.chatref.push({
             sender: $rootScope.ref.getAuth().uid,
             text:message,
             utc: $scope.createutc()
         });
-        $(".chat-input").text("");
+        $scope.msg="";
         setTimeout(function () {
             $(".chat-messages").scrollTop(9999999);
         });

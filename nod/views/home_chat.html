@@ -23,7 +23,7 @@
                 <button class="chat-input-tool">
                     <i class="icon icon-camera"></i>
                 </button>
-                <div class="chat-input" ng-enter="sendMessageAngular()" contenteditable=""></div>
+                <div class="chat-input"  ng-model="msg" ng-enter="sendMessageAngular()" contenteditable=""></div>
                 <button class="chat-send" ng-click="sendMessageAngular()">
                     <i class="fa fa-paper-plane" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
                 </button>

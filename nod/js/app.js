@@ -157,15 +157,20 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         }
     })
 
-    .directive('ngEnter', function() {
+    .directive('ngEnter', function(USERSURL,$rootScope) {
         return function(scope, element, attrs) {
             element.bind("keydown keypress", function(event) {
-                console.log("suca "+event.which);
+                var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+                ref.update({
+                    isTyping: true
+                });
                 if(event.which === 13) {
                     scope.$apply(function(){
                         scope.$eval(attrs.ngEnter, {'event': event});
                     });
-
+                    ref.update({
+                        isTyping: false
+                    });
                     event.preventDefault();
                 }
             });

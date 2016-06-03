@@ -32,7 +32,6 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             seconds='0'+seconds;
         }
         var currentDate = year.toString()+'-'+month.toString()+'-'+day.toString()+'-'+hours.toString()+':'+minutes.toString()+':'+seconds.toString();
-        console.log("utc" + currentDate);
         return currentDate;
     };
 
@@ -56,10 +55,20 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
                     $(".chat-messages").scrollTop(9999999);
                 });
             });
-
-
+        var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+        ref.update({
+            currentChat:$scope.uidchat,
+            isTyping: false
+        });
     };
 
+    $scope.$watch('receiver',function(){
+        if($scope.receiver.isTyping){
+            friendIsTyping();
+        }else {
+            friendStoppedTyping();
+        }
+    });
 
 
     $scope.setChat();

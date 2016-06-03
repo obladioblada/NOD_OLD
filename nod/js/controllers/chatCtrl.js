@@ -1,4 +1,4 @@
-myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,MESSAGEURL,$firebaseArray){
+myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$firebaseArray){
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
 

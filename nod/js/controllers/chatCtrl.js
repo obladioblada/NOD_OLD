@@ -37,7 +37,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
 
     $scope.setChat=function(){
         var userRef = new Firebase(USERSURL+$scope.receiverid);
-        $scope.receiver=$firebaseObject(userRef);
+        $scope.receiverObj=$firebaseObject(userRef);
+        $scope.receiverObj.$bindTo($scope, 'receiver');
         console.log($scope.receiver.$id);
         var mioid=$rootScope.ref.getAuth().uid;
         console.log("mioid"+mioid);
@@ -61,8 +62,14 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             isTyping: false
         });
     };
+    $scope.$watch('currentChat',function(){
+            setTimeout(function () {
+                $(".chat-messages").scrollTop(9999999);
+            });
+        });
 
-    $scope.$watch('receiver',function(){
+    $scope.$watch('receiver.isTyping',function(){
+        console.log("conrollo se l'altro scrive "+$scope.receiver.isTyping);
         if($scope.receiver.isTyping){
             friendIsTyping();
         }else {

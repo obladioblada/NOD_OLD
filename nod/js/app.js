@@ -2,7 +2,7 @@
 var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router'])
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')
-    .constant('MESSAGEURL','https://nod-music.firebaseio.com/messages/')
+    .constant('CHATSURL','https://nod-music.firebaseio.com/chats/')
     .config(function($stateProvider,$urlRouterProvider) {
         $stateProvider.
         state('login',{

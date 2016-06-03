@@ -396,8 +396,11 @@ $scope.usersObj.$loaded()
             .catch(function(err) {
                 console.error(err);
             });
-
-        $state.transitionTo('home.user.chat');
+        var mioid=$scope.myUser.$id;
+         $scope.uidchat=mioid+"-"+receiverid;
+         if(mioid.localeCompare(receiverid)==-1) $scope.uidchat=receiverid+"-"+mioid;
+        
+         $state.transitionTo('home.user.chat');
     };
 
 

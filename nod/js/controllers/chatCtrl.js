@@ -1,5 +1,8 @@
 myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,MESSAGEURL,$firebaseArray){
     $scope.messagetext="";
+    console.log("volume "+ $scope.showVolume);
+
+    
     
     createMessage= function(sender, senderName, receiver, text){
         var newMessage = {};

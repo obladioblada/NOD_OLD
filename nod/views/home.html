@@ -89,7 +89,7 @@
             </div>
             <ul class="chatContainer">
                 <li class="chatItem" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid">
-                    <img class="chatThumb" ng-src="{{u.image}}" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline' ">
+                    <img class="chatThumb" ng-src="{{u.image}}" ng-click="gotochat(uid) ; setreceiver(uid)" ng-class="u.online==true? 'online' : 'offline' ">
                     <h6 class="schortchatnameuser">{{u.name}}</h6>
                 </li>
             </ul>

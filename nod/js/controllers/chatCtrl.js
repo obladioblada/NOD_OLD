@@ -1,7 +1,11 @@
-myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$firebaseArray){
+myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject,$firebaseArray){
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
-
+    
+    
+    $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
+   // $scope.receiver=$firebaseObject(chatref);
+    console.log("il parametro passato" + $stateParams.myParam);
     
     
     createMessage= function(sender, senderName, receiver, text){

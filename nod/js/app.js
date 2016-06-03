@@ -50,9 +50,10 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                             templateUrl:'views/home_userpage_ranking.html'
                                         })
                                         .state('home.user.chat',{
-                                            url:'/chat',
+                                            url:'/chat:myParam',
                                             templateUrl:'views/home_chat.html',
-                                            controller:'chatCtrl'
+                                            controller:'chatCtrl',
+                                            params: {myParam: null}
 
                                         })
                                         .state('home.user.settings',{

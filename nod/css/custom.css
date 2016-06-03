@@ -339,8 +339,6 @@ ul.songlist{
     overflow-x: scroll;
     padding-left: 11px;
     list-style: none;
-    position: fixed;
-    z-index: 100;
     height: 165px;
     margin-left: 84px;
 }

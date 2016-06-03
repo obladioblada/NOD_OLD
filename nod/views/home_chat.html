@@ -19,8 +19,8 @@
                     <i class="icon icon-camera"></i>
                 </button>
                 <div class="chat-input" ng-model="messagetext" contenteditable=""></div>
-                <button class="chat-send" >
-                    <i class="fa fa-paper-plane" style="color:white;transform: translate3d(0px, 0px, 0px);" ng-click="createMessage(myUser.id,myUser.name,receiver.$id,messagetext)"></i>
+                <button class="chat-send" ng-click="createMessage(myUser.id,myUser.name,receiver.$id,messagetext)">
+                    <i class="fa fa-paper-plane" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
                 </button>
             </div>
         </div>

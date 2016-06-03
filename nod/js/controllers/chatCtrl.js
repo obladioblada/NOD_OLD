@@ -71,10 +71,12 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
 
     $scope.$watch('receiver.isTyping',function(){
         console.log("conrollo se l'altro scrive "+$scope.receiver.isTyping);
-        if($scope.receiver.isTyping){
-            friendIsTyping();
-        }else {
-            friendStoppedTyping();
+        if($scope.receiver.currentChat==$scope.uidchat) {
+            if ($scope.receiver.isTyping) {
+                friendIsTyping();
+            } else {
+                friendStoppedTyping();
+            }
         }
     });
 

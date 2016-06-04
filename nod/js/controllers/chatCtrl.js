@@ -38,13 +38,26 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         });
     };
     $scope.$watch('currentChat',function(){
+        console.log("Qualcosa è sucesso nella chat!!");
+        $scope.chatref.once("value", function(snapshot) {
+            // The callback function will only get called once since we return true
+            snapshot.forEach(function(message) {
+                var key = message.key();
+                if(message.sender!=$rootScope.ref.getAuth().uid&&message.read==false){
+                    console.log(message.text+" "+message.read);
+                    $scope.chatref.child($scope.uidchat).child(key).update({
+                        read: true
+                    });
+                }
+                return true;
+            });
+        });
             setTimeout(function () {
                 $(".chat-messages").scrollTop(9999999);
             });
-        });
+    });
 
     $scope.$watch('receiver.isTyping',function(){
-        console.log("conrollo se l'altro scrive "+$scope.receiver.isTyping);
         if($scope.receiver.currentChat==$scope.uidchat) {
             if ($scope.receiver.isTyping) {
                 friendIsTyping();
@@ -98,7 +111,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         $scope.chatref.push({
             sender: $rootScope.ref.getAuth().uid,
             text:message,
-            utc: new Date().toJSON()
+            utc: new Date().toJSON(),
+            read: false
         });
         $scope.msg="";
         setTimeout(function () {
@@ -106,16 +120,5 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         });
     };
 
-
-    getchatmessages=function () {
-        var messagesref = new Firebase(MESSAGEURL);
-        $scope.chatmessages=$firebaseArray(messagesref.limit(20));
-        console.log($scope.message);
-    };
-  
-    
-    $scope.parseutc=function (utc) {
-
-    }
 });
 

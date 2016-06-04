@@ -341,7 +341,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
                 online: false,
                 isPlaying:false,
                 time:0
-
             });
         }
     });

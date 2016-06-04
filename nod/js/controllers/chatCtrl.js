@@ -38,21 +38,25 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         });
     };
     $scope.$watch('currentChat',function(){
-        console.log("Qualcosa è sucesso nella chat!!");
-        $scope.chatref.once("value", function(snapshot) {
-            // The callback function will only get called once since we return true
-            snapshot.forEach(function(message) {
-                var key = message.key();
-                if(message.sender!=$rootScope.ref.getAuth().uid&&message.read==false){
-                    console.log(message.text+" "+message.read);
-                    $scope.chatref.child($scope.uidchat).child(key).update({
+        var ref = new Firebase(CHATSURL+$scope.uidchat);
+        ref.once("value", function(snapshot) {
+            // The callback function will get called twice, once for "fred" and once for "barney"
+            snapshot.forEach(function(childSnapshot) {
+                // key will be "fred" the first time and "barney" the second time
+                var key = childSnapshot.key();
+                // childData will be the actual contents of the child
+                var mess = childSnapshot.val();
+
+                if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
+                    console.log(mess.text);
+                    ref.child(key).update({
                         read: true
                     });
                 }
-                return true;
+
             });
         });
-            setTimeout(function () {
+         setTimeout(function () {
                 $(".chat-messages").scrollTop(9999999);
             });
     });

@@ -64,7 +64,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         $urlRouterProvider.otherwise('home/user/music');
     })
 
-    .run(['$rootScope','$state',function($rootScope,$state){
+    .run(['$rootScope','$state',function($rootScope,$state,USERSURL){
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             console.log("sono in "+toState.name);
 
@@ -78,6 +78,10 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                     $state.go('login');
                 }
             }else{
+                var ref = new Firebase("https://nod-music.firebaseio.com/users/"+$rootScope.ref.getAuth().uid);
+                ref.update({
+                    isTyping: false
+                });
                 if(toState.name=='login'||toState.name=='register') {
                     event.preventDefault();
                     $state.go('home.user.music');

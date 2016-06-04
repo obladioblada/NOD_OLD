@@ -276,3 +276,30 @@ ul.chatlist{
     border-bottom-right-radius: 6px;
     border-bottom: 1px solid #888888;
 }
+
+.texttime{
+    font-size: x-small;
+    font-weight: 500;
+    margin: 2px 0;
+    font-family: Lato;
+    color: black;
+}
+
+.textdate{
+    font-size: xx-small;
+    font-weight: 500;
+    margin: 2px 0;
+    font-family: Lato;
+    color: black;;
+
+}
+
+
+
+.chat-message-self>.chat-message-bubble > .texttime{
+    color:darkgrey
+}
+
+.chat-message-self>.chat-message-bubble > .textdate{
+    color:darkgrey
+}

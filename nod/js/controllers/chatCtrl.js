@@ -7,34 +7,6 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.currentChat=[];
     $scope.msg="";
 
-    $scope.createutc= function(){
-        var today = new Date();
-        var day = today.getUTCDate();
-        var month = today.getUTCMonth()+1; //January is 0!
-        var year = today.getUTCFullYear();
-        var hours = today.getUTCHours();
-        var minutes = today.getUTCMinutes();
-        var seconds = today.getUTCSeconds();
-
-        if(day<10) {
-            day='0'+day;
-        }
-
-        if(month<10) {
-            month='0'+month;
-        }
-        if(hours<10) {
-            hours='0'+hours;
-        }
-        if(minutes<10) {
-            minutes='0'+minutes;
-        }
-        if(seconds<10) {
-            seconds='0'+seconds;
-        }
-        var currentDate = year.toString()+'-'+month.toString()+'-'+day.toString()+'-'+hours.toString()+':'+minutes.toString()+':'+seconds.toString();
-        return currentDate;
-    };
 
     $scope.setChat=function(){
         var userRef = new Firebase(USERSURL+$scope.receiverid);
@@ -99,7 +71,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         $scope.chatref.push({
             sender: $rootScope.ref.getAuth().uid,
             text:message,
-            utc: $scope.createutc()
+            utc: new Date().toJSON()
         });
         $scope.msg="";
         setTimeout(function () {
@@ -114,5 +86,9 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         console.log($scope.message);
     };
   
+    
+    $scope.parseutc=function (utc) {
+
+    }
 });
 

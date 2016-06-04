@@ -5,9 +5,11 @@
                 {{receiver.name}}
             </div>
             <ol class="chat-messages-list" style="transform: matrix(1, 0, 0, 1, 0, 0);">
-                <li ng-repeat="m in currentChat"class="chat-message "  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
-                    <div class="chat-message-bubble" style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
+                <li ng-repeat="m in currentChat  "class="chat-message "  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
+                    <div class="chat-message-bubble" style="transform: translate3d(0px, 0px, 0px); opacity: 1; text-align: right ">
                         {{m.text}}
+                        <h6 class="texttime">{{ m.utc | date:' h : mm a '}}</h6>
+                        <h6 class="textdate">{{ m.utc | date: 'MMM d, y' }}</h6>
                     </div>
                 </li>
             </ol>

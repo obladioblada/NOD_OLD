@@ -6,6 +6,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.receiverid=$stateParams.myParam;
     $scope.currentChat=[];
     $scope.msg="";
+    $scope.lastType=0;
+    $scope.currenttype=0;
 
     $scope.createutc= function(){
         var today = new Date();
@@ -80,7 +82,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         }
     });
 
-
+    $scope.checkingYet=false;
+    $scope.delayCheck=2000;
 
     $scope.$watch('msg',function(){
         var typing=true;
@@ -89,7 +92,29 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         ref.update({
             isTyping: typing
         });
+        $scope.lenghtOfLastModify=$scope.msg.length;
+        $scope.currenttype = new Date().getTime();
+        if($scope.checkingYet==false){
+            $scope.checkIfTyping();
+        }
     });
+
+    $scope.checkIfTyping=function(){
+        $scope.checkingYet=true;
+        setTimeout(function(){
+            $scope.checkingYet=true;
+            var sub=new Date().getTime()-$scope.currenttype;
+            if($scope.lenghtOfLastModify==$scope.msg.length && sub>$scope.delayCheck){
+                var ref = new Firebase(USERSURL + $rootScope.ref.getAuth().uid);
+                ref.update({
+                    isTyping: false
+                });
+                $scope.checkingYet=false;
+            }else{
+                $scope.checkIfTyping();
+            }
+        },$scope.delayCheck);
+    };
 
 
     $scope.setChat();

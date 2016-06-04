@@ -14,9 +14,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         var userRef = new Firebase(USERSURL+$scope.receiverid);
         $scope.receiverObj=$firebaseObject(userRef);
         $scope.receiverObj.$bindTo($scope, 'receiver');
-        console.log($scope.receiver.$id);
         var mioid=$rootScope.ref.getAuth().uid;
-        console.log("mioid"+mioid);
         $scope.uidchat=mioid+"-"+$scope.receiverid;
         if(mioid.localeCompare($scope.receiverid)==-1) $scope.uidchat=$scope.receiverid+"-"+mioid;
         console.log("uidchat "+$scope.uidchat);
@@ -40,11 +38,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.$watch('currentChat',function(){
         var ref = new Firebase(CHATSURL+$scope.uidchat);
         ref.once("value", function(snapshot) {
-            // The callback function will get called twice, once for "fred" and once for "barney"
             snapshot.forEach(function(childSnapshot) {
-                // key will be "fred" the first time and "barney" the second time
                 var key = childSnapshot.key();
-                // childData will be the actual contents of the child
                 var mess = childSnapshot.val();
 
                 if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
@@ -52,6 +47,23 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
                     ref.child(key).update({
                         read: true
                     });
+
+
+                    var index = -1;
+                    console.log("devo rimuovere "+mess.text);
+                    for(var i= 0;i<$scope.messaggiNonLetti.length;i++){
+                        var curr=$scope.messaggiNonLetti[i];
+                        console.log("devo capire se "+curr+" è uguale a "+mess);
+                        if(curr.sender==mess.sender&&curr.utc==mess.utc&&curr.text==mess.text){
+                            console.log("si!");
+                            index=i;
+                            i=$scope.messaggiNonLetti.length;
+                        }
+                    }
+
+                    if (index > -1) {
+                        $scope.messaggiNonLetti.splice(index, 1);
+                    }
                 }
 
             });

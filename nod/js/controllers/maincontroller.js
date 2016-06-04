@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL,CHATSURL){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -30,7 +30,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         styleIcon:'margin-left: 27px;',
         styleText: 'margin-left: 2px;'
     };
-  
+
     $scope.preferredsong=[];
     $scope.preferredsongOBJ=$firebaseObject(new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong"));
     $scope.preferredsongOBJ.$bindTo($scope, 'preferredsong');
@@ -173,8 +173,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             $scope.audio.pause();
             $scope.myUser.isPlaying=false;
         }
-
     };
+
     $scope.nextSong= function (){
         $scope.audio.progress=0;
         $scope.currentSongIndex++;
@@ -326,6 +326,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $scope.usersObj.$loaded().then(function(){
         $scope.myUser.online=true;
+        $scope.getMessagesNotifications();
     });
 
     var amOnline = new Firebase(NODURL+'/.info/connected');
@@ -392,7 +393,6 @@ $scope.usersObj.$loaded()
 
 
     $scope.gotochat=function (receiverid) {
-
         $state.go('home.user.chat', { myParam: receiverid});
     };
 
@@ -421,7 +421,65 @@ $scope.usersObj.$loaded()
     };
 
 
+    $scope.messaggiNonLetti=[];
+
+    $scope.getMessagesNotifications=function(){
+        setTimeout(function(){
+            var userRef = new Firebase(USERSURL);
+            userRef.once("value", function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    var altroid = childSnapshot.key();
+                    var mioid=$rootScope.ref.getAuth().uid;
+                    var uidchat=mioid+"-"+altroid;
+                    if(mioid.localeCompare(altroid)==-1) uidchat=altroid+"-"+mioid;
+
+                    var ref = new Firebase(CHATSURL+uidchat);
+                    ref.once("value", function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                            var key = childSnapshot.key();
+                            var mess = childSnapshot.val();
+
+                            if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
+                                console.log("ancora non hai letto "+mess.text+" inviato da "+mess.sender);
+                                $scope.messaggiNonLetti.pushIfNotExist(mess, function(e) {
+                                    return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read==mess.read;
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+            $scope.$apply();
+            $scope.getMessagesNotifications();
+        },2000);
+    };
+
+    // check if an element exists in array using a comparer function
+// comparer : function(currentElement)
+    Array.prototype.inArray = function(comparer) {
+        for(var i=0; i < this.length; i++) {
+            if(comparer(this[i])) return true;
+        }
+        return false;
+    };
+
+// adds an element to the array if it does not already exist using a comparer
+// function
+    Array.prototype.pushIfNotExist = function(element, comparer) {
+        if (!this.inArray(comparer)) {
+            this.push(element);
+        }
+    };
 
 
+    $scope.messaggiDaId=function (id){
+        var count=0;
+        for(var i=0; i<$scope.messaggiNonLetti.length; i++) {
+            if($scope.messaggiNonLetti[i].sender==id){
+                count++;
+            }
+        }
+        return count;
+    };
 
 });

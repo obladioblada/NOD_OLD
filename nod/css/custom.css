@@ -360,8 +360,10 @@ ul.songlist{
     height: 70px;
     border-radius: 50px;
     border: 3px solid #841E21;
-    margin-top: 21px;
+    margin-top: 40px;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    background-size: 65px 65px;
+    background-repeat: no-repeat;
 }
 .chatThumb.offline{
     border-color: #841E21;
@@ -386,19 +388,18 @@ ul.songlist{
     visibility: hidden;
     color: white;
     text-align: center;
-    margin-top: -110px;
+    margin-top: 0;
     border-radius: 18px;
     background: #4D4D52;
     width: 150px;
     padding: 10px;
-    position: absolute;
     z-index: 500;
     margin-left: -38px;
 }
 
 
 
-.chatThumb:hover+.schortchatnameuser{
+.chatThumb:hover .schortchatnameuser{
     visibility: visible;
 }
 
@@ -431,3 +432,13 @@ a.userlink:hover{
     text-decoration: none;
 }
 
+
+.notifica {
+    padding: 5px;
+    margin-left: 41px;
+    background: #841E21;
+    border-radius: 50px;
+    color: white;
+    width: 30px;
+    text-align: center;
+}

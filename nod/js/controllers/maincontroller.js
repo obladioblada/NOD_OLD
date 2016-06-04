@@ -30,6 +30,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         styleIcon:'margin-left: 27px;',
         styleText: 'margin-left: 2px;'
     };
+  
+    $scope.preferredsong=[];
+    $scope.preferredsongOBJ=$firebaseObject(new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong"));
+    $scope.preferredsongOBJ.$bindTo($scope, 'preferredsong');
+
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
      'http://replygif.net/i/1121.gif',
@@ -112,7 +117,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     };
 
 
-    $scope.chooseSong= function($i){
+    $scope.chooseSong= function($i,currentsong){
+         $scope.currentsong=currentsong;
         if($scope.audio!=undefined) {
             $scope.audio.pause();
             $scope.audio.audio.src = "";
@@ -389,6 +395,31 @@ $scope.usersObj.$loaded()
 
         $state.go('home.user.chat', { myParam: receiverid});
     };
+
+    $scope.addsongtoprefered= function (song) {
+
+        console.log("canzoni preferite " + song.title);
+        var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong");
+        ref.push(
+            {    album: song.album,
+                 artist:song.artist,
+                 category:song.category,
+                 image:song.image,
+                 title:song.title
+            });
+
+    };
+
+
+    $scope.addalbumtoprefered= function (album) {
+        console.log("canzoni preferite " + song.title);
+        var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredalbum");
+        ref.push(
+            {   album: album ,
+            });
+
+    };
+
 
 
 

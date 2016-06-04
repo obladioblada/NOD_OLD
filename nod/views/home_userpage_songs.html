@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <ul class="songlist">
-            <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+            <li class="user-list" ng-repeat="s in preferredsong" ng-click="chooseSong($index)"
                 ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}" ng-if="s!=undefined">
                             <span>
                                 <img  ng-src="{{s.image}}" class="thumb">
                             </span>
-                <i class="fa fa-hand-peace-o loveIconsong" aria-hidden="true"></i>
-                <i class="fa fa-plus loveIconsong" aria-hidden="true"></i>
+                          <i class="fa fa-hand-peace-o loveIconsong" aria-hidden="true"></i>
+                          <i class="fa fa-plus loveIconsong" aria-hidden="true"></i>
                         <span>
                             <h5>{{s.title}}</h5>
                             <h6 style=" color: #C2C2C2"> {{s.artist}}</h6>
@@ -15,7 +15,6 @@
                         <span>
                             <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
                         </span>
-
             </li>
         </ul>
     </div>

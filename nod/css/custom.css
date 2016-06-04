@@ -24,6 +24,7 @@ html {
     cursor: pointer;
     text-align: left;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    padding: 10px;
 }
 
 .user-list.suggestions{
@@ -33,6 +34,7 @@ html {
 }
 
 ul{ padding: 0px; }
+
 .thumb{
     width: 60px;
     height: 60px;
@@ -53,13 +55,13 @@ ul{ padding: 0px; }
 
 
 .playingGif {
-    height: 19px;
     color: gray;
-    float: left;
     position: relative;
     margin-top: 0px;
-    left: 4px;
+    left: 0px;
+    height: 15px;
 }
+
 
 .detail {
     height: 19px;
@@ -77,8 +79,8 @@ ul{ padding: 0px; }
 }
 
 .loveIconsong{
-    margin-right: -10px;
-    margin-top: 14px;
+    margin-right: 0px;
+    margin-top: 15px;
     width: 30px;
     height: 30px;
     float: right;
@@ -208,9 +210,9 @@ ul{ padding: 0px; }
 }
 
 ul.songlist{
-    padding: 0px;
+
     margin:0px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 
@@ -416,3 +418,16 @@ ul.songlist{
 .item-navbar:hover >.iconname{
     visibility: visible;
 }
+
+a.userlink{
+    color: white;
+    text-decoration: none;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s;
+}
+
+a.userlink:hover{
+    color: white;
+    font-size: medium;
+    text-decoration: none;
+}
+

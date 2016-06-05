@@ -59,6 +59,13 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                             params: {myParam: null}
 
                                         })
+                                        .state('home.user.nodder',{
+                                            url:'/nodder:nodder',
+                                            templateUrl:'views/home_nodder.html',
+                                            controller:'nodderCtrl',
+                                            params: {nodder: null}
+                            
+                                        })
                                         .state('home.user.settings',{
                                             url:'/setting',
                                             templateUrl:'views/home_userpage_albums.html'

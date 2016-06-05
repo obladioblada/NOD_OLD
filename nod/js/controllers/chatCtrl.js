@@ -1,4 +1,4 @@
-myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject,$firebaseArray){
+myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject){
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
    // $scope.receiver=$firebaseObject(chatref);

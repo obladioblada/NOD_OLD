@@ -2,7 +2,7 @@
     <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7">
         <div class="chat-messages no-select">
             <div class="chat-message-bubble nomeamico no-select">
-                <a class="userlink no-select" href="#"> {{receiver.name}} </a>
+                <a class="userlink" ng-click="gotonodder(receiver.$id)"> {{receiver.name}} </a>
             </div>
             <ol class="chat-messages-list no-select" style="transform: matrix(1, 0, 0, 1, 0, 0);">
                 <li ng-repeat="m in currentChat  "class="chat-message no-select"  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
@@ -42,7 +42,7 @@
             <li class="chatlistelement" ng-repeat="(uid, u) in users"  ng-click="gotochat(uid)"  ng-if="uid!=ref.getAuth().uid" ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}">
                      <span >
                         <img ng-src="{{u.image}}" class="chatThumbList" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline'">
-                        <h6 > <a class="userlink" href="#"> {{u.name}} </a></h6>
+                        <h6 > <a class="userlink" ng-click="gotonodder(uid)"> {{u.name}} </a></h6>
                     </span>
             </li>
         </ul>

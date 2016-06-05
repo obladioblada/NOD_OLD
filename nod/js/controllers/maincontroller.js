@@ -389,7 +389,8 @@ $scope.usersObj.$loaded()
         $(".chatContainer").css({
             width: $( window ).width()-100-310
         });
-    })
+    });
+    
     $(".chatContainer").css({
         width: $( window ).width()-100-310
     });
@@ -397,6 +398,10 @@ $scope.usersObj.$loaded()
 
     $scope.gotochat=function (receiverid) {
         $state.go('home.user.chat', { myParam: receiverid});
+    };
+    
+    $scope.gotonodder=function (nodderid) {
+        $state.go('home.user.nodder', { nodder: nodderid});
     };
 
     $scope.addsongtoprefered= function (song) {

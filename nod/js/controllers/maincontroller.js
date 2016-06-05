@@ -34,7 +34,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.preferredsong=[];
     $scope.preferredsongOBJ=$firebaseObject(new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong"));
     $scope.preferredsongOBJ.$bindTo($scope, 'preferredsong');
-
+    $(".notification").trigger('load');
     /*
      'https://33.media.tumblr.com/tumblr_mbgjatOQYv1qb9nyp.gif',
      'http://replygif.net/i/1121.gif',
@@ -330,7 +330,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $scope.usersObj.$loaded().then(function(){
         $scope.myUser.online=true;
-        $scope.getMessagesNotifications();
+        $scope.getMessagesNotifications(true);
     });
 
     var amOnline = new Firebase(NODURL+'/.info/connected');
@@ -450,8 +450,9 @@ $scope.usersObj.$loaded()
 
 
     $scope.messaggiNonLetti=[];
+    $scope.isFirstTimeIChek=true;
 
-    $scope.getMessagesNotifications=function(){
+    $scope.getMessagesNotifications=function(first){
         setTimeout(function(){
             var userRef = new Firebase(USERSURL);
             userRef.once("value", function(snapshot) {
@@ -466,9 +467,8 @@ $scope.usersObj.$loaded()
                         snapshot.forEach(function(childSnapshot) {
                             var key = childSnapshot.key();
                             var mess = childSnapshot.val();
-
+                            $scope.isFirstTimeIChek=first;
                             if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
-                                console.log("ancora non hai letto "+mess.text+" inviato da "+mess.sender);
                                 $scope.messaggiNonLetti.pushIfNotExist(mess, function(e) {
                                     return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read==mess.read;
                                 });
@@ -477,8 +477,9 @@ $scope.usersObj.$loaded()
                     });
                 });
             });
+            //$scope.isFirstTimeIChek=false;
             $scope.$apply();
-            $scope.getMessagesNotifications();
+            $scope.getMessagesNotifications(false);
         },2000);
     };
 
@@ -495,6 +496,9 @@ $scope.usersObj.$loaded()
 // function
     Array.prototype.pushIfNotExist = function(element, comparer) {
         if (!this.inArray(comparer)) {
+            if($scope.isFirstTimeIChek==false){
+                $(".notification").trigger('play');
+            }
             this.push(element);
         }
     };

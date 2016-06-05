@@ -5,7 +5,10 @@
     <div class="container-fluid" ng-class="{blur:showLoading}" ng-click="clickhandling($event)">
         <style ng-bind-html="style"></style>
         <style ng-bind-html="volumeStyle"></style>
-
+        <audio class="notification" controls preload="none">
+            <source src="../nod/audio/notification.mp3" type="audio/mpeg">
+            <source src="../nod/audio/notification.ogg" type="audio/ogg">
+        </audio>
         <div class="row top-page">
 
             <div class="col-md-6 col-xs-6 ">

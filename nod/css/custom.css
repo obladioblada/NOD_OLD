@@ -473,3 +473,8 @@ a.userlink:hover{
     width: 30px;
     text-align: center;
 }
+
+.notification{
+    visibility: initial;
+    display: none;
+}

@@ -50,7 +50,7 @@ angular.module('ngAudio', [])
                     /* Fixes a bug with Firefox (???) */
                     $timeout(function() {
                         audio.play();
-                    }, 5);
+                    }, 1000);
                 });
 
                 });

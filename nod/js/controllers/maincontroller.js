@@ -126,11 +126,13 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             $scope.audio.loop = false;
         }
        // $i++;
+        delete $scope.audio;
         $scope.audio = ngAudio.load("audio/"+$scope.songs[$i].title+".mp3");
         $scope.audio.progress=0;
         $scope.currentSongIndex=$i;
         $scope.audio.currentTime=0;
         $scope.myUser.time=0;
+
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
         $(".fa-play").addClass("fa-pause");
@@ -153,6 +155,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     });
 
     $scope.$watch('audio.currentTime',function(){
+        if($scope.audio!=null) console.log("il tempo è    "+ $scope.audio.currentTime);
         if($scope.audio!=undefined) {
             $scope.updateBar();
             if ($scope.audio.remaining < 1) {
@@ -429,9 +432,7 @@ $scope.usersObj.$loaded()
     $scope.checkIfPreferedYet= function (s) {
         var ret=false;
         angular.forEach($scope.preferredsongOBJ, function (value, key) {
-            console.log("controllo se \n"+ s.title+" = "+value.title+ ";\n"+s.album+" = "+value.album+ ";\n"+s.artist+" = "+value.artist);
             if (s.title == value.title && s.album == value.album && s.artist == value.artist) {
-                console.log("è uguale");
                 ret=true;
             }
         });

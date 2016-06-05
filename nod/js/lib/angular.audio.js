@@ -16,18 +16,18 @@ angular.module('ngAudio', [])
 
                 /* Loads the sound from destination */
                 var audio;
+                $scope.disablePreload=false;
                 function initSound(){
                     audio = ngAudio.load($attrs.ngAudio);
                     /* Add audio to local scope for modification with nested inputs */
                     $scope.$audio = audio;
-
-                    /* Remove watching features for improved performance */
-                    audio.unbind();
-                }
-
+                    /* Remove watching features for improved performance */}
                 if (!$scope.disablePreload){
                     initSound();
                 }
+
+                audio.audio.addEventListener('loadedmetadata', function() {
+
 
 
                 $element.on('click', function() {
@@ -51,6 +51,8 @@ angular.module('ngAudio', [])
                     $timeout(function() {
                         audio.play();
                     }, 5);
+                });
+
                 });
             }
         };
@@ -99,6 +101,7 @@ angular.module('ngAudio', [])
             var audio = new Audio();
 
             audio.addEventListener('error', function() {
+                console.log("errore");
                 deferred.reject();
             });
 
@@ -106,10 +109,16 @@ angular.module('ngAudio', [])
                 deferred.resolve(audio);
             });
 
+            audio.oncanplay = function() {
+                console.log("Can start playing audio at " +  audio.currentTime);
+
+            };
+
             // bugfix for chrome...
             setTimeout(function() {
+                console.log("URL :"+url);
                 audio.src = url;
-            }, 1);
+            }, 1000);
 
             return deferred.promise;
 
@@ -135,7 +144,7 @@ angular.module('ngAudio', [])
     .value('ngAudioGlobals', {
         muting: false,
         songmuting: false,
-        performance: 25,
+        performance: 1,
         unlock: true
     })
 
@@ -143,7 +152,6 @@ angular.module('ngAudio', [])
         return function(id) {
 
             if (ngAudioGlobals.unlock) {
-
                 window.addEventListener("click",function twiddle(){
                     audio.play();
                     audio.pause();
@@ -216,13 +224,16 @@ angular.module('ngAudio', [])
             };
 
             this.setCurrentTime = function(currentTime) {
-                if (audio && audio.duration) {
+                if (audio && audio.duration ) {
                     audio.currentTime = currentTime;
                 }
             };
 
             function $setWatch() {
                 $audioWatch = $rootScope.$watch(function() {
+                    if (Number.isNaN(audioObject.currentTime)){
+                        conslole.log("non a number");
+                    }
                     return {
                         volume: audioObject.volume,
                         currentTime: audioObject.currentTime,
@@ -231,9 +242,11 @@ angular.module('ngAudio', [])
                         loop: audioObject.loop,
                         playbackRate: audioObject.playbackRate
                     };
+                    console.log("currenttime is " +  audioObject.currentTime);
                 }, function(newValue, oldValue) {
                     if (newValue.currentTime !== oldValue.currentTime) {
                         audioObject.setCurrentTime(newValue.currentTime);
+
                     }
 
                     if (newValue.progress !== oldValue.progress) {
@@ -246,8 +259,6 @@ angular.module('ngAudio', [])
                     if (newValue.playbackRate !== oldValue.playbackRate) {
                         audioObject.setPlaybackRate(newValue.playbackRate);
                     }
-
-
 
                     $looping = newValue.loop;
 
@@ -268,6 +279,7 @@ angular.module('ngAudio', [])
                 }, function(error) {
                     audioObject.error = true;
                     console.warn(error);
+                    console.log("erroreee"+error.toString());
                 });
 
 
@@ -498,9 +510,12 @@ angular.module('ngAudio', [])
             audio.play();
             audio.audio.addEventListener('play',function () {
                 deferred.resolve(audio);
-
             });
-            
+
+            audio.audio.oncanplay = function() {
+                console.log("Can start playing audio");
+            };
+
             return audio;
         };
 

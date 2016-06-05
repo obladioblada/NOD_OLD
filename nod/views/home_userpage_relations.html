@@ -9,8 +9,8 @@
             </li>
         </ul>
         <ul>
-            <li class="user-list" ng-repeat="m in messaggiNonLetti">
-                {{m}}
+            <li class="user-list" ng-repeat="m in emoji">
+                {{$index}}) <p  ng-bind-html="m|html">{{m}}</p><span class="emj" ng-bind-html="m|html"></span>
             </li>
         </ul>
     </div>

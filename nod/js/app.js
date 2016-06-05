@@ -206,6 +206,12 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         };
     }])
 
+    .filter('html',function($sce){
+        return function(input){
+            return $sce.trustAsHtml(input);
+        }
+    })
+
     .directive('clickOff', function($parse, $document) {
         var dir = {
             compile: function($element, attr) {

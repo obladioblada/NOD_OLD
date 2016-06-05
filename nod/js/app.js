@@ -1,4 +1,7 @@
 'use strict';
+$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    options.async = true;
+});
 var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router','ngSanitize'])
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')

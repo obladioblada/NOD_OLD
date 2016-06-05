@@ -8318,7 +8318,7 @@ jQuery._evalUrl = function( url ) {
 		url: url,
 		type: "GET",
 		dataType: "script",
-		async: false,
+		async: true,
 		global: false,
 		"throws": true
 	});

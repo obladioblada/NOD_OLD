@@ -426,6 +426,17 @@ $scope.usersObj.$loaded()
         }
     };
 
+    $scope.checkIfPreferedYet= function (s) {
+        var ret=false;
+        angular.forEach($scope.preferredsongOBJ, function (value, key) {
+            console.log("controllo se \n"+ s.title+" = "+value.title+ ";\n"+s.album+" = "+value.album+ ";\n"+s.artist+" = "+value.artist);
+            if (s.title == value.title && s.album == value.album && s.artist == value.artist) {
+                console.log("è uguale");
+                ret=true;
+            }
+        });
+        return ret;
+    };
 
     $scope.addalbumtoprefered= function (album) {
         console.log("canzoni preferite " + song.title);

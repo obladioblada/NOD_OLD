@@ -453,34 +453,38 @@ $scope.usersObj.$loaded()
     $scope.isFirstTimeIChek=true;
 
     $scope.getMessagesNotifications=function(first){
-        setTimeout(function(){
-            var userRef = new Firebase(USERSURL);
-            userRef.once("value", function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                    var altroid = childSnapshot.key();
-                    var mioid=$rootScope.ref.getAuth().uid;
-                    var uidchat=mioid+"-"+altroid;
-                    if(mioid.localeCompare(altroid)==-1) uidchat=altroid+"-"+mioid;
+        if($rootScope.ref.getAuth()!=null) {
+            setTimeout(function () {
+                var userRef = new Firebase(USERSURL);
+                userRef.once("value", function (snapshot) {
+                    snapshot.forEach(function (childSnapshot) {
+                        var altroid = childSnapshot.key();
+                        if($rootScope.ref.getAuth()!=null) {
+                            var mioid = $rootScope.ref.getAuth().uid;
+                            var uidchat = mioid + "-" + altroid;
+                            if (mioid.localeCompare(altroid) == -1) uidchat = altroid + "-" + mioid;
 
-                    var ref = new Firebase(CHATSURL+uidchat);
-                    ref.once("value", function(snapshot) {
-                        snapshot.forEach(function(childSnapshot) {
-                            var key = childSnapshot.key();
-                            var mess = childSnapshot.val();
-                            $scope.isFirstTimeIChek=first;
-                            if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
-                                $scope.messaggiNonLetti.pushIfNotExist(mess, function(e) {
-                                    return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read==mess.read;
+                            var ref = new Firebase(CHATSURL + uidchat);
+                            ref.once("value", function (snapshot) {
+                                snapshot.forEach(function (childSnapshot) {
+                                    var key = childSnapshot.key();
+                                    var mess = childSnapshot.val();
+                                    $scope.isFirstTimeIChek = first;
+                                    if (mess.read == false && mess.sender != $rootScope.ref.getAuth().uid) {
+                                        $scope.messaggiNonLetti.pushIfNotExist(mess, function (e) {
+                                            return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read == mess.read;
+                                        });
+                                    }
                                 });
-                            }
-                        });
+                            });
+                        }
                     });
                 });
-            });
-            //$scope.isFirstTimeIChek=false;
-            $scope.$apply();
-            $scope.getMessagesNotifications(false);
-        },2000);
+                //$scope.isFirstTimeIChek=false;
+                $scope.$apply();
+                $scope.getMessagesNotifications(false);
+            }, 2000);
+        }
     };
 
     // check if an element exists in array using a comparer function

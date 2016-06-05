@@ -109,6 +109,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $state.go('login');
     };
 
+
     $scope.clickhandling=function ($event) {
         if ($event.currentTarget.id!== 'suggestions'){
             $scope.showSuggestions=false;
@@ -396,17 +397,33 @@ $scope.usersObj.$loaded()
     };
 
     $scope.addsongtoprefered= function (song) {
-
-        console.log("canzoni preferite " + song.title);
         var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong");
-        ref.push(
-            {    album: song.album,
-                 artist:song.artist,
-                 category:song.category,
-                 image:song.image,
-                 title:song.title
-            });
+        var s={    album: song.album,
+            artist:song.artist,
+            category:song.category,
+            image:song.image,
+            title:song.title
+        };
 
+        var insert=true;
+        var prefkey=null;
+        console.log("attualmente ci sono "+$scope.preferredsong.size+" canzoni preferite");
+        angular.forEach( $scope.preferredsongOBJ, function(value, key){
+                console.log("controllo se "+ s.title+" è uguale a "+value.title);
+                if(s.title==value.title&& s.album==value.album&& s.artist==value.artist&&insert){
+                    insert=false;
+                    prefkey=key;
+                }
+        });
+        console.log("insert -> "+insert);
+
+        if(insert) {
+            console.log("canzoni preferite " + song.title+" aggiunta!");
+            ref.push(s);
+        }else{
+            console.log("canzoni preferite " + song.title+" rimossa!");
+            ref.child(prefkey).remove();
+        }
     };
 
 

@@ -103,6 +103,11 @@ ul{ padding: 0px; }
     color: white;
 }
 
+.loveIconsong.loved {
+    background: #841E21;
+    border-radius: 18px;
+}
+
 
 .usernametag{
     height: 64px;
@@ -441,7 +446,7 @@ a.userlink:hover{
     width: 0;
     text-align: center;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s;
-}
+ }
 
 .notifica.max{
     padding: 5px;

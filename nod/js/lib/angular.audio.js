@@ -50,7 +50,7 @@ angular.module('ngAudio', [])
                     /* Fixes a bug with Firefox (???) */
                     $timeout(function() {
                         audio.play();
-                    }, 1000);
+                    }, 10);
                 });
 
                 });
@@ -64,12 +64,10 @@ angular.module('ngAudio', [])
             controller: function($scope, $attrs, $element, $timeout) {
 
                 var audio = ngAudio.load($attrs.ngAudioHover);
-
                 $element.on('mouseover rollover hover', function() {
 
                     /* iOS workaround: Call the play method directly in listener function */
                     audio.audio.play();
-
                     audio.volume = $attrs.volumeHover || audio.volume;
                     audio.loop = $attrs.loop;
                     audio.currentTime = $attrs.startHover || 0;
@@ -507,7 +505,9 @@ angular.module('ngAudio', [])
         this.play = function(id) {
 
             var audio = new NgAudioObject(id);
-            audio.play();
+            audio.audio.addEventListener("loadedmetadata", function () {
+                audio.play();
+            });
             audio.audio.addEventListener('play',function () {
                 deferred.resolve(audio);
             });

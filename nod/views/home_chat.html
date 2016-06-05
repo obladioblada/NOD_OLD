@@ -1,33 +1,38 @@
 <div class="row" >
     <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7">
-        <div class="chat-messages">
-            <div class="chat-message-bubble nomeamico">
-                <a class="userlink" href="#"> {{receiver.name}} </a>
+        <div class="chat-messages no-select">
+            <div class="chat-message-bubble nomeamico no-select">
+                <a class="userlink no-select" href="#"> {{receiver.name}} </a>
             </div>
-            <ol class="chat-messages-list" style="transform: matrix(1, 0, 0, 1, 0, 0);">
-                <li ng-repeat="m in currentChat  "class="chat-message "  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
-                    <div class="chat-message-bubble" style="transform: translate3d(0px, 0px, 0px); opacity: 1; text-align: right ">
-                        {{m.text}} <i ng-show="m.read" class="fa fa-check" aria-hidden="true"></i>
-                        <h6 class="texttime">{{ m.utc | date:' h : mm a '}}</h6>
-                        <h6 class="textdate">{{ m.utc | date: 'MMM d, y' }}</h6>
+            <ol class="chat-messages-list no-select" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+                <li ng-repeat="m in currentChat  "class="chat-message no-select"  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
+                    <div class="chat-message-bubble no-select" style="transform: translate3d(0px, 0px, 0px); opacity: 1; text-align: right ">
+                        <text class="no-select" ng-bind-html="m.text|html"> </text> <i ng-show="m.read" class="fa fa-check no-select" aria-hidden="true"></i>
+                        <h6 class="texttime no-select">{{ m.utc | date:' h : mm a '}}</h6>
+                        <h6 class="textdate no-select">{{ m.utc | date: 'MMM d, y' }}</h6>
                     </div>
                 </li>
             </ol>
+            <div class="emojiContainer no-select" ng-class="{'max' : emojiOpened}">
+                <div class="emojielement" ng-repeat="m in emoji" ng-bind-html="m|html" ng-click="addEmojiToMsg(m)">
+                    {{m}}
+                </div>
+            </div>
         </div>
-        <div class="chat-input-bar">
-            <div class="chat-info-container">
+        <div class="chat-input-bar no-select">
+            <div class="chat-info-container no-select">
 
             </div>
             <div class="chat-effect-container" style="-webkit-filter: none; filter: none;">
-                <div class="chat-effect-bar"></div>
+                <div class="chat-effect-bar no-select"></div>
             </div>
             <div class="chat-input-wrapper">
-                <button class="chat-input-tool">
-                    <p><span class="emj"> &#x1F600;</span></p>
+                <button class="chat-input-tool" ng-click="openEmoji()">
+                    <span class="emj"> &#x1F600;</span>
                 </button>
                 <div class="chat-input"  ng-model="msg" ng-enter="sendMessageAngular()" contenteditable=""></div>
-                <button class="chat-send" ng-click="sendMessageAngular()">
-                    <i class="fa fa-paper-plane" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
+                <button class="chat-send no-select" ng-click="sendMessageAngular()">
+                    <i class="fa fa-paper-plane no-select" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
                 </button>
             </div>
         </div>

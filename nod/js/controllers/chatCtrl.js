@@ -8,6 +8,11 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.msg="";
     $scope.lastType=0;
     $scope.currenttype=0;
+    $scope.emojiOpened=false;
+
+    $scope.openEmoji=function(){
+        $scope.emojiOpened=!$scope.emojiOpened;
+    };
 
 
     $scope.setChat=function(){
@@ -117,6 +122,9 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         },$scope.delayCheck);
     };
 
+    $scope.addEmojiToMsg=function(m){
+        $scope.msg+=m;
+    }
 
     $scope.setChat();
 

@@ -135,6 +135,5 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             $(".chat-messages").scrollTop(9999999);
         });
     };
-
 });
 

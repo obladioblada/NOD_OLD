@@ -215,32 +215,6 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         }
     })
 
-    .directive("keepScroll", function(){
-
-        return {
-            controller : function($scope){
-                var element = 0;
-
-                this.setElement = function(el){
-                    element = el;
-                };
-
-                this.itemRemoved = function(height){
-                    element.scrollTop = (element.scrollTop - height - 1); //1px for margin
-                    console.log("Item removed");
-                };
-
-            },
-
-            link : function(scope,el,attr, ctrl) {
-                ctrl.setElement(el[0]);
-
-            }
-
-        };
-
-    })
-
     .directive('clickOff', function($parse, $document) {
         var dir = {
             compile: function($element, attr) {

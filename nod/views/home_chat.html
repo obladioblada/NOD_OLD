@@ -13,8 +13,8 @@
                     </div>
                 </li>
             </ol>
-            <div class="emojiContainer no-select" ng-class="{'max' : emojiOpened}">
-                <div class="emojielement" ng-repeat="m in emoji" ng-bind-html="m|html" ng-click="addEmojiToMsg(m)">
+            <div class="emojiContainer no-select" ng-class="{'max' : emojiOpened}" scrolly="loadMore()">
+                <div class="emojielement" ng-repeat="m in emoji | limitTo:limit" ng-bind-html="m|html" ng-click="addEmojiToMsg(m)" >
                     {{m}}
                 </div>
             </div>

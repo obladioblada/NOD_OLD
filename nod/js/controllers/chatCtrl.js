@@ -124,7 +124,16 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
 
     $scope.addEmojiToMsg=function(m){
         $scope.msg+=m;
-    }
+    };
+
+    $scope.limit=150;
+    $scope.loadMore = function() {
+        $scope.limit += 150;
+    };
+
+    $scope.test = function() {
+        console.log("fine div");
+    };
 
     $scope.setChat();
 

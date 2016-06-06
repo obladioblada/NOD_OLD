@@ -23,14 +23,15 @@ $(document).ready(function(){
 	$.fn.animBar=function(v){
 		var $bar=$(this);
 
-		var min=0.1;
+		var min=-0.1;
 		var setV=true
 		if(typeof v=="undefined"){
 			v=min+(Math.random()*(1-min));
 			setV=false;
 		}else{
-			// v=Math.max(min,v)
+			 v=Math.max(min,v)
 		}
+		if(paused) v=0;
 		
 		if(v>parseFloat($bar.attr("data-scale")) && v>min){
 			TweenMax.to($bar,v*(setV?0.6:0.2),{

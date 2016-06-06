@@ -389,7 +389,7 @@ $scope.usersObj.$loaded()
         $(".chatContainer").css({
             width: $( window ).width()-100-310
         });
-    })
+    });
     $(".chatContainer").css({
         width: $( window ).width()-100-310
     });

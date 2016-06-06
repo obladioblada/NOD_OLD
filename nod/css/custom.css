@@ -30,11 +30,14 @@ html {
     height: 100%;
 }
 
-.user-list{
+*{
+    font-family: "lato";
+}
 
+.user-list{
     border: 0px solid;
     list-style: none;
-    padding: 20px;
+    margin-right: 0px;
     color: white;
     background: #222222;
     cursor: pointer;
@@ -225,7 +228,6 @@ ul{ padding: 0px; }
 }
 
 .bottom-page{
-    background: #4D4D52;
     height: 112px;
     margin-right: 318px;
 }
@@ -262,6 +264,7 @@ ul.songlist{
 
 .navbar-fixed-bottom {
     z-index: 100 !important;
+    max-height: 79px;
 }
 
 
@@ -352,18 +355,20 @@ ul.songlist{
     right: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 106px 0 102px 106px;
+    padding: 88px 0 102px 106px;
 }
 
 
 .chatContainer{
     display: inline-flex;
     width: 100%;
+    border-radius: 18px;
     overflow-x: scroll;
     padding-left: 11px;
     list-style: none;
     height: 165px;
-    margin-left: 84px;
+    margin-left: 93px;
+    background: #4D4D52;
 }
 
 
@@ -381,7 +386,7 @@ ul.songlist{
     height: 70px;
     border-radius: 50px;
     border: 3px solid #841E21;
-    margin-top: 40px;
+    margin-top: 5px;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
     background-size: 65px 65px;
     background-repeat: no-repeat;

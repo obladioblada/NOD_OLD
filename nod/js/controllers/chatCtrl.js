@@ -1,4 +1,4 @@
-myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject,$firebaseArray){
+myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL,$stateParams,$firebaseObject){
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
    // $scope.receiver=$firebaseObject(chatref);
@@ -88,6 +88,78 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         }
     });
 
+    function friendIsTyping(){
+        if(isFriendTyping) return;
+
+        isFriendTyping=true;
+
+        var $dots=$("<div/>")
+            .addClass('chat-effect-dots')
+            .css({
+                top:-30+bleeding,
+                left:10
+            })
+            .appendTo($effectContainer)
+            ;
+        for (var i = 0; i < 3; i++) {
+            var $dot=$("<div/>")
+                .addClass("chat-effect-dot")
+                .css({
+                    left:i*20
+                })
+                .appendTo($dots)
+                ;
+            TweenMax.to($dot,0.3,{
+                delay:-i*0.1,
+                y:30,
+                yoyo:true,
+                repeat:-1,
+                ease:Quad.easeInOut
+            })
+        };
+
+        var $info=$("<div/>")
+            .addClass("chat-info-typing")
+            .text("il tuo amico Nodder sta scrivendo...")
+            .css({
+                transform:"translate3d(0,30px,0)"
+            })
+            .appendTo($infoContainer)
+
+        TweenMax.to($info, 0.3,{
+            y:0,
+            force3D:true
+        });
+
+        gooOn();
+    }
+
+    function friendStoppedTyping(){
+        if(!isFriendTyping) return
+
+        isFriendTyping=false;
+
+        var $dots=$effectContainer.find(".chat-effect-dots");
+        TweenMax.to($dots,0.3,{
+            y:40,
+            force3D:true,
+            ease:Quad.easeIn,
+        });
+
+        var $info=$infoContainer.find(".chat-info-typing");
+        TweenMax.to($info,0.3,{
+            y:30,
+            force3D:true,
+            ease:Quad.easeIn,
+            onComplete:function(){
+                $dots.remove();
+                $info.remove();
+
+                gooOff();
+            }
+        });
+    }
+
     $scope.checkingYet=false;
     $scope.delayCheck=2000;
 
@@ -129,10 +201,6 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.limit=150;
     $scope.loadMore = function() {
         $scope.limit += 150;
-    };
-
-    $scope.test = function() {
-        console.log("fine div");
     };
 
     $scope.setChat();

@@ -6,7 +6,6 @@
 	position: fixed;
 	bottom: 0;
 	right: 0;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 /*    margin-bottom: 1%;
     margin-right: 1%;
 */
@@ -91,8 +90,9 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 	padding: 18px 0;
 	background: #841E21;
 	margin-bottom: 25px;
-	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	transition: all cubic-bezier(1, -0.87, 0.79, 1.79) 0.2s;
 }
+
 .player-info-text.min {
 	padding: 15px 0;
 	background: #841E21;
@@ -443,7 +443,10 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 
 }
 .nomusic{
-	padding-top: 56px;
+	padding: 15px 0;
+	background: #841E21;
+	margin-bottom: 25px;
+
 }
 .toggle-player:hover{
 	color: #585858;

@@ -57,6 +57,11 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                                 url:'/me',
                                                 templateUrl:'views/home_userpage_ranking_me.html'
                                             })
+                                            .state('home.user.ranking.monthly',{
+                                                url:'/monthly',
+                                                templateUrl:'views/home_userpage_ranking_monthly.html'
+                                            })
+
                                         .state('home.user.chat',{
                                             url:'/chat:myParam',
                                             templateUrl:'views/home_chat.html',

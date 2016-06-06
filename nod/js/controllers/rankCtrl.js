@@ -3,12 +3,12 @@ myApp.controller('rankCtrl', function($scope){
     $scope.mensile={
         text:"Mensile",
         icon: "fa-calendar",
-        sref:""
+        sref:"home.user.ranking.monthly"
     };
     $scope.mystats={
         text:"io",
         icon: "fa-user",
-        sref:""
+        sref:"home.user.ranking.me"
     };
     $scope.buddy={
         text: "nodBuddy",

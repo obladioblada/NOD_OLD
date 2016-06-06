@@ -1,17 +1,4 @@
-home_userpage_ranking.html<div class="navbar navbar-default navbarRanking">
-    <div class=" tabContainer row" >
-        <ul class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-            <li  class="linavbar" ng-repeat="i in ranknavbaritem" id="i.name" ui-sref="#" ng-if="i.name!='Logout'" >
-                <div class="item-ranking-navbar" ng-class="{ 'current-item-ranking-navbar':state==i.sref,'first':$index==0,'last':$index==ranknavbaritem.length-1}" >
-                    <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="#"></i>
-                    <h6 class=" rankiconname" style="{{i.styleText}}" ui-sref="#"> {{i.text}}</h6>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="row">
-    <div  class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
+ <div  class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
         <ul class="ranklist">
             <li class="row name-rank-list">
                 <h5 class="position col-md-12 col-lg-12 col-xs-12 col-sm-12">
@@ -20,7 +7,7 @@ home_userpage_ranking.html<div class="navbar navbar-default navbarRanking">
             </li>
             <li class=" row rank-list first last">
                             <span class="position col-md-2 col-lg-2 col-xs-3 col-sm-2">
-                                #4
+                                4°
                             </span>
                             <span style="padding: 0" class="col-md-7 col-lg-7 col-xs-6 col-sm-7">
                                 <img  ng-src="{{myUser.image}}" class="thumb" >
@@ -46,7 +33,7 @@ home_userpage_ranking.html<div class="navbar navbar-default navbarRanking">
             <li class=" row rank-list" ng-repeat="s in users | limitTo:limitRank"
                 ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}" ng-if="s!=undefined">
                             <span class="position col-md-2 col-lg-2 col-xs-3 col-sm-2">
-                                #{{$index+1}}
+                                {{$index+1}}°
                             </span>
                             <span style="padding: 0" class="col-md-7 col-lg-7 col-xs-6 col-sm-7">
                                 <img  ng-src="{{s.image}}" class="thumb" >
@@ -62,5 +49,3 @@ home_userpage_ranking.html<div class="navbar navbar-default navbarRanking">
             </li>
         </ul>
     </div>
-</div>
-</div>

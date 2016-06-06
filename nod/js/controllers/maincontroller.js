@@ -399,6 +399,10 @@ $scope.usersObj.$loaded()
         $state.go('home.user.chat', { myParam: receiverid});
     };
 
+    $scope.gotonodder=function (nodderid) {
+        $state.go('home.user.nodder', { nodder: nodderid});
+    };
+
     $scope.addsongtoprefered= function (song) {
         var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredsong");
         var s={    album: song.album,

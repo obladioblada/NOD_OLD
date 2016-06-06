@@ -3,13 +3,13 @@
 </div>
 <div class="container-fluid content bodystyle" ng-class="{blur:showLoading}" >
     <form name="login_form" novalidate>
-    <div class="row">
-        <div class="col-md-5 col-lg-5 col-xs-4"></div>
-        <div class="col-md-2 col-lg-2 col-xs-4" style="text-align: center;">
-            <img ng-src="{{myUser.image}}" class="user-icon imgLogin">
+        <div class="row">
+            <div class="col-md-5 col-lg-5 col-xs-4"></div>
+            <div class="col-md-2 col-lg-2 col-xs-4" style="text-align: center;">
+                <img ng-src="{{myUser.image}}" class="user-icon imgLogin">
+            </div>
+            <div class="col-md-5 col-lg-5 col-xs-4"></div>
         </div>
-        <div class="col-md-5 col-lg-5 col-xs-4"></div>
-    </div>
         <div class="row">
             <div class="col-md-5 col-lg-5 col-xs-4"></div>
             <div class="col-md-2 col-lg-2 col-xs-4" style="text-align: center;"> <h1 style="color: white;  letter-spacing: 3px; font-family: Lato; font-style: normal; font-weight: 900; font-stretch: ultra-expanded">LOGIN</h1>
@@ -17,26 +17,26 @@
             </div>
             <div class="col-md-5 col-lg-5 col-xs-4"></div>
         </div>
-    <div class="row" id="rowusername">
-        <div class="col-md-4 col-xs-1"></div>
-        <div class="col-md-4 col-xs-10">
-            <input ng-model="myUser.email" id="email" name="email" type="email" placeholder="Email"  class="ng-pristine ng-valid ng-empty ng-touched username-input noautofillStyle" autocomplete="off" spellcheck="false">
-            <span class="error" style="color: white" ng-show="login_form.$error.email && login_form.email.$dirty">invalid email</span>
+        <div class="row" id="rowusername">
+            <div class="col-md-4 col-xs-1"></div>
+            <div class="col-md-4 col-xs-10">
+                <input ng-model="myUser.email" id="email" name="email" type="email" placeholder="Email"  class="ng-pristine ng-valid ng-empty ng-touched username-input noautofillStyle" autocomplete="off" spellcheck="false">
+                <span class="error" style="color: white" ng-show="login_form.$error.email && login_form.email.$dirty">invalid email</span>
+            </div>
+            <div class="col-md-4 col-xs-1">  <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="login_form.$error.email && login_form.email.$dirty" aria-hidden="true"></i> </div>
         </div>
-        <div class="col-md-4 col-xs-1">  <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="login_form.$error.email && login_form.email.$dirty" aria-hidden="true"></i> </div>
-    </div>
-    <div class="row"  id="rowemail">
-        <div class="col-md-4 col-xs-1">
-        </div>
-        <div class="col-md-4 col-xs-10">
-            <input ng-model="myUser.pwd" id="Password"  name="psw" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle" autocomplete="off" required ng-minlength="6">
+        <div class="row"  id="rowemail">
+            <div class="col-md-4 col-xs-1">
+            </div>
+            <div class="col-md-4 col-xs-10">
+                <input ng-model="myUser.pwd" id="Password"  name="psw" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle" autocomplete="off" required ng-minlength="6">
              <span class="error" style="color: white" ng-show="login_form.psw.$error.minlength && login_form.psw.$dirty">
             too short password!
         </span>
+            </div>
+            <div class="col-md-4 col-xs-1">  <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="login_form.psw.$error.minlength && login_form.psw.$dirty" aria-hidden="true"></i>
+            </div>
         </div>
-              <div class="col-md-4 col-xs-1">  <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="login_form.psw.$error.minlength && login_form.psw.$dirty" aria-hidden="true"></i>
-        </div>
-    </div>
         <div class="row " id="submitrow">
             <div class="col-md-4 col-xs-1"></div>
             <div class="col-md-4 col-xs-10" style="text-align: center">
@@ -47,44 +47,44 @@
             <div class="col-md-4 col-xs-1">
             </div>
         </div>
-    <div class="row" id="otherSocialwrite" style="margin-top: 32px;">
-        <div class="col-md-2 col-xs-2">
-        </div>
-        <div class="col-md-5 col-xs-5 otherAccountDiv">
+        <div class="row" id="otherSocialwrite" style="margin-top: 32px;">
+            <div class="col-md-2 col-xs-2">
+            </div>
+            <div class="col-md-5 col-xs-5 otherAccountDiv">
             <span id="otherAccount" class="otherAccount" >
                 Accedi con un altro account
             </span>
-        </div>
-        <div class="col-md-1 col-xs-1">
-            <div class="login menu-wrapper ">
-                <ul class="login menu-items">
-                    <li class="login menu-item">
-                        <button class="login menu-item-button" style="background: #3a5795" ng-click="loginwithFacebook()">
-                            <i class="login menu-item-icon fa fa-facebook"></i>
-                        </button>
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                    <li class="login menu-item">
-                        <button class="login menu-item-button" style="background: #db4437" ng-click="loginwithGoogle()">
-                            <i class="login menu-item-icon fa fa-google"></i>
-                        </button>
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                    <li class="login menu-item">
-                        <button class="login menu-item-button" style="background: #1da1f2" ng-click="loginwithtwetter()">
-                            <i class="login menu-item-icon fa fa-twitter"></i>
-                        </button>
-                        <div class="login menu-item-bounce"></div>
-                    </li>
-                </ul>
-                <button class="login menu-toggle-button">
-                    <i class="fa fa-arrow-circle-right fa-lg menu-toggle-icon login"></i>
-                </button>
+            </div>
+            <div class="col-md-1 col-xs-1">
+                <div class="login menu-wrapper ">
+                    <ul class="login menu-items">
+                        <li class="login menu-item">
+                            <button class="login menu-item-button" style="background: #3a5795" ng-click="loginwithFacebook()">
+                                <i class="login menu-item-icon fa fa-facebook"></i>
+                            </button>
+                            <div class="login menu-item-bounce"></div>
+                        </li>
+                        <li class="login menu-item">
+                            <button class="login menu-item-button" style="background: #db4437" ng-click="loginwithGoogle()">
+                                <i class="login menu-item-icon fa fa-google"></i>
+                            </button>
+                            <div class="login menu-item-bounce"></div>
+                        </li>
+                        <li class="login menu-item">
+                            <button class="login menu-item-button" style="background: #1da1f2" ng-click="loginwithtwetter()">
+                                <i class="login menu-item-icon fa fa-twitter"></i>
+                            </button>
+                            <div class="login menu-item-bounce"></div>
+                        </li>
+                    </ul>
+                    <button class="login menu-toggle-button">
+                        <i class="fa fa-arrow-circle-right fa-lg menu-toggle-icon login"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4">
             </div>
         </div>
-        <div class="col-md-4 col-xs-4">
-        </div>
-    </div>
     </form>
 </div>
 <footer class="navbar navbar-fixed-bottom iscriviti">

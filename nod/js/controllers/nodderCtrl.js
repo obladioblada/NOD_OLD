@@ -13,6 +13,10 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
     };
       $scope.setnodder();
 
+    $scope.gotochat=function (receiverid) {
+        $state.go('home.user.chat', { myParam: receiverid});
+    };
+
 });
 
 /**

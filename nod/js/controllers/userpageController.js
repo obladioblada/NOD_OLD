@@ -40,7 +40,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
     };
     $scope.chat={
         name:"Chat",
-        icon:'fa-comment',
+        icon:'fa-comments',
         styleIcon:'',
         sref:'home.user.chat'
     }

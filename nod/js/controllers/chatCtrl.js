@@ -2,44 +2,61 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.messagetext="";
     console.log("volume "+ $scope.showVolume);
    // $scope.receiver=$firebaseObject(chatref);
-    console.log("il parametro passato" + $stateParams.myParam);
     $scope.receiverid=$stateParams.myParam;
     $scope.currentChat=[];
     $scope.msg="";
     $scope.lastType=0;
     $scope.currenttype=0;
     $scope.emojiOpened=false;
-
+    $scope.receiver="";
     $scope.openEmoji=function(){
         $scope.emojiOpened=!$scope.emojiOpened;
     };
-
-
+    var userRef;
+    var mioid;
     $scope.setChat=function(){
-        var userRef = new Firebase(USERSURL+$scope.receiverid);
+        console.log("sono dentro");
+        if($stateParams.myParam==null&&$scope.myUser.lastreceiver!=null) {
+            console.log("il parametro passato" + $stateParams.myParam);
+            console.log("last receiver is" + $scope.myUser.lastreceiver);
+            $scope.receiverid = $scope.myUser.lastreceiver;
+        }else {
+            if($stateParams.myParam==null&&$scope.myUser.lastreceiver==null) {
+                $scope.receiverid = "facebook:10209013240030119";
+            }
+        }
+        console.log("receiverid è "+$scope.receiverid);
+        userRef = new Firebase(USERSURL+$scope.receiverid);
         $scope.receiverObj=$firebaseObject(userRef);
-        $scope.receiverObj.$bindTo($scope, 'receiver');
-        var mioid=$rootScope.ref.getAuth().uid;
-        $scope.uidchat=mioid+"-"+$scope.receiverid;
-        if(mioid.localeCompare($scope.receiverid)==-1) $scope.uidchat=$scope.receiverid+"-"+mioid;
-        console.log("uidchat "+$scope.uidchat);
-        $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
-        $scope.chatref.orderByChild("utc").on("child_added", function(snapshot){
-        });
-        $scope.chatObj=$firebaseObject($scope.chatref);
-        $scope.chatObj.$bindTo($scope, 'currentChat');
-        $scope.chatObj.$loaded()
-            .then(function(){
-                setTimeout(function () {
-                    $(".chat-messages").scrollTop(9999999);
-                });
+        $scope.receiverObj.$bindTo($scope, 'receiver').then(function () {
+            console.log("il receiver è" + $scope.receiver.name);
+            mioid=$rootScope.ref.getAuth().uid;
+            $scope.uidchat=mioid+"-"+$scope.receiverid;
+            if(mioid.localeCompare($scope.receiverid)==-1) $scope.uidchat=$scope.receiverid+"-"+mioid;
+            console.log("uidchat "+$scope.uidchat);
+            console.log("il receiver è" + $scope.receiver);
+            $scope.chatref= new Firebase(CHATSURL+$scope.uidchat);
+            $scope.chatref.orderByChild("utc").on("child_added", function(snapshot){
             });
-        var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
-        ref.update({
-            currentChat:$scope.uidchat,
-            isTyping: false
+            $scope.chatObj=$firebaseObject($scope.chatref);
+            $scope.chatObj.$bindTo($scope, 'currentChat');
+            $scope.chatObj.$loaded()
+                .then(function(){
+                    setTimeout(function () {
+                        $(".chat-messages").scrollTop(9999999);
+                    });
+                });
+            var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+            ref.update({
+                currentChat:$scope.uidchat,
+                isTyping: false,
+                lastreceiver:$scope.receiver.$id
+            });
         });
+
+
     };
+
     $scope.$watch('currentChat',function(){
         var ref = new Firebase(CHATSURL+$scope.uidchat);
         ref.once("value", function(snapshot) {
@@ -83,63 +100,67 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             if ($scope.receiver.isTyping) {
                 friendIsTyping();
             } else {
-                friendStoppedTyping();
+                if($state.current.name=="home.user.chat")
+                   setTimeout(friendStoppedTyping(),2000);
             }
         }
     });
 
-    function friendIsTyping(){
-        if(isFriendTyping) return;
+    function friendIsTyping() {
+        if($state.current.name=="home.user.chat"){
+        var $effectContainer=$(".chat-effect-container");
+            var $infoContainer=$(".chat-info-container");
 
-        isFriendTyping=true;
-
-        var $dots=$("<div/>")
-            .addClass('chat-effect-dots')
-            .css({
-                top:-30+bleeding,
-                left:10
-            })
-            .appendTo($effectContainer)
+            var $dots = $("<div/>")
+                .addClass('chat-effect-dots')
+                .css({
+                    top: -30 + bleeding,
+                    left: 10
+                })
+                .appendTo($effectContainer)
             ;
         for (var i = 0; i < 3; i++) {
-            var $dot=$("<div/>")
-                .addClass("chat-effect-dot")
-                .css({
-                    left:i*20
-                })
-                .appendTo($dots)
+            var $dot = $("<div/>")
+                    .addClass("chat-effect-dot")
+                    .css({
+                        left: i * 20
+                    })
+                    .appendTo($dots)
                 ;
-            TweenMax.to($dot,0.3,{
-                delay:-i*0.1,
-                y:30,
-                yoyo:true,
-                repeat:-1,
-                ease:Quad.easeInOut
+            TweenMax.to($dot, 0.3, {
+                delay: -i * 0.1,
+                y: 30,
+                yoyo: true,
+                repeat: -1,
+                ease: Quad.easeInOut
             })
-        };
+        }
+        ;
 
-        var $info=$("<div/>")
+        var $info = $("<div/>")
             .addClass("chat-info-typing")
             .text("il tuo amico Nodder sta scrivendo...")
             .css({
-                transform:"translate3d(0,30px,0)"
+                transform: "translate3d(0,30px,0)"
             })
             .appendTo($infoContainer)
 
-        TweenMax.to($info, 0.3,{
-            y:0,
-            force3D:true
+        TweenMax.to($info, 0.3, {
+            y: 0,
+            force3D: true
         });
 
         gooOn();
     }
+    }
 
     function friendStoppedTyping(){
-        if(!isFriendTyping) return
+        if($state.current.name=="home.user.chat"){
+            var $effectContainer=$(".chat-effect-container");
+            var $infoContainer=$(".chat-info-container");
 
-        isFriendTyping=false;
 
-        var $dots=$effectContainer.find(".chat-effect-dots");
+            var $dots=$effectContainer.find(".chat-effect-dots");
         TweenMax.to($dots,0.3,{
             y:40,
             force3D:true,
@@ -158,6 +179,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
                 gooOff();
             }
         });
+            }
     }
 
     $scope.checkingYet=false;
@@ -203,7 +225,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         $scope.limit += 150;
     };
 
-    $scope.setChat();
+    setTimeout($scope.setChat());
 
     $scope.sendMessageAngular=function(){
         var message=$scope.msg;

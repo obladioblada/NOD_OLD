@@ -117,6 +117,19 @@ ul.ranklist{
     font-weight: 200;
 }
 
+.title-rank-list{
+    border: 0px solid;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    padding: 10px;
+    margin-right: 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
 
 .rankiconname{
     font-weight: 300;

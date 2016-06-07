@@ -115,6 +115,7 @@ ul.ranklist{
     margin-top: 8px;
     font-size: xx-large;
     font-weight: 200;
+    cursor: default;
 }
 
 .title-rank-list{

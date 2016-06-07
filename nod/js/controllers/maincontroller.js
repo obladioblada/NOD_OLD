@@ -127,7 +127,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         }
        // $i++;
         delete $scope.audio;
-        $scope.audio = ngAudio.load("audio/"+$scope.songs[$i].title+".mp3");
+        $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$scope.songs[$i].title+".mp3");
         $scope.audio.progress=0;
         $scope.currentSongIndex=$i;
         $scope.audio.currentTime=0;
@@ -365,7 +365,7 @@ $scope.usersObj.$loaded()
         }
         console.log($song+" - "+$time+" - "+$idmaster);
         $time+=0.5;
-        $scope.audio = ngAudio.load("audio/"+$song.title+".mp3#t="+$time);
+        $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$song.title+".mp3#t="+$time);
         $scope.audio.loop=false;
         $scope.currentSongIndex=$scope.searchSongIndex($song);
         $scope.audio.play();

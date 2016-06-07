@@ -13,7 +13,7 @@ myApp.controller('rankCtrl', function($scope){
     $scope.buddy={
         text: "nodBuddy",
         icon: "fa-heartbeat",
-        sref:""
+        sref:"home.user.ranking.me"
     };
     $scope.ranknavbaritem.push($scope.mystats,$scope.mensile,$scope.buddy);
 

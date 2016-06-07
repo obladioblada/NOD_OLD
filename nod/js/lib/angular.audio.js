@@ -50,7 +50,7 @@ angular.module('ngAudio', [])
                     /* Fixes a bug with Firefox (???) */
                     $timeout(function() {
                         audio.play();
-                    }, 10);
+                    }, 100);
                 });
 
                 });
@@ -116,7 +116,7 @@ angular.module('ngAudio', [])
             setTimeout(function() {
                 console.log("URL :"+url);
                 audio.src = url;
-            }, 1000);
+            }, 200);
 
             return deferred.promise;
 

@@ -1,0 +1,126 @@
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../img/check_radio_sheet.png) -38px top no-repeat;
+    cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+    background:url(../img/check_radio_sheet.png) -57px top no-repeat;
+}
+
+
+ul.settingslist{
+
+    margin:0px;
+    padding: 10px;
+}
+
+.settings-list{
+    border: 0px solid;
+    list-style: none;
+    color: white;
+    background: #222222;
+    cursor: pointer;
+    text-align: left;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    padding: 10px;
+    margin-right: 0 !important;
+}
+
+.settings-list:hover{
+    background: #841E21;
+}
+
+.settings-list.first{
+    border-top: 1px solid #888888;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.settings-list.last{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom: 1px solid #888888;
+}
+.settings-list.last.suggestions{
+    border-bottom: 1px solid #4D4D52;
+}
+
+.name-settings-list{
+    border: 0px solid;
+    list-style: none;
+    color: white;
+    background: #841E21;
+    cursor: pointer;
+    text-align: left;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    padding: 10px;
+    margin-right: 0px;
+    border-top: 1px solid #888888;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.position{
+    margin-top: 8px;
+    font-weight: 200;
+}
+
+.title-settings-list{
+    border: 0px solid;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    padding: 10px;
+    margin-right: 0 !important;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+
+.settingsiconname{
+    font-weight: 300;
+    margin: 0 auto;
+    transition: all cubic-bezier(1, -0.87, 0.79, 1.79) 0.2s;
+    margin-top: 2px;
+    border-radius: 63px;
+    font-size: 80%;
+    background-color: transparent;
+    width: 70px;
+    visibility: hidden;
+}
+
+.item-settings-navbar:hover >.settingsiconname{
+    visibility: visible;
+    margin-top: 7px;
+}
+
+.changeUsername{
+    transition: all cubic-bezier(1, -0.87, 0.79, 1.79) 0.2s;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 3px;
+    width: 100%;
+    position: relative;
+    top: 5px;
+    background: none;
+    text-align: center;
+}
+.changeUsername:focus{
+    border: 0.5px solid #4C4B4B;
+    border-radius: 18px;
+    background-color: #1B6D85;
+}
+.settings-list-right{
+    text-align: center;
+}

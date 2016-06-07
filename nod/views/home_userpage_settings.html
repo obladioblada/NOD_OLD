@@ -1,10 +1,38 @@
 <div class="row">
-    <div class="col-md-12  col-sm-12" >
-        <ul>
-            <li class="albumElement" ng-repeat="s in songs" ng-repeat="u in users">
-                <img class="albumThumb" ng-src="{{s.image}}"><br>
-                <h6 class="albumName">{{s.album}}</h6>
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" >
+        <ul class="settingslist">
+            <li class="row title-settings-list">
+                <h5 class="position col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                    Settings
+                </h5>
+            </li>
+            <li class=" row settings-list first">
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                                <h5>Cambia il tuo username: </h5>
+                            </span>
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6 settings-list-right">
+                                <input type="text" class="changeUsername ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="myUser.name">
+                            </span>
+            </li>
+            <li class=" row settings-list ">
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                                <h5>Silenzia chat </h5>
+                            </span>
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6 settings-list-right">
+                                <i class="fa" ng-class="{'fa-bell': myUser.chatShutUp==false,'fa-bell-slash': myUser.chatShutUp==true}" aria-hidden="true" ng-click="myUser.chatShutUp=!myUser.chatShutUp"></i>
+                            </span>
+            </li>
+            <li class=" row settings-list last">
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                                <h5>Modalità 007 </h5>
+                            </span>
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6 settings-list-right">
+                                <i class="fa " ng-class="{'fa-user-secret': myUser.chatShutUp==false,'fa-bell-slash': myUser.chatShutUp==true}" aria-hidden="true" ng-click="myUser.chatShutUp=!myUser.chatShutUp"></i>
+                            </span>
             </li>
         </ul>
     </div>
 </div>
+
+<!--<input type="checkbox" id="{{$index}}" name="{{$index}}" />
+<label for="{{$index}}"><span></span></label>-->

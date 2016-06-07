@@ -152,8 +152,8 @@
                                      class="player-album player-img-album"
                                      ng-class="{blurIt: showIconLike==true,animateIt: audio.paused!=true}">
                                 <div ng-if="audio!=undefined"
-                                     ng-click="addsongtoprefered(currentsong);makeItBounce[currentSongIndex]=!makeItBounce[currentSongIndex]" class="icona-like icobutton icobutton--thumbs-up"
-                                     ng-class="{max: showIconLike==true, loved:checkIfPreferedYet(currentsong),bounce: makeItBounce[currentSongIndex]==true,bounceBack: makeItBounce[currentSongIndex]==false}"
+                                     ng-click="addsongtoprefered(myUser.song);makeItBounce[currentSongIndex]=!makeItBounce[currentSongIndex]" class="icona-like icobutton icobutton--thumbs-up"
+                                     ng-class="{max: showIconLike==true, loved:checkIfPreferedYet(myUser.song),bounce: makeItBounce[currentSongIndex]==true,bounceBack: makeItBounce[currentSongIndex]==false}"
                                      >
                                     <span class="fa fa-hand-peace-o" aria-hidden="true"></span>
                                 </div>

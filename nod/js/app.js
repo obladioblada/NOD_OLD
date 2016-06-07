@@ -78,7 +78,8 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',
-                                            templateUrl:'views/home_userpage_albums.html'
+                                            controller:'settingsCtrl',
+                                            templateUrl:'views/home_userpage_settings.html'
                                         });
 
         $urlRouterProvider.otherwise('home/user/music');

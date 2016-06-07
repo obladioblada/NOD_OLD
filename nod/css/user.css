@@ -13,6 +13,9 @@ ul.navbaruser{
 ul.navbaruser>li{
     padding-left: 28px;
 }
+ul.navbaruser>li.last{
+    padding-bottom: 100px;
+}
 
 h6.name-user-nav-icon{
     font-weight: 300;

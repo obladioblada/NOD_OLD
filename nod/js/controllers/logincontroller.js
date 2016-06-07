@@ -1,5 +1,5 @@
 myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
-    $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
+    $scope.defaultImg='img/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
     $rootScope.ref=ref;
@@ -159,12 +159,22 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 if(authData!=null) {
                     ref.child(authData.uid).update({
                         provider: authData.provider,
-                        name: getName(authData),
                         online:true
                     });
+                    if (snapshot.child(authData.uid).child("name").exists() == false) {
+                        ref.child(authData.uid).update({
+                            name: getName(authData),
+                        });
+                    }
                     if (snapshot.child(authData.uid).child("image").exists() == false) {
                         console.log("image esiste ?  "+ snapshot.child(authData.uid).child("image").exists()) ;
                         setImage(authData,'http://penerbitsalemba.com/v3/images/user_default.png');
+                    }
+                    if (snapshot.child(authData.uid).child("chatShutUp").exists() == false) {
+                        ref.child(authData.uid).update({ chatShutUp: false });
+                    }
+                    if (snapshot.child(authData.uid).child("modoIncognito").exists() == false) {
+                        ref.child(authData.uid).update({ modoIncognito: false });
                     }
                     console.log(" e authdata vale "+authData.uid);
                 }

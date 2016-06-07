@@ -155,7 +155,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     });
 
     $scope.$watch('audio.currentTime',function(){
-        if($scope.audio!=null) console.log("il tempo è    "+ $scope.audio.currentTime);
+    //    if($scope.audio!=null) console.log("il tempo è    "+ $scope.audio.currentTime);
         if($scope.audio!=undefined) {
             $scope.updateBar();
             if ($scope.audio.remaining < 1) {
@@ -505,7 +505,8 @@ $scope.usersObj.$loaded()
     Array.prototype.pushIfNotExist = function(element, comparer) {
         if (!this.inArray(comparer)) {
             if($scope.isFirstTimeIChek==false){
-                $(".notification").trigger('play');
+                if($scope.myUser.chatShutUp==false)
+                    $(".notification").trigger('play');
             }
             this.push(element);
         }

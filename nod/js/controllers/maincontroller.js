@@ -155,7 +155,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     });
 
     $scope.$watch('audio.currentTime',function(){
-        if($scope.audio!=null) console.log("il tempo è    "+ $scope.audio.currentTime);
+    //    if($scope.audio!=null) console.log("il tempo è    "+ $scope.audio.currentTime);
         if($scope.audio!=undefined) {
             $scope.updateBar();
             if ($scope.audio.remaining < 1) {

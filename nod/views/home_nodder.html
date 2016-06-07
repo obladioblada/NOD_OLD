@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12 ">
             <img ng-src="{{nodder.image}}"  class="nodder-icon">
             <input type="text" class="nodder-name" ng-model="nodder.name" ng-disabled="true" >
-            <span ng-if="nodder.isPlaying">
+            <span ng-if="nodder.isPlaying&&nodder.modoIncognito==false">
                 <h6 class="infonodderh6"> ascolta  </h6>
                 <img  style=" margin-top: 7px;" ng-src="{{nodder.song.image}}" class="thumb" > <h6 class="infosongnodder"> {{nodder.song.title}} </h6> <h6  class="infosongnodder otherinfosongnodder"> {{nodder.song.artist}}</h6>  <h6 class="infosongnodder otherinfosongnodder">{{nodder.time| trackTime }}</h6>
             </span>

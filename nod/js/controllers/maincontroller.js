@@ -505,7 +505,8 @@ $scope.usersObj.$loaded()
     Array.prototype.pushIfNotExist = function(element, comparer) {
         if (!this.inArray(comparer)) {
             if($scope.isFirstTimeIChek==false){
-                $(".notification").trigger('play');
+                if($scope.myUser.chatShutUp==false)
+                    $(".notification").trigger('play');
             }
             this.push(element);
         }

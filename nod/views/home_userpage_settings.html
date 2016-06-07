@@ -10,7 +10,7 @@
                             <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
                                 <h5>Cambia il tuo username: </h5>
                             </span>
-                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6 settings-list-right">
+                            <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
                                 <input type="text" class="changeUsername ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="myUser.name">
                             </span>
             </li>
@@ -24,10 +24,10 @@
             </li>
             <li class=" row settings-list last">
                             <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-                                <h5>Modalità 007 </h5>
+                                <h5 >Modalità 007 </h5>
                             </span>
                             <span class="col-md-6 col-lg-6 col-xs-6 col-sm-6 settings-list-right">
-                                <i class="fa " ng-class="{'fa-user-secret': myUser.chatShutUp==false,'fa-bell-slash': myUser.chatShutUp==true}" aria-hidden="true" ng-click="myUser.chatShutUp=!myUser.chatShutUp"></i>
+                                <i class="fa " ng-class="{'fa-user-secret': myUser.modoIncognito==true,'fa-bullhorn': myUser.modoIncognito==false}" aria-hidden="true" ng-click="myUser.modoIncognito=!myUser.modoIncognito"></i>
                             </span>
             </li>
         </ul>

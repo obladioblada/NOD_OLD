@@ -173,6 +173,9 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     if (snapshot.child(authData.uid).child("chatShutUp").exists() == false) {
                         ref.child(authData.uid).update({ chatShutUp: false });
                     }
+                    if (snapshot.child(authData.uid).child("modoIncognito").exists() == false) {
+                        ref.child(authData.uid).update({ modoIncognito: false });
+                    }
                     console.log(" e authdata vale "+authData.uid);
                 }
             });

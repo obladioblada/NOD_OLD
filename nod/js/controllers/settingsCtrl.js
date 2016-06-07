@@ -1,4 +1,4 @@
-myApp.controller('chatCtrl', function($scope,$rootScope){
+myApp.controller('settingsCtrl', function($scope,NODURL,USERSURL,$firebaseObject,$rootScope){
 
 });
 

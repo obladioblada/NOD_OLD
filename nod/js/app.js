@@ -78,6 +78,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',
+                                            controller:'settingsCtrl',
                                             templateUrl:'views/home_userpage_settings.html'
                                         });
 

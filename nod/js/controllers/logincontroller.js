@@ -1,5 +1,5 @@
 myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
-    $scope.defaultImg='http://penerbitsalemba.com/v3/images/user_default.png';
+    $scope.defaultImg='img/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
     $rootScope.ref=ref;

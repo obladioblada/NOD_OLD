@@ -116,7 +116,7 @@ angular.module('ngAudio', [])
             setTimeout(function() {
                 console.log("URL :"+url);
                 audio.src = url;
-            }, 1000);
+            }, 10);
 
             return deferred.promise;
 

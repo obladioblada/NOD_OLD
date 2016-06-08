@@ -237,6 +237,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
 
     $scope.sendMessageAngular=function(){
         $scope.emojiOpened=false;
+        $scope.searchForEmoji(0);
         var message=$scope.msg;
         console.log($scope.msg);
         if(message=="") return;
@@ -251,6 +252,27 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             $(".chat-messages").scrollTop(9999999);
         });
     };
+
+    $scope.smiles=[":\\)",":P",":p","B\\)","B\\|",":\\*",":o",":O",":S",":s","&lt;3","\\\\\/",":\\(","spotify","deezer"];
+    $scope.emojis=["&#x1F60A;","&#x1F60B;","&#x1F60B;","&#x1F60E;","&#x1F60E;","&#x1F618;","&#x1F62E;","&#x1F631;","&#x1F633;","&#x1F633;"," &#x2764;","&#x270C;"," &#x1F61E;","&#x1F4A9;","&#x1F4A9;"];
+    $scope.searchForEmoji= function(indexsmile){
+        var smile=$scope.msg.search($scope.smiles[indexsmile]);
+        var cuore=3;
+        if(indexsmile!=10){cuore=0;}
+        if(indexsmile==13){cuore=5;}
+        if(indexsmile==14){cuore=4;}
+        if(smile!=-1){
+            var before=$scope.msg.slice(0,smile);
+            var after=$scope.msg.slice(smile+2+cuore,$scope.msg.length);
+            $scope.msg=before+$scope.emojis[indexsmile]+after;
+            $scope.searchForEmoji(indexsmile);
+        }else{
+            indexsmile++;
+            if(indexsmile<$scope.smiles.length){
+                $scope.searchForEmoji(indexsmile);
+            }
+        }
+    }
 
     function getCaretPosition(editableDiv) {
         var caretPos = 0,

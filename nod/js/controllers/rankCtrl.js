@@ -1,4 +1,6 @@
-myApp.controller('rankCtrl', function($scope){
+myApp.controller('rankCtrl', function($scope,USERSURL){
+     $scope.usersBycountedpeaced=[];
+
     $scope.ranknavbaritem=[];
     $scope.mensile={
         text:"Mensile",
@@ -27,5 +29,18 @@ myApp.controller('rankCtrl', function($scope){
         });
     };
     setTimeout(function(){$scope.resizeThem()});
+
+    $scope.orderBycountedpeace=function () {
+        var ref = new Firebase(USERSURL);
+        ref.on("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+            $scope.usersBycountedpeaced.push(childSnapshot.val());
+            });
+
+        });
+
+    };
+    $scope.orderBycountedpeace();
+
 });
 

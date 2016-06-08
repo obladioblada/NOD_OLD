@@ -18,7 +18,7 @@
                             </span>
                             <span class="col-md-3 col-lg-3 col-xs-3 col-sm-3" style="text-align: center;">
                                 <img src="http://www.fishisdata.com/wp-content/uploads/2015/07/Prize-Tower.png" style="width: 36px;">
-                                300<br>voti positivi!
+                             {{myUser.countpeaced}} <br> peace !
                             </span>
             </li>
         </ul>
@@ -30,7 +30,7 @@
                     Migliori Nodder dell'ultimo mese!
                 </h5>
             </li>
-            <li class=" row rank-list" ng-repeat="s in users | limitTo:limitRank"
+            <li class=" row rank-list" ng-repeat="s in usersBycountedpeaced | limitTo:limitRank | orderBy : '-countpeaced'"
                 ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}" ng-if="s!=undefined">
                             <span class="position col-md-2 col-lg-2 col-xs-3 col-sm-2">
                                 {{$index+1}}°
@@ -44,7 +44,7 @@
                             </span>
                             <span class="col-md-3 col-lg-3 col-xs-3 col-sm-3" style="text-align: center;">
                                 <img src="http://www.fishisdata.com/wp-content/uploads/2015/07/Prize-Tower.png" style="width: 36px;">
-                                {{(10-$index)*100}}<br>voti positivi!
+                                {{s.countpeaced}}<br> peace
                             </span>
             </li>
         </ul>

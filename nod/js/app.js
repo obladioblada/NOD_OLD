@@ -253,6 +253,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
         };
     })
 
+
     .directive('clickOff', function($parse, $document) {
         var dir = {
             compile: function($element, attr) {

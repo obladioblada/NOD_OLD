@@ -36,7 +36,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         name: 'ranking',
         icon: 'fa-bar-chart',
         styleIcon: "{'margin-left': '4px'}",
-        sref:'home.user.ranking'
+        sref:'home.user.ranking.me'
     };
     $scope.chat={
         name:"Chat",

@@ -2,7 +2,7 @@
 {   height: 80px;
     background: #4D4D52;
     border: none;
-    margin-top: -7px;
+    margin-top: 21px;
 }
 
 .linavbar {
@@ -24,23 +24,11 @@
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
 
-.item-ranking-navbar.first{
-    border-radius: 18px;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.item-ranking-navbar.last{
-    border-radius: 18px;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-}
 
 .item-ranking-navbar:hover{
     cursor: pointer;
     height: 75px;
-    background: #222222;
-    border-radius: 10%;
+    background: #841E21;
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
 }
@@ -54,8 +42,6 @@
 .current-item-ranking-navbar{
     cursor: pointer;
     background: #222222 !important;
-    border-radius: 10%;
-    height: 75px;
 }
 
 

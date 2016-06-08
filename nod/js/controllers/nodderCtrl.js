@@ -2,6 +2,7 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
     var nodderlikedRef  = new Firebase(USERSURL+$stateParams.nodder+"/peaced/");
     var nodderRef;
     var mykeypeaced;
+    $scope.count=0;
 
     $scope.setnodder=function () {
         $scope.nodder="";
@@ -24,9 +25,18 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
     $scope.setPeaceToNodder=function () {
         console.log("dentro set");
         if($scope.checkIfNodderExist($rootScope.ref.getAuth().uid)==false){
-             nodderlikedRef.push($rootScope.ref.getAuth().uid);
+            nodderlikedRef.push($rootScope.ref.getAuth().uid);
+            nodderRef.update({
+                countpeaced: $scope.count+1
+            });
+
         }
-        else{ nodderlikedRef.child(mykeypeaced).remove(); }
+
+        else{
+            nodderlikedRef.child(mykeypeaced).remove();
+            nodderRef.update({
+                countpeaced: $scope.count-1
+            });}
     };
 
     $scope.checkIfNodderExist=function (id) {
@@ -39,8 +49,8 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
                     bool = true;
                 }
             });
-            if(snapshot.numChildren()>0) count=snapshot.numChildren()-1;
-            else count=0;
+            $scope.count=snapshot.numChildren();
+
         });
         return bool;
     };

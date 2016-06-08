@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" style="margin-right: 0" >
     <div class="chat-window col-md-7 col-lg-7 col-xs-7 col-sm-7">
         <div class="chat-messages no-select">
             <div class="chat-message-bubble nomeamico no-select">
@@ -13,7 +13,7 @@
                     </div>
                 </li>
             </ol>
-            <div class="emojiContainer no-select" ng-class="{'max' : emojiOpened}" scrolly="loadMore()">
+            <div class="emojiContainer no-select" ng-class="{'max' : emojiOpened}" scrolly="loadMore()" >
                 <div class="emojielement" ng-repeat="m in emoji | limitTo:limit" ng-bind-html="m|html" ng-click="addEmojiToMsg(m)" >
                     {{m}}
                 </div>
@@ -30,7 +30,7 @@
                 <button class="chat-input-tool" ng-click="openEmoji()">
                     <span class="emj"> &#x1F600;</span>
                 </button>
-                <div class="chat-input"  ng-model="msg" ng-enter="sendMessageAngular()" contenteditable=""></div>
+                <div class="chat-input"  ng-model="msg" ng-click="emojiOpened=false" ng-enter="sendMessageAngular()" contenteditable=""></div>
                 <button class="chat-send no-select" ng-click="sendMessageAngular()">
                     <i class="fa fa-paper-plane no-select" style="color:white;transform: translate3d(0px, 0px, 0px);"></i>
                 </button>

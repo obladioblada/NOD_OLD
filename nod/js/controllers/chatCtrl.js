@@ -9,6 +9,8 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     $scope.currenttype=0;
     $scope.emojiOpened=false;
     $scope.receiver="";
+    $scope.inputIndex=0;
+
     $scope.openEmoji=function(){
         $scope.emojiOpened=!$scope.emojiOpened;
     };
@@ -216,8 +218,14 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         },$scope.delayCheck);
     };
 
+
     $scope.addEmojiToMsg=function(m){
-        $scope.msg+=m;
+        console.log($scope.inputIndex);
+        var id = "00164973";
+        var first = $scope.msg.slice(0,$scope.inputIndex);
+        var last = $scope.msg.slice($scope.inputIndex,$scope.msg.length);
+        $scope.msg = first+m+last;
+//        $scope.msg+=m;
     };
 
     $scope.limit=150;
@@ -228,6 +236,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     setTimeout($scope.setChat());
 
     $scope.sendMessageAngular=function(){
+        $scope.emojiOpened=false;
         var message=$scope.msg;
         console.log($scope.msg);
         if(message=="") return;
@@ -242,5 +251,35 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             $(".chat-messages").scrollTop(9999999);
         });
     };
+
+    function getCaretPosition(editableDiv) {
+        var caretPos = 0,
+            sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                if (range.commonAncestorContainer.parentNode == editableDiv) {
+                    caretPos = range.endOffset;
+                }
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            if (range.parentElement() == editableDiv) {
+                var tempEl = document.createElement("span");
+                editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+                var tempRange = range.duplicate();
+                tempRange.moveToElementText(tempEl);
+                tempRange.setEndPoint("EndToEnd", range);
+                caretPos = tempRange.text.length;
+            }
+        }
+        return caretPos;
+    }
+    var updateInputIndex = function() {
+        $scope.inputIndex=getCaretPosition(this);
+    };
+    $('.chat-input').on("mousedown mouseup keydown keyup", updateInputIndex);
+
 });
 

@@ -365,13 +365,12 @@ $scope.usersObj.$loaded()
         }
         console.log($song+" - "+$time+" - "+$idmaster);
         $time+=0.5;
-        $scope.audio = ngAudio.load("audio/"+$song.title+".mp3#t="+$time);
+        $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$song.title+".mp3#t="+$time);
         $scope.audio.loop=false;
         $scope.currentSongIndex=$scope.searchSongIndex($song);
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
         $scope.idMaster=$idmaster;
-
     };
 
     $scope.searchSongIndex= function($song){

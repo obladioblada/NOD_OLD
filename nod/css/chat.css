@@ -86,6 +86,7 @@
 .chat-input-bar {
     position: relative;
     background: #1B6D85;
+    border-radius: 18px;
 }
 
 .chat-input-wrapper {

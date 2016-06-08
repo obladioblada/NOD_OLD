@@ -157,6 +157,7 @@ ul{ padding: 0px; }
     margin-top: 0px;
     padding: 25px;
     border-radius: 50px;
+    transition: all 0.3s cubic-bezier(1, -0.35, 0.58, 1.72);
 }
 
 
@@ -168,8 +169,6 @@ ul{ padding: 0px; }
     position: absolute;
     margin-top: 0px;
     margin-left: -12px;
-
-
 }
 .user-icon:hover + .camera-icoon{
     cursor: pointer;

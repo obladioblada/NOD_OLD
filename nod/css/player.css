@@ -69,6 +69,7 @@ animation: bounce .3s 1 cubic-bezier(0.250, 0.460, 0.450, 0.940);
 	height: 96px;
 	top: 25%;
 	left: 27%;
+	transition: background 0.5s cubic-bezier(1, -0.35, 0.58, 1.72);
 }
 .icona-like.max:hover{
 	background: #1b6d85;

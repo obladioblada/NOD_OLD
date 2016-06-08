@@ -5,7 +5,7 @@
                 <a class="userlink" ng-click="gotonodder(receiver.$id)"> {{receiver.name}} </a>
             </div>
             <ol class="chat-messages-list no-select" style="transform: matrix(1, 0, 0, 1, 0, 0);">
-                <li ng-repeat="m in currentChat  "class="chat-message no-select"  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
+                <li ng-repeat="m in currentChat  " class="chat-message no-select"  ng-class="{'chat-message-self' : myUser.$id==m.sender,'chat-message-friend' : myUser.$id!=m.sender}">
                     <div class="chat-message-bubble no-select" style="transform: translate3d(0px, 0px, 0px); opacity: 1; text-align: right ">
                         <text class="no-select" ng-bind-html="m.text|html"> </text> <i ng-show="m.read" class="fa fa-check no-select" aria-hidden="true"></i>
                         <h6 class="texttime no-select">{{ m.utc | date:' h : mm a '}}</h6>

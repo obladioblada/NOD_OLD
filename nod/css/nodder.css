@@ -72,15 +72,40 @@
 }
 
 .chaticon{
-    float: right;
-    margin-top: 18px;
+    margin-top: 10px;
     margin-right: 31px;
     transform: scaleX(-1);
     cursor: pointer;
+    border: 0 solid #1B6D85;
+    border-radius: 100%;
+    background: #1B6D85;
+    height: 60px;
+    width: 60px;
+    color: white;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    float: right;
+    font-size: 35px;
+    padding-top: 10px;
+
 }
 .chaticon:hover{
-    color: #841E21;
+    background:#4D4D52;
 }
+
+.chaticon:active{
+
+    background: #841E21;
+    border: 5px solid #841E21;
+}
+
+
+
+.chaticon-liked{
+    background: #841E21;
+}
+
+
+
 .adjust-margin-row{
     margin-left: 0;
     margin-right: 0;

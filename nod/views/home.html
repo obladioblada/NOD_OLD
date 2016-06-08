@@ -6,8 +6,8 @@
         <style ng-bind-html="style"></style>
         <style ng-bind-html="volumeStyle"></style>
         <audio class="notification" controls preload="none">
-            <source src="../nod/audio/notification.mp3" type="audio/mpeg">
-            <source src="../nod/audio/notification.ogg" type="audio/ogg">
+            <source src="https://nod-music.firebaseapp.com/audio/notification.mp3" type="audio/mpeg">
+            <source src="https://nod-music.firebaseapp.com/audio/notification.ogg" type="audio/ogg">
         </audio>
         <div class="row top-page">
 
@@ -71,7 +71,6 @@
                             </ul>
                         </div>
                     </div></div>
-
             </div>
         </div>
 
@@ -92,10 +91,6 @@
                     <h6  class="name-user-nav-icon iconname" style="{{logoutmenu.styleText}}"> {{logoutmenu.name}} </h6></div>
             </div>
             <ul class="chatContainer">
-               <!-- <li class="chatItem" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid">
-                    <img class="chatThumb" ng-src="{{u.image}}" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline' ">
-                    <h6 class="schortchatnameuser">{{u.name}}</h6>
-                </li>-->
                 <li class="chatItem " ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid">
                     <div class="chatThumb offline" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline' " ng-style="{'background-image':'url({{u.image}})'}">
                         <div class="notifica" ng-class="messaggiDaId(uid)!=0 ? 'max' : ''"><i ng-if="messaggiDaId(uid)!=0">{{messaggiDaId(uid)}}</i></div>

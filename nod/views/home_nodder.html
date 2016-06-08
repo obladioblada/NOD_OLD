@@ -8,11 +8,11 @@
                 <h6 class="infonodderh6"> ascolta  </h6>
                 <img  style=" margin-top: 7px;" ng-src="{{nodder.song.image}}" class="thumb" > <h6 class="infosongnodder"> {{nodder.song.title}} </h6> <h6  class="infosongnodder otherinfosongnodder"> {{nodder.song.artist}}</h6>  <h6 class="infosongnodder otherinfosongnodder">{{nodder.time| trackTime }}</h6>
             </span>
-            <i style="float: right" class=" chaticon fa fa-3x fa-comments" aria-hidden="true" ng-click="gotochat(nodder.$id)"></i>
+            <i  class=" chaticon fa  fa-comments " aria-hidden="true" ng-click="gotochat(nodder.$id)" ></i>
+            <i   class="chaticon fa  fa-hand-peace-o " aria-hidden="true" ng-click="setPeaceToNodder()" ng-class=" checkIfNodderExist(myUser.$id) ? 'chaticon-liked':'' "></i>
         </div>
     </div>
     <div class="row page-nodder-style">
-
         <div class="row adjust-margin-row">
         </div>
         <div class="row adjust-margin-row">

@@ -124,6 +124,7 @@
                                 <h2 ng-show="audio!=undefined" class="player-song-name">{{myUser.song.title}}</h2>
                                 <h3 ng-show="audio!=undefined" class="player-artist">{{myUser.song.artist}}</h3>
                                 <i class="fa toggle-player" aria-hidden="true" ng-class="min==true ? 'fa-angle-up': 'fa-angle-down'" ng-click="min=!min" ></i>
+                                <i class="fa karaoke-toogle" aria-hidden="true" ng-class="{'fa-microphone-slash': karaoke, 'fa-microphone':karaoke==false,'disabled':audio==undefined}" ng-click="showKaraoke()" ></i>
                             </div>
                         </div>
                         <svg class="vinyl-arm" xmlns="http://www.w3.org/2000/svg" ng-class="{play: myUser.isPlaying,min: min}">
@@ -144,6 +145,11 @@
                                       fill="#191919"/>
                             </g>
                         </svg>
+                        <div class="karaoke" ng-class="{max : audio!=undefined&&karaoke&&min==false}"> <!-- ng-if="audio!=undefined">-->
+                            <p class="currentline" ng-class="{min: min||karaoke==false}">{{currentLineSong}}</p>
+                            <br>
+                            <p class="nextline" ng-class="{min: min||karaoke==false}">{{nextLineSong}}</p>
+                        </div>
                         <div class="player-cover" ng-class=" min==true ? 'min': '' ">
                             <img src="img/default_song_album.png" width="200px" ng-if="audio==undefined">
                             <div style="position: absolute" ng-mouseenter="showIconLike=true" ng-mouseleave="showIconLike=false"

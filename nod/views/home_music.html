@@ -24,7 +24,13 @@
                         {{s.album}}
                     </span>
             </li>
+            <li class="user-list" ng-repeat="r in lyricArray track by $index">
+                    <span>
+                        {{r}}
+                    </span>
+            </li>
         </ul>
+        <button ng-click="test()" value="launch test!"></button>
     </div>
 </div>
 

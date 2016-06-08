@@ -40,10 +40,15 @@
     <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5" style="padding: 0;padding-left: 5px;" >
         <ul class="chatlist" id="chatlist" style=" overflow-y: scroll; height: 500px; padding: 0;">
             <li class="chatlistelement" ng-repeat="(uid, u) in users"  ng-click="gotochat(uid)"  ng-if="uid!=ref.getAuth().uid" ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}">
-                     <span >
-                        <img ng-src="{{u.image}}" class="chatThumbList" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline'">
-                        <h6 > <a class="userlink" ng-click="gotonodder(uid)"> {{u.name}} </a></h6>
-                    </span>
+                <div style="float: left">
+                    <img ng-src="{{u.image}}" class="chatThumbList" ng-click="gotochat(uid)" ng-class="u.online==true? 'online' : 'offline'">
+                    <div class="notifica" ng-class="messaggiDaId(uid)!=0 ? 'max' : ''"><i ng-if="messaggiDaId(uid)!=0">{{messaggiDaId(uid)}}</i></div>
+                </div>
+                <div style="text-align: right;">
+                    <h6 style="text-align: center;"> <a class="userlink" ng-click="gotonodder(uid)"> {{u.name}} </a></h6>
+                    <p class="lastOnline">Ultima volta online: {{u.lastTimeOnline| date:' h : mm a '}}</p>
+                    <p class="lastOnline"> {{ u.lastTimeOnline | date: 'MMM d, y' }}</p>
+                </div>
             </li>
         </ul>
     </div>

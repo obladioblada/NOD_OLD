@@ -360,6 +360,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             ref.onDisconnect().update({
                 online: false,
                 isPlaying:false,
+                lastTimeOnline: new Date().toJSON(),
                 time:0
             });
         }

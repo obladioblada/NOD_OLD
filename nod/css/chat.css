@@ -332,3 +332,10 @@ ul.chatlist{
 .chat-message-self>.chat-message-bubble > .textdate{
     color:darkgrey
 }
+
+.lastOnline{
+    text-align: right;
+    font-size: xx-small;
+    color: #A9A9A9;
+    margin: 0;
+}

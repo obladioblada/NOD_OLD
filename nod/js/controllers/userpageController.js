@@ -36,7 +36,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         name: 'ranking',
         icon: 'fa-bar-chart',
         styleIcon: "{'margin-left': '4px'}",
-        sref:'home.user.ranking.me'
+        sref:'home.user.ranking.monthly'
     };
     $scope.chat={
         name:"Chat",
@@ -65,7 +65,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         return target.replace(new RegExp(search, 'g'), replacement);
     };
 
-    $scope.updateState()
+    $scope.updateState();
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         $scope.state=toState.name;

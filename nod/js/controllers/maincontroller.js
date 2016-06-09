@@ -338,6 +338,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             ref.onDisconnect().update({
                 online: false,
                 isPlaying:false,
+                lastTimeOnline: new Date().toJSON(),
                 time:0
             });
         }
@@ -521,51 +522,61 @@ $scope.usersObj.$loaded()
 
     $scope.showKaraoke= function(){
         if($scope.audio!=undefined){$scope.karaoke=!$scope.karaoke}
-    }
+    };
 
-
-    $scope.lyric="[00:14]There is a house in New Orleans&&" +
-        "[00:20]they call the 'Rising Sun'&&" +
-        "[00:26]and it's been the ruin of many a poor boy&&" +
-        "[00:32]and God, I know, I'm one.&&" +
-        "[00:48]My mother was a tailor&&" +
-        "[00:54]sewed my new blue jeans&&" +
-        "[01:00]my father was a gambling man&&" +
-        "[01:06]down in New Orleans.&&" +
-        "[01:22]Now the only thing a gambler needs&&" +
-        "[01:28]is a suitcase and a trunk&&" +
-        "[01:33]and the only time, he'll be satisfied, is when&&" +
-        "[01:41]he's on a drunk.&&" +
-        "[01:58]&&" +
-        "[02:29]Oh mother, tell your children&&" +
-        "[02:35]Not to do what I have done&&" +
-        "[02:41]Spend your lives in sin and misery&&" +
-        "[02:47]In the 'House of the Rising Sun'&&" +
-        "[03:02]Well, I got one foot on the platform&&" +
-        "[03:08]The other foot on the train&&" +
-        "[03:14]I'm going back to New Orleans&&" +
-        "[03:20]To wear that ball and chain.&&" +
-        "[03:35]Well, there is a house in New Orleans&&" +
-        "[03:41]They call the 'Rising Sun'&&" +
-        "[03:47]And it's been the ruin of many a poor boy&&" +
-        "[03:53]And God, I know, I'm one.";
+/*
+    $scope.lyric="[00:03.38]Well it's one for the money,two for the show&&" +
+        "[00:05.90]three get ready now go cat go&&" +
+        "[00:08.23]But don't you step on my blue suede shoes&&" +
+        "[00:13.01]You can do anything&&" +
+        "[00:14.23]but lay off of my blue suede shoes&&" +
+        "[00:18.36]You can knock me down,step on my face&&" +
+        "[00:20.63]slander my name all over the place&&" +
+        "[00:23.18]Do anything you wanna do&&" +
+        "[00:25.39]But ah ah honey lay off of my shoes&&" +
+        "[00:28.16]But don't you step on my blue suede shoes&&" +
+        "[00:33.03]You can do anything&&" +
+        "[00:33.93]but lay off of my blue suede shoes&&" +
+        "[00:36.68]&&" +
+        "[00:52.57]You can burn my house,steal my car&&" +
+        "[00:55.10]drink my liquors from the old fruit jar&&" +
+        "[00:57.61]Do anything you wanna do&&" +
+        "[00:59.98]But ah ah honey lay off of my shoes&&" +
+        "[01:02.44]But don't you step on my blue suede shoes&&" +
+        "[01:07.09]You can do anything&&" +
+        "[01:08.25]but lay off of my blue suede shoes&&" +
+        "[01:11.17]&&" +
+        "[01:27.02]One for the money,two for the show&&" +
+        "[01:29.52]three get ready now go go go&&" +
+        "[01:31.92]But don't you step on my blue suede shoes&&" +
+        "[01:36.53]You can do anything&&" +
+        "[01:37.73]but lay off of my blue suede shoes&&" +
+        "[01:41.44]Blue blue blue suede shoes&&" +
+        "[01:44.69]Blue blue blue suede shoes&&" +
+        "[01:46.47]Blue blue blue suede shoes&&" +
+        "[01:49.47]Blue blue blue suede shoes&&" +
+        "[01:51.25]You can do anything&&" +
+        "[01:52.30]but lay off of my blue suede shoes&&" +
+        "[01:58.73]&&";
 
     $scope.lyricArray=[];
     $scope.test=function(){
         $scope.lyricArray = $scope.lyric.split('&&');
         for(var i= 0;i<$scope.lyricArray.length;i++){
-            var hms= $scope.lyricArray[i].slice(1,6);
-            var rest=$scope.lyricArray[i].slice(7,$scope.lyricArray[i].length);
+            var hms= $scope.lyricArray[i].slice(1,9);
+            var rest=$scope.lyricArray[i].slice(10,$scope.lyricArray[i].length);
 //            hms=hms.replace(".", ":");
 //            var hms = '02:04:33';   // your input string
             var a = hms.split(':'); // split it at the colons
 // minutes are worth 60 seconds. Hours are worth 60 minutes.
-            var seconds = (a[0]) * 60  + (+a[1])-1.8;
-           console.log(seconds+"&&"+rest);
+            var seconds = (a[0]) * 60  + (+a[1]);
+console.log(seconds+"&&"+rest);
 
-            var ref= new Firebase("https://nod-music.firebaseio.com/songs/-KJXHXs3b2GjhRlvn7TC/lyric");
+            var ref= new Firebase("https://nod-music.firebaseio.com/songs/-KJXHK4mmS3WOs-IO6Cs/lyric");
             ref.push(seconds+"&&"+rest);
         }
     }
+
+*/
 
 });

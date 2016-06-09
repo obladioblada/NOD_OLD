@@ -55,6 +55,15 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
         return bool;
     };
 
+    /**
+     * @return {boolean}
+     */
+    $scope.ThereArePrefered= function(){
+        return $scope.nodder.preferredsong.length!=0;
+
+
+    }
+
 });
 
 

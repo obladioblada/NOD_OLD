@@ -38,7 +38,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.playlist',{
                                             url:'/playlist',
-                                            templateUrl:'views/home_userpage.html'
+                                            templateUrl:'views/home_userpage_playlist.html'
                                         })
                                         .state('home.user.songs',{
                                             url:'/songs',

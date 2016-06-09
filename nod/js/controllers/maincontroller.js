@@ -75,30 +75,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         console.log("exit-logout");
         console.log("onlile  ?" + $scope.myUser.online);
     };
-    /*
-    $window.addEventListener("beforeunload",function (e) {
-        var ref = new Firebase(NODURL+"/users");
-        ref.child($rootScope.ref.getAuth().uid).onDisconnect().onDisconnect().update({
-            online:false,
-            isPlaying: false
-        },onComplete);
-        console.log("sono dentro");
-        (e || window.event).returnValue = null;
-        return null;
-    });
-    */
-
-
-    var onComplete = function(error) {
-        if (error) {
-            console.log('Synchronization failed');
-        } else {
-            console.log('Synchronization succeeded');
-        }
-    };
-
-
-
+   
+    
     $scope.hideSuggestions=function () {
         $scope.showSuggestions=false;
 

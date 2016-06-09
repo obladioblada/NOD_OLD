@@ -2,6 +2,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
     $scope.defaultImg='img/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
+    $scope.wrongpassword=false;
+    $scope.wrongemail=false;
     $rootScope.ref=ref;
     $scope.showLoading=false;
     $scope.users = $firebaseArray(ref);
@@ -44,21 +46,41 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 if (error) {
                     $scope.stopCharge();
                     switch (error.code) {
-                        case "EMAIL_TAKEN":
+                        case "INVALID_USER":
                             console.log("The new user account cannot be created because the email is already in use.");
+                            $scope.wrongemail=true;
+
                             break;
                         case "INVALID_EMAIL":
-                            console.log("The specified email is not a valid email.");
+                            console.log("The specified user account password is incorrect.");
+                            $scope.wrongemail=true;
+
+                            break;
+                        case "INVALID_PASSWORD":
+                            console.log("The specified password is.");
+                            $scope.wrongpassword=true;
                             break;
                         default:
                             console.log("Error creating user:", error);
                     }
+                    $scope.stopCharge();
+                    $scope.$apply();
                 } else {
                     console.log("Successfully created user account with uid:", userData.uid);
                     $scope.proceedToHome();
+                    
+
                 }
             });
-    }
+    };
+
+    $scope.hidemailerror=function () {
+        $scope.wrongemail=false;
+    };
+
+    $scope.hidepswerror=function () {
+        $scope.wrongpassword=false;
+    };
 
 
     $scope.loginwithFacebook=function () {

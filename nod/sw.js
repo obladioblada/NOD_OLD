@@ -1,6 +1,3 @@
-/**
- * Created by gianpaolobasilico on 23/5/16.
- */
 console.log('Started', self);
 self.addEventListener('install', function(event) {
     self.skipWaiting();

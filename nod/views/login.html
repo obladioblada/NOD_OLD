@@ -34,10 +34,10 @@
             <div class="col-md-4 col-xs-10">
                 <input ng-model="myUser.pwd" id="Password"  name="psw" type="password" placeholder="Password"   class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle" autocomplete="off" required ng-minlength="6" ng-focus="hidepswerror()">
              <span class="error" style="color: white" ng-show="login_form.psw.$error.minlength && login_form.psw.$dirty">
-            too short password
+            too short password!
         </span>
                 <span class="error" style="color: white" ng-show="wrongpassword">
-             password errata
+             password errata!
             </span>
             </div>
             <div class="col-md-4 col-xs-1">  <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="login_form.psw.$error.minlength && login_form.psw.$dirty" aria-hidden="true"></i>

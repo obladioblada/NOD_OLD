@@ -580,4 +580,7 @@ console.log(seconds+"&&"+rest);
 
 */
 
+    if($rootScope.ref.getAuth()==null){
+        state.go("login");
+    }
 });

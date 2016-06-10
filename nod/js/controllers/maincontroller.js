@@ -19,6 +19,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         image:'',
         online: false
     };
+    var user=$scope.myUser.username;
     $scope.currentLineSong="";
     $scope.nextLineSong="";
     $scope.min=false;

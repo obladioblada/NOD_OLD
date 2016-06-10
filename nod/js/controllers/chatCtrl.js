@@ -211,7 +211,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
                 });
                 $scope.checkingYet=false;
             }else{
-                $scope.checkIfTyping();
+                setTimeout($scope.checkIfTyping());
             }
         },$scope.delayCheck);
     };

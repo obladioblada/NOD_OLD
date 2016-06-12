@@ -67,7 +67,7 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     $scope.$apply();
                 } else {
                     console.log("Successfully created user account with uid:", userData.uid);
-                    $scope.proceedToHome();
+                    //$scope.proceedToHome();
                     
 
                 }
@@ -236,7 +236,8 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 values.push($scope.notification[key]);
             }
             console.log(values);
-            navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2]});
+            if(navigator.serviceWorker.controller!=null)
+                navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2]});
         });
     });
 
@@ -270,9 +271,9 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                 };
 
                 $http(req).then(function(){
-
+                    $scope.proceedToHome();
                 }, function(){
-
+                    $scope.proceedToHome();
                 });
 
             });

@@ -16,7 +16,7 @@ self.addEventListener('push', function(e) {
             self.registration.showNotification(data.title, {
                 body: data.body,
                 icon: 'img/logo_nod.png',
-                tag:  ""
+                tag:  "fisso"
             }));
     }
     /*

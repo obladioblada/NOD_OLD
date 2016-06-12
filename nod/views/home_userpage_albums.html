@@ -18,7 +18,7 @@
             <li class=" row user-list max" ng-repeat="song in currentAlbum" ng-if="$index!=0" ng-class="{first: $index==1,last:$index==currentAlbum.length-1}">
                 <span class="col-md-9 col-lg-9 col-xs-9 col-sm-9" ng-click="chooseSong($index,s)">
                     <span >
-                        <h5>{{song.title}}</h5>
+                        <h5 style="color: white">{{song.title}}</h5>
                         <h6 style=" color: #C2C2C2"> {{song.artist}}</h6>
                         <img src="img/playing.gif" class="playingGif" ng-if="myUser.song.title==song.title&&myUser.isPlaying">
                     </span>

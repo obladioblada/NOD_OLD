@@ -17,17 +17,17 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
     var userRef;
     var mioid;
     $scope.setChat=function(){
-        console.log("sono dentro");
+       // console.log("sono dentro");
         if($stateParams.myParam==null&&$scope.myUser.lastreceiver!=null) {
-            console.log("il parametro passato" + $stateParams.myParam);
-            console.log("last receiver is" + $scope.myUser.lastreceiver);
+        //    console.log("il parametro passato" + $stateParams.myParam);
+         //   console.log("last receiver is" + $scope.myUser.lastreceiver);
             $scope.receiverid = $scope.myUser.lastreceiver;
         }else {
             if($stateParams.myParam==null&&$scope.myUser.lastreceiver==null) {
                 $scope.receiverid = "facebook:10209013240030119";
             }
         }
-        console.log("receiverid è "+$scope.receiverid);
+      //  console.log("receiverid è "+$scope.receiverid);
         userRef = new Firebase(USERSURL+$scope.receiverid);
         $scope.receiverObj=$firebaseObject(userRef);
         $scope.receiverObj.$bindTo($scope, 'receiver').then(function () {
@@ -67,14 +67,14 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
                 var mess = childSnapshot.val();
 
                 if(mess.read==false&&mess.sender!=$rootScope.ref.getAuth().uid){
-                    console.log(mess.text);
+                    //console.log(mess.text);
                     ref.child(key).update({
                         read: true
                     });
 
 
                     var index = -1;
-                    console.log("devo rimuovere "+mess.text);
+                   // console.log("devo rimuovere "+mess.text);
                     for(var i= 0;i<$scope.messaggiNonLetti.length;i++){
                         var curr=$scope.messaggiNonLetti[i];
                         if(curr.sender==mess.sender&&curr.utc==mess.utc&&curr.text==mess.text){
@@ -234,7 +234,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
         $scope.emojiOpened=false;
         $scope.searchForEmoji(0);
         var message=$scope.msg;
-        console.log($scope.msg);
+      //  console.log($scope.msg);
         if(message=="") return;
         $scope.chatref.push({
             sender: $rootScope.ref.getAuth().uid,

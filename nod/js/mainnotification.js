@@ -1,3 +1,4 @@
+"use strict";
 window.onload = function() {
     if ('serviceWorker' in navigator) {
         console.log('Service Worker is supported');
@@ -19,8 +20,6 @@ function checkSubscription() {
         serviceWorkerRegistration.pushManager.getSubscription().then(
             function(pushSubscription) {
                 if(!!pushSubscription) {
-                    //Send subscription to application server
-                   // sendSub(pushSubscription);
                     state=true;
                     console.log(pushSubscription);
                 }

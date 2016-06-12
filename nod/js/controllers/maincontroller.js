@@ -322,8 +322,10 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.usersObj = $firebaseObject(refusers);
     $scope.usersObj.$bindTo($scope, 'users');
 
-
     $scope.usersObj.$loaded().then(function(){
+        setTimeout(function () {
+            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!" );
+        },2000);
         $scope.myUser.online=true;
         $scope.getMessagesNotifications(true);
     });
@@ -344,15 +346,68 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             });
         }
     });
-/*
-$scope.usersObj.$loaded()
-        .then(function(){
-            angular.forEach( $scope.usersObj, function(user) {
 
-                $scope.users.push(user);
-            });
+
+
+/************************ notifiche  *************************/
+
+$scope.notification="";
+    $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+    $scope.notob=$firebaseObject($scope.notRef);
+    $scope.notob.$bindTo($scope,'notification').then(function(){
+        $scope.$watch('notification',function () {
+            var values=[];
+            for(var key in $scope.notification) {
+                values.push($scope.notification[key]);
+            }
+            console.log(values);
+            if(navigator.serviceWorker.controller!=null){
+                navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2]});}
         });
-*/
+    });
+
+    $scope.sendPush = function(title, body){
+        $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+        var jsonToFb={
+            title:title,
+            body:body
+        };
+        $scope.notRef.update(jsonToFb);
+        $scope.subObj= $firebaseObject(new Firebase(NODURL+"/subscribe/"));
+        $scope.subcriptionArray=[];
+        $scope.subObj.$loaded()
+            .then(function(){
+                angular.forEach( $scope.subObj, function(s) {
+                    $scope.subcriptionArray.push(s);
+                    console.log($scope.subcriptionArray.length);
+                });
+
+                var Content = {registration_ids:$scope.subcriptionArray};
+                console.log(Content);
+                var req = {
+                    method: 'POST',
+                    url: 'https://android.googleapis.com/gcm/send',
+                    headers: {
+                        'Authorization': 'key= AIzaSyA2osVlaB52G_k5Rp1D4VP8QG0NrhnRAm8' ,
+                        'Content-Type': 'application/json'
+                    },
+                    data : Content
+                };
+
+                $http(req).then(function(response){
+                    console.log("requeste http sended correctly!" + response);
+                    console.log(response);
+                }, function(response){
+                    console.log("ERROR: requeste http not sended correctly!" + response);
+
+                });
+
+            });
+
+    };
+
+ /********************  fine notifiche *************************/
+
 
     $scope.listenTo=function($song,$time,$idmaster){
         if($scope.audio!=undefined) {
@@ -468,12 +523,14 @@ $scope.usersObj.$loaded()
                                 snapshot.forEach(function (childSnapshot) {
                                     var key = childSnapshot.key();
                                     var mess = childSnapshot.val();
+                                   if($rootScope.ref.getAuth()!=null) {
                                     $scope.isFirstTimeIChek = first;
                                     if (mess.read == false && mess.sender != $rootScope.ref.getAuth().uid) {
                                         $scope.messaggiNonLetti.pushIfNotExist(mess, function (e) {
                                             return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read == mess.read;
                                         });
                                     }
+                                }
                                 });
                             });
                         }

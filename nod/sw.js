@@ -1,4 +1,5 @@
-console.log('Started', self);
+"use strict";
+
 self.addEventListener('install', function(event) {
     self.skipWaiting();
     console.log('Installed', event);
@@ -6,62 +7,54 @@ self.addEventListener('install', function(event) {
 self.addEventListener('activate', function(event) {
     console.log('Activated', event);
 });
-var data;
+
+var data="";
 
 self.addEventListener('push', function(e) {
-    console.log('push received');
+    console.log("sono dentro all'evento push");
+    console.log(e);
+    console.log("data è" + data.title);
     if(data!=undefined){
+        console.log('push received' + data.title);
         console.log(data.title);
+        var title=data.title;
         e.waitUntil(
-            self.registration.showNotification(data.title, {
-                body: data.body,
+            self.registration.showNotification(title, {
+                body: data.title,
                 icon: 'img/logo_nod.png',
-                tag:  "fisso"
+                tag:  "online"
             }));
     }
-    /*
-    var   subRef = new Firebase('https://nod-music.firebaseio.com/users/8a7db5a2-8e9a-4e01-8f8b-7c7456d08187/data');
-   subRef.on("value", function(snapshot) {
-        console.log(snapshot.val());
-        e.waitUntil(
-            self.registration.showNotification(snapshot.val().title, {
-                body: snapshot.val().body,
-                icon: 'img/logo_nod.png',
-                tag:  snapshot.val().tag
-            }));
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });    // Get the notification data, then display notification
-    */
 });
+
 self.addEventListener('message', function (evt) {
+    console.log(evt);
     console.log('postMessage received', evt.data.title);
     data=evt.data;
 });
-/*
-self.addEventListener('push', function(event) {
-    console.log('Push message received', event);
-    console.log('Started', self);
-    self.addEventListener('install', function(event) {
-        self.skipWaiting();
-        console.log('Installed', event);
-    });
-    self.addEventListener('activate', function(event) {
-        console.log('Activated', event);
-    });
-    self.addEventListener('push', function(event) {
-        console.log('Push message', event);
-        var title = 'Nodder collegato';
-        event.waitUntil(
-            self.registration.showNotification(title, {
-                body: 'user',
-                icon: 'img/logo_nod.png',
-                tag:  'user'
-            }));
-    });
-// TODO
+
+
+self.addEventListener('notificationclick', function(event) {
+    console.log('Notification click: tag ', event.notification.tag);
+    event.notification.close();
+    var url = 'http://localhost:63342/nod/nod/index.html?_ijt=jtga95hq10pabfaqcn15fhk3um#/home/user/music';
+    event.waitUntil(
+        clients.matchAll({
+            type: 'window'
+        })
+            .then(function(windowClients) {
+                for (var i = 0; i < windowClients.length; i++) {
+                    var client = windowClients[i];
+                    if (client.url === url && 'focus' in client) {
+                        return client.focus();
+                    }
+                }
+                if (clients.openWindow) {
+                    return clients.openWindow(url);
+                }
+            })
+    );
 });
-    */
 
 
 

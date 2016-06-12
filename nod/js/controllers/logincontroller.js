@@ -1,4 +1,4 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window,$firebaseObject, $http){
     $scope.defaultImg='img/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
@@ -199,10 +199,12 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                         ref.child(authData.uid).update({ modoIncognito: false });
                     }
                     console.log(" e authdata vale "+authData.uid);
+                    $scope.name= getName(authData);
+                    $scope.sendPush($scope.name+" si e' collegato!","noddati  con lui!");
+                    $scope.myUser.online=true;
+                    $rootScope.ref=ref;
                 }
             });
-            $scope.myUser.online=true;
-            $rootScope.ref=ref;
         }
     });
 
@@ -224,6 +226,57 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
         ref.child(authData.uid).update({ image: image });
     };
 
+    $scope.notification="";
+    $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+    $scope.notob=$firebaseObject($scope.notRef);
+    $scope.notob.$bindTo($scope,'notification').then(function(){
+        $scope.$watch('notification',function () {
+            var values=[];
+            for(var key in $scope.notification) {
+                values.push($scope.notification[key]);
+            }
+            console.log(values);
+            navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2]});
+        });
+    });
 
+    $scope.sendPush= function(title, body){
+        $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+        var jsonToFb={
+            title:title,
+            body:body
+        };
+        $scope.notRef.update(jsonToFb);
+        $scope.subObj= $firebaseObject(new Firebase(NODURL+"/subscribe/"));
+        $scope.subcriptionArray=[];
+        $scope.subObj.$loaded()
+            .then(function(){
+                angular.forEach( $scope.subObj, function(s) {
+                    $scope.subcriptionArray.push(s);
+                });
+                // console.log($scope.subObj.value());
+
+                var Content = {registration_ids:$scope.subcriptionArray};
+                console.log(Content);
+
+                var req = {
+                    method: 'POST',
+                    url: 'https://android.googleapis.com/gcm/send',
+                    headers: {
+                        'Authorization': 'key= AIzaSyA2osVlaB52G_k5Rp1D4VP8QG0NrhnRAm8' ,
+                        'Content-Type': 'application/json'
+                    },
+                    data: Content
+                };
+
+                $http(req).then(function(){
+
+                }, function(){
+
+                });
+
+            });
+
+    };
 
 });

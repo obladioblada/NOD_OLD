@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL,CHATSURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL,CHATSURL,$http){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -442,7 +442,7 @@ $scope.usersObj.$loaded()
         console.log("canzoni preferite " + song.title);
         var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredalbum");
         ref.push(
-            {   album: album ,
+            {   album: album 
             });
 
     };
@@ -579,6 +579,7 @@ console.log(seconds+"&&"+rest);
     }
 
 */
+    
 
     if($rootScope.ref.getAuth()==null){
         state.go("login");

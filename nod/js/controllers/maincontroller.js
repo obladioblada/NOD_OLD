@@ -584,4 +584,34 @@ console.log(seconds+"&&"+rest);
     if($rootScope.ref.getAuth()==null){
         state.go("login");
     }
+
+    /*
+     -KJXH1PYd8stQgpsWrMpaddclose
+     album:
+     "Garage Inc."
+     artist:
+     "Metallica"
+     category:
+     "rock"
+     duration:
+     "4:45"
+     image:
+     "http://pxhst.co/avaxhome/6c/13/000d136c_medium...."
+     title:
+     "Whiskey in the jar"
+     -KJXH1PYd8ztQtpsWrMp
+     album:
+     " Stoalin'"
+     artist:
+     "Isbells"
+     category:
+     "Indie"
+     duration:
+     "2:38"
+     image:
+     "http://www.incendiarymag.com/images/Issue85/In_..."
+     title:
+     "Baskin"
+
+     */
 });

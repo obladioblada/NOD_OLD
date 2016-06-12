@@ -46,6 +46,7 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.albums',{
                                             url:'/albums',
+                                            controller:'albumCtrl',
                                             templateUrl:'views/home_userpage_albums.html'
                                         })
                                         .state('home.user.ranking',{

@@ -23,6 +23,21 @@ body {
     color: #3F51B5;
 }
 
+
+
+
+.cls
+
+
+element.style {
+	width: 1000px;
+	/* height: 1000px; */
+}
+img {
+	width: 100% !important;
+	height: inherit !important;
+}
+
 a {
 	color: #f0f0f0;
 	text-decoration: none;

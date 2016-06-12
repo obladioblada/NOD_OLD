@@ -1,9 +1,17 @@
+.albumContainer{
+    overflow-x: scroll;
+}
 .albumElement {
     list-style: none;
     width: 100px;
-    display: inline-table;
+    display: table-cell;
     margin: 14px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0;
+    padding-top: 5px;
 }
+
 .albumThumb {
     width: 100px;
     height: 100px;
@@ -12,4 +20,19 @@
 }
 .albumName {
     color: white;
+}
+
+.albumList {
+    border-radius: 18px;
+    margin: 0;
+    background-color: rgb(27, 109, 133);
+    overflow-y: scroll;
+}
+
+.rightAlbum{
+    height: 100%;
+    background: url('http://www.45vinylvidivici.net/SEVENTIESimages%20(mq)/procol%20harum%2017000.jpg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
 }

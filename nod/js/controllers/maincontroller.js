@@ -114,7 +114,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.currentSongIndex=$i;
         $scope.audio.currentTime=0;
         $scope.myUser.time=0;
-
+        if($scope.myUser.volume!=null) $scope.audio.volume=$scope.myUser.volume;
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
         $(".fa-play").addClass("fa-pause");
@@ -132,8 +132,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     };
 
     $scope.$watch('audio.volume',function(){
-        if($scope.audio!=undefined)
+        if($scope.audio!=undefined){
             $scope.volumeStyle = ".volumebar{ background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.volume + ", #841E21),color-stop(" + $scope.audio.volume + ", white));";
+            $scope.myUser.volume=$scope.audio.volume;
+            console.log("volume "+$scope.myUser.volume);
+        }
     });
 
     $scope.$watch('audio.currentTime',function(){
@@ -143,7 +146,10 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             if ($scope.audio.remaining < 1) {
                 $scope.nextSong();
             }
-            if($scope.audio.currentTime!=null)$scope.myUser.time=$scope.audio.currentTime;
+            if($scope.audio.currentTime!=null){
+                $scope.myUser.time=$scope.audio.currentTime;
+                $scope.myUser.volume=$scope.audio.volume;
+            }
             $scope.myUser.song=$scope.songs[$scope.currentSongIndex];
             var lineN=0;
             var itmp=0;
@@ -366,7 +372,6 @@ $scope.notification="";
                 navigator.serviceWorker.controller.postMessage({'title': values[4],'body':values[2], 'tag': values[5], 'img':values[3] });}
         });
     });
-
     $scope.sendPush = function(title, body, id, img){
         $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
         var jsonToFb={
@@ -385,7 +390,9 @@ $scope.notification="";
                     console.log($scope.subcriptionArray.length);
                 });
 
-                var Content = {registration_ids:$scope.subcriptionArray};
+                var Content = {
+                    registration_ids:$scope.subcriptionArray
+                };
                 console.log(Content);
                 var req = {
                     method: 'POST',
@@ -427,19 +434,28 @@ $scope.notification="";
     };
 
 
-    $scope.listenTo=function($song,$time,$idmaster){
+    $scope.listenTo=function($song,$time,idmaster){
         if($scope.audio!=undefined) {
             $scope.audio.pause();
             $scope.audio.audio.src = "";
         }
-        console.log($song+" - "+$time+" - "+$idmaster);
+        console.log($song+" - "+$time+" - "+idmaster);
         $time+=0.5;
         $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$song.title+".mp3#t="+$time);
+        if($scope.myUser.volume!=null) $scope.audio.volume=$scope.myUser.volume;
         $scope.audio.loop=false;
         $scope.currentSongIndex=$scope.searchSongIndex($song);
         $scope.myUser.isPlaying=true;
-        $scope.canListen($idmaster);
-        $scope.idMaster=$idmaster;
+        $scope.canListen(idmaster);
+        $scope.idMaster=idmaster;
+        $scope.countnodbuddy=$scope.myUser.nodbuddy[idmaster].count;
+        if($scope.countnodbuddy==""||$scope.countnodbuddy==null) $scope.countnodbuddy=0;
+        $scope.countnodbuddy++;
+        console.log($scope.countnodbuddy+" <- countnodbuddy");
+        ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/nodbuddy/"+idmaster);
+        ref.set({
+            count: $scope.countnodbuddy
+        });
     };
 
     $scope.searchSongIndex= function($song){

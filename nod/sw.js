@@ -14,7 +14,7 @@ self.addEventListener('push', function(e) {
     console.log("sono dentro all'evento push");
     console.log(e);
     console.log("data è" + data.title);
-    if(data!=undefined){
+   // if((data.title!=null&&data.body!=null)){
         console.log('push received' + data.title);
         console.log(data.title);
         var title=data.title;
@@ -23,8 +23,9 @@ self.addEventListener('push', function(e) {
                 body: data.body,
                 icon: data.img,
                 tag:  data.tag
-            }));
-    }
+            })
+        );
+   // }
 });
 
 self.addEventListener('message', function (evt) {

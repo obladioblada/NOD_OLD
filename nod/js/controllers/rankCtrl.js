@@ -1,6 +1,6 @@
-myApp.controller('rankCtrl', function($scope,USERSURL){
+myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject){
      $scope.usersBycountedpeaced=[];
-    $scope.limitRank=5;
+    $scope.limitRank=10;
     $scope.ranknavbaritem=[];
     $scope.mensile={
         text:"Mensile",
@@ -15,7 +15,7 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
     $scope.buddy={
         text: "nodBuddy",
         icon: "fa-heartbeat",
-        sref:"home.user.ranking.me"
+        sref:"home.user.ranking.nodbuddy"
     };
     $scope.ranknavbaritem.push($scope.mystats,$scope.mensile,$scope.buddy);
 
@@ -32,6 +32,28 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
 
     };
     $scope.orderBycountedpeace();
+
+    $scope.takeBuddy= function(){
+        var max=0;
+        var nodBuddyid={};
+        var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
+        $scope.message = $firebaseObject(ref);
+        $scope.message.$bindTo($scope, "myUser").then(function(){
+            for(var nodder in $scope.myUser.nodbuddy) {
+                for(var count in nodder){
+                    if(count>max&&!isNaN(count)){
+                        nodBuddyid=nodder;
+                        max=count;
+                    }
+                }
+            }
+            var ref = new Firebase(USERSURL+nodBuddyid);
+            $scope.message = $firebaseObject(ref);
+            $scope.message.$bindTo($scope, "nodBuddy");
+            $scope.countnodbuddy=max;
+        });
+    };
+    $scope.takeBuddy();
 
 });
 

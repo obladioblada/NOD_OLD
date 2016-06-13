@@ -21,6 +21,7 @@ function checkSubscription() {
             function(pushSubscription) {
                 if(!!pushSubscription) {
                     state=true;
+                    console.log("push sub" + pushSubscription);
                     console.log(pushSubscription);
                 }
                 else {
@@ -56,3 +57,4 @@ function sendsub(sub) {
     subRef.push(endPoint);
     console.log("subscrition sended");
 }
+

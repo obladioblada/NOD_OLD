@@ -1,3 +1,16 @@
+<div class="navbar navbar-default navbarRanking">
+    <div class=" tabContainer row" >
+        <ul class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+            <li  class="linavbar" ng-repeat="i in prefereditems" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
+                <div class="item-ranking-navbar" ng-class="{ 'current-item-ranking-navbar':state==i.sref,'first':$index==0,'last':$index==ranknavbaritem.length-1}" >
+                    <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
+                    <h6 class=" rankiconname" style="{{i.styleText}}" ui-sref="#"> {{i.text}}</h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12  col-sm-12" >
         <ul>

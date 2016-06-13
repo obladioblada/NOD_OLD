@@ -1,6 +1,6 @@
 myApp.controller('rankCtrl', function($scope,USERSURL){
      $scope.usersBycountedpeaced=[];
-
+    $scope.limitRank=5;
     $scope.ranknavbaritem=[];
     $scope.mensile={
         text:"Mensile",
@@ -19,17 +19,8 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
     };
     $scope.ranknavbaritem.push($scope.mystats,$scope.mensile,$scope.buddy);
 
-    $scope.limitRank=5;
-    $( window ).resize(function() {
-        $scope.resizeThem();
-    });
-    $scope.resizeThem=function(){
-        $(".item-ranking-navbar").css({
-            width: ($(".tabContainer").width()/$scope.ranknavbaritem.length)-10
-        });
-    };
-    setTimeout(function(){$scope.resizeThem()});
-
+   
+    
     $scope.orderBycountedpeace=function () {
         var ref = new Firebase(USERSURL);
         ref.on("value", function(snapshot) {

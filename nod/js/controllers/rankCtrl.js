@@ -1,6 +1,7 @@
+
 myApp.controller('rankCtrl', function($scope,USERSURL){
      $scope.usersBycountedpeaced=[];
-    $scope.limitRank=5;
+    $scope.limitRank=10;
     $scope.ranknavbaritem=[];
     $scope.mensile={
         text:"Mensile",
@@ -22,6 +23,8 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
    
     
     $scope.orderBycountedpeace=function () {
+        console.log("scarico vutenti ");
+        $scope.usersBycountedpeaced.length=0;
         var ref = new Firebase(USERSURL);
         ref.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
@@ -29,9 +32,10 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
             });
 
         });
-
+        console.log($scope.usersBycountedpeaced);
     };
     $scope.orderBycountedpeace();
+    window.onload = $scope.orderBycountedpeace();
 
 });
 

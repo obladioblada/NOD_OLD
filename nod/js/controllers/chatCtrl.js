@@ -242,6 +242,7 @@ myApp.controller('chatCtrl', function($scope,$state,$rootScope,USERSURL,CHATSURL
             utc: new Date().toJSON(),
             read: false
         });
+        $scope.sendPush( $scope.myUser.name +" ti ha scritto" , $scope.msg, "http://localhost:63342/nod/nod/index.html#/home/user/chat"+$scope.uidchat, $scope.myUser.image );
         $scope.msg="";
         setTimeout(function () {
             $(".chat-messages").scrollTop(9999999);

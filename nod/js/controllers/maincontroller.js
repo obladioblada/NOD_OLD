@@ -143,7 +143,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             if ($scope.audio.remaining < 1) {
                 $scope.nextSong();
             }
-            $scope.myUser.time=$scope.audio.currentTime;
+            if($scope.audio.currentTime!=null)$scope.myUser.time=$scope.audio.currentTime;
             $scope.myUser.song=$scope.songs[$scope.currentSongIndex];
             var lineN=0;
             var itmp=0;
@@ -410,6 +410,21 @@ $scope.notification="";
 
  /********************  fine notifiche *************************/
 
+    $scope.canListen=function(idM){
+        setTimeout(function(idM){
+            if($scope.audio.canPlay){
+                var ref= new Firebase("https://nod-music.firebaseio.com/users/"+idM+"/time");
+                var time = $firebaseObject(ref);
+                time.$loaded().then(function(){
+                    $scope.audio.setCurrentTime=time;
+                    $scope.audio.play();
+                });
+            }else{
+                $scope.canListen();
+            }
+        },200);
+    };
+
 
     $scope.listenTo=function($song,$time,$idmaster){
         if($scope.audio!=undefined) {
@@ -421,8 +436,8 @@ $scope.notification="";
         $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$song.title+".mp3#t="+$time);
         $scope.audio.loop=false;
         $scope.currentSongIndex=$scope.searchSongIndex($song);
-        $scope.audio.play();
         $scope.myUser.isPlaying=true;
+        $scope.canListen($idmaster);
         $scope.idMaster=$idmaster;
     };
 

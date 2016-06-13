@@ -20,9 +20,9 @@ self.addEventListener('push', function(e) {
         var title=data.title;
         e.waitUntil(
             self.registration.showNotification(title, {
-                body: data.title,
+                body: data.body,
                 icon: 'img/logo_nod.png',
-                tag:  "online"
+                tag:  data.tag
             }));
     }
 });
@@ -37,7 +37,7 @@ self.addEventListener('message', function (evt) {
 self.addEventListener('notificationclick', function(event) {
     console.log('Notification click: tag ', event.notification.tag);
     event.notification.close();
-    var url = 'http://localhost:63342/nod/nod/index.html?_ijt=jtga95hq10pabfaqcn15fhk3um#/home/user/music';
+    var url = 'http://localhost:63342/nod/nod/index.html#/home/user/nodder'+event.notification.tag;
     event.waitUntil(
         clients.matchAll({
             type: 'window'

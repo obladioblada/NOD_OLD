@@ -324,7 +324,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $scope.usersObj.$loaded().then(function(){
         setTimeout(function () {
-            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!" );
+            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!",$scope.myUser.$id );
+            $(".notification").trigger('play');
         },2000);
         $scope.myUser.online=true;
         $scope.getMessagesNotifications(true);
@@ -362,15 +363,16 @@ $scope.notification="";
             }
             console.log(values);
             if(navigator.serviceWorker.controller!=null){
-                navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2]});}
+                navigator.serviceWorker.controller.postMessage({'title': values[3],'body':values[2], 'tag': values[4] });}
         });
     });
 
-    $scope.sendPush = function(title, body){
+    $scope.sendPush = function(title, body, id){
         $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
         var jsonToFb={
             title:title,
-            body:body
+            body:body,
+            uid: id
         };
         $scope.notRef.update(jsonToFb);
         $scope.subObj= $firebaseObject(new Firebase(NODURL+"/subscribe/"));

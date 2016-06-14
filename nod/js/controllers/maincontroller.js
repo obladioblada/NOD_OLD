@@ -456,19 +456,20 @@ $scope.notification="";
                 $scope.dates = $scope.myUser.nodbuddy[idmaster].dates;
             }
         }
-        var today=new Date(new Date().getFullYear(), new Date().getDate(), new Date().getDay()).toJSON();
+        var today=new Date().toLocaleDateString();
         var d={
             date: today,
             countToday: 1
         };
         if($scope.dates!=null||$scope.dates!=undefined){
-            if($scope.dates.length==4)
-                $scope.dates.shift();
             if($scope.dates[$scope.dates.length - 1].date==today){
                 $scope.dates[$scope.dates.length - 1].countToday++;
 
                 console.log("fate count ="+$scope.dates[$scope.dates.length - 1].countToday);
             }else{
+                if($scope.dates.length==7)
+                    $scope.dates.shift();
+
                 $scope.dates.push(d);
             }
         }else {

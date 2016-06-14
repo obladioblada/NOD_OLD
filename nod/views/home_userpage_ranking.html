@@ -5,14 +5,14 @@
             <li  class="linavbar" ng-repeat="i in ranknavbaritem" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
                 <div class="item-ranking-navbar" ng-class="{ 'current-item-ranking-navbar':state==i.sref,'first':$index==0,'last':$index==ranknavbaritem.length-1}" >
                     <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
-                    <h6 class=" rankiconname" style="{{i.styleText}}" ui-sref="#"> {{i.text}}</h6>
+                    <h6 class=" rankiconname" style="{{i.styleText}}"> {{i.text}}</h6>
                 </div>
             </li>
         </ul>
     </div>
 </div>
 </div>
-<div class="row">
+<div class="row" style="padding-top: 50px">
     <ui-view>
     </ui-view>
 </div>

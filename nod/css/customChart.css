@@ -13,3 +13,9 @@
     border-top: 9px solid white;
     border-right: 9px solid white;
 }
+
+.ct-label.ct-horizontal.ct-end, .ct-label.ct-vertical.ct-start {
+    color: black;
+    font-weight: 500;
+    font-size: smaller;
+}

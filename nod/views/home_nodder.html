@@ -17,13 +17,13 @@
         </div>
         <div class="row adjust-margin-row">
             <div class="col-md-6 col-sm-12">
-                <ul class="songlist" ng-if="ThereArePrefered()">
+                <ul class="songlist">
                     <li class=" row tag-prefered">
                             <span class="col-md-12 col-lg-12 col-xs-12 col-sm-12" >
-                                     <h2 class="tag-prefered">Canzoni Preferite </h2>
+                                     <h2 class="tag-prefered">Canzoni Preferite {{nodder.preferredsong.length}}</h2>
                             </span>
                     </li>
-                    <li class=" row user-list" ng-repeat="s in nodder.preferredsong"
+                    <li class=" row user-list"  ng-if="ThereArePrefered()"  ng-repeat="s in nodder.preferredsong"
                         ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}" ng-if="s!=undefined">
                             <span class="col-md-9 col-lg-9 col-xs-9 col-sm-9" ng-click="chooseSong($index,s)">
                                      <img  ng-src="{{s.image}}" class="thumb" >
@@ -35,6 +35,11 @@
                             </span>
                         <i class="fa fa-hand-peace-o loveIconsong" ng-click="addsongtoprefered(s)" ng-class="checkIfPreferedYet(s) ? 'loved': ''" aria-hidden="true"></i>
                         <i class="fa fa-plus loveIconsong" aria-hidden="true"  ></i>
+                    </li>
+                    <li class=" row tag-prefered" ng-if="ThereArePrefered()==false">
+                            <span class="col-md-12 col-lg-12 col-xs-12 col-sm-12" >
+                                     <h2 class="tag-prefered">nessuna canzone preferita </h2>
+                            </span>
                     </li>
 
                 </ul>

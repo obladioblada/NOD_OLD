@@ -55,9 +55,7 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
      * @return {boolean}
      */
     $scope.ThereArePrefered= function(){
-        return $scope.nodder.preferredsong.length!=0;
-
-
+        return typeof($scope.nodder.preferredsong ) != "undefined";
     }
 
 });

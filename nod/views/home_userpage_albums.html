@@ -1,6 +1,5 @@
 <div class="toptab">
-
-</dic><div class="navbar navbar-default navbarRanking">
+    </dic><div class="navbar navbar-default navbarRanking">
     <div class=" tabContainer row" >
         <ul class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
             <li  class="linavbar" ng-repeat="i in prefereditems" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
@@ -15,7 +14,7 @@
     </div>
 
 <div class="row" id="albums">
-    <div class="col-md-12  col-sm-12" style="height:  160px">
+    <div class="col-md-12  col-sm-12" style="padding-top:70px">
         <ul class="albumContainer">
             <li class="albumElement" ng-repeat="s in albums" ng-click="chooseAlbum(s)">
                 <img class="albumThumb" ng-src="{{s[0].image}}"><br>

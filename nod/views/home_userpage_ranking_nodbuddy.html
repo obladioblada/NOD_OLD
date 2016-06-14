@@ -1,18 +1,14 @@
 <div class="row">
-    <div  class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="color: white">
-        <div ng-if="nodBuddy!=null">
+    <div  class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="color: white" ng-if="nodBuddy!=null">
+        <div>
             <h2>Il tuo nod Buddy è</h2>
             <img class="chatThumb" ng-src="{{nodBuddy.image}}">
             <span>{{nodBuddy.name}}</span>
             <p>Avete vi siete noddati ben {{countnodbuddy}} volte!</p>
         </div>
-        <div ng-if="nodBuddy==null">
-            <h4>Qualcuno qui non si impegna abbastanza!</h4>
-            <h5>Ascolta la musica con un tuo amico contemporaneamente (o meglio, noddati con lui!)</h5>
-        </div>
     </div>
 </div>
-<div class="row">
+<div class="row" ng-if="nodBuddy!=null">
     <div class="col-lg-1 col-xs-1 col-sm-1 col-md-1">
     </div>
     <div class="col-lg-10 col-xs-10 col-sm-10 col-md-10">
@@ -21,4 +17,11 @@
     <div class="col-lg-1 col-xs-1 col-sm-1 col-md-1">
     </div>
 </div>
+<div class="row">
+    <div  class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="color: white" ng-if="nodBuddy==null">
+        <div ng-if="nodBuddy==null">
+            <h4>Qualcuno qui non si impegna abbastanza!</h4>
+            <h5>Ascolta la musica con un tuo amico contemporaneamente (o meglio, noddati con lui!)</h5>
+        </div>
+    </div>
 </div>

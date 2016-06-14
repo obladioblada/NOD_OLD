@@ -80,7 +80,12 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                             templateUrl:'views/home_nodder.html',
                                             controller:'nodderCtrl',
                                             params: {nodder: null}
-                            
+                                        })
+                                        .state('home.user.artist',{
+                                            url:'/artist',
+                                            templateUrl:'views/home_userpage_artists.html',
+                                            controller:'artistCtrl'
+
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',

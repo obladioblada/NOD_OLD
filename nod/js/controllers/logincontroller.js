@@ -198,6 +198,9 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     if (snapshot.child(authData.uid).child("modoIncognito").exists() == false) {
                         ref.child(authData.uid).update({ modoIncognito: false });
                     }
+                    if (snapshot.child(authData.uid).child("countpeaced").exists() == false) {
+                        ref.child(authData.uid).update({ countpeaced: 0 });
+                    }
                     console.log(" e authdata vale "+authData.uid);
                     $scope.name= getName(authData);
                     $scope.myUser.online=true;

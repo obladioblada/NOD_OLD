@@ -38,7 +38,7 @@ myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject
 
     $scope.takeBuddy= function(){
         var max=0;
-        var nodBuddyid={};
+        var nodBuddyid=null;
         var ref = new Firebase(USERSURL+$rootScope.ref.getAuth().uid);
         $scope.message = $firebaseObject(ref);
         $scope.message.$bindTo($scope, "myUser").then(function(){
@@ -50,10 +50,12 @@ myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject
                     }
                 }
             }
-            var ref = new Firebase(USERSURL+nodBuddyid);
-            $scope.message = $firebaseObject(ref);
-            $scope.message.$bindTo($scope, "nodBuddy");
-            $scope.countnodbuddy=max;
+            if(nodBuddyid!=null){
+                var ref = new Firebase(USERSURL+nodBuddyid);
+                $scope.message = $firebaseObject(ref);
+                $scope.message.$bindTo($scope, "nodBuddy");
+                $scope.countnodbuddy=max;
+            }
         });
     };
     $scope.takeBuddy();

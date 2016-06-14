@@ -1,0 +1,89 @@
+<div class="navbar navbar-default navbarRanking">
+    <div class=" tabContainer row" >
+        <ul class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+            <li  class="linavbar" ng-repeat="i in prefereditems" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
+                <div class="item-ranking-navbar" ng-class="{ 'current-item-ranking-navbar':state==i.sref,'first':$index==0,'last':$index==prefereditems.length-1}" >
+                    <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
+                    <h6 class=" rankiconname" style="{{i.styleText}}" ui-sref="#"> {{i.text}}</h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="overflow: hidden; height: 100%">
+    <div class="row page-nodder-style" style="overflow-y: hidden">
+        <div class="row " style="margin-bottom: 14px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <img ng-src="{{nodder.image}}"  class="nodder-icon">
+                <input type="text" class="nodder-name" ng-model="nodder.name" ng-disabled="true" >
+            <span ng-if="nodder.isPlaying&&nodder.modoIncognito==false">
+                <h6 class="infonodderh6"> ascolta  </h6>
+                <img  style=" margin-top: 7px;" ng-src="{{nodder.song.image}}" class="thumb" > <h6 class="infosongnodder"> {{nodder.song.title}} </h6> <h6  class="infosongnodder otherinfosongnodder"> {{nodder.song.artist}}</h6>  <h6 class="infosongnodder otherinfosongnodder">{{nodder.time| trackTime }}</h6>
+            </span>
+                <i   class="chaticon fa  fa-hand-peace-o " aria-hidden="true" ng-click="" ng-class=""></i>
+            </div>
+        </div>
+        <div class="row page-nodder-style">
+            <div class="row adjust-margin-row">
+            </div>
+            <div class="row adjust-margin-row">
+                <div class="col-md-6 col-sm-12">
+                    <ul class="songlist" ng-if="ThereArePrefered()">
+                        <li class=" row tag-prefered">
+                            <span class="col-md-12 col-lg-12 col-xs-12 col-sm-12" >
+                                     <h2 class="tag-prefered">Canzoni Preferite </h2>
+                            </span>
+                        </li>
+                        <li class=" row user-list" ng-repeat="s in nodder.preferredsong"
+                            ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}" ng-if="s!=undefined">
+                            <span class="col-md-9 col-lg-9 col-xs-9 col-sm-9" ng-click="chooseSong($index,s)">
+                                     <img  ng-src="{{s.image}}" class="thumb" >
+                                <span >
+                                    <h5>{{s.title}}</h5>
+                                    <h6 style=" color: #C2C2C2"> {{s.artist}}</h6>
+                                    <img src="img/playing.gif" class="playingGif" ng-if="$index==currentSongIndex&&myUser.isPlaying">
+                                    </span>
+                            </span>
+                            <i class="fa fa-hand-peace-o loveIconsong" ng-click="addsongtoprefered(s)" ng-class="checkIfPreferedYet(s) ? 'loved': ''" aria-hidden="true"></i>
+                            <i class="fa fa-plus loveIconsong" aria-hidden="true"  ></i>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-6  col-sm-12" >
+                    <ul class="songlist">
+                        <li class=" row tag-prefered">
+                            <span class="col-md-12 col-lg-12 col-xs-12 col-sm-12" >
+                                     <h2 class="tag-prefered">Album Preferiti</h2>
+                            </span>
+                        </li>
+                        <li class="user-list" ng-repeat="s in songs" ng-click="chooseSong($index)"
+                            ng-class=" {max:min==true,first:$index==0,last:$index==songs.length-1}">
+                    <span>
+                        {{s.album}}
+                    </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row adjust-margin-row">
+            <div class="col-md-12 col-sm-12" style="top: 20px">
+                <ul>
+                    <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true" ng-click="listenTo(u.song,u.time,uid)"  ng-class=" {max:min==true,first:$index==0}" >
+                    <span >
+                        <span > <a href="#"> {{u.name}} </a> sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
+                    </span>
+                        <i class="fa fa-hand-peace-o loveIconsong" ng-click="" aria-hidden="true"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

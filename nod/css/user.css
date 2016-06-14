@@ -102,3 +102,12 @@ i.iconrow{
     height: 100px;
     border-radius: 22px;
 }
+
+.toptab{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 23px;
+    left: 50%;
+}

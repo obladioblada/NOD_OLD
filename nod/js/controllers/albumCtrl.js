@@ -18,10 +18,10 @@ myApp.controller('albumCtrl', function($scope,$state,$rootScope,NODURL){
     $scope.preferedartists={
         text: "Artisti",
         icon: "fa fa-user-md",
-        sref:"home.user.ranking.me"
+        sref:"home.user.artist"
     };
     $scope.playlist={
-        name: 'Playlist',
+        text: 'Playlist',
         icon: 'fa-list',
         styleIcon: "{'margin-left': '2px'}",
         sref:'home.user.playlist'

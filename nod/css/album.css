@@ -15,8 +15,13 @@
 .albumThumb {
     width: 100px;
     height: 100px;
-    border-radius: 18px;
+    border-radius: 50px;
     transition: all Cubic-Bezier(0,0,0,0) 0.1s;
+    cursor: pointer;
+}
+
+.albumThumb:hover {
+    border-radius: 10%;
 }
 .albumName {
     color: white;

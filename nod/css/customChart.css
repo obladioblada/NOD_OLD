@@ -1,0 +1,15 @@
+.ct-series-a .ct-line {
+    /* Set the colour of this series line */
+    stroke: #821d20;
+    /* Control the thikness of your lines */
+    stroke-width: 5px;
+    /* Create a dashed line with a pattern */
+    stroke-dasharray: 10px 20px;
+}
+
+.ct-chart{
+    background-color: white;
+    border-radius: 18px;
+    border-top: 9px solid white;
+    border-right: 9px solid white;
+}

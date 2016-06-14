@@ -448,13 +448,42 @@ $scope.notification="";
         $scope.myUser.isPlaying=true;
         $scope.canListen(idmaster);
         $scope.idMaster=idmaster;
-        $scope.countnodbuddy=$scope.myUser.nodbuddy[idmaster].count;
+        $scope.countnodbuddy=null;
+        $scope.dates=null;
+        if($scope.myUser.nodbuddy!=null) {
+            if ($scope.myUser.nodbuddy[idmaster] != null) {
+                $scope.countnodbuddy = $scope.myUser.nodbuddy[idmaster].count;
+                $scope.dates = $scope.myUser.nodbuddy[idmaster].dates;
+            }
+        }
+        var today=new Date(new Date().getFullYear(), new Date().getDate(), new Date().getDay()).toJSON();
+        var d={
+            date: today,
+            countToday: 1
+        };
+        if($scope.dates!=null||$scope.dates!=undefined){
+            if($scope.dates.length==4)
+                $scope.dates.shift();
+            if($scope.dates[$scope.dates.length - 1].date==today){
+                $scope.dates[$scope.dates.length - 1].countToday++;
+
+                console.log("fate count ="+$scope.dates[$scope.dates.length - 1].countToday);
+            }else{
+                $scope.dates.push(d);
+            }
+        }else {
+            $scope.dates=[];
+            $scope.dates.push(d);
+        }
+
+
         if($scope.countnodbuddy==""||$scope.countnodbuddy==null) $scope.countnodbuddy=0;
         $scope.countnodbuddy++;
         console.log($scope.countnodbuddy+" <- countnodbuddy");
         ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/nodbuddy/"+idmaster);
         ref.set({
-            count: $scope.countnodbuddy
+            count: $scope.countnodbuddy,
+            dates: $scope.dates
         });
     };
 

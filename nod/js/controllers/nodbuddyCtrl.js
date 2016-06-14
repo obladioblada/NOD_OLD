@@ -40,7 +40,10 @@ myApp.controller('nodbuddyCtrl', function($scope,USERSURL,$rootScope,$firebaseOb
                             $scope.series
                         ]
                     }, {
-                        low: 0
+                        scaleOverride: true,
+                        scaleSteps: steps,
+                        scaleStepWidth: Math.ceil(max / steps),
+                        scaleStartValue: 0
                     });
 
 // Let's put a sequence number aside so we can use it in the event callbacks

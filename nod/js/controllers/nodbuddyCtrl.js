@@ -25,22 +25,32 @@ myApp.controller('nodbuddyCtrl', function($scope,USERSURL,$rootScope,$firebaseOb
                     var i=0;
                     $scope.labels=[];
                     $scope.series=[];
+                    var maxserie=0;
                     angular.forEach($scope.nodB.dates, function(date){
                         $scope.labels.push(date.date);
                         $scope.series.push(date.countToday);
+                        if(date.countToday>maxserie)maxserie=date.countToday;
                         console.log("date vale ")
                         console.log(date);
                         console.log($scope.labels[i]);
                         console.log($scope.series[i]);
                         i++;
                     });
+                   // var maxGraph=maxserie+2;
+                    var maxGraph=0;
+                    for(i=0;i<100;i+=10){
+                        if(maxserie>i&&maxserie<i+10){
+                            maxGraph=i+10;
+                        }
+                    }
                     var chart = new Chartist.Line('.ct-chart', {
                         labels: $scope.labels,
                         series: [
                             $scope.series
                         ]
                     }, {
-                        low: 0
+                        low: 0,
+                        high: maxGraph
                     });
 
 // Let's put a sequence number aside so we can use it in the event callbacks

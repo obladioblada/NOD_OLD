@@ -451,14 +451,70 @@
     .backSearchIcon {
         background: #841E21;
         border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        margin-left: -30px;
-        margin-top: -14px;
+        width: 50px;
+        height: 50px;
+        margin-top: -9px;
         color: #fff;
-        border: 19px solid #841E21;
+        border: 9px solid #841E21;
         outline: none;
-        margin-right: 18px;
+        margin-right: 22px;
         position: relative;
+    }
+
+    .usernametag {
+        height: 50px !important;
+        font-size: 16px;
+        font-family: 'Lato';
+        font-weight: 100;
+        border: none;
+        outline: none;
+        color: #fff;
+        padding: 0;
+        margin-left: 0;
+        height: 50px !Important;
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 46px;
+        right: 0;
+        background: none;
+        transition: none;
+        cursor: default;
+    }
+    .user-icon {
+        border: 1px solid white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        position: absolute;
+        margin-top: 0px;
+        margin-left: -12px;
+    }
+    .camera-icoon {
+        position: absolute;
+        visibility: hidden;
+        width: 50px;
+        margin-left: -12px;
+        height: 50px;
+        margin-top: 0px;
+        padding: 15px;
+        border-radius: 50px;
+        transition: all 0.3s cubic-bezier(1, -0.35, 0.58, 1.72);
+    }
+    i.fa.fa-2x.fa-camera.camera-icoon {
+        font-size: large;
+    }
+    .user-icon:active + .camera-icoon{
+        cursor: pointer;
+        visibility: visible;
+        background: rgba(0,0,0,0.6);
+        color: white;
+    }
+
+    .user-icon + .camera-icoon:active{
+        cursor: pointer;
+        visibility: visible;
+        background: rgba(0,0,0,0.6);
+        color: white;
     }
 }

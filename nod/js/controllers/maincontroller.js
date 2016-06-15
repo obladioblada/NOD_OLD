@@ -324,7 +324,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
 
     $scope.usersObj.$loaded().then(function(){
         setTimeout(function () {
-            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!",'http://localhost:63342/nod/nod/index.html#/home/user/nodder'+$scope.myUser.$id, $scope.myUser.image );
+            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!",'https://nod-music.firebaseapp.com/#/home/user/nodder'+$scope.myUser.$id, $scope.myUser.image );
             $(".notification").trigger('play');
         },2000);
         $scope.myUser.online=true;

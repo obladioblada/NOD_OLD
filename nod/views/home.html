@@ -222,7 +222,7 @@
                             </button>
                             <button class="player-button play-pause-button" ng-click="playOrPause()"
                                     ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
-                                <i class="fa fa-pause"></i>
+                                <i class="fa fa-pause" ng-class="{'fa-pause': audio.paused==false&& audio.canPlay, 'fa-play' : audio.paused==true&& audio.canPlay}"></i>
                             </button>
                             <button class="player-button" ng-click="nextSong()" ng-disabled="audio==undefined"
                                     ng-class="{nonActivated : audio==undefined}">

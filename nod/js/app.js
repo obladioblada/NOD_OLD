@@ -2,7 +2,7 @@
 $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
 });
-var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router','ngSanitize'])
+var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router','ngSanitize','ngTouch'])
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')
     .constant('CHATSURL','https://nod-music.firebaseio.com/chats/')

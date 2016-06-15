@@ -223,11 +223,12 @@ a:hover {
 	border-radius: 25px;
 	float: left;
 	width: 50px;
+	margin-top: 48px;
 	height: 50px;
-	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-	margin-top: -8px;
-	border: 2px solid #1B6D85;
+	transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	border: 2px solid #3F51B5;
 	background-size: 50px;
+	background-image: url("http://penerbitsalemba.com/v3/images/user_default.png");
 }
 
 .chatThumbList:hover{

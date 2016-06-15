@@ -13,6 +13,7 @@
 
 *{
 	font-family: "lato";
+	color: #ffffff;
 }
 
 
@@ -26,6 +27,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 body {
     font-family: 'Limelight', Calibri, Arial, sans-serif;
     color: #3F51B5;
+	background: #4D4D52 !important;
 }
 
 h6{
@@ -188,7 +190,7 @@ a:hover {
 }
 
 .main > section:nth-child(even) {
-	background: #f6f6f6;
+	background: #82828A;
 	color: #fff;
 }
 
@@ -239,6 +241,15 @@ a:hover {
 .interviste{
 	overflow-y: scroll;
 	border-radius: 18px;
+	background: #82828A;
+}
+.inDx{
+	border-top-right-radius: 0px!important;
+	border-bottom-right-radius: 0px !important;
+}
+.inSx{
+	border-top-left-radius: 0px !important;
+	border-bottom-left-radius: 0px !important;
 }
 
 .ct-chart{

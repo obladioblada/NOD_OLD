@@ -89,7 +89,7 @@
 
 }
 .chaticon:hover{
-    background:#4D4D52;
+    border-radius: 10%;
 }
 
 .chaticon:active{

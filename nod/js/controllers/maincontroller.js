@@ -117,8 +117,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         if($scope.myUser.volume!=null) $scope.audio.volume=$scope.myUser.volume;
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
-        $(".fa-play").addClass("fa-pause");
-        $(".fa-pause").removeClass("fa-play");
     };
     $scope.percentage=0;
     $scope.checkIfPlaying=function(){
@@ -170,11 +168,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         if($scope.audio.paused){
             $scope.audio.play();
             $scope.myUser.isPlaying=true;
-            $(".fa-play").addClass("fa-pause");
-            $(".fa-pause").removeClass("fa-play");
         }else{
-            $(".fa-pause").addClass("fa-play");
-            $(".fa-play").removeClass("fa-pause");
             $scope.audio.pause();
             $scope.myUser.isPlaying=false;
         }
@@ -466,10 +460,10 @@ $scope.notification="";
                 $scope.dates[$scope.dates.length - 1].countToday++;
 
                 console.log("fate count ="+$scope.dates[$scope.dates.length - 1].countToday);
-            }else{
+
                 if($scope.dates.length==7)
                     $scope.dates.shift();
-
+          }else{
                 $scope.dates.push(d);
             }
         }else {

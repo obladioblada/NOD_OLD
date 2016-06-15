@@ -11,6 +11,7 @@ self.addEventListener('activate', function(event) {
 var data="";
 
 self.addEventListener('push', function(e) {
+    
     console.log("sono dentro all'evento push");
     console.log(e);
     console.log("data è" + data.title);

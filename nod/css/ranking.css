@@ -1,17 +1,22 @@
 .navbarRanking
-{   height: 80px;
+{   height: 110px;
     background: #4D4D52;
     border: none;
     margin-left: -10px;
 }
 
 .linavbar {
-    display: table-cell;
+    display: inline-table;
+    padding-right: 3%;
+    padding-left: 3%;
 }
 
 .tabContainer{
     overflow-x: scroll;
-
+    padding-top: 30px;
+    margin-left: -10%;
+    display: flex;
+    justify-content: center
 }
 
 .item-ranking-navbar {
@@ -20,6 +25,7 @@
     padding-top: 17px;
     width: 65px;
     height: 65px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
 }
@@ -28,9 +34,9 @@
 .item-ranking-navbar:hover{
     cursor: pointer;
     height: 75px;
+    width: 75px;
     background: #841E21;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
+    border-radius: 10%;
 }
 
 

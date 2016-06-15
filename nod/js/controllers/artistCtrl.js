@@ -29,6 +29,7 @@ myApp.controller('artistCtrl', function($scope,$state,$rootScope,NODURL,$firebas
     $scope.preferredsongOBJ=$firebaseObject(new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredartists"));
     $scope.preferredsongOBJ.$bindTo($scope, 'mypreferredartists').then(
        function () {
+           console.log("le mie canzoni preferite sono: ");
            console.log($scope.mypreferedartists);
        }
     );

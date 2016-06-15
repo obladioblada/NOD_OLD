@@ -17,10 +17,11 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                 $scope.found = true;
             }
             // if(user.$id!=$scope.newUser.username)  $scope.userNameAlreadyUsed=false;
-        })
+        });
         if ($scope.found == false)
             $scope.userNameAlreadyUsed = false;
         $scope.found = false;
+        console.log("emailalreadyused state" +  $scope.userNameAlreadyUsed);
     };
 
     $scope.sendValidationEmail=function () {
@@ -56,11 +57,19 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
     $scope.charge = function () {
         $(".loadingContainer").addClass("on");
         $(".container-fluid").addClass("blur");
-    }
+    };
     $scope.stopCharge = function () {
         $(".loadingContainer").removeClass("on");
         $(".container-fluid").removeClass("blur");
-    }
+    };
+
+    $scope.goToLogin=function(){
+        $state.go('login');
+    };
+    
+    $scope.hidemailerror=function () {
+        $scope.userNameAlreadyUsed=false;
+    };
 
 
     $scope.users.$loaded()
@@ -81,6 +90,7 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                     switch (error.code) {
                         case "EMAIL_TAKEN":
                             console.log("The new user account cannot be created because the email is already in use.");
+                            $scope.userNameAlreadyUsed = true;
                             break;
                         case "INVALID_EMAIL":
                             console.log("The specified email is not a valid email.");
@@ -94,6 +104,8 @@ myApp.controller('registrationCtrl', function ($scope, $firebaseArray, $location
                     $scope.sendValidationEmail();
                     $state.go('login');
                 }
+                $scope.$apply();
+                console.log("emailalreadyused state" +  $scope.userNameAlreadyUsed);
             });
         }
         

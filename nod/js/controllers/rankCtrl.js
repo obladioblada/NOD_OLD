@@ -27,14 +27,18 @@ myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject
         var ref = new Firebase(USERSURL);
         ref.on("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
-            $scope.usersBycountedpeaced.push(childSnapshot.val());
+                $scope.currentuser=childSnapshot.val();
+                $scope.currentuser.id=childSnapshot.key();
+            $scope.usersBycountedpeaced.push($scope.currentuser);
             });
-
         });
         console.log($scope.usersBycountedpeaced);
     };
     $scope.orderBycountedpeace();
-    window.onload = $scope.orderBycountedpeace();
+    window.onload = function(){
+        $scope.orderBycountedpeace();
+
+    };
 
 });
 

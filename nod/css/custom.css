@@ -544,3 +544,13 @@ a.userlink:hover{
     padding-bottom: 0;
     padding-top: 5px;
 }
+
+.alink{
+    text-decoration: none;
+    color: #1B6D85;
+}
+
+.alink:hover{
+    text-decoration: none;
+    color: #841E21 !important;
+}

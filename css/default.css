@@ -246,11 +246,12 @@ a:hover {
 }
 
 .ct-label {
-	fill: rgba(0,0,0,.4);
-	color: rgba(0,0,0,.4);
+	fill: rgba(255, 255, 255, 1) !important;
+	color: white;
 	font-size: smaller !important;
 	font-weight: 500!important;
 }
+
 
 .rosso{
 	stroke: #8e2024;

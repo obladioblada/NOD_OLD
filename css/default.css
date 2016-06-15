@@ -11,6 +11,11 @@
 	font-style: normal;
 } /* Made with http://icomoon.io/ */
 
+*{
+	font-family: "lato";
+}
+
+
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body, html { font-size: 100%; padding: 0; margin: 0;}
 
@@ -23,11 +28,12 @@ body {
     color: #3F51B5;
 }
 
+h6{
+	padding-top: 40px !important;
+	font-size: medium!important;
+	font-weight: 500!important;
 
-
-
-.cls
-
+}
 
 element.style {
 	width: 1000px;
@@ -212,6 +218,23 @@ a:hover {
     width: 100%;
 
 }
+
+.chatThumbList{
+	border-radius: 25px;
+	float: left;
+	width: 50px;
+	height: 50px;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	margin-top: -8px;
+	border: 2px solid #1B6D85;
+	background-size: 50px;
+}
+
+.chatThumbList:hover{
+
+	border-radius: 10%;
+}
+
 
 
 

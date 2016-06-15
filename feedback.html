@@ -14,7 +14,9 @@
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <link rel="stylesheet" type="text/css" href="css/component.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
@@ -39,8 +41,8 @@
         <span class="centerImg">  Low Poly  SN project     <span class="bp-icon bp-icon-about" data-content="Low Poly foundation "></span></span>
         <h1 class="centerImg">A new way to share your music </h1>
     </header>
-    <div class="main">
-        <span style="text-align:center;">
+    <div class="main container-fluid row">
+        <span class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
             <h3>Interviste, qualche accenno prima di procedere alla lettura!</h3><hr>
             <h5>
                 Abbiamo condotto diverse tipologie di interviste nell'arco della settimana precedente alla consegna del progetto. <br>
@@ -48,89 +50,309 @@
                 Pertanto abbiamo ricevuto dei feedback in maniera limitata e quindi probabilmente il risultato è condizionato dai legami personali.<br>
                 Questo ha prodotto un feedback variegato, che risulta a volte utile, a volte divertente.<br>
                 Ad alcuni abbiamo chiesto una registrazione audio o di scriverci qualcosa , ad altri un parere libero e , talvolta , feedback riguardo specifiche funzionalit&agrave;.<br><hr>
-                Qui di seguito alcune interviste, in fondo alla pagina si trovano dei grafici che riassumono l'andamento delle interviste.<br>
+                Qui di seguito alcune interviste, in fondo alla pagina si trovano dei grafici che riassumono l'andamento delle interviste.<br><hr>
             </h5>
         </span>
-        <div>
-            <div class="chatThumbList" style='background-image: url("https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/12049329_10206108835534557_1520921688670035728_n.jpg?oh=22e7ca319deb6ede08a5bfe70e56de8f&oe=57D15150");'></div>
-            <h6>Marco Musto</h6>
-            <h5>24 anni |Studente |Intervista libera</h5><hr>
-            <span>
-                Anche se esiste già metterei una cosa integrata tipo sarabanda per sfidare<br>
-                Però è bello.<br>
-                Si potrebbe implementare una modalità di gioco in cui, collegandoti con un utente che sta ascoltando della musica, hai la possibilità di indovinare la canzone e , nel caso,  acquisire dei  punti<br>
-                La chat mi interessa meno invece ( non userei mai la chat di NOD per contattare persone), mentre mi piace molto la roba dei voti, una specie di indice di affiliazione con una persona <br>
-                Ad esempio, si potrebbe dare un voto alla persona con cui hai ascoltato la canzone e ,nel tempo , creare dei rapporti basati sui gusti musicali <br>
-            </span>
+        <div class="interviste col-lg-6 col-xs-6 col-sm-6 col-md-6">
+            <div>
+                <div class="chatThumbList" style='background-image: url("https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/12049329_10206108835534557_1520921688670035728_n.jpg?oh=22e7ca319deb6ede08a5bfe70e56de8f&oe=57D15150");'></div>
+                <h6>Marco Musto</h6>
+                <h5>24 anni |Studente |Intervista libera</h5><hr>
+                <span>
+                    Anche se esiste già metterei una cosa integrata tipo sarabanda per sfidare<br>
+                    Però è bello.<br>
+                    Si potrebbe implementare una modalità di gioco in cui, collegandoti con un utente che sta ascoltando della musica, hai la possibilità di indovinare la canzone e , nel caso,  acquisire dei  punti<br>
+                    La chat mi interessa meno invece ( non userei mai la chat di NOD per contattare persone), mentre mi piace molto la roba dei voti, una specie di indice di affiliazione con una persona <br>
+                    Ad esempio, si potrebbe dare un voto alla persona con cui hai ascoltato la canzone e ,nel tempo , creare dei rapporti basati sui gusti musicali <br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList" style='background-image: url("Resources/lorenzo.png");'></div>
+                <h6>Lorenzo Miretti</h6>
+                <h5>22 anni |Studente |Intervista sulle funzionalit&agrave;</h5><hr>
+                <span>
+                    Lorenzo sul nodBuddy: "Un'esperienza indimenticabile!"<br>
+                    Lorenzo sulla condivisione in tempo reale della musica: "Finalmente posso avere una colonna sonora della mia vita, e non essere l'unico ad accorgersene!"<br>
+                    Lorenzo sul karaoke: "Il karaoke... Arf"<br>
+                    Lorenzo sul sistema di ranking: "Non vedo l'ora di riempire di voti negativi quei trogloditi che ascoltano Vasco!"<br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList" ></div>
+                <h6>Giuseppe Liggieri</h6>
+                <h5>23 anni |Disoccupato |Intervista libera</h5><hr>
+                <span>
+                    L'idea è molto carina <br>
+                    C'è pure la chat: Bestiale :)<br>
+                    Così uno può parlare di musica mentre l'ascolta<br>
+                    Unica pecca: si vede un po' male su mobile, cioè la grafica si sovrappone<br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList"></div>
+                <h6>Martina Muroni</h6>
+                <h5>23 anni |Studentessa |Intervista libera</h5><hr>
+                <span>
+                <audio controls>
+                    <source src="interviste/martina.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio><br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList" style='background-image: url("https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/13344616_10209758936560705_1603210699554187768_n.jpg?oh=3c4af64d041310746ca6de5ad5dc427d&oe=57FD62CA")'></div>
+                <h6>Riccardo Mereu</h6>
+                <h5>24 anni |Studente |Intervista sulle funzionalit&agrave;</h5><hr>
+                <span>
+                <audio controls>
+                    <source src="interviste/riccardo.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio><br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList"></div>
+                <h6>Fabio Basilicò</h6>
+                <h5>23 anni |Lavoratore |Intervista libera</h5><hr>
+                <span>
+                <audio controls>
+                    <source src="interviste/fabio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio><br>
+                </span>
+            </div>
+            <div>
+                <div class="chatThumbList" style='background-image: url("https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg");'></div>
+                <h6>Salvatore Basilicò</h6>
+                <h5>28 anni |Lavoratore |Intervista libera</h5><hr>
+                <span>
+                    Questo feedback &grave; stato autonomo, per tanto non ce la siamo sentita di escluderlo o tagliarlo<br>
+                <audio controls>
+                    <source src="interviste/salvo.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio><br>
+                </span>
+            </div>
         </div>
-        <div>
-            <div class="chatThumbList" style='background-image: url("Resources/lorenzo.png");'></div>
-            <h6>Lorenzo Miretti</h6>
-            <h5>22 anni |Studente |Intervista sulle funzionalit&agrave;</h5><hr>
-            <span>
-                Lorenzo sul nodBuddy: "Un'esperienza indimenticabile!"<br>
-                Lorenzo sulla condivisione in tempo reale della musica: "Finalmente posso avere una colonna sonora della mia vita, e non essere l'unico ad accorgersene!"<br>
-                Lorenzo sul karaoke: "Il karaoke... Arf"<br>
-                Lorenzo sul sistema di ranking: "Non vedo l'ora di riempire di voti negativi quei trogloditi che ascoltano Vasco!"<br>
-            </span>
+        <div class="interviste col-lg-6 col-xs-6 col-sm-6 col-md-6">
+            <h3 class="title">Quanti degli intervistati hanno gradito il True Shared Music</h3>
+            <div class="ct-chart ct-perfect-fourth " id="TSM"></div>
+            <hr>
+            <h3 class="title">Quanti degli intervistati hanno gradito il Karaoke competition</h3>
+            <div class="ct-chart ct-perfect-fourth " id="karaoke"></div>
+            <hr>
+            <h3 class="title">Quanti degli intervistati hanno gradito l'affiliazione tra utenti (nodBuddy)</h3>
+            <div class="ct-chart ct-perfect-fourth " id="nodbuddy"></div>
+            <hr>
+
         </div>
-        <div>
-            <div class="chatThumbList" ></div>
-            <h6>Giuseppe Liggieri</h6>
-            <h5>23 anni |Disoccupato |Intervista libera</h5><hr>
-            <span>
-                L'idea è molto carina <br>
-                C'è pure la chat: Bestiale :)<br>
-                Così uno può parlare di musica mentre l'ascolta<br>
-                Unica pecca: si vede un po' male su mobile, cioè la grafica si sovrappone<br>
-            </span>
-        </div>
-        <div>
-            <div class="chatThumbList"></div>
-            <h6>Martina Muroni</h6>
-            <h5>23 anni |Studentessa |Intervista libera</h5><hr>
-            <span>
-            <audio controls>
-                <source src="interviste/martina.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio><br>
-            </span>
-        </div>
-        <div>
-            <div class="chatThumbList" style='background-image: url("https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/13344616_10209758936560705_1603210699554187768_n.jpg?oh=3c4af64d041310746ca6de5ad5dc427d&oe=57FD62CA")'></div>
-            <h6>Riccardo Mereu</h6>
-            <h5>24 anni |Studente |Intervista sulle funzionalit&agrave;</h5><hr>
-            <span>
-            <audio controls>
-                <source src="interviste/riccardo.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio><br>
-            </span>
-        </div>
-        <div>
-            <div class="chatThumbList"></div>
-            <h6>Fabio Basilicò</h6>
-            <h5>23 anni |Lavoratore |Intervista libera</h5><hr>
-            <span>
-            <audio controls>
-                <source src="interviste/fabio.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio><br>
-            </span>
-        </div>
-        <div>
-            <div class="chatThumbList" style='background-image: url("https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg");'></div>
-            <h6>Salvatore Basilicò</h6>
-            <h5>28 anni |Lavoratore |Intervista libera</h5><hr>
-            <span>
-                Questo feedback &grave; stato autonomo, per tanto non ce la siamo sentita di escluderlo o tagliarlo<br>
-            <audio controls>
-                <source src="interviste/salvo.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio><br>
-            </span>
-        </div>
+        <script>
+            $( window ).resize(function() {
+                $(".interviste").height($( ".ct-chart" ).height()+100);
+            });
+            $( document ).ready(function() {
+                $(".interviste").height($( ".ct-chart" ).height()+100);
+            });
+            var responsiveOptions = [
+                ['screen and (min-width: 640px)', {
+                    chartPadding: 0,
+                    labelOffset: 0,
+                    labelDirection: 'explode',
+                    labelInterpolationFnc: function(value) {
+                        return value;
+                    }
+                }],
+                ['screen and (min-width: 1024px)', {
+                    labelOffset: 0,
+                    chartPadding: 0
+                }]
+            ];
+            var chart = new Chartist.Pie('#TSM', {
+                labels: ['90% Ha apprezzato', '10% Non lo utilizzerebbe'],
+                series: [{className: 'rosso',value: 90}, {className: 'blu',value: 20}]
+            }, {
+                donut: true,
+                showLabel: true,
+
+                labelInterpolationFnc: function(value) {
+                    return value[0]
+                }
+            },
+                    responsiveOptions);
+
+            chart.on('draw', function(data) {
+                if(data.type === 'slice') {
+                    // Get the total path length in order to use for dash array animation
+                    var pathLength = data.element._node.getTotalLength();
+
+                    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+                    data.element.attr({
+                        'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+                    });
+
+                    // Create animation definition while also assigning an ID to the animation for later sync usage
+                    var animationDefinition = {
+                        'stroke-dashoffset': {
+                            id: 'anim' + data.index,
+                            dur: 1000,
+                            from: -pathLength + 'px',
+                            to:  '0px',
+                            easing: Chartist.Svg.Easing.easeOutQuint,
+                            // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                            fill: 'freeze'
+                        }
+                    };
+
+                    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+                    if(data.index !== 0) {
+                        animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+                    }
+
+                    // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+                    data.element.attr({
+                        'stroke-dashoffset': -pathLength + 'px'
+                    });
+
+                    // We can't use guided mode as the animations need to rely on setting begin manually
+                    // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+                    data.element.animate(animationDefinition, false);
+                }
+            });
+
+            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+            chart.on('created', function() {
+                if(window.__anim21278907124) {
+                    clearTimeout(window.__anim21278907124);
+                    window.__anim21278907124 = null;
+                }
+                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+            });
+
+            var chartkaraoke = new Chartist.Pie('#karaoke', {
+                        labels: ['40% Ha apprezzato', '40% Non lo utilizzerebbe','20% Ha proposto nuove modalità di gioco'],
+                        series: [{className: 'rosso',value: 40},{className: 'blu',value: 40}, {className: 'nero',value: 20}]
+                    }, {
+                        donut: true,
+                        showLabel: true,
+
+                        labelInterpolationFnc: function(value) {
+                            return value[0]
+                        }
+                    },
+                    responsiveOptions);
+
+            chartkaraoke.on('draw', function(data) {
+                if(data.type === 'slice') {
+                    // Get the total path length in order to use for dash array animation
+                    var pathLength = data.element._node.getTotalLength();
+
+                    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+                    data.element.attr({
+                        'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+                    });
+
+                    // Create animation definition while also assigning an ID to the animation for later sync usage
+                    var animationDefinition = {
+                        'stroke-dashoffset': {
+                            id: 'anim' + data.index,
+                            dur: 1000,
+                            from: -pathLength + 'px',
+                            to:  '0px',
+                            easing: Chartist.Svg.Easing.easeOutQuint,
+                            // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                            fill: 'freeze'
+                        }
+                    };
+
+                    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+                    if(data.index !== 0) {
+                        animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+                    }
+
+                    // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+                    data.element.attr({
+                        'stroke-dashoffset': -pathLength + 'px'
+                    });
+
+                    // We can't use guided mode as the animations need to rely on setting begin manually
+                    // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+                    data.element.animate(animationDefinition, false);
+                }
+            });
+
+            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+            chartkaraoke.on('created', function() {
+                if(window.__anim21278907124) {
+                    clearTimeout(window.__anim21278907124);
+                    window.__anim21278907124 = null;
+                }
+                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+            });
+
+            var charNodbuddy = new Chartist.Pie('#nodbuddy', {
+                        labels: ['75% Ha apprezzato', '15% Non lo utilizzerebbe','10% Ha proposto vari tipi di affiliazione'],
+                        series: [{className: 'rosso',value: 85},{className: 'blu',value: 15},{className: 'nero',value: 10}]
+                    }, {
+                        donut: true,
+                        showLabel: true,
+
+                        labelInterpolationFnc: function(value) {
+                            return value[0]
+                        }
+                    },
+                    responsiveOptions);
+
+            charNodbuddy.on('draw', function(data) {
+                if(data.type === 'slice') {
+                    // Get the total path length in order to use for dash array animation
+                    var pathLength = data.element._node.getTotalLength();
+
+                    // Set a dasharray that matches the path length as prerequisite to animate dashoffset
+                    data.element.attr({
+                        'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+                    });
+
+                    // Create animation definition while also assigning an ID to the animation for later sync usage
+                    var animationDefinition = {
+                        'stroke-dashoffset': {
+                            id: 'anim' + data.index,
+                            dur: 1000,
+                            from: -pathLength + 'px',
+                            to:  '0px',
+                            easing: Chartist.Svg.Easing.easeOutQuint,
+                            // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
+                            fill: 'freeze'
+                        }
+                    };
+
+                    // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
+                    if(data.index !== 0) {
+                        animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+                    }
+
+                    // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
+                    data.element.attr({
+                        'stroke-dashoffset': -pathLength + 'px'
+                    });
+
+                    // We can't use guided mode as the animations need to rely on setting begin manually
+                    // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
+                    data.element.animate(animationDefinition, false);
+                }
+            });
+
+            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
+            charNodbuddy.on('created', function() {
+                if(window.__anim21278907124) {
+                    clearTimeout(window.__anim21278907124);
+                    window.__anim21278907124 = null;
+                }
+                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
+            });
+        </script>
     </div>
+    <hr>
+    <br><br>
 </div>
 <!-- classie.js by @desandro: https://github.com/desandro/classie -->
 <script src="js/classie.js"></script>

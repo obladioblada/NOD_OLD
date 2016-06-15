@@ -236,6 +236,31 @@ a:hover {
 	border-radius: 10%;
 }
 
+.interviste{
+	overflow-y: scroll;
+	border-radius: 18px;
+}
+
+.ct-chart{
+	width: 100%;
+}
+
+.ct-label {
+	fill: rgba(0,0,0,.4);
+	color: rgba(0,0,0,.4);
+	font-size: smaller !important;
+	font-weight: 500!important;
+}
+
+.rosso{
+	stroke: #8e2024;
+}
+.blu{
+	stroke: #1B6D85;
+}
+.nero{
+	stroke: #222222;
+}
 
 
 

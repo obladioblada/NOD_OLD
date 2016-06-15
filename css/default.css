@@ -63,7 +63,6 @@ a:hover {
 	width: 90%;
 	max-width: 69em;
 	margin: 0 auto;
-	padding: 2.875em 1.875em 1.875em;
 }
 
 .container > header h1 {
@@ -224,6 +223,7 @@ a:hover {
 	float: left;
 	width: 50px;
 	margin-top: 48px;
+	margin-right: 20px;
 	height: 50px;
 	transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 	border: 2px solid #3F51B5;

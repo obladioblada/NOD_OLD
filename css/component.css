@@ -14,7 +14,7 @@
 
 .cbp-af-header .cbp-af-inner {
 	width: 90%;
-	max-width: 69em;
+	max-width: 100em;
 	margin: 0 auto;
 	padding: 0 1.875em;
 }
@@ -125,4 +125,34 @@
 	.cbp-af-header.cbp-af-header-shrink nav a {
 		line-height: 1;
 	}
+}
+
+
+.mynavbar{
+	background: #222222;
+}
+
+nav.mynav{
+    width: 100%; background: #222222;  }
+
+a.mya{
+    color: white;
+    text-decoration: none;
+    font-size: 150%;
+    margin: 20px;
+    font-weight: 400;
+
+}
+a.mya:hover{
+      text-decoration: none;
+      cursor: pointer;
+      color: #841E21;
+      font-size: 150%;
+
+
+  }
+.mynod{
+    color: #841E21;
+    margin: 20px;
+    font-weight: 700;
 }

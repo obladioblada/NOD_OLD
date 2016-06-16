@@ -1,6 +1,27 @@
 <div class="loadingContainer" ng-class="{on:showLoading}">
     <div class="loader"></div>
 </div>
+<!-- Modal-->
+<div id="changeImage" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cambia la tua immagine del profilo!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Inserisci qui sotto il link all'immagine che più preferisci!</p>
+                <p><input type="text" class="usernametag imageinput" ng-model="myUser.image"> </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div>
     <div class="container-fluid" ng-class="{blur:showLoading}" ng-click="clickhandling($event)">
         <style ng-bind-html="style"></style>
@@ -13,7 +34,7 @@
 
             <div class="col-md-6 col-xs-6 ">
                 <img ng-src="{{myUser.image}}"  class="user-icon">
-                <i class="fa fa-2x fa-camera camera-icoon" aria-hidden="true"></i>
+                <i class="fa fa-2x fa-camera camera-icoon" aria-hidden="true" data-toggle="modal" data-target="#changeImage"></i>
                 <input type="text" class="usernametag" ng-model="myUser.name" ng-disabled="true" >
             </div>
             <div class="col-md-6 col-xs-6 searchbar">
@@ -201,7 +222,7 @@
                             </button>
                             <button class="player-button play-pause-button" ng-click="playOrPause()"
                                     ng-disabled="audio==undefined" ng-class="{nonActivated : audio==undefined}">
-                                <i class="fa fa-pause"></i>
+                                <i class="fa fa-pause" ng-class="{'fa-pause': audio.paused==false&& audio.canPlay, 'fa-play' : audio.paused==true&& audio.canPlay}"></i>
                             </button>
                             <button class="player-button" ng-click="nextSong()" ng-disabled="audio==undefined"
                                     ng-class="{nonActivated : audio==undefined}">

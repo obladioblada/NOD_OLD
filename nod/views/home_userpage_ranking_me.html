@@ -5,21 +5,36 @@
                     La tua posizione:
                 </h5>
             </li>
-            <li class=" row rank-list first last">
+            <li class=" row rank-list first last" ng-repeat="s in usersBycountedpeaced | orderBy : '-countpeaced'"
+                ng-class=" {max:min==true,first:$index==0,last:$index==users.length-1}"  ng-show="s.id==myUser.$id">
                             <span class="position col-md-2 col-lg-2 col-xs-3 col-sm-2">
-                                1°
+                               {{$index+1}}°
                             </span>
-                            <span style="padding: 0" class="col-md-7 col-lg-7 col-xs-6 col-sm-7">
-                                <img  ng-src="{{myUser.image}}" class="thumb" >
+
+                          <span style="padding: 0" class="col-md-7 col-lg-7 col-xs-6 col-sm-7">
+                                <img  ng-src="{{s.image}}" class="thumb" >
                                 <span >
-                                    <h5>{{myUser.name}}</h5>
-                                    <h6 style=" color: #C2C2C2"> best nodder ever</h6>
+                                    <h5>{{s.name}}</h5>
+                                    <h6 style=" color: #C2C2C2" ng-if="$index==0"> best nodder ever</h6>
                                     </span>
                             </span>
                             <span class="col-md-3 col-lg-3 col-xs-3 col-sm-3" style="text-align: center;">
                                 <img src="http://www.fishisdata.com/wp-content/uploads/2015/07/Prize-Tower.png" style="width: 36px;">
-                                300<br>voti positivi!
+                                {{s.countpeaced}}<br> peace
                             </span>
             </li>
         </ul>
     </div>
+
+ <div class="row">
+        <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+        </div>
+        <div class="col-lg-6 col-xs-6 col-sm-6 col-md-3">
+            <h5 class="position col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                La tua posizione nell'ultimo mese:
+            </h5>
+            <div class="ct-chart ct-perfect-fourth"></div>
+        </div>
+        <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+        </div>
+ </div>

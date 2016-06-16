@@ -1,4 +1,4 @@
-myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL,CHATSURL){
+myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAudioGlobals,$timeout, $firebaseArray, $firebaseObject, $window, NODURL,USERSURL,CHATSURL,$http){
     ngAudioGlobals.unlock = false;
     $scope.makeItBounce=[false,false,false,false];
     $scope.deltas=[0,90,180,270];
@@ -19,6 +19,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         image:'',
         online: false
     };
+    var user=$scope.myUser.username;
     $scope.currentLineSong="";
     $scope.nextLineSong="";
     $scope.min=false;
@@ -74,6 +75,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.online=false;
         console.log("exit-logout");
         console.log("onlile  ?" + $scope.myUser.online);
+        if (typeof($scope.audio) != "undefined") $scope.audio.stop();
+
     };
    
     
@@ -113,11 +116,9 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.currentSongIndex=$i;
         $scope.audio.currentTime=0;
         $scope.myUser.time=0;
-
+        if($scope.myUser.volume!=null) $scope.audio.volume=$scope.myUser.volume;
         $scope.audio.play();
         $scope.myUser.isPlaying=true;
-        $(".fa-play").addClass("fa-pause");
-        $(".fa-pause").removeClass("fa-play");
     };
     $scope.percentage=0;
     $scope.checkIfPlaying=function(){
@@ -131,8 +132,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     };
 
     $scope.$watch('audio.volume',function(){
-        if($scope.audio!=undefined)
+        if($scope.audio!=undefined){
             $scope.volumeStyle = ".volumebar{ background-image: -webkit-gradient(linear,left top,right top,color-stop(" + $scope.audio.volume + ", #841E21),color-stop(" + $scope.audio.volume + ", white));";
+            $scope.myUser.volume=$scope.audio.volume;
+            console.log("volume "+$scope.myUser.volume);
+        }
     });
 
     $scope.$watch('audio.currentTime',function(){
@@ -142,7 +146,10 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             if ($scope.audio.remaining < 1) {
                 $scope.nextSong();
             }
-            $scope.myUser.time=$scope.audio.currentTime;
+            if($scope.audio.currentTime!=null){
+                $scope.myUser.time=$scope.audio.currentTime;
+                $scope.myUser.volume=$scope.audio.volume;
+            }
             $scope.myUser.song=$scope.songs[$scope.currentSongIndex];
             var lineN=0;
             var itmp=0;
@@ -163,11 +170,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         if($scope.audio.paused){
             $scope.audio.play();
             $scope.myUser.isPlaying=true;
-            $(".fa-play").addClass("fa-pause");
-            $(".fa-pause").removeClass("fa-play");
         }else{
-            $(".fa-pause").addClass("fa-play");
-            $(".fa-play").removeClass("fa-pause");
             $scope.audio.pause();
             $scope.myUser.isPlaying=false;
         }
@@ -246,7 +249,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
                             $scope.suggestArtist.splice($scope.suggestArtist.indexOf(original), 1);
                         }
                     }
-                })
+                });
                 if($scope.suggestArtist.length!=0){
                     $scope.suggestions.push($scope.suggestArtist);
                     $scope.ricerca.push("Artisti");
@@ -270,7 +273,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
                             $scope.suggestAlbum.splice($scope.suggestAlbum.indexOf(original), 1);
                         }
                     }
-                })
+                });
                 if($scope.suggestAlbum.length!=0){
                     $scope.suggestions.push($scope.suggestAlbum);
                     $scope.ricerca.push("Album");
@@ -321,8 +324,11 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
     $scope.usersObj = $firebaseObject(refusers);
     $scope.usersObj.$bindTo($scope, 'users');
 
-
     $scope.usersObj.$loaded().then(function(){
+        setTimeout(function () {
+            $scope.sendPush( $scope.myUser.name +" é online!" , "Noddati  con lui!",'https://nod-music.firebaseapp.com/#/home/user/nodder'+$scope.myUser.$id, $scope.myUser.image );
+            $(".notification").trigger('play');
+        },2000);
         $scope.myUser.online=true;
         $scope.getMessagesNotifications(true);
     });
@@ -334,7 +340,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         ref.set(snapshot.val());
         if (snapshot.val()) {
             var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid);
-           // ref.onDisconnect().remov;
             ref.onDisconnect().update({
                 online: false,
                 isPlaying:false,
@@ -343,29 +348,139 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
             });
         }
     });
-/*
-$scope.usersObj.$loaded()
-        .then(function(){
-            angular.forEach( $scope.usersObj, function(user) {
 
-                $scope.users.push(user);
-            });
+
+
+/************************ notifiche  *************************/
+
+$scope.notification="";
+    $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+    $scope.notob=$firebaseObject($scope.notRef);
+    $scope.notob.$bindTo($scope,'notification').then(function(){
+        $scope.$watch('notification',function () {
+            var values=[];
+            for(var key in $scope.notification) {
+                values.push($scope.notification[key]);
+            }
+            console.log(values);
+            if(navigator.serviceWorker.controller!=null){
+                navigator.serviceWorker.controller.postMessage({'title': values[4],'body':values[2], 'tag': values[5], 'img':values[3] });}
         });
-*/
+    });
+    $scope.sendPush = function(title, body, id, img){
+        $scope.notRef = new Firebase('https://nod-music.firebaseio.com/notification');
+        var jsonToFb={
+            title:title,
+            body:body,
+            uid: id,
+            image: img
+        };
+        $scope.notRef.update(jsonToFb);
+        $scope.subObj= $firebaseObject(new Firebase(NODURL+"/subscribe/"));
+        $scope.subcriptionArray=[];
+        $scope.subObj.$loaded()
+            .then(function(){
+                angular.forEach( $scope.subObj, function(s) {
+                    $scope.subcriptionArray.push(s);
+                    console.log($scope.subcriptionArray.length);
+                });
 
-    $scope.listenTo=function($song,$time,$idmaster){
+                var Content = {
+                    registration_ids:$scope.subcriptionArray
+                };
+                console.log(Content);
+                var req = {
+                    method: 'POST',
+                    url: 'https://android.googleapis.com/gcm/send',
+                    headers: {
+                        'Authorization': 'key= AIzaSyA2osVlaB52G_k5Rp1D4VP8QG0NrhnRAm8' ,
+                        'Content-Type': 'application/json'
+                    },
+                    data : Content
+                };
+
+                $http(req).then(function(response){
+                    console.log("requeste http sended correctly!" + response);
+                    console.log(response);
+                }, function(response){
+                    console.log("ERROR: requeste http not sended correctly!" + response);
+
+                });
+
+            });
+
+    };
+
+ /********************  fine notifiche *************************/
+
+    $scope.canListen=function(idM){
+        setTimeout(function(idM){
+            if($scope.audio.canPlay){
+                var ref= new Firebase("https://nod-music.firebaseio.com/users/"+idM+"/time");
+                var time = $firebaseObject(ref);
+                time.$loaded().then(function(){
+                    $scope.audio.setCurrentTime=time;
+                    $scope.audio.play();
+                });
+            }else{
+                $scope.canListen();
+            }
+        },200);
+    };
+
+
+    $scope.listenTo=function($song,$time,idmaster){
         if($scope.audio!=undefined) {
             $scope.audio.pause();
             $scope.audio.audio.src = "";
         }
-        console.log($song+" - "+$time+" - "+$idmaster);
+        console.log($song+" - "+$time+" - "+idmaster);
         $time+=0.5;
         $scope.audio = ngAudio.load("https://nod-music.firebaseapp.com/audio/"+$song.title+".mp3#t="+$time);
+        if($scope.myUser.volume!=null) $scope.audio.volume=$scope.myUser.volume;
         $scope.audio.loop=false;
         $scope.currentSongIndex=$scope.searchSongIndex($song);
-        $scope.audio.play();
         $scope.myUser.isPlaying=true;
-        $scope.idMaster=$idmaster;
+        $scope.canListen(idmaster);
+        $scope.idMaster=idmaster;
+        $scope.countnodbuddy=null;
+        $scope.dates=null;
+        if($scope.myUser.nodbuddy!=null) {
+            if ($scope.myUser.nodbuddy[idmaster] != null) {
+                $scope.countnodbuddy = $scope.myUser.nodbuddy[idmaster].count;
+                $scope.dates = $scope.myUser.nodbuddy[idmaster].dates;
+            }
+        }
+        var today=new Date().toLocaleDateString();
+        var d={
+            date: today,
+            countToday: 1
+        };
+        if($scope.dates!=null||$scope.dates!=undefined){
+            if($scope.dates[$scope.dates.length - 1].date==today){
+                $scope.dates[$scope.dates.length - 1].countToday++;
+
+                console.log("fate count ="+$scope.dates[$scope.dates.length - 1].countToday);
+
+                if($scope.dates.length==7)
+                    $scope.dates.shift();
+          }else{
+                $scope.dates.push(d);
+            }
+        }else {
+            $scope.dates=[];
+            $scope.dates.push(d);
+        }
+
+
+        if($scope.countnodbuddy==""||$scope.countnodbuddy==null) $scope.countnodbuddy=0;
+        $scope.countnodbuddy++;
+        console.log($scope.countnodbuddy+" <- countnodbuddy");
+        ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/nodbuddy/"+idmaster);
+        ref.set({
+            count: $scope.countnodbuddy,
+            dates: $scope.dates
+        });
     };
 
     $scope.searchSongIndex= function($song){
@@ -441,7 +556,7 @@ $scope.usersObj.$loaded()
         console.log("canzoni preferite " + song.title);
         var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid+"/preferredalbum");
         ref.push(
-            {   album: album ,
+            {   album: album 
             });
 
     };
@@ -467,12 +582,14 @@ $scope.usersObj.$loaded()
                                 snapshot.forEach(function (childSnapshot) {
                                     var key = childSnapshot.key();
                                     var mess = childSnapshot.val();
+                                   if($rootScope.ref.getAuth()!=null) {
                                     $scope.isFirstTimeIChek = first;
                                     if (mess.read == false && mess.sender != $rootScope.ref.getAuth().uid) {
                                         $scope.messaggiNonLetti.pushIfNotExist(mess, function (e) {
                                             return e.sender === mess.sender && e.text === mess.text && e.utc == mess.utc && e.read == mess.read;
                                         });
                                     }
+                                }
                                 });
                             });
                         }
@@ -578,5 +695,39 @@ console.log(seconds+"&&"+rest);
     }
 
 */
+    
 
+    if($rootScope.ref.getAuth()==null){
+        state.go("login");
+    }
+
+    /*
+     -KJXH1PYd8stQgpsWrMpaddclose
+     album:
+     "Garage Inc."
+     artist:
+     "Metallica"
+     category:
+     "rock"
+     duration:
+     "4:45"
+     image:
+     "http://pxhst.co/avaxhome/6c/13/000d136c_medium...."
+     title:
+     "Whiskey in the jar"
+     -KJXH1PYd8ztQtpsWrMp
+     album:
+     " Stoalin'"
+     artist:
+     "Isbells"
+     category:
+     "Indie"
+     duration:
+     "2:38"
+     image:
+     "http://www.incendiarymag.com/images/Issue85/In_..."
+     title:
+     "Baskin"
+
+     */
 });

@@ -41,7 +41,7 @@ body {
 }
 
 .barSearch:focus {
-    width: 100%;
+    width: 400px;
     z-index: 1;
     border-bottom: 1px solid #841E21;
     cursor: text;
@@ -85,7 +85,6 @@ body {
     border: 19px solid #841E21;
     outline: none;
     position: relative;
-
 }
 
 
@@ -93,7 +92,7 @@ body {
 ul.searchbar{
     top:10px;
     height: 100%;
-    width: inherit;
+    width: 400px;
     float: right;
     right: 18px;
     padding-left: 22px;
@@ -133,4 +132,4 @@ ul.searchbar.max{
 }
 
 .thumb.suggestionIm{
-    margin-top: 0px;}
+    margin-top: -12px;}

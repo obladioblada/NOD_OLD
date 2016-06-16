@@ -38,7 +38,7 @@
     <div class="col-md-12 col-sm-12" style="top: 20px">
         <ul>
             <li class="user-list" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true &&u.modoIncognito==false" ng-click="listenTo(u.song,u.time,uid)"  ng-class=" {max:min==true,first:$index==0}" >
-                    <span >
+                    <span style="top: 21px;  position: relative;">
                         <span > <a href="#"> {{u.name}} </a> sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
                     </span>
                 <i class="fa fa-hand-peace-o loveIconsong" ng-click="" aria-hidden="true"></i>

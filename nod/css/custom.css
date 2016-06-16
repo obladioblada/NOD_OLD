@@ -34,6 +34,7 @@ html {
 }
 
 .user-list{
+    min-height: 80px;
     border: 0px solid;
     list-style: none;
     margin-right: 0px;
@@ -483,4 +484,74 @@ a.userlink:hover{
 .notification{
     visibility: initial;
     display: none;
+}
+
+.modal-content{
+    border-radius: 18px !important;
+    color: white !important;
+    background: #4D4D52 !important;
+}
+
+.modal-body{
+    padding-bottom: 0 !important;
+}
+.close{
+    color: #fff !important;
+    text-shadow: 0 0 0 #fff;
+}
+.close:hover{
+    text-shadow: 0 0 0 #fff;
+}
+
+.modal-header,.modal-footer{
+    border: 0 !important;
+}
+.modal-footer{
+    padding-top: 0 !important;
+}
+
+.modal-header{
+    background: #222222 !important;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.btn-default {
+    border-radius: 18px !important;
+}
+
+.imageinput{
+    top: 0;
+    left: 0;
+    margin: 0;
+    right: 0;
+    bottom: 0;
+    background: #7A7A82;
+    border-radius: 18px;
+}
+
+.row{
+    margin-right: 0 !important;
+}
+
+.artistElement {
+    list-style: none;
+    width: 100px;
+    display: inline-table;
+    margin: 14px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0;
+    padding-top: 5px;
+}
+
+.alink{
+    text-decoration: none;
+    color: #1B6D85;
+}
+
+.alink:hover{
+    text-decoration: none;
+    color: #841E21 !important;
+
 }

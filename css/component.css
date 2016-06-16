@@ -154,5 +154,14 @@ a.mya:hover{
 .mynod{
     color: #841E21;
     margin: 20px;
-    font-weight: 700;
+    font-weight: 900;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 70px;
+}
+
+
+.mynod{
+	text-decoration: none !important;
+	color: #841E21 !important;
 }

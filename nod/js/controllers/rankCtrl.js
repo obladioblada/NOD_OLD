@@ -25,7 +25,7 @@ myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject
         console.log("scarico vutenti ");
         $scope.usersBycountedpeaced.length=0;
         var ref = new Firebase(USERSURL);
-        ref.on("value", function(snapshot) {
+        ref.once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 $scope.currentuser=childSnapshot.val();
                 $scope.currentuser.id=childSnapshot.key();
@@ -34,10 +34,10 @@ myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject
         });
         console.log($scope.usersBycountedpeaced);
     };
+
     $scope.orderBycountedpeace();
     window.onload = function(){
         $scope.orderBycountedpeace();
-
     };
 
 });

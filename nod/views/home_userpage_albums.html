@@ -1,10 +1,49 @@
-<div class="row">
-    <div class="col-md-12  col-sm-12" >
-        <ul>
-            <li class="albumElement" ng-repeat="s in songs" ng-repeat="u in users">
-                <img class="albumThumb" ng-src="{{s.image}}"><br>
-                <h6 class="albumName">{{s.album}}</h6>
+<div class="toptab">
+    </dic><div class="navbar navbar-default navbarRanking">
+    <div class=" tabContainer row" >
+        <ul class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+            <li  class="linavbar" ng-repeat="i in prefereditems" id="i.name" ui-sref="{{i.sref}}" ng-if="i.name!='Logout'" >
+                <div class="item-ranking-navbar" ng-class="{ 'current-item-ranking-navbar':state==i.sref,'first':$index==0,'last':$index==prefereditems.length-1}" >
+                    <i class="fa {{i.icon}} fa-2x fa iconrow"  aria-hidden="true"  style="{{i.styleIcon}}" ui-sref="{{i.sref}}"></i>
+                    <h6 class=" rankiconname" style="{{i.styleText}}" ui-sref="#"> {{i.text}}</h6>
+                </div>
             </li>
         </ul>
+    </div>
+</div>
+    </div>
+
+<div class="row" id="albums">
+    <div class="col-md-12  col-sm-12" style="padding-top:110px">
+        <ul class="albumContainer">
+            <li class="albumElement" ng-repeat="s in albums" ng-click="chooseAlbum(s)">
+                <img class="albumThumb" ng-src="{{s[0].image}}"><br>
+                <h6 class="albumName">{{s[0].name}}</h6>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row albumList" id="album">
+    <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8" >
+        <span >
+            <h5>{{currentAlbum[0].name}}</h5>
+            <h6 style=" color: #C2C2C2"> {{currentAlbum[0].artist}}</h6>
+        </span>
+        <ul class="songlist">
+            <li class=" row user-list max" ng-repeat="song in currentAlbum" ng-if="$index!=0" ng-class="{first: $index==1,last:$index==currentAlbum.length-1}">
+                <span class="col-md-9 col-lg-9 col-xs-9 col-sm-9" ng-click="chooseSong($index,s)">
+                    <span >
+                        <h5 style="color: white">{{song.title}}</h5>
+                        <h6 style=" color: #C2C2C2"> {{song.artist}}</h6>
+                        <img src="img/playing.gif" class="playingGif" ng-if="myUser.song.title==song.title&&myUser.isPlaying">
+                    </span>
+                </span>
+                <i class="fa fa-hand-peace-o loveIconsong" ng-click="addsongtoprefered(song)" ng-class="checkIfPreferedYet(song) ? 'loved': ''" aria-hidden="true"></i>
+                <i class="fa fa-plus loveIconsong" aria-hidden="true"  ></i>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 rightAlbum" ng-style="{'background-image': 'url(' + currentAlbum[0].image + ')'}">
+    </div>
     </div>
 </div>

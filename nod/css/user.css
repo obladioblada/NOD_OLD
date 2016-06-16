@@ -69,8 +69,8 @@ i.iconrow{
     width: 75px;
     height: 75px;
     background: #222222;
-    margin-top: 8px;
     margin-left: 10px;
+    border-radius: 10%;
 }
 
 
@@ -80,7 +80,7 @@ i.iconrow{
     width: 75px;
     height: 75px;
     background: #222222;
-    margin-left: -15px;
+    border-radius: 10%;
 
 }
 
@@ -101,4 +101,14 @@ i.iconrow{
     position: fixed;
     height: 100px;
     border-radius: 22px;
+}
+
+.toptab {
+    position: fixed;
+    top: 80px;
+    z-index: 10;
+    height: 23px;
+    width: 100%;
+    margin: 0;
+
 }

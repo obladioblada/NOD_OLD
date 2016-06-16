@@ -11,6 +11,12 @@
 	font-style: normal;
 } /* Made with http://icomoon.io/ */
 
+*{
+	font-family: "lato";
+	color: #ffffff;
+}
+
+
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body, html { font-size: 100%; padding: 0; margin: 0;}
 
@@ -21,6 +27,23 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 body {
     font-family: 'Limelight', Calibri, Arial, sans-serif;
     color: #3F51B5;
+	background: #4D4D52 !important;
+}
+
+h6{
+	padding-top: 40px !important;
+	font-size: medium!important;
+	font-weight: 500!important;
+
+}
+
+element.style {
+	width: 1000px;
+	/* height: 1000px; */
+}
+img {
+	width: 100% !important;
+	height: inherit !important;
 }
 
 a {
@@ -42,7 +65,6 @@ a:hover {
 	width: 90%;
 	max-width: 69em;
 	margin: 0 auto;
-	padding: 2.875em 1.875em 1.875em;
 }
 
 .container > header h1 {
@@ -56,7 +78,7 @@ a:hover {
 .container > header > span {
 	display: block;
 	position: relative;
-	z-index: 9999;
+	z-index: 0;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5em;
@@ -168,7 +190,7 @@ a:hover {
 }
 
 .main > section:nth-child(even) {
-	background: #f6f6f6;
+	background: #82828A;
 	color: #fff;
 }
 
@@ -196,6 +218,60 @@ a:hover {
     height: 100%;
     width: 100%;
 
+}
+
+.chatThumbList{
+	border-radius: 25px;
+	float: left;
+	width: 50px;
+	margin-top: 48px;
+	margin-right: 20px;
+	height: 50px;
+	transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+	border: 2px solid #3F51B5;
+	background-size: 50px;
+	background-image: url("http://penerbitsalemba.com/v3/images/user_default.png");
+}
+
+.chatThumbList:hover{
+
+	border-radius: 10%;
+}
+
+.interviste{
+	overflow-y: scroll;
+	border-radius: 18px;
+	background: #82828A;
+}
+.inDx{
+	border-top-right-radius: 0px!important;
+	border-bottom-right-radius: 0px !important;
+}
+.inSx{
+	border-top-left-radius: 0px !important;
+	border-bottom-left-radius: 0px !important;
+}
+
+.ct-chart{
+	width: 100%;
+}
+
+.ct-label {
+	fill: rgba(255, 255, 255, 1) !important;
+	color: white;
+	font-size: smaller !important;
+	font-weight: 500!important;
+}
+
+
+.rosso{
+	stroke: #8e2024;
+}
+.blu{
+	stroke: #1B6D85;
+}
+.nero{
+	stroke: #222222;
 }
 
 

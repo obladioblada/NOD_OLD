@@ -1,4 +1,4 @@
-myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window){
+myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$rootScope,$state,$window,$firebaseObject, $http){
     $scope.defaultImg='img/user_default.png';
     var ref = new Firebase(NODURL+"/users");
     ref.unauth();
@@ -198,12 +198,18 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
                     if (snapshot.child(authData.uid).child("modoIncognito").exists() == false) {
                         ref.child(authData.uid).update({ modoIncognito: false });
                     }
+                    if (snapshot.child(authData.uid).child("countpeaced").exists() == false) {
+                        ref.child(authData.uid).update({ countpeaced: 0 });
+                    }
                     console.log(" e authdata vale "+authData.uid);
+                    $scope.name= getName(authData);
+                    $scope.myUser.online=true;
+                    $rootScope.ref=ref;
                 }
+               
             });
-            $scope.myUser.online=true;
-            $rootScope.ref=ref;
         }
+
     });
 
 // find a suitable name based on the meta info given by each provider
@@ -224,6 +230,6 @@ myApp.controller('loginCtrl',function($scope,$firebaseArray,$location,NODURL,$ro
         ref.child(authData.uid).update({ image: image });
     };
 
-
+   
 
 });

@@ -22,13 +22,18 @@
             <div class="col-md-4 col-xs-4">
                 <input ng-model="newUser.email" id="email" name="email" type="email" placeholder="email"
                        class="ng-pristine ng-valid ng-empty ng-touched username-input pass noautofillStyle"
-                       autocomplete="off"  spellcheck="false" required>
+                       autocomplete="off"  spellcheck="false" ng-focus="hidemailerror()" required>
                  <span class="error" style="color: white" ng-show="register_form.$error.email && register_form.email.$dirty">
             invalid email!
         </span>
+
             </div>
             <div class="col-md-4 col-xs-4">
                 <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="register_form.$error.email && register_form.email.$dirty" aria-hidden="true"></i>
+                <i class="fa fa-exclamation-circle error-input-username-visible" ng-show="userNameAlreadyUsed" aria-hidden="true"></i>
+                <span class="error" style="color: white" ng-show="userNameAlreadyUsed">
+             email già in uso !
+            </span>
             </div>
         </div>
         <div class="row" id="rowEmail">
@@ -60,7 +65,7 @@
                             <div class="login menu-item-bounce"></div>
                         </li>
                     </ul>
-                    <button class=" menu-toggle-button" ng-disabled="register_form.$invalid" ng-class="{'submit_disable':register_form.$invalid}" ng-click="registerNewUser(register_form.$valid)">
+                    <button class=" menu-toggle-button" ng-disabled="register_form.$invalid || newUser.email.length==0" ng-class="{'submit_disable':register_form.$invalid}" ng-click="registerNewUser(register_form.$valid)">
                         <i class="fa fa-sign-in menu-toggle-icon"></i>
                     </button>
                 </div>
@@ -70,6 +75,9 @@
         </div>
     </form>
 </div>
+<footer class="navbar navbar-fixed-bottom iscriviti">
+    <span> <a href="" ng-click="goToLogin()" class="alink"> torna al login </a></span>
+</footer>
 
 
 

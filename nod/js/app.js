@@ -2,7 +2,7 @@
 $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
 });
-var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router','ngSanitize'])
+var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router','ngSanitize','ngTouch'])
     .constant('NODURL','https://nod-music.firebaseio.com')
     .constant('USERSURL','https://nod-music.firebaseio.com/users/')
     .constant('CHATSURL','https://nod-music.firebaseio.com/chats/')
@@ -38,14 +38,17 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                         .state('home.user.playlist',{
                                             url:'/playlist',
+                                            controller:'playlistCtrl',
                                             templateUrl:'views/home_userpage_playlist.html'
                                         })
                                         .state('home.user.songs',{
                                             url:'/songs',
+                                            controller:'songCtrl',
                                             templateUrl:'views/home_userpage_songs.html'
                                         })
                                         .state('home.user.albums',{
                                             url:'/albums',
+                                            controller:'albumCtrl',
                                             templateUrl:'views/home_userpage_albums.html'
                                         })
                                         .state('home.user.ranking',{
@@ -55,13 +58,18 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                         })
                                             .state('home.user.ranking.me',{
                                                 url:'/me',
+                                                controller:'rankmeCtrl',
                                                 templateUrl:'views/home_userpage_ranking_me.html'
                                             })
                                             .state('home.user.ranking.monthly',{
                                                 url:'/monthly',
                                                 templateUrl:'views/home_userpage_ranking_monthly.html'
                                             })
-
+                                            .state('home.user.ranking.nodbuddy',{
+                                                url:'/nodbuddy',
+                                                controller:'nodbuddyCtrl',
+                                                templateUrl:'views/home_userpage_ranking_nodbuddy.html'
+                                            })
                                         .state('home.user.chat',{
                                             url:'/chat:myParam',
                                             templateUrl:'views/home_chat.html',
@@ -74,7 +82,12 @@ var myApp=angular.module('mainApp',['ngAudio','firebase','ngSanitize','ui.router
                                             templateUrl:'views/home_nodder.html',
                                             controller:'nodderCtrl',
                                             params: {nodder: null}
-                            
+                                        })
+                                        .state('home.user.artist',{
+                                            url:'/artist',
+                                            templateUrl:'views/home_userpage_artists.html',
+                                            controller:'artistCtrl'
+
                                         })
                                         .state('home.user.settings',{
                                             url:'/setting',

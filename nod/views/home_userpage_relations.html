@@ -1,3 +1,4 @@
+<!--
 <div class="row">
     <div class="col-md-12 col-sm-12" style="top: 20px">
         <ul>
@@ -5,13 +6,23 @@
                     <span ng-click="listenTo(u.song,u.time,uid)">
                         <span >{{u.name}} sta ascoltando: {{u.song.title}}</span> | <span class="detail">{{u.time | trackTime}}</span>
                     </span>
-                <i class="fa fa-hand-peace-o fa-2x loveIconsong" style="margin-top: -3px" aria-hidden="true"></i>
+                <i class="fa fa-hand-peace-o loveIconsong" style="margin-top: -3px" aria-hidden="true"></i>
             </li>
         </ul>
-        <ul>
-            <li class="user-list" ng-repeat="m in emoji">
-                {{$index}}) {{m}} <p  ng-bind-html="m|html">{{m}}</p><span class="emj" ng-bind-html="m|html"></span>
-            </li>
-        </ul>
+    </div>
+</div>
+-->
+
+<div>
+    <div class="row" id="albums">
+        <div class="col-md-12  col-sm-12">
+            <ul class="albumContainer">
+                <li class="artistElement"  ng-click="u.isPlaying == true&&listenTo(u.song,u.time,uid)" ng-repeat="(uid, u) in users" ng-if="uid!=ref.getAuth().uid && u.modoIncognito==false" class="albumName" >
+                    <img class="albumThumb" ng-src="{{u.image}}" ng-class=" {albumThumbgrey: uid!=ref.getAuth().uid && !u.isPlaying == true && u.modoIncognito==false}"><br>
+                    <h6 class="albumName">{{u.name}}</h6>
+                    <span class="detail" ng-if="uid!=ref.getAuth().uid && u.isPlaying == true && u.modoIncognito==false" > <h6 class="albumName">{{u.song.title}}</h6> {{u.time | trackTime}}</span>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

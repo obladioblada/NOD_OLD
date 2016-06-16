@@ -1,4 +1,5 @@
-console.log('Started', self);
+"use strict";
+
 self.addEventListener('install', function(event) {
     self.skipWaiting();
     console.log('Installed', event);
@@ -6,7 +7,59 @@ self.addEventListener('install', function(event) {
 self.addEventListener('activate', function(event) {
     console.log('Activated', event);
 });
-self.addEventListener('push', function(event) {
-    console.log('Push message received', event);
-    // TODO
+
+var data="";
+
+self.addEventListener('push', function(e) {
+    
+    console.log("sono dentro all'evento push");
+    console.log(e);
+    console.log("data è" + data.title);
+   // if((data.title!=null&&data.body!=null)){
+        console.log('push received' + data.title);
+        console.log(data.title);
+        var title=data.title;
+        e.waitUntil(
+            self.registration.showNotification(title, {
+                body: data.body,
+                icon: data.img,
+                tag:  data.tag
+            })
+        );
+   // }
 });
+
+self.addEventListener('message', function (evt) {
+    console.log(evt);
+    console.log('postMessage received', evt.data.title);
+    data=evt.data;
+});
+
+
+self.addEventListener('notificationclick', function(event) {
+    console.log('Notification click: tag ', event.notification.tag);
+    event.notification.close();
+    var url = event.notification.tag;
+    event.waitUntil(
+        clients.matchAll({
+            type: 'window'
+        })
+            .then(function(windowClients) {
+                for (var i = 0; i < windowClients.length; i++) {
+                    var client = windowClients[i];
+                    if (client.url === url && 'focus' in client) {
+                        return client.focus();
+                    }
+                }
+                if (clients.openWindow) {
+                    return clients.openWindow(url);
+                }
+            })
+    );
+});
+
+
+
+
+// broswerKey AIzaSyA2osVlaB52G_k5Rp1D4VP8QG0NrhnRAm8
+//project number 538074622362

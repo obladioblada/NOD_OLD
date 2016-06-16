@@ -1,6 +1,6 @@
 myApp.controller('rankCtrl', function($scope,USERSURL){
      $scope.usersBycountedpeaced=[];
-
+    $scope.limitRank=10;
     $scope.ranknavbaritem=[];
     $scope.mensile={
         text:"Mensile",
@@ -15,32 +15,30 @@ myApp.controller('rankCtrl', function($scope,USERSURL){
     $scope.buddy={
         text: "nodBuddy",
         icon: "fa-heartbeat",
-        sref:"home.user.ranking.me"
+        sref:"home.user.ranking.nodbuddy"
     };
     $scope.ranknavbaritem.push($scope.mystats,$scope.mensile,$scope.buddy);
 
-    $scope.limitRank=5;
-    $( window ).resize(function() {
-        $scope.resizeThem();
-    });
-    $scope.resizeThem=function(){
-        $(".item-ranking-navbar").css({
-            width: ($(".tabContainer").width()/$scope.ranknavbaritem.length)-10
-        });
-    };
-    setTimeout(function(){$scope.resizeThem()});
-
+   
+    
     $scope.orderBycountedpeace=function () {
+        console.log("scarico vutenti ");
+        $scope.usersBycountedpeaced.length=0;
         var ref = new Firebase(USERSURL);
-        ref.on("value", function(snapshot) {
+        ref.once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
-            $scope.usersBycountedpeaced.push(childSnapshot.val());
+                $scope.currentuser=childSnapshot.val();
+                $scope.currentuser.id=childSnapshot.key();
+            $scope.usersBycountedpeaced.push($scope.currentuser);
             });
-
         });
-
+        console.log($scope.usersBycountedpeaced);
     };
+
     $scope.orderBycountedpeace();
+    window.onload = function(){
+        $scope.orderBycountedpeace();
+    };
 
 });
 

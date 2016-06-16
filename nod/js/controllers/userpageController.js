@@ -13,25 +13,14 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.relation'
     };
-    $scope.playlist={
-        name: 'Playlist',
-        icon: 'fa-list',
-        styleIcon: "{'margin-left': '2px'}",
-        sref:'home.user.playlist'
-    };
-    $scope.canzoni={
-        name: 'Canzoni',
-        icon: 'fa-music',
+
+    $scope.preferiti={
+        name: 'Preferiti',
+        icon: 'fa-hand-peace-o',
         styleIcon: "{'margin-left': '0px'}",
         sref:'home.user.songs'
     };
-    $scope.album={
-        name: 'Album',
-        icon: 'fa-headphones',
-        styleText: "",
-        styleIcon: "{'margin-left': '4px'}",
-        sref:'home.user.albums'
-    };
+
     $scope.classifiche={
         name: 'ranking',
         icon: 'fa-bar-chart',
@@ -51,7 +40,7 @@ myApp.controller('userPageCtrl', function($scope,$state,$rootScope){
         sref:'home.user.settings'
     };
    
-    $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.playlist,$scope.canzoni,$scope.album,$scope.classifiche,$scope.chat,$scope.settings];
+    $scope.navbaritem=[$scope.home,$scope.relazioni,$scope.preferiti,$scope.classifiche,$scope.chat,$scope.settings];
 
     $scope.updateState=function(){
         $scope.state=$state.$current.url.source;

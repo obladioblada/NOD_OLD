@@ -7,10 +7,7 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
     $scope.setnodder=function () {
         $scope.nodder="";
         nodderRef = new Firebase(USERSURL+$stateParams.nodder);
-        console.log("il parametro passato è" + $stateParams.nodder);
-        console.log("il ref è" + nodderRef);
         $scope.nodderOBJ=$firebaseObject(nodderRef);
-        console.log("il nodderOBJ id  è" + $scope.nodderOBJ.$id);
         $scope.nodderOBJ.$bindTo($scope, 'nodder').then(function () {
         });
 
@@ -23,7 +20,6 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
 
 
     $scope.setPeaceToNodder=function () {
-        console.log("dentro set");
         if($scope.checkIfNodderExist($rootScope.ref.getAuth().uid)==false){
             nodderlikedRef.push($rootScope.ref.getAuth().uid);
             nodderRef.update({
@@ -59,9 +55,7 @@ myApp.controller('nodderCtrl', function($scope,$state,$rootScope,USERSURL,CHATSU
      * @return {boolean}
      */
     $scope.ThereArePrefered= function(){
-        return $scope.nodder.preferredsong.length!=0;
-
-
+        return typeof($scope.nodder.preferredsong ) != "undefined";
     }
 
 });

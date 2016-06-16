@@ -20,7 +20,7 @@
     <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 0; width: 100%">
     <div class="navbar-fixed-top mynavbar" >
         <div >
             <h1 class="mynod">   NOD   </h1>
@@ -39,20 +39,20 @@
         <h1 class="centerImg">A new way to share your music </h1>
     </header>
     <div class="main container-fluid row">
-        <span class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+        <span class="col-lg-12 col-xs-12 col-sm-12 col-md-12" style="text-align:center;"></span>
     <h4 class="centerImg">  Low Poly  SN project </h4>
     <h6 class="centerImg">A new way to share your music </h6>
 </header>
     <div class="main">
         <span style="text-align:center;">
-            <h3>Interviste, qualche accenno prima di procedere alla lettura!</h3><hr>
-            <h5>
+            <h3 style=" margin: 100px">Interviste, qualche accenno prima di procedere alla lettura!</h3><hr>
+            <h5 style=" margin: 50px ; height: 100%;">
                 Abbiamo condotto diverse tipologie di interviste nell'arco della settimana precedente alla consegna del progetto. <br>
                 Poiché siamo riusciti a caricare su internet solo la sera prima della consegna del progetto, siamo stati costretti a far testare il social solo ad amici e parenti dai nostri pc.<br>
                 Pertanto abbiamo ricevuto dei feedback in maniera limitata e quindi probabilmente il risultato è condizionato dai legami personali.<br>
                 Questo ha prodotto un feedback variegato, che risulta a volte utile, a volte divertente.<br>
                 Ad alcuni abbiamo chiesto una registrazione audio o di scriverci qualcosa , ad altri un parere libero e , talvolta , feedback riguardo specifiche funzionalit&agrave;.<br><hr>
-                Qui di seguito alcune interviste e grafici che riassumono il loro l'andamento .<br><hr>
+                Qui di seguito alcune interviste e i grafici che riassumono il loro andamento .<br><hr>
             </h5>
         </span>
         <div class="interviste inDx col-lg-6 col-xs-6 col-sm-6 col-md-6">
@@ -221,14 +221,6 @@
                 }
             });
 
-            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-            chart.on('created', function() {
-                if(window.__anim21278907124) {
-                    clearTimeout(window.__anim21278907124);
-                    window.__anim21278907124 = null;
-                }
-                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-            });
 
             var chartkaraoke = new Chartist.Pie('#karaoke', {
                         labels: ['40% Ha apprezzato', '40% Non lo utilizzerebbe','20% Ha proposto nuove modalità di gioco'],
@@ -282,14 +274,6 @@
                 }
             });
 
-            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-            chartkaraoke.on('created', function() {
-                if(window.__anim21278907124) {
-                    clearTimeout(window.__anim21278907124);
-                    window.__anim21278907124 = null;
-                }
-                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-            });
 
             var charNodbuddy = new Chartist.Pie('#nodbuddy', {
                         labels: ['75% Ha apprezzato', '15% Non lo utilizzerebbe','10% Ha proposto vari tipi di affiliazione'],
@@ -343,14 +327,6 @@
                 }
             });
 
-            // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-            charNodbuddy.on('created', function() {
-                if(window.__anim21278907124) {
-                    clearTimeout(window.__anim21278907124);
-                    window.__anim21278907124 = null;
-                }
-                //window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-            });
         </script>
     </div>
     <hr>

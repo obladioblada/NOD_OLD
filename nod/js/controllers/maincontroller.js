@@ -75,6 +75,8 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         $scope.myUser.online=false;
         console.log("exit-logout");
         console.log("onlile  ?" + $scope.myUser.online);
+        if (typeof($scope.audio) != "undefined") $scope.audio.stop();
+
     };
    
     
@@ -247,7 +249,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
                             $scope.suggestArtist.splice($scope.suggestArtist.indexOf(original), 1);
                         }
                     }
-                })
+                });
                 if($scope.suggestArtist.length!=0){
                     $scope.suggestions.push($scope.suggestArtist);
                     $scope.ricerca.push("Artisti");
@@ -271,7 +273,7 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
                             $scope.suggestAlbum.splice($scope.suggestAlbum.indexOf(original), 1);
                         }
                     }
-                })
+                });
                 if($scope.suggestAlbum.length!=0){
                     $scope.suggestions.push($scope.suggestAlbum);
                     $scope.ricerca.push("Album");
@@ -338,7 +340,6 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $state, ngAudio, ngAu
         ref.set(snapshot.val());
         if (snapshot.val()) {
             var ref = new Firebase(NODURL+"/users/"+$rootScope.ref.getAuth().uid);
-           // ref.onDisconnect().remov;
             ref.onDisconnect().update({
                 online: false,
                 isPlaying:false,

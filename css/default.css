@@ -78,7 +78,7 @@ a:hover {
 .container > header > span {
 	display: block;
 	position: relative;
-	z-index: 9999;
+	z-index: 0;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5em;

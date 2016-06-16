@@ -1,4 +1,4 @@
-myApp.controller('rankCtrl', function($scope,USERSURL,$rootScope,$firebaseObject,$state){
+myApp.controller('rankCtrl', function($scope,USERSURL){
      $scope.usersBycountedpeaced=[];
     $scope.limitRank=10;
     $scope.ranknavbaritem=[];
